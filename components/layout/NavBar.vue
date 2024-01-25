@@ -1,5 +1,4 @@
 <template>
-
     <a-layout-header  style="position: relative;">
       <nav :style="NavStyle">
       <a-flex gap="middle" horizontal justify="space-between">
@@ -15,14 +14,14 @@
           </a-menu-item>
           <a-menu-item>
             <a-dropdown >
-              <nuxt-link class="ant-dropdown-link">
+              <nuxt-link to="/hotels" class="ant-dropdown-link">
                 HOTELS
                 <DownOutlined />
               </nuxt-link>
               <template #overlay >
                 <a-menu class="dropdrownMenu">
                   <a-menu-item>
-                    <nuxt-link to="/hotels/numgnum">Dansavanh Resort & Casino</nuxt-link>
+                    <nuxt-link to="/hotels/numngum">Dansavanh Resort & Casino</nuxt-link>
                   </a-menu-item>
                   <a-menu-item>
                     <nuxt-link to="/hotels/golf">Dansavanh Golf & Country Club</nuxt-link>
@@ -35,7 +34,7 @@
             </a-dropdown>
           </a-menu-item>
           <a-menu-item>
-            <nuxt-link to="">
+            <nuxt-link to="/experience">
               experience
             </nuxt-link>
           </a-menu-item>

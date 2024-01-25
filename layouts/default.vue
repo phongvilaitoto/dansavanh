@@ -6,8 +6,8 @@ import FooterVue from '~/components/layout/Footer.vue';
 const themeConfig = {
   algorithm: theme.darkAlgorithm,
   token: {
-    colorPrimary: '#ffff',
-    // colorPrimary: '#722ed1',
+    // colorPrimary: '#ffff',
+    colorPrimary: '#722ed1',
   },
 } as ConfigProviderProps['theme']
 </script>

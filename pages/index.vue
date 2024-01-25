@@ -13,11 +13,11 @@
       </a-typography-title> 
     </div>
   </a-carousel>
-  <a-layout-content style="padding: 0 50px" :style="{background: '#F4F4F4', color:'#000'}">
+  <a-layout-content class="content-container" :style="{background: '#F4F4F4', color:'#000'}">
     <div :style="{padding: '24px', minHeight: '280px' }">
       <!-- slide  -->
 <!-- welcome  -->
-    <section style="padding: 1rem;">
+    <section >
       <Welcome />
     </section>
     </div>

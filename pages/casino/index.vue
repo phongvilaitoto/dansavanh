@@ -21,25 +21,15 @@
           A MAGIC PLACE
         </a-typography-title>
       </a-col>
-      <a-col :span="14">
+      <a-col :span="16">
         <a-typography-title
-          style="
-            font-family: var(--font-family);
-            font-size: 86px;
-            font-weight: 700;
-          "
+        class="t1"
           >OUR RESORTS CASINO</a-typography-title
         >
       </a-col>
     </a-row>
   </a-layout>
   <a-layout-content style="padding: 20px 50px">
-    <!-- <a-breadcrumb style="margin: 16px 0">
-        <a-breadcrumb-item>Home</a-breadcrumb-item>
-        <a-breadcrumb-item>List</a-breadcrumb-item>
-        <a-breadcrumb-item>App</a-breadcrumb-item>
-      </a-breadcrumb> -->
-    <!-- <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }"></div> -->
     <div class="header">
       <span>CASINO</span>
       <!-- <p></p> -->
@@ -52,9 +42,9 @@
   </a-layout-content>
   <a-layout-content>
     <div class="blog">
-      <a-row class="blackjack">
-        <a-col :md="8" :lg="14" class="left hasbg"></a-col>
-        <a-col :md="8" :lg="8" class="right hasTextBox">
+      <a-row class="bg-left">
+        <a-col :md="12" :lg="14" class="bg blackjack"></a-col>
+        <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
             <h2>Blackjack21</h2>
@@ -67,10 +57,9 @@
           </div>
         </a-col>
       </a-row>
-      <a-row class="roulette" justify="center">
-        <a-col :md="8" :lg="14" class="right hasbg">
-        </a-col>
-        <a-col :md="8" :lg="7" class="left hasTextBox">
+      <a-row class="bg-right">
+        <a-col :md="12" :lg="14" class="bg roulette"></a-col>
+        <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
             <h2>Blackjack21</h2>
@@ -84,9 +73,9 @@
         </a-col>
      
       </a-row>
-      <a-row class="baccarat">
-        <a-col :md="8" :lg="14" class="left hasbg"></a-col>
-        <a-col :md="8" :lg="7" class="right hasTextBox">
+      <a-row class="bg-left">
+        <a-col :md="12" :lg="14" class="bg baccarat"></a-col>
+        <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
             <h2>Blackjack21</h2>
@@ -99,8 +88,10 @@
           </div>
         </a-col>
       </a-row>
-      <a-row class="dragonTiger">
-        <a-col :md="8" :lg="7" class="left hasTextBox">
+      <a-row class="bg-right ">
+        <a-col :md="12" :lg="14" class="bg dragonTiger">
+        </a-col>
+        <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
             <h2>Blackjack21</h2>
@@ -112,13 +103,10 @@
             </p>
           </div>
         </a-col>
-        <a-col :md="8" :lg="14" class="right hasbg">
-          
-        </a-col>
       </a-row>
-      <a-row class="slots">
-        <a-col :md="8" :lg="14" class="left hasbg"></a-col>
-        <a-col :md="8" :lg="7" class="right hasTextBox">
+      <a-row class="bg-left">
+        <a-col :md="12" :lg="14" class="bg slots"></a-col>
+        <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
             <h2>Blackjack21</h2>
@@ -138,6 +126,15 @@
 <script setup lang="ts"></script>
 
 <style scoped>
+.t1{
+  font-family: var(--font-family);
+  font-size: 42px;
+            
+            font-weight: 700;
+            @media (min-width: 576px) {
+              font-size: 86px;
+            }
+}
 .header {
   display: flex;
   flex-direction: column;
@@ -164,9 +161,63 @@
 }
 
 .blog {
+    background-color: #f4f4f4 !important; 
+    /* margin-top: 20px; */
+  padding: 0 !important;
+  .bg-left,
+  .bg-right {
+    .bg {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      aspect-ratio: 16/9;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+    }
+    .text-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      z-index: 999;
+    }
+  }
+  .bg-right {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  @media (min-width: 576px) {
+    .bg-right .text-container {
+      left: 5%;
+    }
+    .bg-left .text-container {
+      right: 5%;
+    }
+  }
+}
+/* .blog {
   margin-top: 30px;
   padding: 0 !important;
-}
+
+  .bg{
+    background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      aspect-ratio: 16/9;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+  }
+  .text-container{
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: -4px;
+      right: 4%;
+      width: 100%;
+  }
+} */
   /* textbox  */
   .text-box {
         justify-self: center;
@@ -193,7 +244,7 @@
           margin-bottom: 24px;
         }
       }
-      .left {
+      /* .left {
       &.hasbg{
       background-repeat: no-repeat;
       background-position: center;
@@ -237,51 +288,25 @@
       }
      
      
-    }
-
+    } */
 
 /* box set up  */
 .blackjack {
-  border: 1px solid red;
-    .left{     
-       &.hasbg{
         background-image: url("/assets/image/casino/casino-blackjack.jpg");
-       }
-     
     }
-  }
+  
 .roulette {
-    .right{     
-       &.hasbg{
         background-image: url("/assets/image/casino/casino-roulette.jpg");
-       }
-     
-    }
   }
 .baccarat {
-    .left{     
-       &.hasbg{
         background-image: url("/assets/image/casino/casino-baccarat.jpg");
        }
-     
-    }
-  }
+
 .dragonTiger {
-    .right{     
-       &.hasbg{
         background-image: url("/assets/image/casino/casino-dragontiger.jpg");
        }
-     
-    }
-  }
 .slots {
-    .left{     
-       &.hasbg{
         background-image: url("/assets/image/casino/casino-slots.jpg");
        }
-     
-    }
-  }
-  
 
 </style>
