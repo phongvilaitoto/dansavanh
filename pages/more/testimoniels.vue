@@ -1,6 +1,6 @@
 <template>
     <div>
-        experince
+        testimoniels
     </div>
 </template>
 

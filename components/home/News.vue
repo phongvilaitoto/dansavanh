@@ -14,7 +14,7 @@
         <h2>Our Event</h2>
       </div>
     </a-col>
-    <a-col :lg="4">
+    <a-col :sm="24" :lg="4">
       <div class="card offer">
         <img src="/assets/image/home/offer.jpg" alt="" />
         <h2>BEST OFFER</h2>
@@ -30,12 +30,12 @@
 
   <!-- news  -->
   <a-row justify="center" style="padding-bottom: 1rem;" :gutter="20">
-    <a-col :span="7">
+    <a-col :sm="24" :lg="8">
     <div class="card news">
         <img src="/assets/image/home/news.jpg" alt="">
     </div>
     </a-col>
-    <a-col :span="7">
+    <a-col :sm="24" :lg="8">
         <a-typography-title :level="2" :style="{color:'#000000'}">
             NEWS
         </a-typography-title>

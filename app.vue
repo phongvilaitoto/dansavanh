@@ -9,6 +9,7 @@
 </script>
 <style >
 @import url('~/assets/css/font.css');
+@import url('~/assets/css/all.css');
 
 .content-container{
   padding: 0 20px;

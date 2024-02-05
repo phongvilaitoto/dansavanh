@@ -102,15 +102,15 @@
         </a-col>
       </a-row>
       <a-row justify="center" :gutter="20">
-        <a-col :sm="24" :md="8" :lg="6" class="icon_block">
-          <i class="icon icon-Car"></i>
-          <h4>SHUTTLE BUS</h4>
+        <a-col :sm="24" :md="12" :lg="6" class="icon_block">
+            <CarOutlined class="icon" />
+          <h4 style="font-weight: 700;">SHUTTLE BUS</h4>
           <img class="img" src="/assets/image/contact/bus2.png" />
         </a-col>
-        <a-col :sm="24" :md="8" :lg="6" class="icon_block">
-          <i class="icon icon-Phone2"></i>
-          <h4>TELEPHONE</h4>
-          <p>
+        <a-col :sm="24" :md="12" :lg="6" class="icon_block">
+            <PhoneOutlined class="icon" />
+          <h4 style="font-weight: 700;">TELEPHONE</h4>
+          <p style="font-weight: 600 !important;">
             For instant info<br /><br />
             <span class="nmr">Dansavanh Vientiane Hotel:</span>
             <span class="nmr2">+856 21 217 595</span><br />
@@ -121,16 +121,16 @@
           </p>
         </a-col>
         <a-col :sm="24" :lg="6" class="icon_block">
-          <i class="icon icon-Keyboard"></i>
-          <h4>E-MAIL</h4>
-          <p>
+            <RedEnvelopeOutlined class="icon" />
+          <h4 style="font-weight: 700;">E-MAIL</h4>
+          <p style="font-weight: 600 !important;">
             If you are on the go and wish to enquire.<br /><br />
             info@dansavanh.net
           </p>
         </a-col>
       </a-row>
       <div class="line-header">
-        <span>ROOM </span>
+        <span>CONTACT FORM </span>
         <img
           src="/assets/image/decoration-1.png"
           alt=""
@@ -238,6 +238,7 @@ h4 {
   display: flex;
   justify-content: center;
   gap: 20px;
+
   .text-box {
     /* border: 1px solid red; */
     justify-self: center;
@@ -256,14 +257,26 @@ h4 {
 }
 
 .icon_block {
-  margin: 10px;
+  margin:20px 10px;
   width: 100%;
-  border: 2px solid red;
-
+  text-align: center;
+    
+  .icon{
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
   .img {
     /* width: 100%; */
     display: block;
     max-width: 100%;
   }
+  .nmr{
+    float: left;
+  }
+  .nmr2{
+    float: right;
+  font-weight: 500;
+  }
+
 }
 </style>

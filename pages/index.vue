@@ -29,7 +29,9 @@
   </a-layout-content>
   <a-layout-content>
     <section>
-      <News />
+   <div class="content-container">
+    <News />
+   </div>
     </section>
   </a-layout-content>
 </template>
@@ -52,6 +54,11 @@ const cardStyle: CSSProperties ={
   overflow: hidden;
   display: grid;
 }
+:deep(.slick-slide .slick-dots) {
+li{
+  border: 10px solid red !important;
+}
+}
 :deep(.slick-slide .slide-container) {
   position: relative;
 }
@@ -70,8 +77,8 @@ const cardStyle: CSSProperties ={
  /* height: 100%; */
  display: block;
  object-fit: cover;
-
 }
+
 
 
 /* section has background */
