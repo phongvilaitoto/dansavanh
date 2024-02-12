@@ -43,7 +43,7 @@
       </a-row>
       <div class="blog" >
       <a-row class="bg-left">
-        <a-col :md="12" :lg="14" class="bg numngum"></a-col>
+        <a-col :md="12" :lg="16" class="bg numngum"></a-col>
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & GOLF</span>
@@ -56,7 +56,7 @@
         </a-col>
       </a-row>
       <a-row class="bg-right">
-        <a-col :md="12" :lg="14" class="bg vte"></a-col>
+        <a-col :md="12" :lg="16" class="bg vte"></a-col>
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & GOLF</span>
@@ -69,7 +69,7 @@
         </a-col>
       </a-row>
       <a-row class="bg-left">
-        <a-col :md="12" :lg="14" class="bg golf"></a-col>
+        <a-col :md="12" :lg="16" class="bg golf"></a-col>
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & GOLF</span>

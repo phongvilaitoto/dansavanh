@@ -5,8 +5,8 @@
       </a-col>
   </a-row>
   <!-- card info  -->
-  <a-row justify="center" :gutter="20">
-    <a-col :sm="10" :lg="14">
+  <a-row justify="center">
+    <a-col :sm="24" :lg="24">
       <div class="card-info">
         <img src="/assets/image/home/hotel1.jpg" alt="" />
         <h2>THE BEST RESORT</h2>
@@ -22,9 +22,12 @@
   </a-row>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
 
-<style scoped>
+
+</script>
+
+<style scoped lang="scss">
 .card-info{
 /* border: 2px solid red; */
 height: auto;
@@ -50,6 +53,7 @@ h2{
   color: #fff;
   font-family:var(--font-family);
   font-weight:700;
+  font-size: 32px;
 }
 }
 

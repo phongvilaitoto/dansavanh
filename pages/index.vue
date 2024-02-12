@@ -14,23 +14,29 @@
     </div>
   </a-carousel>
   <a-layout-content class="content-container" :style="{background: '#F4F4F4', color:'#000'}">
-    <div :style="{padding: '24px', minHeight: '280px' }">
+
       <!-- slide  -->
 <!-- welcome  -->
-    <section >
+    <div  class="max-width">
       <Welcome />
-    </section>
+
     </div>
   </a-layout-content>
   <a-layout-content>
     <section class="has-background">
+    <div class="max-width" >
       <HotelInfo />
+    </div>
+     
     </section>
   </a-layout-content>
   <a-layout-content>
     <section>
    <div class="content-container">
+   <div class="max-width" >
     <News />
+   </div>
+  
    </div>
     </section>
   </a-layout-content>

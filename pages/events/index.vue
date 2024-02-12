@@ -5,15 +5,16 @@
       <a-row
         justify="center"
         style="
-          padding-top: 35px;
-          padding-bottom: 35px;
+          padding-top: 120px;
+          padding-bottom: 0px;
           text-align: center;
           justify-content: center;
           background-color: transparent;
         "
       >
         <a-col :span="24">
-          <a-typography-title class="t1">EVENTS</a-typography-title>
+        <h1 class="headerTitle">EVENTS</h1>
+          <!-- <a-typography-title class="headerTitle">EVENTS</a-typography-title> -->
         </a-col>
       </a-row>
     </div>
@@ -68,7 +69,7 @@
         />
       </a-col>
     </a-row>
-      <a-breadcrumb style="margin: 0px 16px">
+      <!-- <a-breadcrumb style="margin: 0px 16px">
         <a-breadcrumb-item
           ><nuxt-link to="/">Home</nuxt-link></a-breadcrumb-item
         >
@@ -76,7 +77,7 @@
           ><nuxt-link to="/hotels">Hotels</nuxt-link></a-breadcrumb-item
         >
         <a-breadcrumb-item>NUM NGUM</a-breadcrumb-item>
-      </a-breadcrumb>
+      </a-breadcrumb> -->
   
     <div :style="{ padding: '24px', minHeight: '280px' }">
       <a-row class="room-container">
@@ -130,7 +131,9 @@
     </a-row>
     <div :style="{ padding: '24px', minHeight: '280px' }">
       <a-row class="room-container">
-        <a-col :xs="24" :sm="24" :lg="10" class="room-cover"></a-col>
+        <a-col :xs="24" :sm="24" :lg="10" class="room-cover">
+      
+        </a-col>
         <a-col :xs="24" :sm="24" :lg="8" class="room-info">
           <div class="text-box">
             <h2>STANDARD ROOM</h2>
@@ -278,6 +281,9 @@ a {
   .room-cover {
     aspect-ratio: 16/10;
     background-color: #5e5e5e;
+    width: 200px;
+    background-image: url("https://www.aman.com/sites/default/files/styles/full_size_large/public/2021-02/Amantaka_Homepage_1.jpg?itok=26M01kWA");
+    background-position: center;
   }
   /* @media (min-width: 576px) {
       .room-info {  

@@ -4,7 +4,7 @@
         <div class="bg-cover"></div>
         <a-row
           style="
-            padding-top: 35px;
+            padding-top: 85px;
             padding-bottom: 62px;
             text-align:left;
             justify-content: center;
@@ -12,6 +12,7 @@
           "
         >
           <a-col :span="20">
+         
             <a-typography-title class="t1"
               >OUR OFFERS  </a-typography-title
             >
@@ -22,8 +23,8 @@
         </a-row>
       </div>
     </a-layout>
-    <a-layout-content class="content-container">
-      <a-row>
+    <div class="max-width">
+      <!-- <a-row>
         <a-breadcrumb style="margin: 16px 10px">
           <a-breadcrumb-item
             ><nuxt-link to="/">Home</nuxt-link></a-breadcrumb-item
@@ -33,7 +34,7 @@
           >
           <a-breadcrumb-item>NUM NGUM</a-breadcrumb-item>
         </a-breadcrumb>
-      </a-row>
+      </a-row> -->
       <!-- <div class="line-header">
         <span>ROOM </span>
         <img
@@ -42,12 +43,13 @@
           :style="{ height: '50px', display: 'block' }"
         />
       </div> -->
-      <div :style="{ padding: '24px', minHeight: '280px' }">
+      <div style="margin-top: 2rem" >
         <a-row class="promotion-container">
-          <a-col :lg="6" class="promotion-card" v-for="i in 2" :key="i">
+          <a-col :lg="10" class="promotion-card" v-for="i in 2" :key="i">
             <div class="pro-cover">
               <!-- <img src="" alt="cover"> -->
               <div class="img"></div>
+              <img style="width: 100%" src="https://www.dansavanh.net/assets/images/57551275bb1dd.jpg" alt="">
             </div>
             <div class="text-box">
               <h1>
@@ -59,10 +61,11 @@
           </a-col>
         </a-row>
         <a-row class="promotion-container">
-          <a-col :lg="6" class="promotion-card" v-for="i in 2" :key="i">
+          <a-col :lg="10" class="promotion-card" v-for="i in 2" :key="i">
             <div class="pro-cover">
               <!-- <img src="" alt="cover"> -->
               <div class="img"></div>
+              <img src="https://www.dansavanh.net/assets/images/575514258127a.jpg" alt="">
             </div>
             <div class="text-box">
               <h1>
@@ -76,12 +79,12 @@
        
       </div>
    
-    </a-layout-content>
+    </div>
   </template>
   
   <script setup lang="ts"></script>
   
-  <style scoped>
+  <style scoped lang="scss">
   .line-header {
     display: flex;
     flex-direction: column;

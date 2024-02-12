@@ -1,20 +1,21 @@
 <template>
   <!-- event and offer  -->
-  <a-row justify="center" style="padding-bottom: 1rem">
+  <a-row justify="center" style="padding-bottom: 1rem" >
     <a-col :span="24" style="align-content: center; justify-content: center; display: flex;">
       <img src="/assets/image/decoration-1.png" alt="" :style="{height: '50px', display:'block'}">
       </a-col>
   </a-row>
-  <a-row style="padding-bottom: 1rem" justify="center" :gutter="20">
+  <a-row style="padding-bottom: 1rem" justify="center" :gutter="10">
     <a-col
-     :sm="20" :lg="10"
+     :sm="24" :lg="16"
+     
      >
       <div class="card event">
         <img src="/assets/image/home/event.jpg" alt="" />
         <h2>Our Event</h2>
       </div>
     </a-col>
-    <a-col :sm="24" :lg="4">
+    <a-col :sm="24" :lg="8">
       <div class="card offer">
         <img src="/assets/image/home/offer.jpg" alt="" />
         <h2>BEST OFFER</h2>
@@ -24,18 +25,19 @@
   
   <!-- divided  -->
   <a-row justify="center">
-      <a-col :span="14">  <a-divider style="border-color: #000" /></a-col>
+      <a-col :span="24">  <a-divider style="border-color: #000" /></a-col>
     </a-row>
+    <br>
     <!-- divided  -->
 
   <!-- news  -->
   <a-row justify="center" style="padding-bottom: 1rem;" :gutter="20">
-    <a-col :sm="24" :lg="8">
+    <a-col :sm="24" :lg="12">
     <div class="card news">
         <img src="/assets/image/home/news.jpg" alt="">
     </div>
     </a-col>
-    <a-col :sm="24" :lg="8">
+    <a-col :sm="24" :lg="12">
         <a-typography-title :level="2" :style="{color:'#000000'}">
             NEWS
         </a-typography-title>
@@ -47,15 +49,17 @@
 </template>
 
 <script setup lang="ts">
-import type { CSSProperties } from 'vue';
+
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .card {
 position: relative;
 color: #fff;
 font-family: var(--font-family);
+margin-bottom: 10px;
+height: 500px;
 
 h2{
     position: absolute;

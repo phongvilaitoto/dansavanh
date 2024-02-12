@@ -31,7 +31,7 @@
       </a-row>
     </div>
   </a-layout>
-  <a-layout-content class="content-container">
+  <a-layout-content class="content-container max-width">
     <a-row justify="center">
       <a-col :span="24">
         <hr style="border: 0; margin-top: 24px; border-top: 1px solid #eee" />
@@ -83,7 +83,7 @@
     <div :style="{ padding: '24px', minHeight: '280px' }">
      <div class="career_box">
       <div class="text-box" v-for="i in 5" :key="i">
-        <h3>Promotion 1</h3>
+        <h3>Promotion {{ i }}</h3>
         <p>With its lofty ceilings, white and rattan palette and antique tile floors, the Restaurant is a cool, elegant setting for breakfast, lunch and dinner. Serving authentic local and French-influenced cuisine, the Restaurant’s Laotian specialties include fish or vegetables steamed in banana leaves with coriander and coconut milk.</p>
       </div>
      </div>

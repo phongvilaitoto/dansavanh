@@ -6,12 +6,13 @@
       </div>
       <div class="navbar-start">
         <div class="navbar-brand">
-          <img src="../../assets/image/logo-dansavanh2.png" alt="" />
+        <img  src="https://www.dansavanh.net/assets/images/logo-dansavanh4.png" alt="">
+          <!-- <img src="../../assets/image/logo-dansavanh2.png" alt="" /> -->
         </div>
       </div>
       <!-- menu  -->
-      <div class="navbar-item">
-        <nuxt-link to="/">HOME</nuxt-link>
+      <div class="navbar-item is-desktop">
+        <nuxt-link to="/" class="navbar-text">HOME</nuxt-link>
 
         <nuxt-link to="/casino">CASINO</nuxt-link>
         <div class="has-dropdrown">
@@ -59,9 +60,9 @@
             <li>
               <nuxt-link to="/more/career">Career</nuxt-link>
             </li>
-            <li>
+            <!-- <li>
               <nuxt-link to="/more/testimonials">Testimonials</nuxt-link>
-            </li>
+            </li> -->
             <li>
               <nuxt-link to="/more/news">News</nuxt-link>
             </li>
@@ -73,14 +74,14 @@
       </div>
 
       <!-- language switcher  -->
-      <div class="languageBar-switcher">
+      <div class="languageBar-switcher is-desktop">
         <span>LA</span>
         <span>TH</span>
         <span>CN</span>
       </div>
 
       <!-- mobile navbar  -->
-      <div class="mobile-navbar" v-if="burgerToggle">
+      <div class="mobile-navbar is-mobile" v-if="burgerToggle">
         <div class="navbar-bg" @click="clickBurgerToggle"></div>
         <div class="navbar-container">
           <div class="navbar-header">
@@ -117,7 +118,13 @@ const moreDropdownToggle = () => {
 
 
 </script>
+
+
 <style lang="scss" scoped>
+
+
+
+
 nav {
   height: auto;
   padding: 10px 20px;
@@ -127,6 +134,8 @@ nav {
   right: 0;
   left: 0;
   z-index: 2;
+
+  min-height: 64px;
   .navbar {
     background: transparent;
     padding: 0 0.5rem;
@@ -148,6 +157,7 @@ nav {
       display: none;
       color: #fff;
 
+      margin: 20px 0 20px 0;
       @media (max-width: 576px) {
         display: block;
       }
@@ -159,7 +169,12 @@ nav {
       align-items: center;
       gap: 20px;
       text-transform: uppercase;
-      font-size: 0.7rem;
+     // font-size: 0.7rem;
+      font-size: .9rem;
+     
+      // padding: 0 30px 0 30px;
+
+      
 
       @media (max-width: 576px) {
         display: none;
@@ -172,12 +187,48 @@ nav {
         transition: all ease-in-out 0.2s;
         text-decoration: none;
 
+
+    display: block;
+    font-size: .9em;
+    line-height: 1em;
+    margin: 16px;
+    padding-left: 0!important;
+    padding-right: 0!important;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    background: #6fb586;
+    height: 1px;
+    -webkit-transition-property: "right";
+    transition-property: "right";
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+  
+
         &:hover::after {
           display: block !important;
         }
 
         &:hover {
-          color: #3200b2;
+          color: #6fb586;
         }
 
         &::after {
@@ -213,7 +264,8 @@ nav {
 
         img {
           display: block;
-          max-width: 150px;
+           max-width: 200px;
+        //  height: 80px;
         }
       }
     }
@@ -286,9 +338,9 @@ button {
 .mobile-navbar {
   position: relative;
 
-  @media (min-width: 992px) {
-    display: none;
-  }
+  // @media (min-width: 992px) {
+  //   display: none;
+  // }
 
   .navbar-bg {
     position: fixed;

@@ -50,7 +50,7 @@
         />
       </a-col>
     </a-row>
-    <a-row>
+    <!-- <a-row>
       <a-breadcrumb style="margin: 16px 10px">
         <a-breadcrumb-item
           ><nuxt-link to="/">Home</nuxt-link></a-breadcrumb-item
@@ -60,8 +60,8 @@
         >
         <a-breadcrumb-item>NUM NGUM</a-breadcrumb-item>
       </a-breadcrumb>
-    </a-row>
-    <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">
+    </a-row> -->
+    <div  class="max-width">
       <a-row justify="center">
         <a-col :span="18">
           <a-typography-title
@@ -71,9 +71,9 @@
           </a-typography-title>
         </a-col>
       </a-row>
-      <a-row justify="center" style="display: flex; gap: 10px">
-        <a-col :span="4" class="facility-card" v-for="i in 4" :key="i">
-          <img src="" alt="" />
+      <a-row justify="center" :gutter="10">
+        <a-col :lg="6" class="facility-card" v-for="i in 4" :key="i">
+          <img style="width: 100%; height: 100%; object-fit: cover;" src="https://www.dansavanh.net/assets/images/golf-banner.jpg" alt="" />
           <span>FACILITIES1</span>
         </a-col>
       </a-row>
@@ -87,12 +87,12 @@
         :style="{ height: '50px', display: 'block' }"
       />
     </div>
-    <div :style="{ padding: '24px', minHeight: '280px' }">
-      <a-row class="room-container">
+    <div class="max-width">
+      <a-row class="room-container" v-for="i in 2">
         <a-col :sm="24" :md="14" :lg="14" class="room-cover">
         <div class="bg"></div>
         </a-col>
-        <a-col  :sm="24" :md="8" :lg="8" class="room-info">
+        <a-col  :sm="24" :md="10" :lg="10" class="room-info">
           <div class="text-box">
             <h2>
               <a href="#">Standard Room</a>
@@ -128,88 +128,7 @@
           </div>
         </a-col>
       </a-row>
-      <a-row class="room-container">
-        <div class="bg"></div>
-        <a-col :sm="24" :md="14" :lg="14" class="room-cover">
-          <div class="bg"></div>
-        </a-col>
-        <a-col :sm="24" :md="8" :lg="8" class="room-info">
-          <div class="text-box">
-            <h2>
-              <a href="#">Standard Room</a>
-            </h2>
-            
-            <p class="details">
-              <a-popover placement="bottom">
-                <template #content class="popOver">
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <DesktopOutlined />
-                </a-button>
-              </a-popover>
-              <a-popover placement="bottom">
-                <template #content>
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <WifiOutlined />
-                </a-button>
-              </a-popover>
-              <a-popover placement="bottom">
-                <template #content>
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <CoffeeOutlined />
-                </a-button>
-              </a-popover>
-            </p>
-            <nuxt-link to="/contact"> contact </nuxt-link>
-          </div>
-        </a-col>
-      </a-row>
-      <a-row class="room-container">
-        <a-col :sm="24" :md="14" :lg="14" class="room-cover">
-          <div class="bg"></div>
-        
-        </a-col>
-        <a-col :sm="24" :md="8" :lg="8" class="room-info">
-          <div class="text-box">
-            <h2>
-              <a href="#">Standard Room</a>
-            </h2>
-            
-            <p class="details">
-              <a-popover placement="bottom">
-                <template #content class="popOver">
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <DesktopOutlined />
-                </a-button>
-              </a-popover>
-              <a-popover placement="bottom">
-                <template #content>
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <WifiOutlined />
-                </a-button>
-              </a-popover>
-              <a-popover placement="bottom">
-                <template #content>
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <CoffeeOutlined />
-                </a-button>
-              </a-popover>
-            </p>
-            <nuxt-link to="/contact"> contact </nuxt-link>
-          </div>
-        </a-col>
-      </a-row>
+    
     </div>
     <div class="line-header">
       <span>GALLERY</span>
@@ -230,7 +149,7 @@
 
 <script setup lang="ts"></script>
 
-<style scoped>
+<style scoped lang="scss">
 .line-header {
   display: flex;
   flex-direction: column;
@@ -292,16 +211,17 @@ a {
 .facility-card {
   display: block;
   aspect-ratio: 10/16;
-  border-radius: 3px;
-  background-color: #6e6e6e;
+ // border-radius: 3px;
+ // background-color: #6e6e6e;
   position: relative;
-  border: 1px solid #333;
+ // border: 1px solid #333;
   /* min-height: 200px; */
   span {
     position: absolute;
     bottom: 10px;
     left: 20px;
     color: #fff;
+    font-size: 20px;
   }
 }
 
