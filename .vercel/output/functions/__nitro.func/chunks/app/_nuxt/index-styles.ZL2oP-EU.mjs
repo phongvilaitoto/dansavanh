@@ -1,0 +1,20 @@
+import { b as buildAssetsURL } from '../../handlers/renderer.mjs';
+import 'vue-bundle-renderer/runtime';
+import '../../nitro/vercel.mjs';
+import 'node:http';
+import 'node:https';
+import 'fs';
+import 'path';
+import 'devalue';
+import 'vue/server-renderer';
+import '@unhead/ssr';
+import 'vue';
+import 'unhead';
+import '@unhead/shared';
+
+const index_vue_vue_type_style_index_0_scoped_12246999_lang = ".cover[data-v-12246999]{background-attachment:fixed;background-image:url(" + buildAssetsURL("homeLocation.lLtATTQS.jpg") + ');background-position:50%;background-repeat:no-repeat;background-size:cover;position:relative}.cover .bg-cover[data-v-12246999]{background-color:#000;background-color:rgba(0,0,0,.3);content:"";display:block;height:100%;left:0;position:absolute;top:0;width:100%;z-index:0}.blog[data-v-12246999]{background-color:#f4f4f4!important;padding:0!important}.blog .bg-left .bg[data-v-12246999],.blog .bg-right .bg[data-v-12246999]{aspect-ratio:16/9;background-position:50%;background-repeat:no-repeat;background-size:cover;height:100%;max-width:100%;width:100%}.blog .bg-left .bg.numngum[data-v-12246999],.blog .bg-right .bg.numngum[data-v-12246999]{background-image:url(' + buildAssetsURL("hotel-namngum.gWgv49RA.jpg") + ")}.blog .bg-left .bg.vte[data-v-12246999],.blog .bg-right .bg.vte[data-v-12246999]{background-image:url(" + buildAssetsURL("hotel-vientiane.aE2ADKik.jpg") + ")}.blog .bg-left .bg.golf[data-v-12246999],.blog .bg-right .bg.golf[data-v-12246999]{background-image:url(" + buildAssetsURL("hotel-golf.19MTOAnZ.jpg") + ")}.blog .bg-left .text-container[data-v-12246999],.blog .bg-right .text-container[data-v-12246999]{align-items:center;display:flex;justify-content:center;width:100%;z-index:1}.blog .bg-right[data-v-12246999]{display:flex;flex-direction:row-reverse}@media only screen and (min-width:768px){.blog .bg-right .text-container[data-v-12246999]{left:5%}.blog .bg-left .text-container[data-v-12246999]{right:5%}}.text-box[data-v-12246999]{background-color:#fff;color:#000;justify-self:center;padding:24px;width:100%}@media (min-width:576px){.text-box[data-v-12246999]{padding:48px}}.text-box span[data-v-12246999]{display:block;font-size:13px;letter-spacing:5px;opacity:.7}.text-box h2[data-v-12246999]{font-weight:700;margin:20px 0;margin-top:0!important;text-transform:uppercase}.text-box p[data-v-12246999]{font-size:16px;font-weight:200;margin-bottom:24px}";
+
+const indexStyles_ZL2oPEU = [index_vue_vue_type_style_index_0_scoped_12246999_lang, index_vue_vue_type_style_index_0_scoped_12246999_lang];
+
+export { indexStyles_ZL2oPEU as default };
+//# sourceMappingURL=index-styles.ZL2oP-EU.mjs.map

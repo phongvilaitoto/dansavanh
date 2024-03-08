@@ -1,0 +1,20 @@
+import { b as buildAssetsURL } from '../../handlers/renderer.mjs';
+import 'vue-bundle-renderer/runtime';
+import '../../nitro/vercel.mjs';
+import 'node:http';
+import 'node:https';
+import 'fs';
+import 'path';
+import 'devalue';
+import 'vue/server-renderer';
+import '@unhead/ssr';
+import 'vue';
+import 'unhead';
+import '@unhead/shared';
+
+const index_vue_vue_type_style_index_0_scoped_45e0735d_lang = ".line-header[data-v-45e0735d]{align-items:center;display:flex;flex-direction:column;justify-content:center;margin-top:30px;min-height:60px;position:relative;span[data-v-45e0735d]{font-family:var(--font-family);font-size:70px;line-height:0!important;opacity:.03;pointer-events:none;-webkit-pointer-events:none;-moz-pointer-events:none;-ms-pointer-events:none;-o-pointer-events:none;position:absolute;top:24px}}a[data-v-45e0735d]{color:#000}.t1[data-v-45e0735d]{font-family:var(--font-family);font-size:41px;font-weight:700;margin-bottom:0;margin-top:50px}.cover[data-v-45e0735d]{background-attachment:fixed;background-image:url(" + buildAssetsURL("casino34.W5rVwdKs.jpg") + ');background-position:50%;background-repeat:no-repeat;background-size:cover;position:relative;.bg-cover[data-v-45e0735d]{background-color:#000;background-color:rgba(0,0,0,.3);content:"";display:block;height:100%;left:0;position:absolute;top:0;width:100%;z-index:0}}.map-container[data-v-45e0735d]{align-items:center;display:flex;justify-content:flex-start;width:100%;.map[data-v-45e0735d]{aspect-ratio:16/10;background-color:#6e6e6e;color:#fff;display:grid;height:100%;place-content:center;width:100%}}h4[data-v-45e0735d]{margin-top:0!important}h3[data-v-45e0735d],h4[data-v-45e0735d]{font-family:var(--font-family)!important;font-weight:400;line-height:1.1;margin-bottom:12px;margin-top:24px;text-transform:uppercase}.contact-container[data-v-45e0735d]{display:flex;gap:20px;justify-content:center;margin-bottom:30px;.text-box[data-v-45e0735d]{border-radius:3px;color:#000;justify-self:center;padding:10px;text-align:center;p[data-v-45e0735d]{color:#313131;font-size:16px;font-weight:200}}}.icon_block[data-v-45e0735d]{margin:20px 10px;text-align:center;width:100%;.icon[data-v-45e0735d]{font-size:40px;margin-bottom:20px}.img[data-v-45e0735d]{display:block;max-width:100%}.nmr[data-v-45e0735d]{float:left}.nmr2[data-v-45e0735d]{float:right;font-weight:500}}';
+
+const indexStyles_JHsdi3fr = [index_vue_vue_type_style_index_0_scoped_45e0735d_lang, index_vue_vue_type_style_index_0_scoped_45e0735d_lang];
+
+export { indexStyles_JHsdi3fr as default };
+//# sourceMappingURL=index-styles.JHsdi3fr.mjs.map
