@@ -9,6 +9,14 @@ export default defineNuxtConfig({
      
     }
   },
+  nitro: {
+    // baseURL: "https://khonkong.com",
+    prerender: {
+      crawlLinks: true,
+      failOnError: false, 
+    },
+    preset: "vercel",
+  },
   devtools: { enabled: true },
   antd:{
     extractStyle: true,
