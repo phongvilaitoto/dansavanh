@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   nitro: {
     // baseURL: "https://khonkong.com",
     prerender: {
-      crawlLinks: true,
+      crawlLinks: false,
       failOnError: false, 
     },
     preset: "vercel",
