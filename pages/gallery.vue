@@ -1,12 +1,17 @@
 <template>
-  <a-layout>
+  <!-- <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
     </div>
-  </a-layout>
-  <a-layout-content class="content-container">
+  </a-layout> -->
+  <a-layout-content class="content-container global-margin-top">
     <div class="line-header">
-      <span>GALLERY </span>
+
+      <h1
+        class="headerTitle"
+          >GALLERY</h1
+        >
+      <!-- <h1>GALLERY </h1> -->
       <!-- <p></p> -->
       <img
         src="/assets/image/decoration-1.png"
@@ -15,7 +20,7 @@
       />
     </div>
     <div :style="{ padding: '0 24px', minHeight: '280px' }">
-      <a-row>
+      <!-- <a-row>
         <a-col :span="24">
           <a-divider orientation="right" orientation-margin="0px" style="border-color: #000;display: flex; justify-content: flex-end;" class="line">
             <a-select
@@ -28,9 +33,9 @@
             </a-select>
           </a-divider>
         </a-col>
-      </a-row>
-      <a-row class="gellery-container" :gutter="20">
-        <a-col
+      </a-row> -->
+      <!-- <a-row class="gellery-container" :gutter="20"> -->
+        <!-- <a-col
           :xm="20"
           :md="12"
           :lg="6"
@@ -39,13 +44,16 @@
           class="gallery-item"
         >
           <div class="img"></div>
-        </a-col>
-      </a-row>
+        </a-col> -->
+<Gallery/>
+      <!-- </a-row> -->
     </div>
   </a-layout-content>
 </template>
 
 <script setup lang="ts">
+import Gallery from '@/components/gallery.vue'
+
 const value = ref("None");
 </script>
 

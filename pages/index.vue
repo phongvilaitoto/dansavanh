@@ -1,5 +1,7 @@
 <template>
-  <a-carousel autoplay>
+
+  <Swiper />
+  <!-- <a-carousel autoplay>
     <div class="slide-container">
       <img src="/assets/image/home/banner.jpg" alt="" /> 
       <a-typography-title :level="3">
@@ -12,7 +14,11 @@
             MOST BEAUTIFUL PLACE
       </a-typography-title> 
     </div>
-  </a-carousel>
+
+    <button>eiei</button>
+  </a-carousel> -->
+
+  
   <a-layout-content class="content-container" :style="{background: '#F4F4F4', color:'#000'}">
 
       <!-- slide  -->
@@ -46,6 +52,7 @@
 import Welcome from '~/components/home/Welcome.vue';
 import HotelInfo from '~/components/home/HotelInfo.vue';
 import News from '~/components/home/News.vue';
+import Swiper from '@/components/home/Swiper.vue'
 import type { CSSProperties } from 'vue';
 const cardStyle: CSSProperties ={
 
@@ -83,6 +90,28 @@ li{
  /* height: 100%; */
  display: block;
  object-fit: cover;
+}
+
+
+.content-container{
+  padding: 0 20px;
+  padding-bottom: 20px;
+  @media (min-width: 576px) {
+    padding: 0 50px;
+  }
+
+
+  @media only screen and (min-width :1068px) {
+    padding: 0 50px 0 50px;
+    
+  }
+
+
+
+  @media only screen and (max-width : 1067px) {
+   padding: 0 20px 0 20px;
+  }
+
 }
 
 

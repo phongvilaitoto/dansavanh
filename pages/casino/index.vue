@@ -1,33 +1,53 @@
 <template>
-  <a-layout>
+  <!-- <a-layout>
     <a-row justify="center" style="
-        padding-top: 116px;
+        padding-top: 180px;
         padding-bottom: 72px;
         background-color: #a3a0a0;
         text-align: center;
       ">
       <a-col :span="14">
-        <a-typography-title :level="5" style="
-          font-size: 14px;
-    letter-spacing: 7px;
-    font-weight: 300;
-    margin: 14px 0 7px;
-          ">
-          A MAGIC PLACE
-        </a-typography-title>
+        <h5 class="headerT2">
+          {{ $t('aMagicPlace') }}
+        </h5>
       </a-col>
-      <a-col :span="16">
-        <!-- <div class="t1"> -->
-          <h1 class="headerTitle">OUR RESORTS
-            CASINO</h1>
-        <!-- </div> -->
+      <a-col :xs="24" :sm="24" :md="24" :lg="12">
+        <h1 class="headerT1">
+          {{ $t('ourResortsCasino') }}</h1>
       </a-col>
     </a-row>
+  </a-layout> -->
+
+
+  <a-layout>
+    <div class="cover">
+      <div class="bg-cover"></div>
+      <a-row justify="center" style="
+          padding-top: 180px;
+          padding-bottom: 62px;
+          text-align: center;
+          background-color: transparent;
+        ">
+        <a-col :span="14">
+      <h5 class="headerT2">
+       {{$t('aMagicPlace')}}
+      </h5>
+      </a-col>
+      <a-col :xs="24" :sm="24" :md="24" :lg="12">
+           
+             <h1 class="headerT1">
+            {{$t('ourResortsCasino')}}
+            </h1>
+
+      </a-col>
+      </a-row>
+    </div>
   </a-layout>
+
+
   <a-layout-content style="padding: 20px 50px">
     <div class="header">
       <span>CASINO</span>
-      <!-- <p></p> -->
       <img src="/assets/image/decoration-1.png" alt="" :style="{ height: '50px', display: 'block' }" />
     </div>
   </a-layout-content>
@@ -38,12 +58,9 @@
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>Blackjack21</h2>
+            <h2>{{ $t('casinoTitle1') }}</h2>
             <p>
-              The aim of Blackjack is to dealt a hand that has a value greater
-              than that of the Dealer without exceeding 21. Blackjack is a game
-              of chance and skill which player may improve their chance by
-              betting strategies.
+              {{ $t('casinoCaption1') }}
             </p>
           </div>
         </a-col>
@@ -53,12 +70,9 @@
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>ROULETTE</h2>
+            <h2>{{ $t('casinoTitle2') }}</h2>
             <p>
-              The aim of Blackjack is to dealt a hand that has a value greater
-              than that of the Dealer without exceeding 21. Blackjack is a game
-              of chance and skill which player may improve their chance by
-              betting strategies.
+              {{ $t('casinoCaption2') }}
             </p>
           </div>
         </a-col>
@@ -69,12 +83,9 @@
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>BACCARAT</h2>
+            <h2>{{ $t('casinoTitle3') }}</h2>
             <p>
-              The aim of Blackjack is to dealt a hand that has a value greater
-              than that of the Dealer without exceeding 21. Blackjack is a game
-              of chance and skill which player may improve their chance by
-              betting strategies.
+              {{ $t('casinoCaption3') }}
             </p>
           </div>
         </a-col>
@@ -85,12 +96,9 @@
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>DRAGON TIGER</h2>
+            <h2>{{ $t('casinoTitle4') }}</h2>
             <p>
-              The aim of Blackjack is to dealt a hand that has a value greater
-              than that of the Dealer without exceeding 21. Blackjack is a game
-              of chance and skill which player may improve their chance by
-              betting strategies.
+              {{ $t('casinoCaption4') }}
             </p>
           </div>
         </a-col>
@@ -100,55 +108,57 @@
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>SLOTS</h2>
+            <h2>{{ $t('casinoTitle5') }}</h2>
             <p>
-              The aim of Blackjack is to dealt a hand that has a value greater
-              than that of the Dealer without exceeding 21. Blackjack is a game
-              of chance and skill which player may improve their chance by
-              betting strategies.
+              {{ $t('casinoCaption5') }}
             </p>
           </div>
         </a-col>
       </a-row>
     </div>
+    <br><br>
   </a-layout-content>
 </template>
 
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-h2 {
-  font-size: 33px;
-}
-.t1 {
-  h1 {
 
+.cover {
+  background-image: url("/assets/image/casino/casino-blackjack.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  // object-fit: contain;
 
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  // min-height: 320px;
+  height: 100%;
 
+  background-position: center bottom!important;
+//background-position: center center;
+  // @media only screen and (min-width : 768px) {
+  //   height: 400px;
+  // }
 
-    font-size: 86px;
-    //font-size: 86px;
+  .bg-cover {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 
-    color: white;
-    font-weight: 700;
-    font-family: var(--font-family);
-
-
-    // @media only screen and (max-width: 240px) {
-    //   font-size: 45px;
-    // }
-
-
-
-
-
+    z-index: 0;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.3);
 
   }
-
-
-
-
 }
+
 
 .header {
   display: flex;
@@ -160,7 +170,7 @@ h2 {
 
   span {
     /* display: block; */
-    font-family: var(--font-family);
+    // font-family: var(--font-family);
     font-size: 140px;
     position: absolute;
     top: 24px;
@@ -246,7 +256,7 @@ h2 {
   background-color: #fff;
   padding: 48px;
   color: #000;
-  border-radius: 3px;
+  // border-radius: 3px;
 
   span {
     font-size: 13px;
@@ -259,7 +269,7 @@ h2 {
     font-weight: 700;
     margin: 20px 0;
     margin-top: 0 !important;
-    font-family: var(--font-family);
+    // font-family: var(--font-family);
     text-transform: uppercase;
   }
 

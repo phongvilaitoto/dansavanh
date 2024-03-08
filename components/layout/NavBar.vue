@@ -6,128 +6,143 @@
       </div>
       <div class="navbar-start">
         <div class="navbar-brand">
-        <img  src="https://www.dansavanh.net/assets/images/logo-dansavanh4.png" alt="">
+          <img src="assets/image/logo-dansavanh4.png" alt="">
           <!-- <img src="../../assets/image/logo-dansavanh2.png" alt="" /> -->
         </div>
       </div>
       <!-- menu  -->
       <div class="navbar-item is-desktop">
-        <nuxt-link to="/" class="navbar-text">HOME</nuxt-link>
+        <nuxt-link to="/" class="line-hover">{{ $t('home') }}</nuxt-link>
 
-        <nuxt-link to="/casino">CASINO</nuxt-link>
-        <div class="has-dropdrown">
-          <nuxt-link @click="hotelDrowdownToggle">
-            HOTELS
-            <DownOutlined />
+        <nuxt-link class="line-hover" to="/casino">{{ $t('casino') }}</nuxt-link>
+        <div class="has-dropdrown" @mouseover="drowdownToggle = true; showMoreDropDown = false">
+          <nuxt-link class="line-hover cursor" to="/hotels">
+            {{ $t('hotels') }}
+            <DownOutlined style="position: absolute; top: 3px; right: -18px" v-if="drowdownToggle" />
           </nuxt-link>
-          <ul class="dropdrown" v-if="drowdownToggle">
+          <ul @click="drowdownToggle = false" class="dropdrown" style="width: 310px !important;" v-if="drowdownToggle"
+            @mouseleave="drowdownToggle = false">
             <li>
-              <nuxt-link
-                to="/hotels/numngum"
-                @click="drowdownToggle = !drowdownToggle"
-                >Dansavanh Resort & Casino</nuxt-link
-              >
+              <nuxt-link to="/hotels/numngum" @click="drowdownToggle = !drowdownToggle" class="line-hover">Dansavanh
+                Resort & Casino</nuxt-link>
             </li>
             <li>
-              <nuxt-link
-                to="/hotels/golf"
-                @click="drowdownToggle = !drowdownToggle"
-                >Dansavanh Golf & Country Club</nuxt-link
-              >
+              <nuxt-link to="/hotels/golf" class="line-hover" @click="drowdownToggle = !drowdownToggle">Dansavanh Golf &
+                Country Club</nuxt-link>
             </li>
             <li>
-              <nuxt-link
-                to="/hotels/vientaine-hotel"
-                @click="drowdownToggle = !drowdownToggle"
-                >Dansavanh Vientiane Hotel</nuxt-link
-              >
+              <nuxt-link to="/hotels/vientaine-hotel" class="line-hover"
+                @click="drowdownToggle = !drowdownToggle">Dansavanh Vientiane Hotel</nuxt-link>
             </li>
           </ul>
         </div>
         <!-- </a> -->
 
-        <nuxt-link to="/experience"> experience </nuxt-link>
-        <nuxt-link to="/events"> events </nuxt-link>
-        <nuxt-link to="/offer">offer</nuxt-link>
+        <nuxt-link to="/experience" class="line-hover"> {{ $t('experience') }} </nuxt-link>
+        <nuxt-link to="/events" class="line-hover"> {{ $t('events') }} </nuxt-link>
+        <nuxt-link to="/offer" class="line-hover">{{ $t('offer') }}</nuxt-link>
 
         <dividerProps class="has-dropdrown">
-          <nuxt-link @click="moreDropdownToggle">
-            more
-            <DownOutlined />
+          <nuxt-link @mouseover="showMoreDropDown = true; drowdownToggle = false" class="line-hover">
+            {{ $t('more') }}
+
+
+            <DownOutlined style="position: absolute; top: 3px; right: -18px" v-if="showMoreDropDown" />
           </nuxt-link>
           <!-- dropdrow -->
-          <ul class="dropdrown" v-if="showMoreDropDown">
+          <ul class="dropdrown" style="width: 150px !important;" v-if="showMoreDropDown"
+            @mouseleave="showMoreDropDown = false">
+
             <li>
-              <nuxt-link to="/more/career">Career</nuxt-link>
+              <nuxt-link class="line-hover" to="/gallery">Gallery</nuxt-link>
             </li>
+            <li>
+              <nuxt-link to="/more/career" class="line-hover">Career</nuxt-link>
+            </li>
+
             <!-- <li>
               <nuxt-link to="/more/testimonials">Testimonials</nuxt-link>
             </li> -->
             <li>
-              <nuxt-link to="/more/news">News</nuxt-link>
+              <nuxt-link to="/news" class="line-hover">News</nuxt-link>
             </li>
           </ul>
         </dividerProps>
 
-        <nuxt-link to="/contact"> contact </nuxt-link>
+        <nuxt-link to="/contact" class="line-hover"> {{ $t('contact') }} </nuxt-link>
 
       </div>
 
       <!-- language switcher  -->
-      <div class="languageBar-switcher is-desktop">
+      <!-- <div class="languageBar-switcher is-desktop">
         <span>LA</span>
         <span>TH</span>
         <span>CN</span>
+      </div> -->
+
+      <div class="is-desktop">
+
+
+        <LanguageSwitcher style="position: absolute; right: 0; top: 15px" />
+
+
+      </div>
+
+
+      <div>
+        <i @click="visible = true" style="padding: 10px; cursor: pointer; color: white"
+          class="fa-solid fa-bars fa-xl is-mobile"></i>
+        <Drawer :visible="visible" @onClose="visible = false" />
+
+
       </div>
 
       <!-- mobile navbar  -->
-      <div class="mobile-navbar is-mobile" v-if="burgerToggle">
-        <div class="navbar-bg" @click="clickBurgerToggle"></div>
-        <div class="navbar-container">
-          <div class="navbar-header">
-            <span
-              ><i class="fa-regular fa-x" @click="clickBurgerToggle"></i
-            ></span>
-          </div>
-          <ul class="navbar-list">
-            <li>
-              <Nuxt-link class="navbar-item" to="/" @click="clickBurgerToggle">
-                Home
-              </Nuxt-link>
-            </li>
-          </ul>
-        </div>
-      </div>
+
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
+import Drawer from '@/components/layout/Drawer.vue'
+import LanguageSwitcher from '@/components/layout/LanguageSwitcher.vue'
+
+
 const burgerToggle = ref(false);
+const showMoreDropDown = ref<any>(false);
+  const drowdownToggle = ref(false);
+
+const visible = ref(false)
+
+const route = useRoute()
+
+
 const clickBurgerToggle = () => {
   burgerToggle.value = !burgerToggle.value;
 };
-const drowdownToggle = ref(false);
+
 const hotelDrowdownToggle = () => {
   drowdownToggle.value = !drowdownToggle.value
 }
-const showMoreDropDown = ref<any>(false);
+
 const moreDropdownToggle = () => {
   showMoreDropDown.value = !showMoreDropDown.value
 }
+
+watch(() => route.name , () => {
+  showMoreDropDown.value = false
+  drowdownToggle.value = false
+})
 
 
 </script>
 
 
 <style lang="scss" scoped>
-
-
-
-
 nav {
-  height: auto;
-  padding: 10px 20px;
+
+  height: 98px;
+  padding: 20px 20px;
   background-color: rgba(23, 23, 32, 0.8) !important;
   position: absolute;
   top: 0;
@@ -136,6 +151,7 @@ nav {
   z-index: 2;
 
   min-height: 64px;
+
   .navbar {
     background: transparent;
     padding: 0 0.5rem;
@@ -145,6 +161,7 @@ nav {
     display: flex;
     justify-content: space-between;
     position: relative;
+
     @media (max-width: 576px) {
       height: 45px;
     }
@@ -158,101 +175,33 @@ nav {
       color: #fff;
 
       margin: 20px 0 20px 0;
+
       @media (max-width: 576px) {
         display: block;
       }
     }
 
     .navbar-item {
+
       align-items: center;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 50px;
       text-transform: uppercase;
-     // font-size: 0.7rem;
-      font-size: .9rem;
-     
+      // font-size: 0.7rem;
+      font-size: .8rem;
+
       // padding: 0 30px 0 30px;
 
-      
+
 
       @media (max-width: 576px) {
         display: none;
       }
-      a {
-        position: relative;
-        overflow: hidden;
-        line-height: 1.8;
-        color: #fff;
-        transition: all ease-in-out 0.2s;
-        text-decoration: none;
 
 
-    display: block;
-    font-size: .9em;
-    line-height: 1em;
-    margin: 16px;
-    padding-left: 0!important;
-    padding-right: 0!important;
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    box-shadow: 0 0 1px transparent;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -moz-osx-font-smoothing: grayscale;
-    position: relative;
-    overflow: hidden;
 
-    &::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    right: 100%;
-    bottom: 0;
-    background: #6fb586;
-    height: 1px;
-    -webkit-transition-property: "right";
-    transition-property: "right";
-    -webkit-transition-duration: .3s;
-    transition-duration: .3s;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-}
-  
 
-        &:hover::after {
-          display: block !important;
-        }
-
-        &:hover {
-          color: #6fb586;
-        }
-
-        &::after {
-          content: "";
-          display: none;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-          height: 2px;
-          animation: slide 0.3s;
-
-          @keyframes slide {
-            from {
-              transform: translate(-100px);
-            }
-
-            to {
-              transform: translate(0);
-            }
-          }
-        }
-      }
     }
 
     .navbar-start {
@@ -264,8 +213,8 @@ nav {
 
         img {
           display: block;
-           max-width: 200px;
-        //  height: 80px;
+          max-width: 200px;
+          //  height: 80px;
         }
       }
     }
@@ -275,9 +224,11 @@ nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       @media (max-width: 576px) {
         display: none;
       }
+
       color: #fff;
       padding: 5px 10px;
       border-radius: 6px;
@@ -295,20 +246,24 @@ nav {
 
   // dropdrow
   .dropdrown {
-    width: 200px;
+
+
+
+    // width: 100%;
     position: absolute;
     z-index: 999;
     padding: 1rem;
     top: 3.25rem;
-    right: 0;
+    left: 0;
     border-radius: 5px;
     display: grid;
     gap: 15px;
-    background-color: rgba(23,23,32,.4);
+    background-color: rgba(23, 23, 32, .4);
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
     float: left;
 
     li {
+      padding: 10px;
       color: #fff;
       text-transform: uppercase;
       display: flex;
@@ -389,6 +344,7 @@ button {
           // color: #3200b2;
           cursor: pointer;
           display: flex;
+
           i {
             margin-right: 0.5rem;
             width: 30px;
@@ -408,5 +364,4 @@ button {
     }
   }
 }
-
 </style>

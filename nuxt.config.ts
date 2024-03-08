@@ -6,6 +6,7 @@ export default defineNuxtConfig({
       title:"DANSAVANH",
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
+     
     }
   },
   devtools: { enabled: true },
@@ -13,8 +14,12 @@ export default defineNuxtConfig({
     extractStyle: true,
   },
   modules: [
-    '@ant-design-vue/nuxt'
+    '@ant-design-vue/nuxt',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    vueI18n: './i18n.config.ts' // if you are using custom path, default
+  },
   css: [
     'ant-design-vue/dist/reset.css',
   ],

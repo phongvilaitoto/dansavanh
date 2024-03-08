@@ -1,32 +1,45 @@
 <template>
+  
+
   <a-layout>
-    <div class="cover">
-      <div class="bg-cover"></div>
-      <a-row
-        justify="center"
-        style="
-          padding-top: 116px;
-          padding-bottom: 62px;
-          text-align: center;
-          justify-content: center;
-          background-color: transparent;
-        "
-      >
-        <a-col :span="20">
-          <a-typography-title class="t1"
-            >DANSAVANH NAM NGUM RESORT AND CASINO</a-typography-title
-          >
-        </a-col>
-      </a-row>
-    </div>
-  </a-layout>
+      <div class="cover">
+        <div class="bg-cover"></div>
+        <a-row
+     
+          style="
+            padding-top: 160px;
+            padding-bottom: 50px;
+            text-align:center;
+            justify-content: center;
+            background-color: transparent;
+          "
+        >
+          <a-col :span="22">
+
+            <h1 class="headerT1" style="font-size: 45px">
+            {{$t('DANSAVANH NAM NGUM RESORT AND CASINO')}}
+            </h1>
+         
+            <!-- <a-typography-title class="t1"
+              >OUR OFFERS  </a-typography-title
+            > -->
+          </a-col>
+          <!-- <a-col :span="22">
+            <h5 class="headerT2" style="margin-top: -20px">
+       {{$t('Interested in some activities? Have a look at ours packages.')}}
+      </h5>
+          
+          </a-col> -->
+        </a-row>
+      </div>
+    </a-layout>
   <a-layout-content class="content-container">
     <a-row justify="center">
       <a-col :span="24">
         <hr style="border: 0; margin-top: 24px; border-top: 1px solid #eee" />
       </a-col>
-      <a-col :span="18" style="text-align: center">
-        <p style="font-size: 1rem; font-weight: 300; margin-top: 24px">
+      <a-col :xs="24" :sm="24" :md="12" :lg="12" style="text-align: center">
+        <p style="font-size: 1rem; font-weight: 300; margin-top: 24px;">
           Peak of Buffalo Mountain（Phou Khao Khouay） facing the biggest
           freshwater lake in Laos, 60km from Vientiane. You will find varieties
           of excitement awaits you in this one of a kind hill top location with
@@ -63,18 +76,18 @@
     </a-row> -->
     <div  class="max-width">
       <a-row justify="center">
-        <a-col :span="18">
-          <a-typography-title
-            style="color: #000; font-family: var(--font-family)"
+        <a-col :span="24">
+          <h1
+          class="headerTitle"
           >
             FACILITIES
-          </a-typography-title>
+          </h1>
         </a-col>
       </a-row>
       <a-row justify="center" :gutter="10">
-        <a-col :lg="6" class="facility-card" v-for="i in 4" :key="i">
-          <img style="width: 100%; height: 100%; object-fit: cover;" src="https://www.dansavanh.net/assets/images/golf-banner.jpg" alt="" />
-          <span>FACILITIES1</span>
+        <a-col :lg="8" class="facility-card" v-for="i in 3" :key="i">
+          <img style="width: 100%; height: 100%; object-fit: cover;" src="https://storage.googleapis.com/dsv-bucket/golf-banner.jpeg" alt="" />
+          <span>FACILITIES {{ i }}</span>
         </a-col>
       </a-row>
     </div>
@@ -88,14 +101,14 @@
       />
     </div>
     <div class="max-width">
-      <a-row class="room-container" v-for="i in 2">
-        <a-col :sm="24" :md="14" :lg="14" class="room-cover">
+      <!-- <a-row class="room-container" v-for="i in 2">
+        <a-col :xs="24" :sm="24" :md="14" :lg="14" class="room-cover">
         <div class="bg"></div>
         </a-col>
-        <a-col  :sm="24" :md="10" :lg="10" class="room-info">
+        <a-col :xs="24" :sm="24" :md="10" :lg="10" class="room-info" >
           <div class="text-box">
             <h2>
-              <a href="#">Standard Room</a>
+              <NuxtLink  to="/contact">Standard Room</NuxtLink>
             </h2>
             
             <p class="details">
@@ -127,6 +140,54 @@
             <nuxt-link to="/contact"> contact </nuxt-link>
           </div>
         </a-col>
+      </a-row> -->
+
+      <a-row>
+      <a-col v-for="i in 3" >
+        <a-row 
+      @click="router.push('/offer/5f6da3a70215d?i=OFFER ' + i)"
+      class="room-container">
+        <a-col :xs="24" :sm="24" :lg="14" class="room-cover"></a-col>
+        <a-col :xs="24" :sm="24" :lg="10" class="room-info">
+          <div class="text-box">
+            <h2>STANDARD ROOM {{ i }}</h2>
+            
+            <p>
+         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet autem eius animi laudantium consectetur quisquam, consequuntur, cum illum itaque qui omnis quas laboriosam minus. Ratione, velit necessitatibus? Laboriosam, cum voluptate?
+              
+              <br><br><p class="details">
+
+              <a-popover placement="bottom">
+                <template #content class="popOver">
+                  <p>Content</p>
+                </template>
+                <a-button class="circle-hover">
+                  <DesktopOutlined />
+                </a-button>
+              </a-popover>
+              <a-popover placement="bottom">
+                <template #content>
+                  <p>Content</p>
+                </template>
+                <a-button class="circle-hover">
+                  <WifiOutlined />
+                </a-button>
+              </a-popover>
+              <a-popover placement="bottom">
+                <template #content>
+                  <p>Content</p>
+                </template>
+                <a-button class="circle-hover">
+                  <CoffeeOutlined />
+                </a-button>
+              </a-popover>
+            </p>
+            </p>
+            <a-button @click="router.push('/contact')" class="view-button text-uppercase bg-white"> Contact </a-button>
+          </div>
+        </a-col>
+      </a-row>
+      </a-col>
       </a-row>
     
     </div>
@@ -139,15 +200,21 @@
         :style="{ height: '40px', display: 'block' }"
       />
     </div>
-    <a-row justify="center" style="display: flex; gap: 10px; padding-bottom: 10px;">
+    <Gallery/>
+    <!-- <a-row justify="center" style="display: flex; gap: 10px; padding-bottom: 10px;">
       <a-col :span="4" class="gallery-card" v-for="i in 4" :key="i">
         <img src="" alt="" />
       </a-col>
-    </a-row>
+    </a-row> -->
   </a-layout-content>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+import Gallery from '@/components/gallery.vue'
+
+const router = useRouter()
+</script>
 
 <style scoped lang="scss">
 .line-header {
@@ -161,7 +228,7 @@
   /* border: 10px solid red; */
   span {
     /* display: block; */
-    font-family: var(--font-family);
+    // font-family: var(--font-family);
     font-size: 70px;
     position: absolute;
     top: 24px;
@@ -183,7 +250,7 @@ a {
 .t1 {
   margin-top: 50px;
   font-size: 41px;
-  font-family: var(--font-family);
+ // font-family: var(--font-family);
   font-weight: 700;
 }
 .cover {
@@ -314,3 +381,136 @@ a {
   border: 1px solid #333;
 }
 </style>
+
+
+
+
+<style lang="scss" scoped>
+  
+
+
+/* room  */
+.room-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  .room-cover {
+    aspect-ratio: 16/10;
+    background-color: #5e5e5e;
+    width: 200px;
+    background-image: url("https://storage.googleapis.com/dsv-bucket/dvs-gallery/34.jpeg");
+    background-position: center;
+  }
+  /* @media (min-width: 576px) {
+      .room-info {  
+        right: 5%;
+       
+      }
+    } */
+  .room-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    /* border: 1px solid red; */
+    z-index: 999;
+
+    .text-box {
+      /* border: 1px solid red; */
+      justify-self: center;
+      background-color: #fff;
+      padding: 24px;
+      color: #000;
+      border-radius: 3px;
+      @media (min-width: 576px) {
+        padding: 48px;
+  }
+      span {
+        font-size: 13px;
+        letter-spacing: 5px;
+        opacity: 0.7;
+        display: block;
+      }
+      h2 {
+        font-weight: 700;
+        margin: 20px 0;
+        margin-top: 0 !important;
+       
+        text-transform: uppercase;
+      }
+      p {
+        font-weight: 200;
+        font-size: 16px;
+        margin-bottom: 24px;
+      }
+    }
+  }
+}
+
+  </style>
+  
+  <style scoped lang="scss">
+  
+  
+  /* card  */
+  .promotion-container {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    .pro-cover {
+      display: flex;
+      justify-content:flex-start;
+      align-items: center;
+      width: 100%;
+      /* z-index: 999; */
+      .img{
+        display: grid;
+        place-content: center;
+      //  background-color: #6e6e6e;
+        color: #fff;
+        /* display: block; */
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16/10;
+      }
+      img{
+        display: grid;
+        place-content: center;
+      //  background-color: #6e6e6e;
+        color: #fff;
+        /* display: block; */
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16/10;
+      }
+    }
+    .text-box {
+        /* border: 1px solid red; */
+        justify-self: center;
+        /* background-color: #fff; */
+        padding: 10px;
+        color: #000;
+        border-radius: 3px;
+       
+        h1 {
+          font-weight: 700;
+          margin: 10px 0;
+          margin-top: 0 !important;
+     
+          text-transform: uppercase;
+        }
+        p {
+          font-weight: 200;
+          font-size: 16px;
+          margin-bottom: 24px;
+          color: #313131;
+        }
+      }
+  }
+  
+  
+
+
+  </style>
+  

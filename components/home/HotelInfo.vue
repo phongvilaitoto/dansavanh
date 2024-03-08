@@ -8,7 +8,7 @@
   <a-row justify="center">
     <a-col :sm="24" :lg="24">
       <div class="card-info">
-        <img src="/assets/image/home/hotel1.jpg" alt="" />
+        <img src="assets/image/hotels/hotel-vientiane.jpg" alt="" />
         <h2>THE BEST RESORT</h2>
       </div>
     </a-col>
@@ -16,7 +16,7 @@
   <a-row justify="center">
     <a-space>
       <nuxt-link to="/hotels">
-        <a-button>View HOTELS</a-button>
+        <a-button class="view-button">VIEW HOTELS</a-button>
       </nuxt-link>
     </a-space>
   </a-row>
@@ -51,7 +51,7 @@ h2{
   bottom: 20px;
   left: 10px;
   color: #fff;
-  font-family:var(--font-family);
+
   font-weight:700;
   font-size: 32px;
 }

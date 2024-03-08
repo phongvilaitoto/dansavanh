@@ -3,24 +3,23 @@
     <div class="cover">
       <div class="bg-cover"></div>
       <a-row justify="center" style="
-          padding-top: 116px;
+          padding-top: 180px;
           padding-bottom: 62px;
           text-align: center;
           background-color: transparent;
         ">
         <a-col :span="14">
-          <a-typography-title :level="5" style="
-              font-family: var(--font-family);
-              letter-spacing: 7px;
-              font-size: 14px;
-            ">
-            DANSAVANH'S ACTIVITIES
-          </a-typography-title>
-        </a-col>
-        <a-col :span="16">
-        <h1 class="headerTitle">SPORTS & <br> ACTIVITIES</h1>
-          <!-- <a-typography-title class="t1">SPORTS & <br>ACTIVITIES</a-typography-title> -->
-        </a-col>
+      <h5 class="headerT2">
+       {{$t('dActivities')}}
+      </h5>
+      </a-col>
+      <a-col :xs="24" :sm="24" :md="24" :lg="12">
+           
+             <h1 class="headerT1">
+            {{$t('sportAndActivities')}}
+            </h1>
+
+      </a-col>
       </a-row>
     </div>
   </a-layout>
@@ -41,7 +40,9 @@
     </a-row>
     <div class="blog max-width">
       <a-row class="bg-left">
-        <a-col :md="12" :lg="14" class="bg numngum"></a-col>
+        <a-col :md="12" :lg="14" class="bg numngum"
+        
+        ></a-col>
         <a-col :md="12" :lg="10" class="text-container">
           <div class="text-box">
             <h1>STANDARD ROOM</h1>
@@ -59,17 +60,14 @@
       </a-row>
       <br>
       <a-row class="bg-right">
-        <a-col :md="12" :lg="14" class="bg vte"></a-col>
+        <a-col :md="12" :lg="14" class="bg vte"
+        :style="`background-image: url(https://storage.googleapis.com/dsv-bucket/dvs-gallery/21.jpeg)`"
+        ></a-col>
         <a-col :md="12" :lg="10" class="text-container">
           <div class="text-box">
-            <h1>STANDARD ROOM</h1>
+            <h1>VIP ROOM</h1>
             <p>
-              With its lofty ceilings, white and rattan palette and antique tile
-              floors, the Restaurant is a cool, elegant setting for breakfast,
-              lunch and dinner. Serving authentic local and French-influenced
-              cuisine, the Restaurant’s Laotian specialties include fish or
-              vegetables steamed in banana leaves with coriander and coconut
-              milk.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde magni, repellat hic accusamus nam minus sit veritatis, debitis blanditiis modi autem aliquid, nihil eaque ea voluptatum. Ipsum dicta vero impedit.
             </p>
           </div>
         </a-col>
@@ -113,14 +111,17 @@
       <img src="/assets/image/decoration-1.png" alt="" :style="{ height: '40px', display: 'block' }" />
     </div>
     <a-row justify="center" style="display: flex; gap: 10px">
-      <a-col :span="4" class="gallery-card" v-for="i in 4" :key="i">
+    <Gallery/>
+      <!-- <a-col :span="4" class="gallery-card" v-for="i in 4" :key="i">
         <img src="" alt="" />
-      </a-col>
+      </a-col> -->
     </a-row>
   </a-layout-content>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Gallery from '@/components/gallery.vue'
+</script>
 
 <style scoped lang="scss">
 .line-header {
@@ -135,7 +136,7 @@
   /* border: 10px solid red; */
   span {
     /* display: block; */
-    font-family: var(--font-family);
+   // font-family: var(--font-family);
     font-size: 70px;
     position: absolute;
     top: 24px;
@@ -151,34 +152,39 @@
   }
 }
 
-.t1 {
-  // font-size: 42px;
-  font-family: var(--font-family);
-  font-weight: 700;
-  line-height: 1em;
+// .t1 {
+//   // font-size: 42px;
+//   font-family: var(--font-family);
+//   font-weight: 700;
+//   line-height: 1em;
 
-  @media only screen and (min-width : 320px) {
-    font-size: 45px;
-  }
+//   @media only screen and (min-width : 320px) {
+//     font-size: 45px;
+//   }
 
-  @media only screen and (min-width: 576px) {
-    font-size: 82px;
-  }
-}
+//   @media only screen and (min-width: 576px) {
+//     font-size: 82px;
+//   }
+// }
 
 .cover {
   background-image: url("/assets/image/experience/activity2.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+  // object-fit: contain;
 
   background-size: cover;
   position: relative;
   width: 100%;
+  // min-height: 320px;
+  height: 100%;
 
-  @media only screen and (min-width : 768px) {
-    height: 400px;
-  }
+  background-position: center bottom!important;
+//background-position: center center;
+  // @media only screen and (min-width : 768px) {
+  //   height: 400px;
+  // }
 
   .bg-cover {
     display: block;
@@ -192,6 +198,7 @@
     z-index: 0;
     background-color: #000;
     background-color: rgba(0, 0, 0, 0.3);
+
   }
 }
 
@@ -204,7 +211,7 @@
   .bg-right {
     .bg {
       background-color: #6e6e6e;
-      background-image: url("https://www.dansavanh.net/assets/images/5754f0381ebd4.jpg");
+      background-image: url("https://storage.googleapis.com/dsv-bucket/dvs-gallery/28.jpeg");
       display: block;
       background-repeat: no-repeat;
       background-position: center;
@@ -213,7 +220,9 @@
       width: 100%;
       max-width: 100%;
       height: 100%;
+      
     }
+
 
     .text-container {
       display: flex;
@@ -251,7 +260,7 @@
     font-weight: 700;
     margin: 20px 0;
     margin-top: 0 !important;
-    font-family: var(--font-family);
+   //font-family: var(--font-family);
     text-transform: uppercase;
   }
 

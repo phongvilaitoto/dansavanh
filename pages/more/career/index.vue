@@ -1,33 +1,27 @@
 <template>
+ 
+
   <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
-      <a-row
-        style="
-          padding-top: 116px;
+      <a-row justify="center" style="
+          padding-top: 180px;
           padding-bottom: 62px;
           text-align: center;
-          justify-content: center;
           background-color: transparent;
-        "
-      >
+        ">
         <a-col :span="14">
-          <a-typography-title
-            :level="5"
-            style="
-              font-family: var(--font-family);
-              letter-spacing: 7px;
-              font-size: 14px;
-            "
-          >
-            Work at Dansavanh
-          </a-typography-title>
-        </a-col>
-        <a-col :span="20">
-          <a-typography-title class="t1"
-            >CAREER</a-typography-title
-          >
-        </a-col>
+      <h5 class="headerT2">
+       {{$t(' WORK AT DANSAVANH')}}
+      </h5>
+      </a-col>
+      <a-col :xs="24" :sm="24" :md="24" :lg="12">
+           
+             <h1 class="headerT1">
+            {{$t('CAREER')}}
+            </h1>
+
+      </a-col>
       </a-row>
     </div>
   </a-layout>
@@ -37,9 +31,9 @@
         <hr style="border: 0; margin-top: 24px; border-top: 1px solid #eee" />
       </a-col>
       <a-col :span="24" style="text-align: center; justify-content: center">
-        <a-typography-title
-          style="color: #000; font-family: var(--font-family); margin: 0; text-transform: uppercase;"
-          >Dansavanh Career</a-typography-title
+        <h1 class="headerTitle text-uppercase"
+        
+          >Dansavanh Career</h1
         >
       </a-col>
       <a-col
@@ -51,16 +45,9 @@
           gap: 10px;
         "
       >
-        <a-typography-paragraph
-          style="
-          letter-spacing: 3px;
-            color: #000;
-            padding: 0;
-            margin: 0;
-            font-size: 12px;
-            font-family: var(--font-family);
-          "
-          >ONE OF THE BEST PLACES TO WORK IN LAOS</a-typography-paragraph
+        <p
+    class="headerT2 text-black"
+          >ONE OF THE BEST PLACES TO WORK IN LAOS</p
         >
       </a-col>
       <a-col
@@ -74,16 +61,19 @@
         />
       </a-col>
       <a-col :span="24" style="text-align: center; justify-content: center">
-        <a-typography-title :level="4"
-          style="color: #000; font-family: var(--font-family); margin: 0; text-transform: uppercase;"
+        <!-- <a-typography-title :level="4"
+        
           >Available jobs</a-typography-title
-        >
+        > -->
+        <h1 class="headerTitle text-uppercase">Available jobs</h1>
       </a-col>
     </a-row>
     <div :style="{ padding: '24px', minHeight: '280px' }">
      <div class="career_box">
-      <div class="text-box" v-for="i in 5" :key="i">
-        <h3>Promotion {{ i }}</h3>
+      <div class="text-box cursor"
+      @click="router.push('/more/career/5fd478d403249?i='+i)"
+       v-for="i in 3" :key="i">
+        <h3 class="text-uppercase">recruitment {{ i }}</h3>
         <p>With its lofty ceilings, white and rattan palette and antique tile floors, the Restaurant is a cool, elegant setting for breakfast, lunch and dinner. Serving authentic local and French-influenced cuisine, the Restaurant’s Laotian specialties include fish or vegetables steamed in banana leaves with coriander and coconut milk.</p>
       </div>
      </div>
@@ -92,16 +82,12 @@
   </a-layout-content>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const router = useRouter()
+</script>
 
-<style scoped>
+<style scoped lang="scss">
 
-.t1 {
-  /* margin-top: 50px; */
-  font-size: 41px;
-  font-family: var(--font-family);
-  font-weight: 700;
-}
 .cover {
   background-image: url("/assets/image/more/career-header.JPG");
   /* background-attachment: fixed;   */
@@ -128,13 +114,16 @@
 .career_box{
   border: 2px solid #000;
   padding: 10px;
-  font-family: var(--font-family);
+  margin-bottom: 20px;
+  
 
   .text-box{
+    margin-bottom: 20px;
     border: 10px;
     border-bottom: 1px solid #DAD8D1;
     h3{
       font-weight:900;
+      font-size: 25px;
     }
    
   }

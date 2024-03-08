@@ -1,43 +1,38 @@
 <template>
+  
   <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
-      <a-row
-        justify="center"
-        style="
-          padding-top: 116px;
+      <a-row justify="center" style="
+          padding-top: 180px;
           padding-bottom: 62px;
           text-align: center;
           background-color: transparent;
-        "
-      >
+        ">
         <a-col :span="14">
-          <a-typography-title
-            :level="5"
-            style="
-              font-family: var(--font-family);
-              letter-spacing: 7px;
-              font-size: 14px;
-            "
+      <h5 class="headerT2">
+       {{$t('STEP IN THE WORLD OF DANSAVANH')}}
+      </h5>
+      </a-col>
+      <a-col :xs="24" :sm="24" :md="24" :lg="12">
            
-          >
-            STEP IN THE WORLD OF DANSAVANH
-          </a-typography-title>
-        </a-col>
-        <a-col :span="16">
-          <a-typography-title
-             class="t1"
-            >OUR HOTELS</a-typography-title
-          >
-        </a-col>
+             <h1 class="headerT1">
+            {{$t('OUR HOTELS')}}
+            </h1>
+
+      </a-col>
       </a-row>
     </div>
   </a-layout>
+
+
+
+
   <a-layout-content class="layout">
     <div class="blog" >
       <a-row class="bg-left">
-        <a-col :md="12" :lg="14" class="bg numngum"></a-col>
-        <a-col :md="12" :lg="8" class="text-container">
+        <a-col :xs="24" :sm="24" :md="24" :lg="16" class="bg numngum"></a-col>
+        <a-col  :xs="24" :sm="24" :md="24" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & HOTELS</span>
             <h2>DANSAVANH NAM NGUM RESORT AND CASINO</h2>
@@ -54,13 +49,15 @@
               and you could be hitting a jackpot that makes you plan your next
               trip here in advance.
             </p>
-            <a-button class="btn-view"> View Hotel </a-button>
+            <a-button
+            @click="router.push('/hotels/numngum')"
+             class="view-button bg-white">View Hotel</a-button>
           </div>
         </a-col>
       </a-row>
       <a-row class="bg-right">
-        <a-col :md="12" :lg="14" class="bg vte"></a-col>
-        <a-col :md="12" :lg="8" class="text-container">
+        <a-col :xs="24" :sm="24" :md="24" :lg="16" class="bg vte"></a-col>
+        <a-col :xs="24" :sm="24" :md="24" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & HOTELS</span>
             <h2>DANSAVANH VIENTIANE HOTEL</h2>
@@ -71,13 +68,16 @@
               a banquet room that can accommodate 800 people and has witnessed
               umpteen wedding celebrations.
             </p>
-            <a-button class="btn-view"> View Hotel </a-button>
+           
+            <a-button
+            @click="router.push('hotels/golf')"
+             class="view-button bg-white">View Hotel</a-button>
           </div>
         </a-col>
       </a-row>
       <a-row class="bg-left">
-        <a-col :md="12" :lg="14" class="bg golf"></a-col>
-        <a-col :md="12" :lg="8" class="text-container">
+        <a-col :xs="24" :sm="24" :md="24" :lg="16" class="bg golf"></a-col>
+        <a-col :xs="24" :sm="24" :md="24" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & HOTELS</span>
             <h2>DANSAVANH GOLF & COUNTRY CLUB</h2>
@@ -88,7 +88,9 @@
               excellent entertainment facilities, a hard to come by venue for
               golfers.
             </p>
-            <a-button class="btn-view"> View Hotel </a-button>
+            <a-button 
+            @click="router.push('hotels/vientaine-hotel')"
+            class="view-button bg-white">View Hotel</a-button>
           </div>
         </a-col>
       </a-row>
@@ -96,17 +98,15 @@
   </a-layout-content>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const router = useRouter()
 
-<style scoped>
-.t1{
-    font-size: 42px;
-    font-family: var(--font-family);
-              font-weight: 700;
-    @media (min-width: 576px) {
-    font-size: 86px;
-  }
-}
+
+
+</script>
+
+<style scoped lang="scss">
+
 .cover {
   background-image: url("/assets/image/hotels/homeLocation.jpg");
   background-attachment: fixed;
@@ -165,24 +165,32 @@
   .bg-right {
     display: flex;
     flex-direction: row-reverse;
+  
   }
-  @media (min-width: 576px) {
+
+
+  @media only screen and (min-width : 768px) {
     .bg-right .text-container {
       left: 5%;
     }
     .bg-left .text-container {
       right: 5%;
     }
+    
   }
+
+
+  
 }
 
 /* textbox  */
 .text-box {
+  width: 100%;
   justify-self: center;
   background-color: #fff;
   padding: 24px;
   color: #000;
-  border-radius: 3px;
+ 
   @media (min-width: 576px) {
     padding: 48px;
 
@@ -197,7 +205,7 @@
     font-weight: 700;
     margin: 20px 0;
     margin-top: 0 !important;
-    font-family: var(--font-family);
+  
     text-transform: uppercase;
   }
   p {

@@ -1,0 +1,138 @@
+<script >
+
+export default {
+  name: "ExampleMasonry",
+  data() {
+    return {
+      options: {
+        width: 300,
+        padding: {
+          2: 8,
+          default: 12
+        },
+      },
+      items: [
+        {
+          title: 'Sed non ante non cras amet',
+          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non sagittis leo. Vestibulum sit amet metus nec neque dignissim dapibus.',
+          image: 'https://storage.googleapis.com/dsv-bucket/gallery/5754f0381ebd4.jpeg'
+        },
+        {
+          title: 'Curabitur sit amet nunc',
+          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id mollis erat. Aliquam erat volutpat. Nunc erat lacus, rhoncus nec.',
+          image: 'https://storage.googleapis.com/dsv-bucket/gallery/5fd47819972a6.jpeg'
+        },
+       
+      ]
+    }
+  },
+  methods: {
+    append() {
+      // append method
+    }
+  }
+}
+</script>
+
+<template>
+
+<div class="masonry">
+  <div class="item" v-for="i in 43" :key="i">
+
+    <img
+    style="width: 100%"
+     :src="'https://storage.googleapis.com/dsv-bucket/dvs-gallery/' +i + '.jpeg'">
+  </div>
+ 
+
+  
+
+
+</div>
+
+
+</template>
+
+
+<style lang="scss" scoped>
+body {
+  font-family: sans-serif;
+   margin: 0;
+   background: #f2f2f2;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+p {
+  text-align: center;
+  margin-bottom:60px;
+}
+
+h4{
+  text-align:center; 
+  line-height:80px;
+  font-weight:normal;
+
+}
+
+.masonry { /* Masonry container */
+    -webkit-column-count: 3;
+  -moz-column-count:3;
+  column-count: 3;
+  -webkit-column-gap: 1em;
+  -moz-column-gap: 1em;
+  column-gap: 1em;
+   margin: 1.5em;
+    padding: 0;
+    -moz-column-gap: 1.5em;
+    -webkit-column-gap: 1.5em;
+    column-gap: 1.5em;
+    font-size: .85em;
+}
+.item {
+    display: inline-block;
+    background: #fff;
+  
+    margin: 0 0 1.5em;
+    width: 100%;
+	-webkit-transition:1s ease all;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-shadow: 2px 2px 4px 0 #ccc;
+}
+.item img{max-width:100%;}
+
+@media only screen and (max-width: 320px) {
+    .masonry {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 768px){
+    .masonry {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1200px){
+    .masonry {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+@media only screen and (min-width: 1201px) {
+    .masonry {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <a-layout>
+    <!-- <a-layout>
       <div class="cover">
         <div class="bg-cover"></div>
         <a-row
@@ -19,7 +19,43 @@
           </a-col>
         </a-row>
       </div>
+    </a-layout> -->
+
+    <a-layout>
+      <div class="cover">
+        <div class="bg-cover"></div>
+        <a-row
+     
+          style="
+            padding-top: 180px;
+            padding-bottom: 50px;
+            text-align:center;
+            justify-content: center;
+            background-color: transparent;
+          "
+        >
+          <a-col :span="22">
+
+            <h1 class="headerT1" style="font-size: 45px">
+            {{$t('DANSAVANH GOLF & COUNTRY CLUB')}}
+            </h1>
+         
+            <!-- <a-typography-title class="t1"
+              >OUR OFFERS  </a-typography-title
+            > -->
+          </a-col>
+          <!-- <a-col :span="22">
+            <h5 class="headerT2" style="margin-top: -20px">
+       {{$t('Interested in some activities? Have a look at ours packages.')}}
+      </h5>
+          
+          </a-col> -->
+        </a-row>
+      </div>
     </a-layout>
+
+
+
     <a-layout-content style="padding-bottom: 20px">
       <a-row justify="center">
         <a-col :span="14">
@@ -92,54 +128,74 @@
         />
       </div>
       <div class="content-container">
-        <a-row class="room-container">
-          <a-col :sm="24" :md="14" :lg="14" class="room-cover">
-          <div class="bg"></div>
-          </a-col>
-          <a-col :sm="24" :md="8" :lg="8" class="room-info">
-            <div class="text-box">
-              <h2>
-                <a href="#">Standard Room</a>
-              </h2>
+        
+
+
+
+        <a-row>
+
+          <div class="max-width">
+          
+      <a-col v-for="i in 3" >
+        <a-row 
+      @click="router.push('/offer/5f6da3a70215d?i=OFFER ' + i)"
+      class="room-container">
+        <a-col :xs="24" :sm="24" :lg="14" class="room-cover"></a-col>
+        <a-col :xs="24" :sm="24" :lg="10" class="room-info">
+          <div class="text-box">
+            <h2>STANDARD ROOM {{ i }}</h2>
+            
+            <p>
+         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet autem eius animi laudantium consectetur quisquam, consequuntur, cum illum itaque qui omnis quas laboriosam minus. Ratione, velit necessitatibus? Laboriosam, cum voluptate?
               
-              <p class="details">
-                <a-popover placement="bottom">
-                  <template #content class="popOver">
-                    <p>Content</p>
-                  </template>
-                  <a-button class="circle-hover">
-                    <DesktopOutlined />
-                  </a-button>
-                </a-popover>
-                <a-popover placement="bottom">
-                  <template #content>
-                    <p>Content</p>
-                  </template>
-                  <a-button class="circle-hover">
-                    <WifiOutlined />
-                  </a-button>
-                </a-popover>
-                <a-popover placement="bottom">
-                  <template #content>
-                    <p>Content</p>
-                  </template>
-                  <a-button class="circle-hover">
-                    <CoffeeOutlined />
-                  </a-button>
-                </a-popover>
-              </p>
-              <nuxt-link to="/contact"> contact </nuxt-link>
-            </div>
-          </a-col>
-        </a-row>
+              <br><br><p class="details">
+
+              <a-popover placement="bottom">
+                <template #content class="popOver">
+                  <p>Content</p>
+                </template>
+                <a-button class="circle-hover">
+                  <DesktopOutlined />
+                </a-button>
+              </a-popover>
+              <a-popover placement="bottom">
+                <template #content>
+                  <p>Content</p>
+                </template>
+                <a-button class="circle-hover">
+                  <WifiOutlined />
+                </a-button>
+              </a-popover>
+              <a-popover placement="bottom">
+                <template #content>
+                  <p>Content</p>
+                </template>
+                <a-button class="circle-hover">
+                  <CoffeeOutlined />
+                </a-button>
+              </a-popover>
+            </p>
+            </p>
+            <a-button @click="router.push('/contact')" class="view-button text-uppercase bg-white"> Contact </a-button>
+          </div>
+        </a-col>
+      </a-row>
+      </a-col>
+
+      </div>
+      </a-row>
        
       </div>
     </a-layout-content>
   </template>
   
-  <script setup lang="ts"></script>
+  <script setup lang="ts">
+  
+  const router = useRouter()
+  
+  </script>
 
-  <style scoped>
+  <style scoped lang="scss">
   .line-header {
     display: flex;
     flex-direction: column;
@@ -166,9 +222,13 @@
       opacity: 0.03;
     }
   }
+
+
   a {
     color: #000;
   }
+
+  
   .t1 {
     margin-top: 50px;
     font-size: 41px;
@@ -350,6 +410,71 @@
       box-shadow: inset 0 0 0 2px #ffd4
   }
   }
+
+  </style>
+  
+
+  <style lang="scss" scoped>
+  
+
+
+/* room  */
+.room-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  .room-cover {
+    aspect-ratio: 16/10;
+    background-color: #5e5e5e;
+    width: 200px;
+    background-image: url("https://storage.googleapis.com/dsv-bucket/dvs-gallery/21.jpeg");
+    background-position: center;
+  }
+  /* @media (min-width: 576px) {
+      .room-info {  
+        right: 5%;
+       
+      }
+    } */
+  .room-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    /* border: 1px solid red; */
+    z-index: 999;
+
+    .text-box {
+      /* border: 1px solid red; */
+      justify-self: center;
+      background-color: #fff;
+      padding: 24px;
+      color: #000;
+      border-radius: 3px;
+      @media (min-width: 576px) {
+        padding: 48px;
+  }
+      span {
+        font-size: 13px;
+        letter-spacing: 5px;
+        opacity: 0.7;
+        display: block;
+      }
+      h2 {
+        font-weight: 700;
+        margin: 20px 0;
+        margin-top: 0 !important;
+       
+        text-transform: uppercase;
+      }
+      p {
+        font-weight: 200;
+        font-size: 16px;
+        margin-bottom: 24px;
+      }
+    }
+  }
+}
 
   </style>
   

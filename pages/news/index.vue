@@ -15,19 +15,19 @@
           <a-col :span="22">
 
             <h1 class="headerT1" style="font-size: 65px">
-            {{$t('OUR OFFERS')}}
+            {{$t('DANSAVANH NEWS')}}
             </h1>
          
             <!-- <a-typography-title class="t1"
               >OUR OFFERS  </a-typography-title
             > -->
           </a-col>
-          <a-col :span="22">
+          <!-- <a-col :span="22">
             <h5 class="headerT2" style="margin-top: -20px">
        {{$t('Interested in some activities? Have a look at ours packages.')}}
       </h5>
-            <!-- <span style="color: #fff;">Interested in some activities? Have a look at ours packages.</span> -->
-          </a-col>
+          
+          </a-col> -->
         </a-row>
       </div>
     </a-layout>
@@ -88,21 +88,19 @@
         </a-row> -->
 
       <a-row>
-      <a-col v-for="i in 3" >
+      <a-col v-for="i in 1" >
+      
         <a-row 
-      @click="router.push('/offer/5f6da3a70215d?i=OFFER ' + i)"
+      @click="router.push('/news/65dea9c32632b6dbad0e7de5')"
       class="room-container">
         <a-col :xs="24" :sm="24" :lg="14" class="room-cover"></a-col>
         <a-col :xs="24" :sm="24" :lg="10" class="room-info">
           <div class="text-box">
-            <h2>OFFER {{ i }}</h2>
+            <h2>NEWS</h2>
             <p>
-              With its lofty ceilings, white and rattan palette and antique tile
-              floors, the Restaurant is a cool, elegant setting for breakfast,
-              lunch and dinner. Serving authentic local and French-influenced
-              cuisine, the Restaurant’s Laotian specialties include fish or
-              vegetables steamed in banana leaves with coriander and coconut
-              milk.
+                The latest 4-star hotel in Vientiane, Laos. Green Park Boutique Hotel Captures a Lao-style orientation with the finest contemporary architecture of Laos. The elegance of the interiors, both historic and contemporary settings are combined to create the most distinguished collection of stylish and luxurious boutique hotels in Vientiane.
+
+
             </p>
             <a-button class="view-button text-uppercase bg-white"> Discover More </a-button>
           </div>
@@ -162,7 +160,7 @@ a {
   font-weight: 700;
 }
 .cover {
-  background-image: url("/assets/image/events/location-1.jpg");
+  background-image: url("/assets/image/news/news.jpeg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -209,7 +207,7 @@ a {
     aspect-ratio: 16/10;
     background-color: #5e5e5e;
     width: 200px;
-    background-image: url("https://storage.googleapis.com/dsv-bucket/dvs-gallery/40.jpeg");
+    background-image: url("https://storage.googleapis.com/dsv-bucket/gallery/5754f0381ebd4.jpeg");
     background-position: center;
   }
   /* @media (min-width: 576px) {
@@ -300,7 +298,7 @@ a {
     margin-bottom: 0;
   }
   .cover {
-    background-image: url("/assets/image/hotels/casino34.jpg");
+    background-image: url("/assets/image/news/news.jpeg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

@@ -1,33 +1,38 @@
 <template>
-  <a-layout>
+    <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
-      <a-row
-        justify="center"
-        style="
-          padding-top: 120px;
-          padding-bottom: 0px;
+      <a-row justify="center" style="
+          padding-top: 180px;
+          padding-bottom: 62px;
           text-align: center;
-          justify-content: center;
           background-color: transparent;
-        "
-      >
-        <a-col :span="24">
-        <h1 class="headerTitle">EVENTS</h1>
-          <!-- <a-typography-title class="headerTitle">EVENTS</a-typography-title> -->
-        </a-col>
+        ">
+        <!-- <a-col :span="14">
+      <h5 class="headerT2">
+       {{$t('dActivities')}}
+      </h5>
+      </a-col> -->
+      <a-col :xs="24" :sm="24" :md="24" :lg="12">
+           
+             <h1 class="headerT1">
+            {{$t('EVENTS')}}
+            </h1>
+
+      </a-col>
       </a-row>
     </div>
   </a-layout>
+  
   <a-layout-content class="content-container">
     <a-row justify="center">
       <a-col :span="24">
         <hr style="border: 0; margin-top: 24px; border-top: 1px solid #eee" />
       </a-col>
       <a-col :span="24" style="text-align: center; justify-content: center">
-        <a-typography-title
-          style="color: #000; font-family: var(--font-family); margin: 0"
-          >COMING EVENTS</a-typography-title
+        <h2
+          class="headerTitle"
+          >COMING EVENTS</h2
         >
       </a-col>
       <a-col
@@ -45,9 +50,9 @@
             font-weight: 700;
             font-family: var(--font-family);
           "
-          >0</span
+          >1</span
         >
-        <a-typography-title
+    <a-typography-title
           :level="5"
           style="
             color: #000;
@@ -80,11 +85,13 @@
       </a-breadcrumb> -->
   
     <div :style="{ padding: '24px', minHeight: '280px' }">
-      <a-row class="room-container">
+      <a-row 
+      @click="router.push('/events/5f6da3a70215d?i=EVENT 1')"
+      class="room-container">
         <a-col :xs="24" :sm="24" :lg="10" class="room-cover"></a-col>
         <a-col :xs="24" :sm="24" :lg="8" class="room-info">
           <div class="text-box">
-            <h2>STANDARD ROOM</h2>
+            <h2>EVENT 1</h2>
             <p>
               With its lofty ceilings, white and rattan palette and antique tile
               floors, the Restaurant is a cool, elegant setting for breakfast,
@@ -93,7 +100,7 @@
               vegetables steamed in banana leaves with coriander and coconut
               milk.
             </p>
-            <a-button class="btn-view"> View Hotel </a-button>
+            <a-button class="view-button text-uppercase bg-white"> View Hotel </a-button>
           </div>
         </a-col>
       </a-row>
@@ -113,10 +120,14 @@
         <hr style="border: 0; margin-top: 24px; border-top: 1px solid #eee" />
       </a-col>
       <a-col :span="24" style="text-align: center; justify-content: center">
-        <a-typography-title
-          style="color: #000; font-family: var(--font-family); margin: 0"
+        <!-- <a-typography-title
+          style="     color: #000;
+            padding: 0;
+            margin: 0;
+            font-family: var(--font-family);"
           >PAST EVENTS</a-typography-title
-        >
+        > -->
+        <h1 class="headerTitle">PAST EVENTS</h1>
       </a-col>
       <a-col
         :span="24"
@@ -130,13 +141,15 @@
       </a-col>
     </a-row>
     <div :style="{ padding: '24px', minHeight: '280px' }">
-      <a-row class="room-container">
+      <a-row class="room-container"
+      @click="router.push('/events/5f6da3a70216f?i=PROMOTION')"
+      >
         <a-col :xs="24" :sm="24" :lg="10" class="room-cover">
       
         </a-col>
         <a-col :xs="24" :sm="24" :lg="8" class="room-info">
           <div class="text-box">
-            <h2>STANDARD ROOM</h2>
+            <h2>PROMOTION</h2>
             <p>
               With its lofty ceilings, white and rattan palette and antique tile
               floors, the Restaurant is a cool, elegant setting for breakfast,
@@ -145,7 +158,7 @@
               vegetables steamed in banana leaves with coriander and coconut
               milk.
             </p>
-            <a-button class="btn-view"> View Hotel </a-button>
+            <a-button class="view-button text-uppercase bg-white"> View Hotel </a-button>
           </div>
         </a-col>
       </a-row>
@@ -176,26 +189,35 @@
           />
         </a-col>
       </a-row> -->
-    <div class="line-header">
+
+
+    <!-- <div class="line-header">
       <span>GALLERY</span>
-      <!-- <p></p> -->
+
       <img
         src="/assets/image/decoration-1.png"
         alt=""
         :style="{ height: '40px', display: 'block' }"
       />
-    </div>
-    <a-row justify="center" style="display: flex; gap: 10px">
+    </div> -->
+
+
+    
+    <!-- <a-row justify="center" style="display: flex; gap: 10px">
       <a-col :span="4" class="gallery-card" v-for="i in 4" :key="i">
         <img src="" alt="" />
       </a-col>
-    </a-row>
+    </a-row> -->
+
+    <!-- <gallery/> -->
   </a-layout-content>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const router = useRouter()
+</script>
 
-<style scoped>
+<style scoped lang="scss">
 
 .line-header {
   display: flex;
@@ -208,7 +230,7 @@
   /* border: 10px solid red; */
   span {
     /* display: block; */
-    font-family: var(--font-family);
+   
     font-size: 70px;
     position: absolute;
     top: 24px;
@@ -231,7 +253,7 @@ a {
 .t1 {
   margin-top: 50px;
   font-size: 41px;
-  font-family: var(--font-family);
+ 
   font-weight: 700;
 }
 .cover {
@@ -282,7 +304,7 @@ a {
     aspect-ratio: 16/10;
     background-color: #5e5e5e;
     width: 200px;
-    background-image: url("https://www.aman.com/sites/default/files/styles/full_size_large/public/2021-02/Amantaka_Homepage_1.jpg?itok=26M01kWA");
+    background-image: url("https://storage.googleapis.com/dsv-bucket/dvs-gallery/37.jpeg");
     background-position: center;
   }
   /* @media (min-width: 576px) {
@@ -319,7 +341,7 @@ a {
         font-weight: 700;
         margin: 20px 0;
         margin-top: 0 !important;
-        font-family: var(--font-family);
+       
         text-transform: uppercase;
       }
       p {
