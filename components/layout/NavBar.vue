@@ -1,15 +1,14 @@
 <template>
   <nav>
     <div class="navbar">
-      <div class="burger" @click="clickBurgerToggle">
-        <i class="fa-solid fa-bars"></i>
-      </div>
+
       <div class="navbar-start">
         <div class="navbar-brand">
           <img src="assets/image/logo-dansavanh4.png" alt="">
           <!-- <img src="../../assets/image/logo-dansavanh2.png" alt="" /> -->
         </div>
       </div>
+      
       <!-- menu  -->
       <div class="navbar-item is-desktop">
         <nuxt-link to="/" class="line-hover">{{ $t('home') }}</nuxt-link>
@@ -23,16 +22,14 @@
           <ul @click="drowdownToggle = false" class="dropdrown" style="width: 310px !important;" v-if="drowdownToggle"
             @mouseleave="drowdownToggle = false">
             <li>
-              <nuxt-link to="/hotels/numngum" @click="drowdownToggle = !drowdownToggle" class="line-hover">Dansavanh
-                Resort & Casino</nuxt-link>
+              <nuxt-link to="/hotels/numngum" @click="drowdownToggle = !drowdownToggle" class="line-hover">{{$t('hotelTab1')}}</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/hotels/golf" class="line-hover" @click="drowdownToggle = !drowdownToggle">Dansavanh Golf &
-                Country Club</nuxt-link>
+              <nuxt-link to="/hotels/golf" class="line-hover" @click="drowdownToggle = !drowdownToggle">{{$t('hotelTab2')}}</nuxt-link>
             </li>
             <li>
               <nuxt-link to="/hotels/vientaine-hotel" class="line-hover"
-                @click="drowdownToggle = !drowdownToggle">Dansavanh Vientiane Hotel</nuxt-link>
+                @click="drowdownToggle = !drowdownToggle">{{$t('hotelTab3')}}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -50,21 +47,21 @@
             <DownOutlined style="position: absolute; top: 3px; right: -18px" v-if="showMoreDropDown" />
           </nuxt-link>
           <!-- dropdrow -->
-          <ul class="dropdrown" style="width: 150px !important;" v-if="showMoreDropDown"
+          <ul class="dropdrown" style="width: 180px !important;" v-if="showMoreDropDown"
             @mouseleave="showMoreDropDown = false">
 
             <li>
-              <nuxt-link class="line-hover" to="/gallery">Gallery</nuxt-link>
+              <nuxt-link class="line-hover" to="/gallery">{{$t('gallery')}}</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/more/career" class="line-hover">Career</nuxt-link>
+              <nuxt-link to="/more/career" class="line-hover">{{$t('careerTitle')}}</nuxt-link>
             </li>
 
             <!-- <li>
               <nuxt-link to="/more/testimonials">Testimonials</nuxt-link>
             </li> -->
             <li>
-              <nuxt-link to="/news" class="line-hover">News</nuxt-link>
+              <nuxt-link to="/news" class="line-hover">{{$t('newsTitle')}}</nuxt-link>
             </li>
           </ul>
         </dividerProps>
@@ -89,12 +86,10 @@
       </div>
 
 
-      <div>
+      <div class="is-mobile">
         <i @click="visible = true" style="padding: 10px; cursor: pointer; color: white"
-          class="fa-solid fa-bars fa-xl is-mobile"></i>
+          class="fa-solid fa-bars fa-xl "></i>
         <Drawer :visible="visible" @onClose="visible = false" />
-
-
       </div>
 
       <!-- mobile navbar  -->
@@ -132,6 +127,7 @@ const moreDropdownToggle = () => {
 watch(() => route.name , () => {
   showMoreDropDown.value = false
   drowdownToggle.value = false
+  visible.value = false
 })
 
 

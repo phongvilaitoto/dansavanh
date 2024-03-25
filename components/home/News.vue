@@ -11,14 +11,14 @@
      @click="router.push('/events')"
      >
       <div class="card event cursor">
-        <img src="https://storage.googleapis.com/dsv-bucket/gallery/5fd47819972a6.jpeg" alt="" />
-        <h2 class="text-bold">Our Event</h2>
+        <img :src="main.home.eventZone.img" alt="" />
+        <h2 class="text-bold text-shadow">{{ main.home.eventZone.titles[selectedIdx] }}</h2>
       </div>
     </a-col>
     <a-col :sm="24" :lg="8" @click="router.push('/offer')">
       <div class="card offer cursor">
-        <img src="https://storage.googleapis.com/dsv-bucket/golf-banner.jpeg" alt="" />
-        <h2 class="text-bold">BEST OFFER</h2>
+        <img :src="main.home.offerZone.img" alt="" />
+        <h2 class="text-bold text-shadow">{{ main.home.offerZone.titles[selectedIdx] }}</h2>
       </div>
     </a-col>
   </a-row>
@@ -31,7 +31,7 @@
     <!-- divided  -->
 
   <!-- news  -->
-  <a-row 
+  <!-- <a-row 
   class="cursor"
   @click="router.push('/news/65dea9c32632b6dbad0e7de5')"
   justify="center" style="padding-bottom: 1rem;" :gutter="20">
@@ -42,18 +42,20 @@
     </a-col>
     <a-col :sm="24" :lg="12">
     <h2 class="text-bold">NEWS</h2>
-        <!-- <a-typography-title :level="2" :style="{color:'#000000'}">
-            NEWS
-        </a-typography-title> -->
+
         <p>The latest 4-star hotel in Vientiane, Laos. Green Park Boutique Hotel Captures a Lao-style orientation with the finest contemporary architecture of Laos. The elegance of the interiors, both historic and contemporary settings are combined to create the most distinguished collection of stylish and luxurious boutique hotels in Vientiane.</p>
-        <!-- <a-typography-paragraph :style="{color:'#000000'}">
-            The latest 4-star hotel in Vientiane, Laos. Green Park Boutique Hotel Captures a Lao-style orientation with the finest contemporary architecture of Laos. The elegance of the interiors, both historic and contemporary settings are combined to create the most distinguished collection of stylish and luxurious boutique hotels in Vientiane.
-        </a-typography-paragraph> -->
+
     </a-col>
-  </a-row>
+  </a-row> -->
 </template>
 
 <script setup lang="ts">
+
+import { useMainStore } from '@/stores/mainStore'
+
+const store = useMainStore()
+
+const {main, selectedIdx} = storeToRefs(store) 
 
 const router = useRouter()
 </script>

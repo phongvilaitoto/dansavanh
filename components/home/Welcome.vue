@@ -1,17 +1,18 @@
 <template>
-  <div>
+  <div class="max-width">
     <a-row justify="center" align="middle" style="padding-bottom: 1rem; padding-top: 3rem" class="text-center"
     
     >
+   
       <a-col :span="24">
         <!-- <a-typography-title :level="2" style="color: #000;">
           
         </a-typography-title> -->
         <!-- <h1>DANSAVANH NAM NGUM RESORT</h1> -->
-        <h1 class="text-uppercase">Dansavanh Nam Ngum Resort</h1>
+        <h1 class="text-uppercase">{{main.home.titles[selectedIdx]}}</h1>
       </a-col>
       <a-col :span="24" :sm="18">
-      <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat perspiciatis numquam soluta magni nisi error! Corrupti similique quasi quod ut quae libero nihil neque, vel, mollitia officiis dolorem aliquid quo? elit. Quia, repudiandae expedita aliquid eaque omnis suscipit tempore deserunt reiciendis accusantium dolorem delectus facilis fugit iusto eligendi vero perspiciatis dolor sequi deleniti?.</p>
+      <p class="text-center">{{main.home.descriptions[selectedIdx]}}</p>
   
       </a-col>
       <a-col :span="24" style="align-content: center; justify-content: center; display: flex;">
@@ -20,28 +21,24 @@
     </a-row>
 
     <!-- card  -->
-    <a-row justify="center" :gutter="20" >
-      <a-col :xs="24" :sm="24" :md="24" :lg="8" v-for="(i, idx) in list" :key="idx" @mouseenter="isHover = idx" @mouseleave="isHover = null">
+    <a-row justify="center" :gutter="20">
+      <a-col :xs="24" :sm="24" :md="24" :lg="8" v-for="(i, key, idx) in main.home.cardZone" :key="idx" @mouseenter="isHover = idx" @mouseleave="isHover = null">
         <div class="card-swiper">
-          <nuxt-link :to="i.route">
+          <nuxt-link :to="i.link">
             <div class="casino-card">
-              <img class="casino-card-image" :src="i.image" alt="">
+              <img class="casino-card-image" :src="i.img" alt="">
+
 
               <div class="casino-card-text-top">
-                <img :src="i.icon" alt="">
+                <img :src="icons[idx]" alt="">
               </div>
               <!-- <span><img src="/assets/image/home/logo_casino.png" alt=""></span> -->
-
               <div v-if="isHover !== idx"  class="casino-card-text">
-                <h2 >{{ i.text }}</h2>
+                <h2 >{{ i.titles[selectedIdx] }}</h2>
               </div>
-              
-              
-              
               <div v-else class="casino-card-text">
-                <p>{{ i.description }}</p>
+                <p>{{ i.descriptions[selectedIdx] }}</p>
               </div>
-
             </div>
             <p></p>
           </nuxt-link>
@@ -52,8 +49,19 @@
 </template>
 
 <script setup lang="ts">
+import { useMainStore } from '@/stores/mainStore'
+
+const store = useMainStore()
+
+const {main, selectedIdx} = storeToRefs(store) 
 
 const isHover = ref<any>(null)
+
+const icons = ref([
+  'https://storage.googleapis.com/dsv-bucket/logo_casino.png',
+  'https://storage.googleapis.com/dsv-bucket/logo_jetski.png',
+  'https://storage.googleapis.com/dsv-bucket/logo_golf.png',
+])
 
 const list = ref([
   {

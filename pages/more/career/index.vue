@@ -12,13 +12,13 @@
         ">
         <a-col :span="14">
       <h5 class="headerT2">
-       {{$t(' WORK AT DANSAVANH')}}
+       {{$t('careerSubTitle')}}
       </h5>
       </a-col>
       <a-col :xs="24" :sm="24" :md="24" :lg="12">
            
              <h1 class="headerT1">
-            {{$t('CAREER')}}
+            {{$t('careerTitle')}}
             </h1>
 
       </a-col>
@@ -31,9 +31,9 @@
         <hr style="border: 0; margin-top: 24px; border-top: 1px solid #eee" />
       </a-col>
       <a-col :span="24" style="text-align: center; justify-content: center">
-        <h1 class="headerTitle text-uppercase"
+        <h1 class="headerTitle text-uppercase" style="margin-top: 30px"
         
-          >Dansavanh Career</h1
+          >{{ $t('dCareer') }}</h1
         >
       </a-col>
       <a-col
@@ -47,7 +47,7 @@
       >
         <p
     class="headerT2 text-black"
-          >ONE OF THE BEST PLACES TO WORK IN LAOS</p
+          >{{$t('bestPlacesToWork')}}</p
         >
       </a-col>
       <a-col
@@ -65,16 +65,16 @@
         
           >Available jobs</a-typography-title
         > -->
-        <h1 class="headerTitle text-uppercase">Available jobs</h1>
+        <h3 class="headerTitle text-uppercase">{{ $t('availableJobs') }}</h3>
       </a-col>
     </a-row>
     <div :style="{ padding: '24px', minHeight: '280px' }">
      <div class="career_box">
-      <div class="text-box cursor"
-      @click="router.push('/more/career/5fd478d403249?i='+i)"
-       v-for="i in 3" :key="i">
-        <h3 class="text-uppercase">recruitment {{ i }}</h3>
-        <p>With its lofty ceilings, white and rattan palette and antique tile floors, the Restaurant is a cool, elegant setting for breakfast, lunch and dinner. Serving authentic local and French-influenced cuisine, the Restaurant’s Laotian specialties include fish or vegetables steamed in banana leaves with coriander and coconut milk.</p>
+      <div class="text-box cursor" style="margin: 30px 10px 30px 10px"
+      @click="router.push('/more/career/' + i._id)"
+       v-for="i in blogs" :key="i">
+        <h3 class="text-uppercase">{{ i.titles[selectedIdx] }}</h3>
+        <p>{{ i.captions[selectedIdx] }}</p>
       </div>
      </div>
     </div>
@@ -84,6 +84,22 @@
 
 <script setup lang="ts">
 const router = useRouter()
+
+
+import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
+
+const config = useRuntimeConfig()
+
+const store = useMainStore()
+const {isOddFunc} = store
+const {selectedIdx} = storeToRefs(store)
+
+const blogs = ref<any>([])
+
+const { data }: any = await useFetch(config.public.apiBase + '/getDBlogs?type=Jobs')
+blogs.value = data.value.dBlogs
+
 </script>
 
 <style scoped lang="scss">

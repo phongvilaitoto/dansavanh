@@ -1,27 +1,7 @@
 <template>
+  
+<HotelReuseComp :hotel="main.hotels[1]"/>
     <!-- <a-layout>
-      <div class="cover">
-        <div class="bg-cover"></div>
-        <a-row
-          justify="center"
-          style="
-            padding-top: 116px;
-            padding-bottom: 62px;
-            text-align: center;
-            justify-content: center;
-            /* background-color: transparent; */
-          "
-        >
-          <a-col :span="20">
-            <a-typography-title class="t1"
-              >DANSAVANH GOLF & COUNTRY CLUB</a-typography-title
-            >
-          </a-col>
-        </a-row>
-      </div>
-    </a-layout> -->
-
-    <a-layout>
       <div class="cover">
         <div class="bg-cover"></div>
         <a-row
@@ -39,22 +19,10 @@
             <h1 class="headerT1" style="font-size: 45px">
             {{$t('DANSAVANH GOLF & COUNTRY CLUB')}}
             </h1>
-         
-            <!-- <a-typography-title class="t1"
-              >OUR OFFERS  </a-typography-title
-            > -->
           </a-col>
-          <!-- <a-col :span="22">
-            <h5 class="headerT2" style="margin-top: -20px">
-       {{$t('Interested in some activities? Have a look at ours packages.')}}
-      </h5>
-          
-          </a-col> -->
         </a-row>
       </div>
     </a-layout>
-
-
 
     <a-layout-content style="padding-bottom: 20px">
       <a-row justify="center">
@@ -117,10 +85,8 @@
         </a-col>
       </a-row>
     </div>
-      <!-- room section  -->
       <div class="line-header">
         <span>ROOM </span>
-        <!-- <p></p> -->
         <img
           src="/assets/image/decoration-1.png"
           alt=""
@@ -186,12 +152,18 @@
       </a-row>
        
       </div>
-    </a-layout-content>
+    </a-layout-content> -->
   </template>
   
   <script setup lang="ts">
-  
-  const router = useRouter()
+  import HotelReuseComp from '@/components/hotelReuseComp.vue'
+
+  import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
+
+const {main, selectedIdx} = storeToRefs(useMainStore())
+
+
   
   </script>
 

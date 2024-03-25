@@ -1,9 +1,10 @@
 <template>
     <div >
+  
         <Swiper :slides-per-view="1" :space-between="10" :loop="true" :pagination="{ clickable: true }" :scrollbar="{ draggable: true }"
             @swiper="onSwiper"  :autoplay="true">
 
-            <SwiperSlide v-for="(image, idx) in images" :key="idx" @click="swipy.slideNext()">
+            <SwiperSlide v-for="(image, idx) in main.home.imgs" :key="idx" @click="swipy.slideNext()">
                 <div class="is-desktop" :style="{
                     width: '100%', height: '600px',
                     backgroundSize: 'cover',
@@ -23,9 +24,7 @@
 
                 </div>
             </SwiperSlide>
-        
- 
-        
+                
             <div class="swiper-button-prev" @click="swipy.slidePrev()"></div>
     <div class="swiper-button-next" @click="swipy.slideNext()"></div>
     <div class="swiper-scrollbar"></div>
@@ -35,11 +34,16 @@
 
 <script setup lang="ts">
 
+import { useMainStore } from '@/stores/mainStore'
+const store = useMainStore()
+
+const {main, selectedIdx} = storeToRefs(store) 
 
 import { Swiper, SwiperSlide, } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
 
 const swipy = ref<any>()
 

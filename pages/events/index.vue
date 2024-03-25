@@ -16,7 +16,7 @@
       <a-col :xs="24" :sm="24" :md="24" :lg="12">
            
              <h1 class="headerT1">
-            {{$t('EVENTS')}}
+            {{$t('eventTitle')}}
             </h1>
 
       </a-col>
@@ -32,7 +32,7 @@
       <a-col :span="24" style="text-align: center; justify-content: center">
         <h2
           class="headerTitle"
-          >COMING EVENTS</h2
+          >{{ $t('eventComing') }}</h2
         >
       </a-col>
       <a-col
@@ -50,7 +50,7 @@
             font-weight: 700;
             font-family: var(--font-family);
           "
-          >1</span
+          >{{ blogs.length }}</span
         >
     <a-typography-title
           :level="5"
@@ -60,7 +60,7 @@
             margin: 0;
             font-family: var(--font-family);
           "
-          >COMING EVENTS</a-typography-title
+          >{{ $t('eventComing') }}</a-typography-title
         >
       </a-col>
       <a-col
@@ -86,21 +86,23 @@
   
     <div :style="{ padding: '24px', minHeight: '280px' }">
       <a-row 
-      @click="router.push('/events/5f6da3a70215d?i=EVENT 1')"
+      v-for="i in blogs"
+      @click="router.push('/events/' + i._id)"
       class="room-container">
-        <a-col :xs="24" :sm="24" :lg="10" class="room-cover"></a-col>
+        <a-col :xs="24" :sm="24" :lg="10" class="room-cover"
+        :style="`background-image: url('${i.img}')`"
+        ></a-col>
         <a-col :xs="24" :sm="24" :lg="8" class="room-info">
           <div class="text-box">
-            <h2>EVENT 1</h2>
+            <h2>{{i.titles[selectedIdx]}}</h2>
             <p>
-              With its lofty ceilings, white and rattan palette and antique tile
-              floors, the Restaurant is a cool, elegant setting for breakfast,
-              lunch and dinner. Serving authentic local and French-influenced
-              cuisine, the Restaurant’s Laotian specialties include fish or
-              vegetables steamed in banana leaves with coriander and coconut
-              milk.
+             {{i.captions[selectedIdx]}}
             </p>
-            <a-button class="view-button text-uppercase bg-white"> View Hotel </a-button>
+            <button class="btn btn-2 hover-slide-up"
+            @click="$router.push('/events/' + i._id)"
+            >
+        <span>{{$t('discoverMore')}}</span>
+      </button>
           </div>
         </a-col>
       </a-row>
@@ -127,7 +129,7 @@
             font-family: var(--font-family);"
           >PAST EVENTS</a-typography-title
         > -->
-        <h1 class="headerTitle">PAST EVENTS</h1>
+        <h1 class="headerTitle">{{$t('eventPast')}}</h1>
       </a-col>
       <a-col
         :span="24"
@@ -142,23 +144,27 @@
     </a-row>
     <div :style="{ padding: '24px', minHeight: '280px' }">
       <a-row class="room-container"
-      @click="router.push('/events/5f6da3a70216f?i=PROMOTION')"
+      v-for="i in blogs2"
+      @click="router.push('/events/' + i._id)"
       >
-        <a-col :xs="24" :sm="24" :lg="10" class="room-cover">
+        <a-col :xs="24" :sm="24" :lg="10" 
+        :style="`background-image: url('${i.img}')`"
+        class="room-cover">
       
         </a-col>
         <a-col :xs="24" :sm="24" :lg="8" class="room-info">
           <div class="text-box">
-            <h2>PROMOTION</h2>
+            <h2>{{i.titles[selectedIdx]}}</h2>
             <p>
-              With its lofty ceilings, white and rattan palette and antique tile
-              floors, the Restaurant is a cool, elegant setting for breakfast,
-              lunch and dinner. Serving authentic local and French-influenced
-              cuisine, the Restaurant’s Laotian specialties include fish or
-              vegetables steamed in banana leaves with coriander and coconut
-              milk.
+            {{ i.captions[selectedIdx] }}
             </p>
-            <a-button class="view-button text-uppercase bg-white"> View Hotel </a-button>
+
+            <button class="btn btn-2 hover-slide-up"
+            @click="$router.push('/events/' + i._id)"
+            >
+        <span>{{$t('discoverMore')}}</span>
+      </button>
+            <!-- <a-button class="view-button text-uppercase bg-white"> {{$t('discoverMore') }} </a-button> -->
           </div>
         </a-col>
       </a-row>
@@ -214,7 +220,30 @@
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
+  const router = useRouter()
+
+
+import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
+
+
+
+const config = useRuntimeConfig()
+
+const store = useMainStore()
+const {isOddFunc} = store
+const {selectedIdx} = storeToRefs(store)
+
+const blogs = ref<any>([])
+const blogs2 = ref<any>([])
+
+
+const res: any = await useFetch(config.public.apiBase + '/getDBlogs?type=Events&eventType=Coming Events')
+blogs.value = res.data.value.dBlogs
+
+const { data }: any = await useFetch(config.public.apiBase + '/getDBlogs?type=Events&eventType=Past Events')
+blogs2.value = data.value.dBlogs
+
 </script>
 
 <style scoped lang="scss">
@@ -306,6 +335,7 @@ a {
     width: 200px;
     background-image: url("https://storage.googleapis.com/dsv-bucket/dvs-gallery/37.jpeg");
     background-position: center;
+    background-size: cover;
   }
   /* @media (min-width: 576px) {
       .room-info {  

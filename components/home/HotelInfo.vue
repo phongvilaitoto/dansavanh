@@ -8,21 +8,32 @@
   <a-row justify="center">
     <a-col :sm="24" :lg="24">
       <div class="card-info">
-        <img src="assets/image/hotels/hotel-vientiane.jpg" alt="" />
-        <h2>THE BEST RESORT</h2>
+        <img :src="main.home.hotelZone.img" alt="" />
+        <h2 class="text-shadow text-bold">{{main.home.hotelZone.titles[selectedIdx]}}</h2>
       </div>
     </a-col>
   </a-row>
   <a-row justify="center">
     <a-space>
-      <nuxt-link to="/hotels">
+
+      <button class="btn btn-2 hover-slide-up"
+            @click="$router.push('/hotels')"
+            >
+        <span>{{$t('viewHotelsButton')}}</span>
+      </button>
+      <!-- <nuxt-link to="/hotels">
         <a-button class="view-button">VIEW HOTELS</a-button>
-      </nuxt-link>
+      </nuxt-link> -->
     </a-space>
   </a-row>
 </template>
 
 <script setup lang="ts">
+import { useMainStore } from '@/stores/mainStore'
+
+const store = useMainStore()
+
+const {main, selectedIdx} = storeToRefs(store) 
 
 
 </script>

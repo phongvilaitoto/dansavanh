@@ -1,11 +1,11 @@
 <template>
-    <a-layout>
+    <a-layout data-aos="fade-up">
       <div class="cover">
-        <div class="bg-cover"></div>
+        <div class="bg-cover"
+        ></div>
         <a-row
-     
+          :style="isComp ? 'padding-top: 70px  !important;' : 'padding-top: 160px  !important;'"
           style="
-            padding-top: 160px;
             padding-bottom: 50px;
             text-align:left;
             justify-content: center;
@@ -15,7 +15,7 @@
           <a-col :span="22">
 
             <h1 class="headerT1" style="font-size: 65px">
-            {{$t('DANSAVANH NEWS')}}
+            {{$t('newsTitle')}}
             </h1>
          
             <!-- <a-typography-title class="t1"
@@ -34,6 +34,7 @@
 
     
     <div class="max-width">
+    
       <!-- <a-row>
         <a-breadcrumb style="margin: 16px 10px">
           <a-breadcrumb-item
@@ -53,56 +54,38 @@
           :style="{ height: '50px', display: 'block' }"
         />
       </div> -->
-      <div style="margin-top: 2rem" >
-        <!-- <a-row class="promotion-container">
-          <a-col :lg="10" class="promotion-card" v-for="i in 2" :key="i">
-            <div class="pro-cover">
-      
-              <div class="img"></div>
-              <img style="width: 100%" src="https://storage.googleapis.com/dsv-bucket/golf-banner.jpeg" alt="">
-            </div>
-            <div class="text-box">
-              <h1>
-                Promotion 1
-              </h1>
-              <p>With its lofty ceilings, white and rattan palette and antique tile floors, the Restaurant is a cool, elegant a leaves with coriander and coconut milk.</p>
-              <a-button> Discover More</a-button>
-            </div>
-          </a-col>
-        </a-row> -->
-        <!-- <a-row class="promotion-container">
-          <a-col :lg="10" class="promotion-card" v-for="i in 2" :key="i">
-            <div class="pro-cover">
-              <img src="" alt="cover">
-              <div class="img"></div>
-              <img src="https://storage.googleapis.com/dsv-bucket/golf-banner.jpeg" alt="">
-            </div>
-            <div class="text-box">
-              <h1>
-                Promotion 1
-              </h1>
-              <p>With its lofty ceilings, white and rattan palette and antique tile floors, the Restaurant is a cool, elegant a leaves with coriander and coconut milk.</p>
-              <a-button> Discover More</a-button>
-            </div>
-          </a-col>
-        </a-row> -->
+      <div >
 
+
+        <div style="margin: 2rem 0 2rem" v-if="!isComp">
+          <span style="cursor: pointer" @click="$router.push('/')">HOME</span> 
+          <span style="margin: 0 10px 0 10px;color: #A9A9A9;">/</span> 
+          <span style="color: #A9A9A9;">NEWS</span>
+        </div>
+        <div v-else style="margin: 2rem 0 2rem"></div>
+      
       <a-row>
-      <a-col v-for="i in 1" >
+      <a-col v-for="i in blogs" >
       
         <a-row 
-      @click="router.push('/news/65dea9c32632b6dbad0e7de5')"
+      @click="router.push('/news/' + i._id)"
       class="room-container">
-        <a-col :xs="24" :sm="24" :lg="14" class="room-cover"></a-col>
-        <a-col :xs="24" :sm="24" :lg="10" class="room-info">
-          <div class="text-box">
-            <h2>NEWS</h2>
+        <a-col :xs="24" :sm="24" :lg="14" class="room-cover"
+        :style="`background-image: url('${i.img}')`"
+        ></a-col>
+        <a-col :xs="24" :sm="24" :lg="10" class="room-info" >
+          <div class="text-box" >
+            <h2 >{{i.titles[selectedIdx]}} </h2>
+     
             <p>
-                The latest 4-star hotel in Vientiane, Laos. Green Park Boutique Hotel Captures a Lao-style orientation with the finest contemporary architecture of Laos. The elegance of the interiors, both historic and contemporary settings are combined to create the most distinguished collection of stylish and luxurious boutique hotels in Vientiane.
-
-
+               {{ i.captions[selectedIdx] }} 
             </p>
-            <a-button class="view-button text-uppercase bg-white"> Discover More </a-button>
+            <button class="btn btn-2 hover-slide-up"
+            @click="$router.push('/hotels')"
+            >
+        <span>{{$t('discoverMore')}}</span>
+      </button>
+            <!-- <a-button class="view-button text-uppercase bg-white"> Discover More </a-button> -->
           </div>
         </a-col>
       </a-row>
@@ -117,6 +100,25 @@
   <script setup lang="ts">
   
   const router = useRouter()
+
+
+import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
+
+const {isComp} = defineProps(['isComp']) 
+
+const config = useRuntimeConfig()
+
+const store = useMainStore()
+const {isOddFunc} = store
+const {selectedIdx} = storeToRefs(store)
+
+const blogs = ref<any>([])
+
+const link = isComp ? '&perPage=5' : ''
+const { data }: any = await useFetch(config.public.apiBase + '/getDBlogs?type=News' + link)
+blogs.value = data.value.dBlogs
+
   </script>
 
 
@@ -206,9 +208,12 @@ a {
   .room-cover {
     aspect-ratio: 16/10;
     background-color: #5e5e5e;
-    width: 200px;
+ 
+    width: auto;
+    max-width: 100%;
     background-image: url("https://storage.googleapis.com/dsv-bucket/gallery/5754f0381ebd4.jpeg");
     background-position: center;
+    background-size: cover;
   }
   /* @media (min-width: 576px) {
       .room-info {  
@@ -220,7 +225,9 @@ a {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
+   
+    width: auto;
+    max-width: 100%;
     /* border: 1px solid red; */
     z-index: 999;
 

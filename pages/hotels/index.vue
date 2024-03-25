@@ -11,13 +11,13 @@
         ">
         <a-col :span="14">
       <h5 class="headerT2">
-       {{$t('STEP IN THE WORLD OF DANSAVANH')}}
+       {{$t('stepInTheWorld')}}
       </h5>
       </a-col>
       <a-col :xs="24" :sm="24" :md="24" :lg="12">
            
              <h1 class="headerT1">
-            {{$t('OUR HOTELS')}}
+            {{$t('ourHotels')}}
             </h1>
 
       </a-col>
@@ -30,32 +30,33 @@
 
   <a-layout-content class="layout">
     <div class="blog" >
-      <a-row class="bg-left">
-        <a-col :xs="24" :sm="24" :md="24" :lg="16" class="bg numngum"></a-col>
+      <a-row 
+      v-for="(i, idx) in main.hotels"
+      :class="isOdd(idx + 1) ? 'bg-left' : 'bg-right'">
+     
+        <a-col :xs="24" :sm="24" :md="24" :lg="16" 
+        :style="`backgroundImage: url('${i.img}')`"
+        class="bg numngum"></a-col>
         <a-col  :xs="24" :sm="24" :md="24" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & HOTELS</span>
-            <h2>DANSAVANH NAM NGUM RESORT AND CASINO</h2>
+          
+            <h2>{{i.titles[selectedIdx]}}</h2>
             <p>
-              Peak of Buffalo Mountain（Phou Khao Khouay） facing the biggest
-              freshwater lake in Laos, 60km from Vientiane. You will find
-              varieties of excitement awaits you in this one of a kind hill top
-              location with pampering spa services after a daylong of water
-              activities; or even sumptuous dining experience at the lake side
-              restaurants. If you are one that loves watching over a sky of
-              glazing stars at night from your room or at our open air beer
-              garden, you will find the clock clicks too fast. The thrill of
-              excitement at our internationally rated casino is just a step away
-              and you could be hitting a jackpot that makes you plan your next
-              trip here in advance.
+              {{ i.descriptions[selectedIdx] }}
             </p>
-            <a-button
-            @click="router.push('/hotels/numngum')"
-             class="view-button bg-white">View Hotel</a-button>
+            <button class="btn btn-2 hover-slide-up"
+            @click="router.push(i.link)"
+            >
+        <span>{{$t('viewHotelButton')}}</span>
+      </button>
+            <!-- <a-button
+            @click="router.push(i.link)"
+             class="view-button bg-white">{{$t('viewHotelButton')}}</a-button> -->
           </div>
         </a-col>
       </a-row>
-      <a-row class="bg-right">
+      <!-- <a-row class="bg-right">
         <a-col :xs="24" :sm="24" :md="24" :lg="16" class="bg vte"></a-col>
         <a-col :xs="24" :sm="24" :md="24" :lg="8" class="text-container">
           <div class="text-box">
@@ -71,7 +72,7 @@
            
             <a-button
             @click="router.push('hotels/golf')"
-             class="view-button bg-white">View Hotel</a-button>
+             class="view-button bg-white">{{$t('viewHotelButton')}}</a-button>
           </div>
         </a-col>
       </a-row>
@@ -90,18 +91,22 @@
             </p>
             <a-button 
             @click="router.push('hotels/vientaine-hotel')"
-            class="view-button bg-white">View Hotel</a-button>
+            class="view-button bg-white">{{ $t('viewHotelButton') }}</a-button>
           </div>
         </a-col>
-      </a-row>
+      </a-row> -->
     </div>
   </a-layout-content>
 </template>
 
 <script setup lang="ts">
 const router = useRouter()
+import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
 
+const {main, selectedIdx} = storeToRefs(useMainStore())
 
+const isOdd = (n: number) => { return n % 2 !== 0 }
 
 </script>
 

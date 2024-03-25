@@ -25,21 +25,45 @@
   </a-layout>
   <a-layout-content class="layout" style="padding: 20px 0">
     <a-row justify="center">
-      <a-col :span="20">
-        <a-typography-title style="color: #000; font-family: var(--font-family); text-align: center; margin: 0; padding: 50px 0 50px"> TONS OF
-          ACTIVITIES</a-typography-title>
+
+      <a-col :span="24" style="text-align: center; justify-content: center">
+        <h2 class="headerTitle text-uppercase"
+        
+          >{{$t('tonsOfActivities')}}</h2
+        >
+      </a-col>
+      <a-col
+        :span="24"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+        "
+      >
+        <p
+    class="headerT2 text-black"
+          > {{ $t('fromSport') }}</p
+        >
+      </a-col>
+
+
+      <!-- <a-col :span="20">
+        <h2 style="color: #000;  text-align: center; margin: 0; padding: 50px 0 50px"> {{$t('tonsOfActivities')}}</h2>
       </a-col>
       <a-col :span="16" style="text-align: center">
         <p style=" letter-spacing: 3px; font-size: 13px;">
-          FROM SPORTS TO SIGHTSEEING, WE HAVE IT ALL
+         {{ $t('fromSport') }}
         </p>
-      </a-col>
+      </a-col> -->
+
+
       <a-col :span="24" style="align-content: center; justify-content: center; display: flex">
         <img src="/assets/image/decoration-1.png" alt="" :style="{ height: '50px', display: 'block' }" />
       </a-col>
     </a-row>
     <div class="blog max-width">
-      <a-row class="bg-left">
+      <!-- <a-row class="bg-left">
         <a-col :md="12" :lg="14" class="bg numngum"
         
         ></a-col>
@@ -55,72 +79,58 @@
               milk.
             </p>
           </div>
-        </a-col>
-        
+        </a-col> 
       </a-row>
-      <br>
-      <a-row class="bg-right">
+      <br> -->
+      <a-row :class="isOddFunc(idx) ? 'bg-right' : 'bg-left'"
+      v-for="(i, idx) in blogs"
+      >
         <a-col :md="12" :lg="14" class="bg vte"
-        :style="`background-image: url(https://storage.googleapis.com/dsv-bucket/dvs-gallery/21.jpeg)`"
+        :style="`background-image: url('${i.img}')`"
         ></a-col>
         <a-col :md="12" :lg="10" class="text-container">
           <div class="text-box">
-            <h1>VIP ROOM</h1>
+            <h1>{{i.titles[selectedIdx]}}</h1>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde magni, repellat hic accusamus nam minus sit veritatis, debitis blanditiis modi autem aliquid, nihil eaque ea voluptatum. Ipsum dicta vero impedit.
+              {{ i.captions[selectedIdx] }}
             </p>
           </div>
         </a-col>
       </a-row>
-      <!-- <a-row class="bg-left">
-        <a-col :md="12" :lg="14" class="bg golf"></a-col>
-        <a-col :md="12" :lg="8" class="text-container">
-          <div class="text-box">
-            <h1>STANDARD ROOM</h1>
-            <p>
-              With its lofty ceilings, white and rattan palette and antique tile
-              floors, the Restaurant is a cool, elegant setting for breakfast,
-              lunch and dinner. Serving authentic local and French-influenced
-              cuisine, the Restaurant’s Laotian specialties include fish or
-              vegetables steamed in banana leaves with coriander and coconut
-              milk.
-            </p>
-          </div>
-        </a-col>
-      </a-row>
-      <a-row class="bg-right">
-        <a-col :md="12" :lg="14" class="bg vte"></a-col>
-        <a-col :md="12" :lg="8" class="text-container">
-          <div class="text-box">
-            <h1>STANDARD ROOM</h1>
-            <p>
-              With its lofty ceilings, white and rattan palette and antique tile
-              floors, the Restaurant is a cool, elegant setting for breakfast,
-              lunch and dinner. Serving authentic local and French-influenced
-              cuisine, the Restaurant’s Laotian specialties include fish or
-              vegetables steamed in banana leaves with coriander and coconut
-              milk.
-            </p>
-          </div>
-        </a-col>
-      </a-row> -->
+
+
+
+     
     </div>
     <div class="line-header">
       <span>GALLERY</span>
-      <!-- <p></p> -->
       <img src="/assets/image/decoration-1.png" alt="" :style="{ height: '40px', display: 'block' }" />
     </div>
-    <a-row justify="center" style="display: flex; gap: 10px">
-    <Gallery/>
-      <!-- <a-col :span="4" class="gallery-card" v-for="i in 4" :key="i">
-        <img src="" alt="" />
-      </a-col> -->
+    <a-row justify="center" >
+      <Gallery :galleries="main.experienceGalleries"/>
     </a-row>
   </a-layout-content>
+
 </template>
 
 <script setup lang="ts">
 import Gallery from '@/components/gallery.vue'
+
+
+import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
+
+const config = useRuntimeConfig()
+
+const store = useMainStore()
+const {isOddFunc} = store
+const {selectedIdx, main} = storeToRefs(store)
+
+const blogs = ref<any>([])
+
+const { data }: any = await useFetch(config.public.apiBase + '/getDBlogs?type=Experience')
+blogs.value = data.value.dBlogs
+
 </script>
 
 <style scoped lang="scss">

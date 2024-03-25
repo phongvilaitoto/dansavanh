@@ -1,66 +1,55 @@
 <template>
 
   <Swiper />
-  <!-- <a-carousel autoplay>
-    <div class="slide-container">
-      <img src="/assets/image/home/banner.jpg" alt="" /> 
-      <a-typography-title :level="3">
-            MOST BEAUTIFUL PLACE
-      </a-typography-title>
-    </div>
-    <div class="slide-container">
-      <img src="/assets/image/home/banner.jpg" alt="" />
-      <a-typography-title :level="3">
-            MOST BEAUTIFUL PLACE
-      </a-typography-title> 
-    </div>
-
-    <button>eiei</button>
-  </a-carousel> -->
-
-  
-  <a-layout-content class="content-container" :style="{background: '#F4F4F4', color:'#000'}">
-
-      <!-- slide  -->
-<!-- welcome  -->
-    <div  class="max-width">
+  <a-layout-content 
+  data-aos="fade-up"
+  class="content-container" :style="{background: '#F4F4F4', color:'#000'}">
+    <div  >
       <Welcome />
-
     </div>
   </a-layout-content>
-  <a-layout-content>
+  <a-layout-content  data-aos="slide-up"> 
     <section class="has-background">
     <div class="max-width" >
-      <HotelInfo />
+      <HotelInfo  />
+      <br>
     </div>
-     
     </section>
   </a-layout-content>
-  <a-layout-content>
+  <a-layout-content data-aos="fade-up">
     <section>
    <div class="content-container">
    <div class="max-width" >
-    <News />
+    <News :isComp="true" />
+
+    <div class="text-center">
+      <button class="btn btn-2 hover-slide-up"
+            @click="$router.push('/news')"
+            >
+        <span>{{$t('viewNews')}}</span>
+      </button>
+      <br><br>
+    </div>
    </div>
-  
    </div>
     </section>
+
   </a-layout-content>
 </template>
 
 <script setup lang="ts">
 import Welcome from '~/components/home/Welcome.vue';
 import HotelInfo from '~/components/home/HotelInfo.vue';
-import News from '~/components/home/News.vue';
+import News from './news/index.vue';
 import Swiper from '@/components/home/Swiper.vue'
-import type { CSSProperties } from 'vue';
-const cardStyle: CSSProperties ={
 
-}
+
 
 </script>
 
+
 <style scoped>
+
 :deep(.slick-slide) {
   text-align: center;
   background: #364d79;

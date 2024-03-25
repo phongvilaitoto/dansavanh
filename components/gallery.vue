@@ -1,47 +1,12 @@
-<script >
-
-export default {
-  name: "ExampleMasonry",
-  data() {
-    return {
-      options: {
-        width: 300,
-        padding: {
-          2: 8,
-          default: 12
-        },
-      },
-      items: [
-        {
-          title: 'Sed non ante non cras amet',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non sagittis leo. Vestibulum sit amet metus nec neque dignissim dapibus.',
-          image: 'https://storage.googleapis.com/dsv-bucket/gallery/5754f0381ebd4.jpeg'
-        },
-        {
-          title: 'Curabitur sit amet nunc',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id mollis erat. Aliquam erat volutpat. Nunc erat lacus, rhoncus nec.',
-          image: 'https://storage.googleapis.com/dsv-bucket/gallery/5fd47819972a6.jpeg'
-        },
-       
-      ]
-    }
-  },
-  methods: {
-    append() {
-      // append method
-    }
-  }
-}
-</script>
 
 <template>
 
 <div class="masonry">
-  <div class="item" v-for="i in 43" :key="i">
+  <div class="item" v-for="i in galleries" :key="i">
 
     <img
     style="width: 100%"
-     :src="'https://storage.googleapis.com/dsv-bucket/dvs-gallery/' +i + '.jpeg'">
+     :src="i">
   </div>
  
 
@@ -51,7 +16,14 @@ export default {
 </div>
 
 
+
+
 </template>
+
+<script lang="ts" setup>
+const {galleries} = defineProps(['galleries'])
+
+</script>
 
 
 <style lang="scss" scoped>

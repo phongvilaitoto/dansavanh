@@ -9,7 +9,7 @@
 
       <h1
         class="headerTitle"
-          >GALLERY</h1
+          >{{ $t('gallery') }}</h1
         >
       <!-- <h1>GALLERY </h1> -->
       <!-- <p></p> -->
@@ -45,7 +45,7 @@
         >
           <div class="img"></div>
         </a-col> -->
-<Gallery/>
+<Gallery :galleries="main.galleries"/>
       <!-- </a-row> -->
     </div>
   </a-layout-content>
@@ -53,6 +53,13 @@
 
 <script setup lang="ts">
 import Gallery from '@/components/gallery.vue'
+
+import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
+
+const store = useMainStore()
+
+const {main} = storeToRefs(store)
 
 const value = ref("None");
 </script>

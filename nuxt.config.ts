@@ -1,6 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // link: [{ rel: 'icon', type: 'image/*', href: '/public/favicon.ico' }]
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      apiBase: 'https://server.khonkong.com/client-api',
+      //apiBase: 'http://localhost:4000/client-api',
+    }
+    // app: {
+    //   baseURL: 
+    // }
+  },
   app: {
     head: {
       title:"DANSAVANH",
@@ -10,9 +19,7 @@ export default defineNuxtConfig({
     }
   },
   nitro: {
-    // baseURL: "https://khonkong.com",
     prerender: {
-      
       crawlLinks: false,
       failOnError: false, 
     },
@@ -22,13 +29,23 @@ export default defineNuxtConfig({
   antd:{
     extractStyle: true,
   },
+  pinia: {
+    storesDirs: ['./stores/**',],
+  },
   modules: [
     '@ant-design-vue/nuxt',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+    'nuxt-facebook-chat',
+    'nuxt-aos'
   ],
   i18n: {
     vueI18n: './i18n.config.ts' // if you are using custom path, default
   },
+
+  // i18n: {
+    
+  // },
   css: [
     'ant-design-vue/dist/reset.css',
   ],

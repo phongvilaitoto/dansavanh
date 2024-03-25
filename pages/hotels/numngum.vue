@@ -1,7 +1,7 @@
 <template>
   
-
-  <a-layout>
+<HotelReuseComp :hotel="main.hotels[0]"/>
+  <!-- <a-layout>
       <div class="cover">
         <div class="bg-cover"></div>
         <a-row
@@ -20,16 +20,7 @@
             {{$t('DANSAVANH NAM NGUM RESORT AND CASINO')}}
             </h1>
          
-            <!-- <a-typography-title class="t1"
-              >OUR OFFERS  </a-typography-title
-            > -->
           </a-col>
-          <!-- <a-col :span="22">
-            <h5 class="headerT2" style="margin-top: -20px">
-       {{$t('Interested in some activities? Have a look at ours packages.')}}
-      </h5>
-          
-          </a-col> -->
         </a-row>
       </div>
     </a-layout>
@@ -63,17 +54,6 @@
         />
       </a-col>
     </a-row>
-    <!-- <a-row>
-      <a-breadcrumb style="margin: 16px 10px">
-        <a-breadcrumb-item
-          ><nuxt-link to="/">Home</nuxt-link></a-breadcrumb-item
-        >
-        <a-breadcrumb-item
-          ><nuxt-link to="/hotels">Hotels</nuxt-link></a-breadcrumb-item
-        >
-        <a-breadcrumb-item>NUM NGUM</a-breadcrumb-item>
-      </a-breadcrumb>
-    </a-row> -->
     <div  class="max-width">
       <a-row justify="center">
         <a-col :span="24">
@@ -93,7 +73,6 @@
     </div>
     <div class="line-header">
       <span>ROOM </span>
-      <!-- <p></p> -->
       <img
         src="/assets/image/decoration-1.png"
         alt=""
@@ -101,47 +80,6 @@
       />
     </div>
     <div class="max-width">
-      <!-- <a-row class="room-container" v-for="i in 2">
-        <a-col :xs="24" :sm="24" :md="14" :lg="14" class="room-cover">
-        <div class="bg"></div>
-        </a-col>
-        <a-col :xs="24" :sm="24" :md="10" :lg="10" class="room-info" >
-          <div class="text-box">
-            <h2>
-              <NuxtLink  to="/contact">Standard Room</NuxtLink>
-            </h2>
-            
-            <p class="details">
-              <a-popover placement="bottom">
-                <template #content class="popOver">
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <DesktopOutlined />
-                </a-button>
-              </a-popover>
-              <a-popover placement="bottom">
-                <template #content>
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <WifiOutlined />
-                </a-button>
-              </a-popover>
-              <a-popover placement="bottom">
-                <template #content>
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <CoffeeOutlined />
-                </a-button>
-              </a-popover>
-            </p>
-            <nuxt-link to="/contact"> contact </nuxt-link>
-          </div>
-        </a-col>
-      </a-row> -->
-
       <a-row>
       <a-col v-for="i in 3" >
         <a-row 
@@ -193,7 +131,6 @@
     </div>
     <div class="line-header">
       <span>GALLERY</span>
-      <!-- <p></p> -->
       <img
         src="/assets/image/decoration-1.png"
         alt=""
@@ -201,15 +138,17 @@
       />
     </div>
     <Gallery/>
-    <!-- <a-row justify="center" style="display: flex; gap: 10px; padding-bottom: 10px;">
-      <a-col :span="4" class="gallery-card" v-for="i in 4" :key="i">
-        <img src="" alt="" />
-      </a-col>
-    </a-row> -->
-  </a-layout-content>
+  </a-layout-content> -->
 </template>
 
 <script setup lang="ts">
+
+import HotelReuseComp from '@/components/hotelReuseComp.vue'
+
+import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
+
+const {main, selectedIdx} = storeToRefs(useMainStore())
 
 import Gallery from '@/components/gallery.vue'
 

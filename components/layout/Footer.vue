@@ -30,8 +30,8 @@
             <a-col :xs="3" :sm="3" :md="3" :lg="8"> 
                <ul class="footer-nav">
                 <li>
-                    <nuxt-link to="/">HOME</nuxt-link>
-                    <nuxt-link to="/">CONTACT</nuxt-link>
+                    <nuxt-link to="/">{{ $t('home') }}</nuxt-link>
+                    <nuxt-link to="/contact">{{$t('contact')}}</nuxt-link>
                 </li>
                </ul>
             </a-col>

@@ -15,18 +15,14 @@
           <a-col :span="22">
 
             <h1 class="headerT1" style="font-size: 65px">
-            {{$t('OUR OFFERS')}}
+            {{$t('offerTitle')}}
             </h1>
          
-            <!-- <a-typography-title class="t1"
-              >OUR OFFERS  </a-typography-title
-            > -->
           </a-col>
           <a-col :span="22">
             <h5 class="headerT2" style="margin-top: -20px">
-       {{$t('Interested in some activities? Have a look at ours packages.')}}
-      </h5>
-            <!-- <span style="color: #fff;">Interested in some activities? Have a look at ours packages.</span> -->
+       {{$t('offerSubTitle')}}
+      </h5>         
           </a-col>
         </a-row>
       </div>
@@ -34,77 +30,32 @@
 
     
     <div class="max-width">
-      <!-- <a-row>
-        <a-breadcrumb style="margin: 16px 10px">
-          <a-breadcrumb-item
-            ><nuxt-link to="/">Home</nuxt-link></a-breadcrumb-item
-          >
-          <a-breadcrumb-item
-            ><nuxt-link to="/hotels">Hotels</nuxt-link></a-breadcrumb-item
-          >
-          <a-breadcrumb-item>NUM NGUM</a-breadcrumb-item>
-        </a-breadcrumb>
-      </a-row> -->
-      <!-- <div class="line-header">
-        <span>ROOM </span>
-        <img
-          src="/assets/image/decoration-1.png"
-          alt=""
-          :style="{ height: '50px', display: 'block' }"
-        />
-      </div> -->
-      <div style="margin-top: 2rem" >
-        <!-- <a-row class="promotion-container">
-          <a-col :lg="10" class="promotion-card" v-for="i in 2" :key="i">
-            <div class="pro-cover">
-      
-              <div class="img"></div>
-              <img style="width: 100%" src="https://storage.googleapis.com/dsv-bucket/golf-banner.jpeg" alt="">
-            </div>
-            <div class="text-box">
-              <h1>
-                Promotion 1
-              </h1>
-              <p>With its lofty ceilings, white and rattan palette and antique tile floors, the Restaurant is a cool, elegant a leaves with coriander and coconut milk.</p>
-              <a-button> Discover More</a-button>
-            </div>
-          </a-col>
-        </a-row> -->
-        <!-- <a-row class="promotion-container">
-          <a-col :lg="10" class="promotion-card" v-for="i in 2" :key="i">
-            <div class="pro-cover">
-              <img src="" alt="cover">
-              <div class="img"></div>
-              <img src="https://storage.googleapis.com/dsv-bucket/golf-banner.jpeg" alt="">
-            </div>
-            <div class="text-box">
-              <h1>
-                Promotion 1
-              </h1>
-              <p>With its lofty ceilings, white and rattan palette and antique tile floors, the Restaurant is a cool, elegant a leaves with coriander and coconut milk.</p>
-              <a-button> Discover More</a-button>
-            </div>
-          </a-col>
-        </a-row> -->
-
+      <div style="margin: 2rem 0 2rem">
+          <span style="cursor: pointer" @click="$router.push('/')">HOME</span> 
+          <span style="margin: 0 10px 0 10px;color: #A9A9A9;">/</span> 
+          <span style="color: #A9A9A9;">OUR OFFERS</span>
+        </div>
+      <div>
       <a-row>
-      <a-col v-for="i in 3" >
+      <a-col v-for="i in blogs" >
         <a-row 
-      @click="router.push('/offer/5f6da3a70215d?i=OFFER ' + i)"
+      @click="router.push('/offer/' + i._id)"
       class="room-container">
-        <a-col :xs="24" :sm="24" :lg="14" class="room-cover"></a-col>
-        <a-col :xs="24" :sm="24" :lg="10" class="room-info">
+        <a-col :xs="24" :sm="24" :lg="14" class="room-cover"
+        :style="`background-image: url('${i.img}')`"
+        ></a-col>
+        <a-col :xs="24" :sm="24" :lg="10" class="room-info" style="width: 100%">
           <div class="text-box">
-            <h2>OFFER {{ i }}</h2>
+            <h2> {{ i.titles[selectedIdx] }}  </h2>
             <p>
-              With its lofty ceilings, white and rattan palette and antique tile
-              floors, the Restaurant is a cool, elegant setting for breakfast,
-              lunch and dinner. Serving authentic local and French-influenced
-              cuisine, the Restaurant’s Laotian specialties include fish or
-              vegetables steamed in banana leaves with coriander and coconut
-              milk.
+         {{i.captions[selectedIdx]}}
             </p>
-            <a-button class="view-button text-uppercase bg-white"> Discover More </a-button>
+            <button class="btn btn-2 hover-slide-up"
+            @click="$router.push('/hotels')"
+            >
+        <span>{{$t('discoverMore')}}</span>
+      </button>
+            <!-- <a-button class="view-button text-uppercase bg-white"> Discover More </a-button> -->
           </div>
         </a-col>
       </a-row>
@@ -119,6 +70,24 @@
   <script setup lang="ts">
   
   const router = useRouter()
+
+
+import { useMainStore } from '@/stores/mainStore'
+import { storeToRefs } from 'pinia'
+
+const {isComp} = defineProps(['isComp']) 
+
+const config = useRuntimeConfig()
+
+const store = useMainStore()
+const {isOddFunc} = store
+const {selectedIdx} = storeToRefs(store)
+
+const blogs = ref<any>([])
+
+const { data }: any = await useFetch(config.public.apiBase + '/getDBlogs?type=Offer')
+blogs.value = data.value.dBlogs
+
   </script>
 
 
