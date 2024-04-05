@@ -79,6 +79,7 @@ watch(selectedLanguage, (value) => {
 })
 
 
+
 const fetchLang = () => {
   switch(selectedIdx.value) {
     case 0: {
