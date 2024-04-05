@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     //   baseURL: 
     // }
   },
+
   app: {
      baseURL: '/',
     head: {
@@ -28,7 +29,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      crawlLinks: true,
+      crawlLinks: false,
       failOnError: false, 
     },
     preset: "vercel",
