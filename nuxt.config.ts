@@ -4,7 +4,7 @@
 // link: [{ rel: 'icon', type: 'image/*', href: '/public/favicon.ico' }]
 export default defineNuxtConfig({
 
-  ssr: false,
+  ssr: true,
 
   // Target: https://go.nuxtjs.dev/config-target
 
@@ -27,6 +27,9 @@ export default defineNuxtConfig({
      
     }
   },
+  // routeRules: {
+  //   '/': { redirect: '/en',  },
+  // },
   nitro: {
     prerender: {
       crawlLinks: false,
