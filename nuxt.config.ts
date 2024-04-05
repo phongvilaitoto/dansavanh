@@ -30,12 +30,20 @@ export default defineNuxtConfig({
   // routeRules: {
   //   '/': { redirect: '/en',  },
   // },
+  // nitro: {
+  //   prerender: {
+  //     crawlLinks: false,
+  //     failOnError: false, 
+  //   },
+  //   preset: "vercel",
+  // },
   nitro: {
-    prerender: {
-      crawlLinks: false,
-      failOnError: false, 
-    },
-    preset: "vercel",
+    storage: {
+      data: {
+        driver: 'vercelKV'
+        /* Vercel KV driver options */
+      }
+    }
   },
   devtools: { enabled: true },
   antd:{
