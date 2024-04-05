@@ -1,6 +1,7 @@
 <template>
 
-  <Swiper />
+  <div>
+    <Swiper />
   <a-layout-content 
   data-aos="fade-up"
   class="content-container" :style="{background: '#F4F4F4', color:'#000'}">
@@ -35,6 +36,7 @@
     </section>
 
   </a-layout-content>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -42,7 +44,6 @@ import Welcome from '~/components/home/Welcome.vue';
 import HotelInfo from '~/components/home/HotelInfo.vue';
 import News from './news/index.vue';
 import Swiper from '@/components/home/Swiper.vue'
-
 
 
 </script>
