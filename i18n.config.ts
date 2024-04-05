@@ -24,9 +24,16 @@ for(let i in list) {
 // locale: 'en',
 
 export default defineI18nConfig(() => ({
+
+
+  
     legacy: false,
     locale: 'en',
     messages: object
+
+
+
+
     // messages: {
     //   en: {
     //     //Navbar

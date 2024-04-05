@@ -1,19 +1,21 @@
-export default async () => {
 
-    // const config = useRuntimeConfig()
 
-    // const { data } = await useFetch(
-    //     //config.public.apiBase +
-    //      'http://localhost:4000/client-api/getDLang')
+  export default defineI18nLocale(async (locale) => {
+
+    const config = useRuntimeConfig()
+
+
+const { data }: any = await useFetch(config.public.apiBase + '/getDLang')
+
+   const object = data.value.dLang
+   const newObject: any = {}
+
+   for(let field in object) {
+    newObject[field] = object[field][0]
+   }
+
+      return newObject
+    
+  })
+
   
-    // console.log(data)
-
-    return await Promise.resolve({
-      home: 'HOOOOME'
-    })
-  }
-  
-
-  // export default {
-  //   home: 'Welcome'
-  // }

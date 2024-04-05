@@ -4,9 +4,9 @@
   <NuxtLayout>
       <NuxtPage  />
     </NuxtLayout>
-    <!-- <client-only>
+    <client-only>
       <nuxt-facebook-chat :options="options" />
-    </client-only> -->
+    </client-only>
   <!-- </a-extract-style>
 
 </div> -->

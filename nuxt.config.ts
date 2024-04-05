@@ -48,7 +48,24 @@ export default defineNuxtConfig({
     'nuxt-aos'
   ],
   i18n: {
-    vueI18n: './i18n.config.ts' // if you are using custom path, default
+    locales: [
+      {
+        code: 'en',
+        file:  { path: 'en.ts', cache: false } 
+      },
+      {
+        code: 'th',
+        file: { path: 'th.ts', cache: false } 
+      },
+      {
+        code: 'cn',
+        file: { path: 'cn.ts', cache: false } 
+      },
+    ],
+    lazy: true,
+    langDir: 'lang',
+    defaultLocale: 'en'
+   // vueI18n: './i18n.config.ts' // if you are using custom path, default
   },
 
   // i18n: {

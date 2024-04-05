@@ -31,7 +31,9 @@ const store = useMainStore()
 
 const {selectedIdx} = storeToRefs(store)
 
-const { locale } = useI18n()
+const { locale, setLocale } = useI18n()
+
+const switchLocalePath = useSwitchLocalePath()
 
 
 const languages = ref([
@@ -53,21 +55,27 @@ const languages = ref([
 const selectedLanguage = ref('EN')
 
 watch(selectedLanguage, (value) => {
-  locale.value = value.toLowerCase()
-  switch(locale.value) {
+  const key = value.toLowerCase()
+  // switchLocalePath(locale.value)
+  setLocale(key)
+  switch(key) {
     case 'en': {
       selectedIdx.value = 0
+    
       return 
     }
     case 'th': {
       selectedIdx.value = 1
+    
       return 
     }
     case 'cn': {
       selectedIdx.value = 2
+     
       return 
     }
   }
+ 
 })
 
 
