@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     // }
   },
   app: {
-    baseURL: '/',
+     baseURL: '/',
     head: {
       title:"DANSAVANH",
       charset: 'utf-8',
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      crawlLinks: false,
+      crawlLinks: true,
       failOnError: false, 
     },
     preset: "vercel",
@@ -64,8 +64,8 @@ export default defineNuxtConfig({
     ],
     lazy: true,
     langDir: 'lang',
-    defaultLocale: 'en'
-
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
 
    // vueI18n: './i18n.config.ts' // if you are using custom path, default
   },
