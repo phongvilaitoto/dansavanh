@@ -90,8 +90,10 @@
             <a-pagination class="pagination" v-model:current="current" :total="50" show-less-items />
         
         </a-col>
+        
      </a-row>
-     
+
+
       </div>
   
     </a-layout-content>
