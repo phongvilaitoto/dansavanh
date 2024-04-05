@@ -4,7 +4,7 @@
 // link: [{ rel: 'icon', type: 'image/*', href: '/public/favicon.ico' }]
 export default defineNuxtConfig({
 
-  ssr: true,
+  ssr: false,
 
   // Target: https://go.nuxtjs.dev/config-target
 
