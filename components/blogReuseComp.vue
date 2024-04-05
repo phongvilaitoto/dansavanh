@@ -1,6 +1,6 @@
 <template>
 
-    <div class="max-width" style="padding: 0 30px 0 30px" >
+    <div class="max-width" style="padding: 0 30px 0 30px; min-height: 80vh" >
         <div style="display: flex; justify-content: center;">
         
         <div style=" margin-top: 150px; width: 100%">
@@ -15,7 +15,7 @@
         <img style="width: 100%; height:300px; object-fit: cover" src="https://lab-108-bucket.s3-ap-southeast-1.amazonaws.com/image-banner/4f779f44-4724-4d79-a696-1592f0552b66.jpeg" alt="">
 
         <br><br> -->
-        <div v-html="blog.descriptions[selectedIdx]"></div>
+        <div v-html="blog.descriptions[selectedIdx]" ></div>
         </div>
             </div>
     </div>

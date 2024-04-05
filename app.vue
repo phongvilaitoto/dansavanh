@@ -1,15 +1,15 @@
 <template>
-<div>
-  <a-extract-style>
+<!-- <div>
+  <a-extract-style> -->
   <NuxtLayout>
       <NuxtPage  />
     </NuxtLayout>
-    <client-only>
+    <!-- <client-only>
       <nuxt-facebook-chat :options="options" />
-    </client-only>
-  </a-extract-style>
-  
-</div>
+    </client-only> -->
+  <!-- </a-extract-style>
+
+</div> -->
 </template>
 <script setup lang="ts">
 

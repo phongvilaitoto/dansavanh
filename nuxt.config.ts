@@ -1,10 +1,13 @@
+
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // link: [{ rel: 'icon', type: 'image/*', href: '/public/favicon.ico' }]
 export default defineNuxtConfig({
+
   ssr: true,
 
   // Target: https://go.nuxtjs.dev/config-target
-  target: "server",
+
   runtimeConfig: {
     public: {
       apiBase: 'https://server.khonkong.com/client-api',
@@ -15,6 +18,7 @@ export default defineNuxtConfig({
     // }
   },
   app: {
+    baseURL: '/',
     head: {
       title:"DANSAVANH",
       charset: 'utf-8',
