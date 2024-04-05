@@ -3,6 +3,7 @@
     
       ref="select"
       v-model:value="selectedLanguage"
+      @change="onChanged"
     >
       <a-select-option v-for="i in languages" :key="i.key" :value="i.key">
      <a-row justify="center" :gutter="20">
@@ -33,8 +34,7 @@ const {selectedIdx} = storeToRefs(store)
 
 const { locale, setLocale } = useI18n()
 
-const switchLocalePath = useSwitchLocalePath()
-
+ const switchLocalePath = useSwitchLocalePath()
 
 const languages = ref([
 {
@@ -54,14 +54,34 @@ const languages = ref([
 
 const selectedLanguage = ref('EN')
 
-watch(selectedLanguage, (value) => {
-  const key = value.toLowerCase()
-  // switchLocalePath(key)
+// watch(selectedLanguage, (value) => {
+//   const key = value.toLowerCase()
+//   switch(key) {
+//     case 'en': {
+//       selectedIdx.value = 0
+    
+//       return 
+//     }
+//     case 'th': {
+//       selectedIdx.value = 1
+    
+//       return 
+//     }
+//     case 'cn': {
+//       selectedIdx.value = 2
+     
+//       return 
+//     }
+//   }
+// })
+
+
+const onChanged = () => {
+  const key = selectedLanguage.value.toLowerCase()
   setLocale(key)
   switch(key) {
     case 'en': {
       selectedIdx.value = 0
-    
       return 
     }
     case 'th': {
@@ -75,32 +95,34 @@ watch(selectedLanguage, (value) => {
       return 
     }
   }
- 
-})
 
+}
 
 
 const fetchLang = () => {
   switch(selectedIdx.value) {
     case 0: {
-      locale.value = 'en'
+   //   locale.value = 'en'
       selectedLanguage.value = locale.value.toUpperCase()
+    //  switchLocalePath( locale.value)
       return 
     }
     case 1: {
-      locale.value = 'th'
+     // locale.value = 'th'
       selectedLanguage.value = locale.value.toUpperCase()
+     // switchLocalePath(locale.value)
       return 
     }
     case 2: {
-      locale.value = 'cn'
+     // locale.value = 'cn'
       selectedLanguage.value = locale.value.toUpperCase()
+     // switchLocalePath( locale.value)
       return 
     }
   }
 }
 
-fetchLang()
+ fetchLang()
 
 
 
