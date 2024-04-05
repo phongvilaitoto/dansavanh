@@ -56,7 +56,7 @@ const selectedLanguage = ref('EN')
 
 watch(selectedLanguage, (value) => {
   const key = value.toLowerCase()
-  switchLocalePath(key)
+  // switchLocalePath(key)
   setLocale(key)
   switch(key) {
     case 'en': {
