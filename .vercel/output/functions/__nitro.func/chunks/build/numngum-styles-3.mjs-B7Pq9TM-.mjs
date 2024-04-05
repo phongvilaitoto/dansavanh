@@ -1,0 +1,4 @@
+const numngum_vue_vue_type_style_index_2_scoped_f2619f61_lang = ".promotion-container[data-v-f2619f61]{display:flex;gap:20px;justify-content:center;margin-bottom:30px}.promotion-container .pro-cover[data-v-f2619f61]{align-items:center;display:flex;justify-content:flex-start;width:100%}.promotion-container .pro-cover .img[data-v-f2619f61],.promotion-container .pro-cover img[data-v-f2619f61]{aspect-ratio:16/10;color:#fff;display:grid;height:100%;place-content:center;width:100%}.promotion-container .text-box[data-v-f2619f61]{border-radius:3px;color:#000;justify-self:center;padding:10px}.promotion-container .text-box h1[data-v-f2619f61]{font-weight:700;margin:10px 0;margin-top:0!important;text-transform:uppercase}.promotion-container .text-box p[data-v-f2619f61]{color:#313131;font-size:16px;font-weight:200;margin-bottom:24px}";
+
+export { numngum_vue_vue_type_style_index_2_scoped_f2619f61_lang as n };
+//# sourceMappingURL=numngum-styles-3.mjs-B7Pq9TM-.mjs.map

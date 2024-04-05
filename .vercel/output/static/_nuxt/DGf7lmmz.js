@@ -1,0 +1,1 @@
+import{I as c,K as s}from"./CmWqXT6z.js";const l=async i=>{const n=s(),{data:o}=await c(n.public.apiBase+"/getDLang","$ywuAEoVkw5"),t=o.value.dLang,e={};for(let a in t)e[a]=t[a][2];return e};export{l as default};
