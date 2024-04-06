@@ -20,7 +20,12 @@ export default defineNuxtConfig({
     // }
   },
   nitro: {
-    preset: 'vercel-edge',
+    // baseURL: "https://khonkong.com",
+    prerender: {
+      crawlLinks: true,
+      failOnError: false, 
+    },
+    preset: "vercel",
   },
 
 
