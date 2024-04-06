@@ -19,9 +19,10 @@ export default defineNuxtConfig({
     //   baseURL: 
     // }
   },
-  
+
 
   app: {
+    
      baseURL: '/',
     head: {
       title:"DANSAVANH",
