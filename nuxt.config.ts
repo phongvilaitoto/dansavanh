@@ -3,21 +3,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // link: [{ rel: 'icon', type: 'image/*', href: '/public/favicon.ico' }]
 export default defineNuxtConfig({
-
   ssr: true,
-
-  // Target: https://go.nuxtjs.dev/config-target
-
   runtimeConfig: {
     public: {
       apiBase: 'https://server.khonkong.com/client-api',
       //apiBase: 'http://localhost:4000/client-api',
     },
-    // nitro: { envPrefix: 'VERCEL_' },
-    // region: process.env.VERCEL_REGION,
-    // app: {
-    //   baseURL: 
-    // }
   },
   nitro: {
     // baseURL: "https://khonkong.com",
@@ -27,7 +18,7 @@ export default defineNuxtConfig({
     },
     preset: "vercel",
   },
-  
+
 
 
   app: {
