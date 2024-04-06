@@ -12,7 +12,9 @@ export default defineNuxtConfig({
     public: {
       apiBase: 'https://server.khonkong.com/client-api',
       //apiBase: 'http://localhost:4000/client-api',
-    }
+    },
+    nitro: { envPrefix: 'VERCEL_' },
+    region: process.env.VERCEL_REGION,
     // app: {
     //   baseURL: 
     // }
@@ -37,14 +39,14 @@ export default defineNuxtConfig({
   //   },
   //   preset: "vercel",
   // },
-  nitro: {
-    storage: {
-      data: {
-        driver: 'vercelKV'
-        /* Vercel KV driver options */
-      }
-    }
-  },
+  // nitro: {
+  //   storage: {
+  //     data: {
+  //       driver: 'vercelKV'
+  //       /* Vercel KV driver options */
+  //     }
+  //   }
+  // },
   devtools: { enabled: true },
   antd:{
     extractStyle: true,

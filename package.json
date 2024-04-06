@@ -6,7 +6,7 @@
     "string-width": "4.2.3"
   },
   "scripts": {
-    "build": "NITRO_PRESET=vercel-edge nuxt build",
+    "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -25,10 +25,10 @@
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "@pinia/nuxt": "^0.5.1",
-    "@vercel/kv": "^1.0.1",
     "ant-design-vue": "^4.1.1",
     "pinia": "^2.1.7",
     "swiper": "^11.0.6",
-    "vue3-google-map": "^0.20.0"
+    "vue3-google-map": "^0.20.0",
+    "nitropack": "^2.8.1"
   }
 }
