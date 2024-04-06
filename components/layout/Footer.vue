@@ -30,8 +30,8 @@
             <a-col :xs="3" :sm="3" :md="3" :lg="8"> 
                <ul class="footer-nav">
                 <li>
-                    <nuxt-link to="/">{{ $t('home') }}</nuxt-link>
-                    <nuxt-link to="/contact">{{$t('contact')}}</nuxt-link>
+                    <nuxt-link :to="localePath('/')">{{ $t('home') }}</nuxt-link>
+                    <nuxt-link  :to="localePath('/contact')">{{$t('contact')}}</nuxt-link>
                 </li>
                </ul>
             </a-col>
@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-
+const localePath = useLocalePath()
 </script>
 
 <style scoped lang="scss">

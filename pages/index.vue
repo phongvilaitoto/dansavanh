@@ -25,7 +25,7 @@
 
     <div class="text-center">
       <button class="btn btn-2 hover-slide-up"
-            @click="$router.push('/news')"
+            @click="$router.push(localePath('/news'))"
             >
         <span>{{$t('viewNews')}}</span>
       </button>
@@ -45,7 +45,7 @@ import HotelInfo from '~/components/home/HotelInfo.vue';
 import News from './news/index.vue';
 import Swiper from '@/components/home/Swiper.vue'
 
-
+const localePath = useLocalePath()
 </script>
 
 

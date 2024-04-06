@@ -24,7 +24,7 @@
     <a-row justify="center" :gutter="20">
       <a-col :xs="24" :sm="24" :md="24" :lg="8" v-for="(i, key, idx) in main.home.cardZone" :key="idx" @mouseenter="isHover = idx" @mouseleave="isHover = null">
         <div class="card-swiper">
-          <nuxt-link :to="i.link">
+          <nuxt-link :to="localePath(i.link)">
             <div class="casino-card">
               <img class="casino-card-image" :src="i.img" alt="">
 
@@ -54,6 +54,8 @@ import { useMainStore } from '@/stores/mainStore'
 const store = useMainStore()
 
 const {main, selectedIdx} = storeToRefs(store) 
+
+const localePath = useLocalePath()
 
 const isHover = ref<any>(null)
 

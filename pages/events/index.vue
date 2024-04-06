@@ -74,20 +74,10 @@
         />
       </a-col>
     </a-row>
-      <!-- <a-breadcrumb style="margin: 0px 16px">
-        <a-breadcrumb-item
-          ><nuxt-link to="/">Home</nuxt-link></a-breadcrumb-item
-        >
-        <a-breadcrumb-item
-          ><nuxt-link to="/hotels">Hotels</nuxt-link></a-breadcrumb-item
-        >
-        <a-breadcrumb-item>NUM NGUM</a-breadcrumb-item>
-      </a-breadcrumb> -->
-  
     <div :style="{ padding: '24px', minHeight: '280px' }">
       <a-row 
       v-for="i in blogs"
-      @click="router.push('/events/' + i._id)"
+      @click="router.push(localePath('/events') + '/'  + i._id)"
       class="room-container">
         <a-col :xs="24" :sm="24" :lg="10" class="room-cover"
         :style="`background-image: url('${i.img}')`"
@@ -99,7 +89,7 @@
              {{i.captions[selectedIdx]}}
             </p>
             <button class="btn btn-2 hover-slide-up"
-            @click="$router.push('/events/' + i._id)"
+            @click="$router.push( localePath('/events') + '/' + i._id)"
             >
         <span>{{$t('discoverMore')}}</span>
       </button>
@@ -145,7 +135,7 @@
     <div :style="{ padding: '24px', minHeight: '280px' }">
       <a-row class="room-container"
       v-for="i in blogs2"
-      @click="router.push('/events/' + i._id)"
+      @click="router.push(localePath('/events') + '/' + i._id)"
       >
         <a-col :xs="24" :sm="24" :lg="10" 
         :style="`background-image: url('${i.img}')`"
@@ -160,7 +150,7 @@
             </p>
 
             <button class="btn btn-2 hover-slide-up"
-            @click="$router.push('/events/' + i._id)"
+            @click="$router.push(localePath('/events') + '/' + i._id)"
             >
         <span>{{$t('discoverMore')}}</span>
       </button>
@@ -226,7 +216,7 @@
 import { useMainStore } from '@/stores/mainStore'
 import { storeToRefs } from 'pinia'
 
-
+const localePath = useLocalePath()
 
 const config = useRuntimeConfig()
 

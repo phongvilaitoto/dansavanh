@@ -34,31 +34,9 @@
 
     
     <div class="max-width">
-    
-      <!-- <a-row>
-        <a-breadcrumb style="margin: 16px 10px">
-          <a-breadcrumb-item
-            ><nuxt-link to="/">Home</nuxt-link></a-breadcrumb-item
-          >
-          <a-breadcrumb-item
-            ><nuxt-link to="/hotels">Hotels</nuxt-link></a-breadcrumb-item
-          >
-          <a-breadcrumb-item>NUM NGUM</a-breadcrumb-item>
-        </a-breadcrumb>
-      </a-row> -->
-      <!-- <div class="line-header">
-        <span>ROOM </span>
-        <img
-          src="/assets/image/decoration-1.png"
-          alt=""
-          :style="{ height: '50px', display: 'block' }"
-        />
-      </div> -->
       <div >
-
-
         <div style="margin: 2rem 0 2rem" v-if="!isComp">
-          <span style="cursor: pointer" @click="$router.push('/')">HOME</span> 
+          <span style="cursor: pointer" @click="$router.push(localePath('/'))">HOME</span> 
           <span style="margin: 0 10px 0 10px;color: #A9A9A9;">/</span> 
           <span style="color: #A9A9A9;">NEWS</span>
         </div>
@@ -68,7 +46,7 @@
       <a-col v-for="i in blogs" >
       
         <a-row 
-      @click="router.push('/news/' + i._id)"
+     
       class="room-container">
         <a-col :xs="24" :sm="24" :lg="14" class="room-cover"
         :style="`background-image: url('${i.img}')`"
@@ -81,7 +59,7 @@
                {{ i.captions[selectedIdx] }} 
             </p>
             <button class="btn btn-2 hover-slide-up"
-            @click="$router.push('/hotels')"
+            @click="router.push(localePath('/news') + '/' + i._id)"
             >
         <span>{{$t('discoverMore')}}</span>
       </button>
@@ -100,7 +78,7 @@
   <script setup lang="ts">
   
   const router = useRouter()
-
+  const localePath = useLocalePath()
 
 import { useMainStore } from '@/stores/mainStore'
 import { storeToRefs } from 'pinia'

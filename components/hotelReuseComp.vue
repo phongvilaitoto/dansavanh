@@ -114,7 +114,7 @@
         <a-row>
         <a-col v-for="i in hotel.detail.rooms" >
           <a-row 
-        @click="router.push('/offer/5f6da3a70215d?i=OFFER ' + i)"
+        @click="router.push(localePath('/contact'))"
         class="room-container">
           <a-col :xs="24" :sm="24" :lg="14" class="room-cover"
           :style="`background-image: url('${i.img}')`"
@@ -203,6 +203,8 @@
 
   import { useMainStore } from '@/stores/mainStore'
 import { storeToRefs } from 'pinia'
+
+const localePath = useLocalePath()
 
 const { selectedIdx} = storeToRefs(useMainStore())
 const isOdd = (n: number) => { return n % 2 !== 0 }

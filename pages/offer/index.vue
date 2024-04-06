@@ -31,7 +31,7 @@
     
     <div class="max-width">
       <div style="margin: 2rem 0 2rem">
-          <span style="cursor: pointer" @click="$router.push('/')">HOME</span> 
+          <span style="cursor: pointer" @click="$router.push(localePath('/'))">HOME</span> 
           <span style="margin: 0 10px 0 10px;color: #A9A9A9;">/</span> 
           <span style="color: #A9A9A9;">OUR OFFERS</span>
         </div>
@@ -39,7 +39,7 @@
       <a-row>
       <a-col v-for="i in blogs" >
         <a-row 
-      @click="router.push('/offer/' + i._id)"
+      @click="router.push(localePath('/offer') + '/' + i._id)"
       class="room-container">
         <a-col :xs="24" :sm="24" :lg="14" class="room-cover"
         :style="`background-image: url('${i.img}')`"
@@ -51,7 +51,7 @@
          {{i.captions[selectedIdx]}}
             </p>
             <button class="btn btn-2 hover-slide-up"
-            @click="$router.push('/hotels')"
+            @click="$router.push(localePath('/hotels'))"
             >
         <span>{{$t('discoverMore')}}</span>
       </button>
@@ -70,7 +70,7 @@
   <script setup lang="ts">
   
   const router = useRouter()
-
+  const localePath = useLocalePath()
 
 import { useMainStore } from '@/stores/mainStore'
 import { storeToRefs } from 'pinia'

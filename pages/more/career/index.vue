@@ -71,7 +71,7 @@
     <div :style="{ padding: '24px', minHeight: '280px' }">
      <div class="career_box">
       <div class="text-box cursor" style="margin: 30px 10px 30px 10px"
-      @click="router.push('/more/career/' + i._id)"
+      @click="router.push(localePath('/more/career') + '/' + i._id)"
        v-for="i in blogs" :key="i">
         <h3 class="text-uppercase">{{ i.titles[selectedIdx] }}</h3>
         <p>{{ i.captions[selectedIdx] }}</p>
@@ -88,6 +88,8 @@ const router = useRouter()
 
 import { useMainStore } from '@/stores/mainStore'
 import { storeToRefs } from 'pinia'
+
+const localePath = useLocalePath()
 
 const config = useRuntimeConfig()
 

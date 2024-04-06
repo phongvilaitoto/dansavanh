@@ -11,33 +11,47 @@
       
       <!-- menu  -->
       <div class="navbar-item is-desktop">
-        <nuxt-link to="/" class="line-hover">{{ $t('home') }}</nuxt-link>
+        <nuxt-link :to="localePath('/')" class="line-hover">{{ $t('home') }}</nuxt-link>
 
-        <nuxt-link class="line-hover" to="/casino">{{ $t('casino') }}</nuxt-link>
+        <nuxt-link class="line-hover" :to="localePath('/casino')" >{{ $t('casino') }}</nuxt-link>
         <div class="has-dropdrown" @mouseover="drowdownToggle = true; showMoreDropDown = false">
-          <nuxt-link class="line-hover cursor" to="/hotels">
+          <nuxt-link 
+          :to="localePath('/hotels')"
+          class="line-hover cursor">
             {{ $t('hotels') }}
             <DownOutlined style="position: absolute; top: 3px; right: -18px" v-if="drowdownToggle" />
           </nuxt-link>
           <ul @click="drowdownToggle = false" class="dropdrown" style="width: 310px !important;" v-if="drowdownToggle"
             @mouseleave="drowdownToggle = false">
             <li>
-              <nuxt-link to="/hotels/numngum" @click="drowdownToggle = !drowdownToggle" class="line-hover">{{$t('hotelTab1')}}</nuxt-link>
+              <nuxt-link
+              :to="localePath('/hotels/numngum')"
+               @click="drowdownToggle = !drowdownToggle" class="line-hover">{{$t('hotelTab1')}}</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/hotels/golf" class="line-hover" @click="drowdownToggle = !drowdownToggle">{{$t('hotelTab2')}}</nuxt-link>
+              <nuxt-link
+              :to="localePath('/hotels/golf')"
+               class="line-hover" @click="drowdownToggle = !drowdownToggle">{{$t('hotelTab2')}}</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/hotels/vientaine-hotel" class="line-hover"
+              <nuxt-link
+              :to="localePath('/hotels/vientaine-hotel')"
+               class="line-hover"
                 @click="drowdownToggle = !drowdownToggle">{{$t('hotelTab3')}}</nuxt-link>
             </li>
           </ul>
         </div>
         <!-- </a> -->
 
-        <nuxt-link to="/experience" class="line-hover"> {{ $t('experience') }} </nuxt-link>
-        <nuxt-link to="/events" class="line-hover"> {{ $t('events') }} </nuxt-link>
-        <nuxt-link to="/offer" class="line-hover">{{ $t('offer') }}</nuxt-link>
+        <nuxt-link 
+        :to="localePath('/experience')"
+     class="line-hover"> {{ $t('experience') }} </nuxt-link>
+        <nuxt-link 
+        :to="localePath('/events')"
+         class="line-hover"> {{ $t('events') }} </nuxt-link>
+        <nuxt-link
+        :to="localePath('/offer')"
+      class="line-hover">{{ $t('offer') }}</nuxt-link>
 
         <dividerProps class="has-dropdrown">
           <nuxt-link @mouseover="showMoreDropDown = true; drowdownToggle = false" class="line-hover">
@@ -51,22 +65,30 @@
             @mouseleave="showMoreDropDown = false">
 
             <li>
-              <nuxt-link class="line-hover" to="/gallery">{{$t('gallery')}}</nuxt-link>
+              <nuxt-link class="line-hover"
+              :to="localePath('/gallery')"
+             >{{$t('gallery')}}</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/more/career" class="line-hover">{{$t('careerTitle')}}</nuxt-link>
+              <nuxt-link
+              :to="localePath('/more/career')"
+              class="line-hover">{{$t('careerTitle')}}</nuxt-link>
             </li>
 
             <!-- <li>
               <nuxt-link to="/more/testimonials">Testimonials</nuxt-link>
             </li> -->
             <li>
-              <nuxt-link to="/news" class="line-hover">{{$t('newsTitle')}}</nuxt-link>
+              <nuxt-link 
+              :to="localePath('/news')"
+            class="line-hover">{{$t('newsTitle')}}</nuxt-link>
             </li>
           </ul>
         </dividerProps>
 
-        <nuxt-link to="/contact" class="line-hover"> {{ $t('contact') }} </nuxt-link>
+        <nuxt-link 
+        :to="localePath('/contact')"
+        class="line-hover"> {{ $t('contact') }} </nuxt-link>
 
       </div>
 
@@ -111,6 +133,7 @@ const visible = ref(false)
 
 const route = useRoute()
 
+const localePath = useLocalePath()
 
 const clickBurgerToggle = () => {
   burgerToggle.value = !burgerToggle.value;

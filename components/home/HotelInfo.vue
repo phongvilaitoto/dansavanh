@@ -17,13 +17,10 @@
     <a-space>
 
       <button class="btn btn-2 hover-slide-up"
-            @click="$router.push('/hotels')"
+            @click="$router.push(localePath('/hotels'))"
             >
         <span>{{$t('viewHotelsButton')}}</span>
       </button>
-      <!-- <nuxt-link to="/hotels">
-        <a-button class="view-button">VIEW HOTELS</a-button>
-      </nuxt-link> -->
     </a-space>
   </a-row>
 </template>
@@ -32,6 +29,8 @@
 import { useMainStore } from '@/stores/mainStore'
 
 const store = useMainStore()
+
+const localePath = useLocalePath()
 
 const {main, selectedIdx} = storeToRefs(store) 
 

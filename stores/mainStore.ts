@@ -18,7 +18,6 @@ export const useMainStore = defineStore('mainStore', () => {
 
    
     if(cookieSelectedIdx.value) {
-
       selectedIdx.value = parseInt(cookieSelectedIdx.value)
     }
 

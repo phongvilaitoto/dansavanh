@@ -4,14 +4,16 @@
         <a-drawer :width="320" title="" :placement="'right'" :visible="visible" @close="$emit('onClose')">
 
             <LanguageSwitcher style="position: absolute; top: 8px; right: 10px"/>
-            <NuxtLink to="/" @close="emit('onClose')">
+            <NuxtLink
+            :to="localePath('/')"
+             @close="emit('onClose')">
           
                 <p class="line-hover">{{ $t('home') }}</p>
                
             </NuxtLink>
             <br>
 
-            <NuxtLink to="/casino" @close="emit('onClose')">
+            <NuxtLink  :to="localePath('/casino')" @close="emit('onClose')">
              
                 <p class="line-hover ">{{ $t('casino') }}</p>
               
@@ -19,39 +21,54 @@
 
 <br>
 
-<NuxtLink to="/hotels" @close="emit('onClose')">
+<NuxtLink
+:to="localePath('/hotels')"
+ @close="emit('onClose')">
             <p class="line-hover">{{ $t('hotels') }}</p>
             </NuxtLink>
             <div style="border-left: 1px solid white; padding: 10px; margin: 10px 0 10px;">
-                <NuxtLink to="/hotels/numngum" @close="emit('onClose')">
+                <NuxtLink
+                :to="localePath('/hotels/numngum')"
+                 @close="emit('onClose')">
 
                     <p class="line-hover small-text">{{$t('hotelTab1')}}</p>
             
                 </NuxtLink>
                 <br>
-                <NuxtLink to="/hotels/golf" @close="emit('onClose')">
+                <NuxtLink
+                :to="localePath('/hotels/golf')"
+                 @close="emit('onClose')">
                     <p class="line-hover  small-text">{{$t('hotelTab2')}}</p>
                 </NuxtLink>
                 <br>
-                <NuxtLink to="/hotels/vientaine-hotel" @close="emit('onClose')">
+                <NuxtLink 
+                :to="localePath('/hotels/vientaine-hotel')"
+               @close="emit('onClose')">
                     <p class="line-hover  small-text">{{$t('hotelTab3')}}</p>
                 </NuxtLink>
             </div>
 
 
-            <NuxtLink to="/experience" @close="emit('onClose')">
+            <NuxtLink 
+            :to="localePath('/experience')"
+           @close="emit('onClose')">
                 <p class="line-hover">{{ $t('experience') }}</p>
             </NuxtLink>
 
             <br>
 
-            <NuxtLink to="/events" @close="emit('onClose')">
+            <NuxtLink 
+            
+            :to="localePath('/events')"
+            @close="emit('onClose')">
                 <p class="line-hover">{{ $t('events') }}</p>
             </NuxtLink>
 
             <br>
 
-            <NuxtLink to="/offer" @close="emit('onClose')">
+            <NuxtLink 
+            :to="localePath('/offer')"
+             @close="emit('onClose')">
                 <p class="line-hover">{{ $t('offer') }}</p>
             </NuxtLink>
 
@@ -61,21 +78,29 @@
 
             <p class="line-hover">{{ $t('more') }}</p>
             <div style="border-left: 1px solid white; padding: 10px; margin: 10px 0 10px;">
-                <NuxtLink to="/more/career" @close="emit('onClose')">
+                <NuxtLink
+                :to="localePath('/more/career')"
+               @close="emit('onClose')">
                     <p class="line-hover  small-text">{{$t('careerTitle')}}</p>
                 </NuxtLink>
                 <br>
-                <NuxtLink to="/gallery" @close="emit('onClose')">
+                <NuxtLink
+                :to="localePath('/gallery')"
+                @close="emit('onClose')">
                     <p class="line-hover  small-text">{{$t('gallery')}}</p>
                 </NuxtLink>
                 <br>
-                <NuxtLink to="/news" @close="emit('onClose')">
+                <NuxtLink
+                :to="localePath('/news')"
+                 @close="emit('onClose')">
                     <p class="line-hover  small-text">{{ $t('newsTitle') }}</p>
                 </NuxtLink>
                 
                 </div>
 
-                <NuxtLink to="/contact" @close="emit('onClose')">
+                <NuxtLink 
+                :to="localePath('/contact')"
+               @close="emit('onClose')">
                 <p class="line-hover">{{ $t('contact') }}</p>
             </NuxtLink>
 
@@ -106,6 +131,7 @@ const emit = defineEmits(['onClose'])
 
 const { visible } = defineProps(['visible'])
 
+const localePath = useLocalePath()
 
 
 

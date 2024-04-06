@@ -8,14 +8,14 @@
   <a-row style="padding-bottom: 1rem" justify="center" :gutter="10">
     <a-col
      :sm="24" :lg="16"
-     @click="router.push('/events')"
+     @click="router.push(localePath('/events'))"
      >
       <div class="card event cursor">
         <img :src="main.home.eventZone.img" alt="" />
         <h2 class="text-bold text-shadow">{{ main.home.eventZone.titles[selectedIdx] }}</h2>
       </div>
     </a-col>
-    <a-col :sm="24" :lg="8" @click="router.push('/offer')">
+    <a-col :sm="24" :lg="8" @click="router.push(localePath('/offer'))">
       <div class="card offer cursor">
         <img :src="main.home.offerZone.img" alt="" />
         <h2 class="text-bold text-shadow">{{ main.home.offerZone.titles[selectedIdx] }}</h2>
@@ -52,6 +52,8 @@
 <script setup lang="ts">
 
 import { useMainStore } from '@/stores/mainStore'
+
+const localePath = useLocalePath()
 
 const store = useMainStore()
 

@@ -43,24 +43,11 @@
       >
 
       <div style="margin: 2rem 0 2rem">
-          <span style="cursor: pointer" @click="$router.push('/')">HOME</span> 
+          <span style="cursor: pointer" @click="$router.push(localePath('/'))">HOME</span> 
           <span style="margin: 0 10px 0 10px;color: #A9A9A9;">/</span> 
           <span style="color: #A9A9A9;">CONTACT</span>
         </div>
-    
-      
-<!--     
-        <a-breadcrumb style="margin: 16px 10px">
-          <a-breadcrumb-item
-            ><nuxt-link to="/">
-            <p>HOME</p>
-            </nuxt-link></a-breadcrumb-item
-          >
-          <a-breadcrumb-item>
-            <nuxt-link to="/contact">CONTACT</nuxt-link>
-          </a-breadcrumb-item>
-        </a-breadcrumb>  -->
-        
+
       </a-col>
       <a-col>
         <a
@@ -329,6 +316,8 @@ import type { UnwrapRef } from "vue";
 import type { Rule } from "ant-design-vue/es/form";
 import { reactive } from "vue";
 import { notification }  from 'ant-design-vue';
+
+const localePath = useLocalePath()
 
 const openNotificationWithIcon = (type: string) => {
   const noti: any = notification

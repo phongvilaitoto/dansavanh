@@ -46,55 +46,13 @@
               {{ i.descriptions[selectedIdx] }}
             </p>
             <button class="btn btn-2 hover-slide-up"
-            @click="router.push(i.link)"
+            @click="router.push(localePath(i.link))"
             >
         <span>{{$t('viewHotelButton')}}</span>
       </button>
-            <!-- <a-button
-            @click="router.push(i.link)"
-             class="view-button bg-white">{{$t('viewHotelButton')}}</a-button> -->
           </div>
         </a-col>
       </a-row>
-      <!-- <a-row class="bg-right">
-        <a-col :xs="24" :sm="24" :md="24" :lg="16" class="bg vte"></a-col>
-        <a-col :xs="24" :sm="24" :md="24" :lg="8" class="text-container">
-          <div class="text-box">
-            <span>DANSAVANH & HOTELS</span>
-            <h2>DANSAVANH VIENTIANE HOTEL</h2>
-            <p>
-              Situated in the city of Vientiane, 5 minute drive to Wattay
-              International Airport and 10 minute to downtown centre and night
-              market makes it a preferred location to many travellers. There is
-              a banquet room that can accommodate 800 people and has witnessed
-              umpteen wedding celebrations.
-            </p>
-           
-            <a-button
-            @click="router.push('hotels/golf')"
-             class="view-button bg-white">{{$t('viewHotelButton')}}</a-button>
-          </div>
-        </a-col>
-      </a-row>
-      <a-row class="bg-left">
-        <a-col :xs="24" :sm="24" :md="24" :lg="16" class="bg golf"></a-col>
-        <a-col :xs="24" :sm="24" :md="24" :lg="8" class="text-container">
-          <div class="text-box">
-            <span>DANSAVANH & HOTELS</span>
-            <h2>DANSAVANH GOLF & COUNTRY CLUB</h2>
-            <p>
-              Well known for its kind of view that blends the art of green
-              fairways enclosed with forest of pines at elevations. Enjoy a
-              business meeting leisurely accompanied by chirping birds and
-              excellent entertainment facilities, a hard to come by venue for
-              golfers.
-            </p>
-            <a-button 
-            @click="router.push('hotels/vientaine-hotel')"
-            class="view-button bg-white">{{ $t('viewHotelButton') }}</a-button>
-          </div>
-        </a-col>
-      </a-row> -->
     </div>
   </a-layout-content>
 </template>
@@ -103,6 +61,9 @@
 const router = useRouter()
 import { useMainStore } from '@/stores/mainStore'
 import { storeToRefs } from 'pinia'
+
+const localePath = useLocalePath()
+
 
 const {main, selectedIdx} = storeToRefs(useMainStore())
 
