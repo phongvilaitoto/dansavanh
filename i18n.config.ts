@@ -9,6 +9,7 @@ const object: any = {
 const list: any = trans
 for(let i in list) {
   object.en[i] = list[i][0]
+  
   object.th[i] = list[i][1]
   object.cn[i] = list[i][2]
 }
