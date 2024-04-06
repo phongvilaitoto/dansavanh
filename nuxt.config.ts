@@ -13,16 +13,19 @@ export default defineNuxtConfig({
       apiBase: 'https://server.khonkong.com/client-api',
       //apiBase: 'http://localhost:4000/client-api',
     },
-    nitro: { envPrefix: 'VERCEL_' },
-    region: process.env.VERCEL_REGION,
+    // nitro: { envPrefix: 'VERCEL_' },
+    // region: process.env.VERCEL_REGION,
     // app: {
     //   baseURL: 
     // }
   },
+  nitro: {
+    preset: 'vercel-edge',
+  },
 
 
   app: {
-    
+
      baseURL: '/',
     head: {
       title:"DANSAVANH",
