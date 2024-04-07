@@ -1,23 +1,20 @@
 {
   "version": 3,
   "overrides": {
-    "casino/index.html": {
-      "path": "casino"
-    },
     "contact/index.html": {
       "path": "contact"
     },
-    "th/contact/index.html": {
-      "path": "th/contact"
-    },
-    "cn/contact/index.html": {
-      "path": "cn/contact"
+    "casino/index.html": {
+      "path": "casino"
     },
     "experience/index.html": {
       "path": "experience"
     },
-    "th/casino/index.html": {
-      "path": "th/casino"
+    "th/experience/index.html": {
+      "path": "th/experience"
+    },
+    "th/gallery/index.html": {
+      "path": "th/gallery"
     },
     "cn/experience/index.html": {
       "path": "cn/experience"
@@ -25,26 +22,29 @@
     "gallery/index.html": {
       "path": "gallery"
     },
-    "th/experience/index.html": {
-      "path": "th/experience"
+    "cn/gallery/index.html": {
+      "path": "cn/gallery"
+    },
+    "th/contact/index.html": {
+      "path": "th/contact"
+    },
+    "cn/contact/index.html": {
+      "path": "cn/contact"
     },
     "cn/casino/index.html": {
       "path": "cn/casino"
     },
-    "th/gallery/index.html": {
-      "path": "th/gallery"
+    "th/casino/index.html": {
+      "path": "th/casino"
     },
-    "cn/gallery/index.html": {
-      "path": "cn/gallery"
-    },
-    "th/events/index.html": {
-      "path": "th/events"
+    "cn/events/index.html": {
+      "path": "cn/events"
     },
     "events/index.html": {
       "path": "events"
     },
-    "cn/events/index.html": {
-      "path": "cn/events"
+    "th/events/index.html": {
+      "path": "th/events"
     },
     "hotels/golf/index.html": {
       "path": "hotels/golf"
@@ -52,38 +52,8 @@
     "cn/hotels/golf/index.html": {
       "path": "cn/hotels/golf"
     },
-    "index-test/index.html": {
-      "path": "index-test"
-    },
     "th/hotels/golf/index.html": {
       "path": "th/hotels/golf"
-    },
-    "cn/hotels/index.html": {
-      "path": "cn/hotels"
-    },
-    "th/hotels/index.html": {
-      "path": "th/hotels"
-    },
-    "hotels/index.html": {
-      "path": "hotels"
-    },
-    "hotels/numngum/index.html": {
-      "path": "hotels/numngum"
-    },
-    "th/hotels/numngum/index.html": {
-      "path": "th/hotels/numngum"
-    },
-    "cn/hotels/numngum/index.html": {
-      "path": "cn/hotels/numngum"
-    },
-    "hotels/vientaine-hotel/index.html": {
-      "path": "hotels/vientaine-hotel"
-    },
-    "th/hotels/vientaine-hotel/index.html": {
-      "path": "th/hotels/vientaine-hotel"
-    },
-    "cn/hotels/vientaine-hotel/index.html": {
-      "path": "cn/hotels/vientaine-hotel"
     },
     "th/index-test/index.html": {
       "path": "th/index-test"
@@ -91,20 +61,47 @@
     "cn/index-test/index.html": {
       "path": "cn/index-test"
     },
+    "index-test/index.html": {
+      "path": "index-test"
+    },
+    "th/hotels/index.html": {
+      "path": "th/hotels"
+    },
+    "hotels/index.html": {
+      "path": "hotels"
+    },
     "invesment-project/index.html": {
       "path": "invesment-project"
+    },
+    "cn/hotels/index.html": {
+      "path": "cn/hotels"
+    },
+    "cn/hotels/numngum/index.html": {
+      "path": "cn/hotels/numngum"
+    },
+    "hotels/numngum/index.html": {
+      "path": "hotels/numngum"
+    },
+    "hotels/vientaine-hotel/index.html": {
+      "path": "hotels/vientaine-hotel"
+    },
+    "th/hotels/numngum/index.html": {
+      "path": "th/hotels/numngum"
+    },
+    "th/hotels/vientaine-hotel/index.html": {
+      "path": "th/hotels/vientaine-hotel"
+    },
+    "cn/hotels/vientaine-hotel/index.html": {
+      "path": "cn/hotels/vientaine-hotel"
     },
     "th/invesment-project/index.html": {
       "path": "th/invesment-project"
     },
-    "investment-project/index.html": {
-      "path": "investment-project"
-    },
-    "more/testimoniels/index.html": {
-      "path": "more/testimoniels"
-    },
     "cn/invesment-project/index.html": {
       "path": "cn/invesment-project"
+    },
+    "investment-project/index.html": {
+      "path": "investment-project"
     },
     "th/investment-project/index.html": {
       "path": "th/investment-project"
@@ -112,44 +109,47 @@
     "cn/investment-project/index.html": {
       "path": "cn/investment-project"
     },
-    "more/news/index.html": {
-      "path": "more/news"
-    },
-    "more/career/index.html": {
-      "path": "more/career"
-    },
-    "cn/more/news/index.html": {
-      "path": "cn/more/news"
-    },
-    "cn/more/career/index.html": {
-      "path": "cn/more/career"
-    },
-    "th/more/news/index.html": {
-      "path": "th/more/news"
-    },
-    "th/more/career/index.html": {
-      "path": "th/more/career"
-    },
-    "th/index.html": {
-      "path": "th"
+    "index.html": {
+      "path": ""
     },
     "cn/index.html": {
       "path": "cn"
     },
-    "index.html": {
-      "path": ""
+    "th/index.html": {
+      "path": "th"
     },
     "th/more/testimoniels/index.html": {
       "path": "th/more/testimoniels"
     },
+    "more/testimoniels/index.html": {
+      "path": "more/testimoniels"
+    },
     "cn/more/testimoniels/index.html": {
       "path": "cn/more/testimoniels"
     },
-    "th/news/index.html": {
-      "path": "th/news"
-    },
     "news/index.html": {
       "path": "news"
+    },
+    "cn/more/news/index.html": {
+      "path": "cn/more/news"
+    },
+    "more/news/index.html": {
+      "path": "more/news"
+    },
+    "th/more/news/index.html": {
+      "path": "th/more/news"
+    },
+    "cn/more/career/index.html": {
+      "path": "cn/more/career"
+    },
+    "th/more/career/index.html": {
+      "path": "th/more/career"
+    },
+    "more/career/index.html": {
+      "path": "more/career"
+    },
+    "th/news/index.html": {
+      "path": "th/news"
     },
     "cn/news/index.html": {
       "path": "cn/news"
@@ -157,11 +157,11 @@
     "th/offer/index.html": {
       "path": "th/offer"
     },
-    "cn/offer/index.html": {
-      "path": "cn/offer"
-    },
     "offer/index.html": {
       "path": "offer"
+    },
+    "cn/offer/index.html": {
+      "path": "cn/offer"
     }
   },
   "routes": [
