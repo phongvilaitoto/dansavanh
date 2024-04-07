@@ -18,9 +18,6 @@ export default defineNuxtConfig({
     },
     preset: "vercel",
   },
-
-
-
   app: {
 
      baseURL: '/',
