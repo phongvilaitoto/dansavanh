@@ -175,19 +175,22 @@
      <img style="width: 200px; margin: 30px 0 30px" src="/assets/image/decoration-1.png" alt="" />
     </div>
     
-    <div>
-      <input v-model="formState.user.name" type="text" class="input" :placeholder="$t('formName')"/>
-      <input v-model="formState.user.phone" type="text" class="input" :placeholder="$t('formPhone')"/>
-      <input v-model="formState.user.email" type="text" class="input" :placeholder="$t('formEmail')"/>
-      <textarea v-model="formState.user.message" type="text" class="input" rows="6" :placeholder="$t('formMessage')"/>
+    <form @submit.prevent="submit">
+      <input required v-model="formState.user.name" type="text" class="input" :placeholder="$t('formName')"/>
+      <input required v-model="formState.user.phone" type="text" class="input" :placeholder="$t('formPhone')"/>
+      <input required v-model="formState.user.email" type="email" class="input" :placeholder="$t('formEmail')"/>
+      <textarea required v-model="formState.user.message" type="text" class="input" rows="6" :placeholder="$t('formMessage')"/>
       <div class="text-center">
-        <button class="btn btn-2 hover-slide-up"
-            @click="submit"
+        <button 
+       
+        class="btn btn-2 hover-slide-up "
+          
+            type="submit"
             >
         <span>{{$t('formSubmit')}}</span>
       </button>
       </div>
-    </div>
+    </form>
   </a-col>
     
   </a-row>
@@ -278,32 +281,21 @@
       </a-col>
       <a-col :span="24">
         <!-- subscription form -->
-        <div
+        <form
           class="subscrip-form "
           style=" width: 100%"
-        
+        @submit.prevent="submit"
         >
           <div class="input-container" style="max-width: 600px; margin: auto;">
-          <input v-model="formState.subscriber.email" type="text" class="input" :placeholder="$t('newsLetterEmail')">
-          <button class="btn btn-2 hover-slide-up"
+          <input required v-model="formState.subscriber.email" type="email" class="input" :placeholder="$t('newsLetterEmail')">
+          <button  class="btn btn-2 hover-slide-up mail-btn"
             style="background: #6fb586; height: 55px;"
-            @click="submit"
+           type="submit"
             >
         <span>{{$t('newsLetterSubmit')}}</span>
       </button>
-
-            <!-- <a-form-item
-              :name="['subscribe', 'email']"
-              :rules="[{ required: true }]"
-            >
-              <a-input
-                placeholder="Email address"
-                v-model:value="formState.subscribe.email"
-              />
-            </a-form-item>
-            <a-button type="primary" html-type="submit">Subscribe</a-button> -->
           </div>
-        </div>
+        </form>
       </a-col>
       
     </a-row>
@@ -340,6 +332,7 @@ const openNotificationWithIcon = (type: string) => {
         email: ''
       }
       openNotificationWithIcon('success')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
 const layout = {
@@ -379,6 +372,12 @@ const onSubscribeFinish = (values: any) => {
 </script>
 
 <style scoped lang="scss">
+.mail-btn {
+  span {
+    border: none;
+    color: white;
+  }
+}
 p {
   font-weight: 400 !important;
 }

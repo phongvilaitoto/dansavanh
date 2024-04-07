@@ -1,38 +1,35 @@
 {
   "version": 3,
   "overrides": {
-    "contact/index.html": {
-      "path": "contact"
-    },
     "casino/index.html": {
       "path": "casino"
     },
     "experience/index.html": {
       "path": "experience"
     },
-    "th/experience/index.html": {
-      "path": "th/experience"
-    },
-    "th/gallery/index.html": {
-      "path": "th/gallery"
-    },
-    "cn/experience/index.html": {
-      "path": "cn/experience"
-    },
     "gallery/index.html": {
       "path": "gallery"
-    },
-    "cn/gallery/index.html": {
-      "path": "cn/gallery"
-    },
-    "th/contact/index.html": {
-      "path": "th/contact"
     },
     "cn/contact/index.html": {
       "path": "cn/contact"
     },
     "cn/casino/index.html": {
       "path": "cn/casino"
+    },
+    "cn/experience/index.html": {
+      "path": "cn/experience"
+    },
+    "cn/gallery/index.html": {
+      "path": "cn/gallery"
+    },
+    "contact/index.html": {
+      "path": "contact"
+    },
+    "th/contact/index.html": {
+      "path": "th/contact"
+    },
+    "th/gallery/index.html": {
+      "path": "th/gallery"
     },
     "th/casino/index.html": {
       "path": "th/casino"
@@ -46,6 +43,9 @@
     "th/events/index.html": {
       "path": "th/events"
     },
+    "th/experience/index.html": {
+      "path": "th/experience"
+    },
     "hotels/golf/index.html": {
       "path": "hotels/golf"
     },
@@ -55,8 +55,23 @@
     "th/hotels/golf/index.html": {
       "path": "th/hotels/golf"
     },
-    "th/index-test/index.html": {
-      "path": "th/index-test"
+    "hotels/index.html": {
+      "path": "hotels"
+    },
+    "th/hotels/index.html": {
+      "path": "th/hotels"
+    },
+    "cn/hotels/index.html": {
+      "path": "cn/hotels"
+    },
+    "hotels/numngum/index.html": {
+      "path": "hotels/numngum"
+    },
+    "cn/hotels/numngum/index.html": {
+      "path": "cn/hotels/numngum"
+    },
+    "th/hotels/numngum/index.html": {
+      "path": "th/hotels/numngum"
     },
     "cn/index-test/index.html": {
       "path": "cn/index-test"
@@ -64,35 +79,11 @@
     "index-test/index.html": {
       "path": "index-test"
     },
-    "th/hotels/index.html": {
-      "path": "th/hotels"
-    },
-    "hotels/index.html": {
-      "path": "hotels"
+    "th/index-test/index.html": {
+      "path": "th/index-test"
     },
     "invesment-project/index.html": {
       "path": "invesment-project"
-    },
-    "cn/hotels/index.html": {
-      "path": "cn/hotels"
-    },
-    "cn/hotels/numngum/index.html": {
-      "path": "cn/hotels/numngum"
-    },
-    "hotels/numngum/index.html": {
-      "path": "hotels/numngum"
-    },
-    "hotels/vientaine-hotel/index.html": {
-      "path": "hotels/vientaine-hotel"
-    },
-    "th/hotels/numngum/index.html": {
-      "path": "th/hotels/numngum"
-    },
-    "th/hotels/vientaine-hotel/index.html": {
-      "path": "th/hotels/vientaine-hotel"
-    },
-    "cn/hotels/vientaine-hotel/index.html": {
-      "path": "cn/hotels/vientaine-hotel"
     },
     "th/invesment-project/index.html": {
       "path": "th/invesment-project"
@@ -100,14 +91,23 @@
     "cn/invesment-project/index.html": {
       "path": "cn/invesment-project"
     },
-    "investment-project/index.html": {
-      "path": "investment-project"
+    "th/hotels/vientaine-hotel/index.html": {
+      "path": "th/hotels/vientaine-hotel"
+    },
+    "hotels/vientaine-hotel/index.html": {
+      "path": "hotels/vientaine-hotel"
+    },
+    "cn/hotels/vientaine-hotel/index.html": {
+      "path": "cn/hotels/vientaine-hotel"
+    },
+    "cn/investment-project/index.html": {
+      "path": "cn/investment-project"
     },
     "th/investment-project/index.html": {
       "path": "th/investment-project"
     },
-    "cn/investment-project/index.html": {
-      "path": "cn/investment-project"
+    "investment-project/index.html": {
+      "path": "investment-project"
     },
     "index.html": {
       "path": ""
@@ -118,20 +118,26 @@
     "th/index.html": {
       "path": "th"
     },
-    "th/more/testimoniels/index.html": {
-      "path": "th/more/testimoniels"
+    "th/more/career/index.html": {
+      "path": "th/more/career"
     },
-    "more/testimoniels/index.html": {
-      "path": "more/testimoniels"
+    "more/career/index.html": {
+      "path": "more/career"
+    },
+    "cn/more/career/index.html": {
+      "path": "cn/more/career"
     },
     "cn/more/testimoniels/index.html": {
       "path": "cn/more/testimoniels"
     },
+    "more/testimoniels/index.html": {
+      "path": "more/testimoniels"
+    },
+    "th/more/testimoniels/index.html": {
+      "path": "th/more/testimoniels"
+    },
     "news/index.html": {
       "path": "news"
-    },
-    "cn/more/news/index.html": {
-      "path": "cn/more/news"
     },
     "more/news/index.html": {
       "path": "more/news"
@@ -139,14 +145,8 @@
     "th/more/news/index.html": {
       "path": "th/more/news"
     },
-    "cn/more/career/index.html": {
-      "path": "cn/more/career"
-    },
-    "th/more/career/index.html": {
-      "path": "th/more/career"
-    },
-    "more/career/index.html": {
-      "path": "more/career"
+    "cn/more/news/index.html": {
+      "path": "cn/more/news"
     },
     "th/news/index.html": {
       "path": "th/news"
@@ -154,11 +154,11 @@
     "cn/news/index.html": {
       "path": "cn/news"
     },
-    "th/offer/index.html": {
-      "path": "th/offer"
-    },
     "offer/index.html": {
       "path": "offer"
+    },
+    "th/offer/index.html": {
+      "path": "th/offer"
     },
     "cn/offer/index.html": {
       "path": "cn/offer"
