@@ -18,6 +18,7 @@ export const useMainStore = defineStore('mainStore', () => {
 
    
     if(cookieSelectedIdx.value) {
+
       selectedIdx.value = parseInt(cookieSelectedIdx.value)
     }
 
@@ -26,4 +27,25 @@ export const useMainStore = defineStore('mainStore', () => {
     // })
 
     return { main, selectedIdx, isOddFunc }
+    
   })
+
+  // watch(() => locale.value, () => {
+  //   if(locale.value) {
+  //     switch(locale.value) {
+  //       case 'en': {
+  //         selectedIdx.value = 0
+  //       }
+  //       case 'th': {
+  //         selectedIdx.value = 1
+          
+  //       }
+  //       case 'cn': {
+  //         selectedIdx.value = 2
+          
+  //       }
+  //     }
+    
+  //   }
+  //  // cookieSelectedIdx.value = selectedIdx.value.toString()
+  // }, {immediate: true})
