@@ -3,6 +3,27 @@
   "overrides": {
     "index.html": {
       "path": ""
+    },
+    "contact/index.html": {
+      "path": "contact"
+    },
+    "hotels/index.html": {
+      "path": "hotels"
+    },
+    "offer/index.html": {
+      "path": "offer"
+    },
+    "experience/index.html": {
+      "path": "experience"
+    },
+    "hotels/golf/index.html": {
+      "path": "hotels/golf"
+    },
+    "events/index.html": {
+      "path": "events"
+    },
+    "casino/index.html": {
+      "path": "casino"
     }
   },
   "routes": [

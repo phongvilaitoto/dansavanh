@@ -3,7 +3,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // link: [{ rel: 'icon', type: 'image/*', href: '/public/favicon.ico' }]
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
   runtimeConfig: {
     public: {
       apiBase: 'https://server.khonkong.com/client-api',
