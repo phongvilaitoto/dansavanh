@@ -3,9 +3,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // link: [{ rel: 'icon', type: 'image/*', href: '/public/favicon.ico' }]
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
   runtimeConfig: {
+  
     public: {
+    
       apiBase: 'https://server.khonkong.com/client-api',
       //apiBase: 'http://localhost:4000/client-api',
     },
@@ -19,7 +21,6 @@ export default defineNuxtConfig({
     preset: "vercel",
   },
   app: {
-
 
      baseURL: '/',
     head: {
