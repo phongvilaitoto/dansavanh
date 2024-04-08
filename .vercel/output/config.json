@@ -1,29 +1,167 @@
 {
   "version": 3,
   "overrides": {
-    "index.html": {
-      "path": ""
-    },
     "contact/index.html": {
       "path": "contact"
     },
-    "hotels/index.html": {
-      "path": "hotels"
+    "casino/index.html": {
+      "path": "casino"
     },
-    "offer/index.html": {
-      "path": "offer"
+    "cn/contact/index.html": {
+      "path": "cn/contact"
+    },
+    "th/contact/index.html": {
+      "path": "th/contact"
+    },
+    "th/experience/index.html": {
+      "path": "th/experience"
+    },
+    "cn/experience/index.html": {
+      "path": "cn/experience"
     },
     "experience/index.html": {
       "path": "experience"
     },
-    "hotels/golf/index.html": {
-      "path": "hotels/golf"
+    "th/gallery/index.html": {
+      "path": "th/gallery"
+    },
+    "gallery/index.html": {
+      "path": "gallery"
+    },
+    "cn/gallery/index.html": {
+      "path": "cn/gallery"
+    },
+    "cn/casino/index.html": {
+      "path": "cn/casino"
+    },
+    "th/casino/index.html": {
+      "path": "th/casino"
     },
     "events/index.html": {
       "path": "events"
     },
-    "casino/index.html": {
-      "path": "casino"
+    "th/events/index.html": {
+      "path": "th/events"
+    },
+    "cn/events/index.html": {
+      "path": "cn/events"
+    },
+    "hotels/golf/index.html": {
+      "path": "hotels/golf"
+    },
+    "index-test/index.html": {
+      "path": "index-test"
+    },
+    "cn/index-test/index.html": {
+      "path": "cn/index-test"
+    },
+    "cn/hotels/golf/index.html": {
+      "path": "cn/hotels/golf"
+    },
+    "th/index-test/index.html": {
+      "path": "th/index-test"
+    },
+    "th/hotels/golf/index.html": {
+      "path": "th/hotels/golf"
+    },
+    "th/hotels/index.html": {
+      "path": "th/hotels"
+    },
+    "cn/hotels/index.html": {
+      "path": "cn/hotels"
+    },
+    "hotels/index.html": {
+      "path": "hotels"
+    },
+    "hotels/numngum/index.html": {
+      "path": "hotels/numngum"
+    },
+    "th/hotels/numngum/index.html": {
+      "path": "th/hotels/numngum"
+    },
+    "cn/hotels/numngum/index.html": {
+      "path": "cn/hotels/numngum"
+    },
+    "hotels/vientaine-hotel/index.html": {
+      "path": "hotels/vientaine-hotel"
+    },
+    "th/hotels/vientaine-hotel/index.html": {
+      "path": "th/hotels/vientaine-hotel"
+    },
+    "cn/hotels/vientaine-hotel/index.html": {
+      "path": "cn/hotels/vientaine-hotel"
+    },
+    "th/invesment-project/index.html": {
+      "path": "th/invesment-project"
+    },
+    "invesment-project/index.html": {
+      "path": "invesment-project"
+    },
+    "cn/invesment-project/index.html": {
+      "path": "cn/invesment-project"
+    },
+    "th/investment-project/index.html": {
+      "path": "th/investment-project"
+    },
+    "investment-project/index.html": {
+      "path": "investment-project"
+    },
+    "cn/investment-project/index.html": {
+      "path": "cn/investment-project"
+    },
+    "th/more/career/index.html": {
+      "path": "th/more/career"
+    },
+    "cn/more/career/index.html": {
+      "path": "cn/more/career"
+    },
+    "more/career/index.html": {
+      "path": "more/career"
+    },
+    "more/testimoniels/index.html": {
+      "path": "more/testimoniels"
+    },
+    "cn/more/news/index.html": {
+      "path": "cn/more/news"
+    },
+    "th/more/news/index.html": {
+      "path": "th/more/news"
+    },
+    "more/news/index.html": {
+      "path": "more/news"
+    },
+    "cn/index.html": {
+      "path": "cn"
+    },
+    "index.html": {
+      "path": ""
+    },
+    "th/index.html": {
+      "path": "th"
+    },
+    "th/more/testimoniels/index.html": {
+      "path": "th/more/testimoniels"
+    },
+    "cn/more/testimoniels/index.html": {
+      "path": "cn/more/testimoniels"
+    },
+    "cn/news/index.html": {
+      "path": "cn/news"
+    },
+    "th/news/index.html": {
+      "path": "th/news"
+    },
+    "news/index.html": {
+      "path": "news"
+    },
+    "cn/offer/index.html": {
+      "path": "cn/offer"
+    },
+    "offer/index.html": {
+      "path": "offer"
+    },
+    "th/offer/index.html": {
+      "path": "th/offer"
     }
   },
   "routes": [
@@ -68,14 +206,6 @@
     },
     {
       "handle": "filesystem"
-    },
-    {
-      "src": "/__nuxt_error",
-      "dest": "/__nitro"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/__nitro"
     }
   ]
 }
