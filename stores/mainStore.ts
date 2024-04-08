@@ -28,6 +28,7 @@ export const useMainStore = defineStore('mainStore', () => {
 
     return { main, selectedIdx, isOddFunc }
     
+
   })
 
   // watch(() => locale.value, () => {
