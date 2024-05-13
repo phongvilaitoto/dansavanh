@@ -1,5 +1,10 @@
 <template>
-    <a-layout>
+      <HeaderTitle2
+  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/aab146fa-94e0-4259-b350-b14ecfb16c67.jpg"
+  :title="$t('offerTitle')"
+  :caption="$t('offerSubTitle')"
+  />
+    <!-- <a-layout>
       <div class="cover">
         <div class="bg-cover"></div>
         <a-row
@@ -26,7 +31,7 @@
           </a-col>
         </a-row>
       </div>
-    </a-layout>
+    </a-layout> -->
 
     
     <div class="max-width">

@@ -14,7 +14,7 @@
         <nuxt-link :to="localePath('/')" class="line-hover">{{ $t('home') }}</nuxt-link>
 
         <nuxt-link class="line-hover" :to="localePath('/casino')" >{{ $t('casino') }}</nuxt-link>
-        <div class="has-dropdrown" @mouseover="drowdownToggle = true; showMoreDropDown = false">
+        <div class="has-dropdrown" @mouseover="drowdownToggle = true; drowdownToggle2 = false; showMoreDropDown = false">
           <nuxt-link 
           :to="localePath('/hotels')"
           class="line-hover cursor">
@@ -23,7 +23,13 @@
           </nuxt-link>
           <ul @click="drowdownToggle = false" class="dropdrown" style="width: 310px !important;" v-if="drowdownToggle"
             @mouseleave="drowdownToggle = false">
-            <li>
+
+            <li v-for="(i, idx) in main.hotels" :key="idx">
+              <nuxt-link
+              :to="localePath('/hotels/' + i.titles[selectedIdx])"
+               @click="drowdownToggle = !drowdownToggle" class="line-hover">{{i.titles[selectedIdx]}}</nuxt-link>
+            </li>
+            <!-- <li>
               <nuxt-link
               :to="localePath('/hotels/numngum')"
                @click="drowdownToggle = !drowdownToggle" class="line-hover">{{$t('hotelTab1')}}</nuxt-link>
@@ -38,32 +44,64 @@
               :to="localePath('/hotels/vientaine-hotel')"
                class="line-hover"
                 @click="drowdownToggle = !drowdownToggle">{{$t('hotelTab3')}}</nuxt-link>
-            </li>
+            </li> -->
           </ul>
         </div>
         <!-- </a> -->
 
-        <nuxt-link 
+        <!-- <nuxt-link 
         :to="localePath('/experience')"
-     class="line-hover"> {{ $t('experience') }} </nuxt-link>
+     class="line-hover"> {{ $t('experience') }} </nuxt-link> -->
+
+
+     <div class="has-dropdrown" @mouseover="drowdownToggle2 = true; drowdownToggle = false; showMoreDropDown = false; ">
+          <nuxt-link 
+          :to="localePath('/experience')"
+          class="line-hover cursor">
+            {{ $t('experience') }}
+            <DownOutlined style="position: absolute; top: 3px; right: -18px" v-if="drowdownToggle2" />
+          </nuxt-link>
+          <ul @click="drowdownToggle2 = false" class="dropdrown" style="width: 310px !important;" v-if="drowdownToggle2"
+            @mouseleave="drowdownToggle2 = false">
+            <li v-for="(i, idx) in blogs" :key="idx">
+            
+              <nuxt-link
+              :to="localePath('/experience/' + i._id + '?title=' + i.titles[selectedIdx])"
+               @click="drowdownToggle2 = !drowdownToggle2" class="line-hover">{{i.titles[selectedIdx]}}</nuxt-link>
+            </li>
+          </ul>
+        </div>
+
         <nuxt-link 
-        :to="localePath('/events')"
-         class="line-hover"> {{ $t('events') }} </nuxt-link>
+        :to="localePath('/near-by')"
+         class="line-hover"> {{ $t('near By') }} </nuxt-link>
+
+
+         <!-- <nuxt-link 
+        :to="localePath('/tour-package')"
+         class="line-hover"> {{ $t('tourPackage') }} </nuxt-link> -->
         <nuxt-link
         :to="localePath('/offer')"
       class="line-hover">{{ $t('offer') }}</nuxt-link>
 
         <dividerProps class="has-dropdrown">
-          <nuxt-link @mouseover="showMoreDropDown = true; drowdownToggle = false" class="line-hover">
+          <nuxt-link @mouseover="showMoreDropDown = true; drowdownToggle = false; drowdownToggle2 = false" class="line-hover">
             {{ $t('more') }}
-
-
             <DownOutlined style="position: absolute; top: 3px; right: -18px" v-if="showMoreDropDown" />
           </nuxt-link>
           <!-- dropdrow -->
           <ul class="dropdrown" style="width: 180px !important;" v-if="showMoreDropDown"
             @mouseleave="showMoreDropDown = false">
 
+
+            <nuxt-link 
+        :to="localePath('/events')"
+         class="line-hover"> {{ $t('events') }} </nuxt-link>
+            <li>
+              <nuxt-link class="line-hover"
+              :to="localePath('/tour-package')"
+             >{{$t('tour Package')}}</nuxt-link>
+            </li>
             <li>
               <nuxt-link class="line-hover"
               :to="localePath('/gallery')"
@@ -125,9 +163,25 @@ import Drawer from '@/components/layout/Drawer.vue'
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher.vue'
 
 
+import { storeToRefs } from 'pinia'
+
+const config = useRuntimeConfig()
+
+const store = useMainStore()
+
+const {selectedIdx, main} = storeToRefs(store)
+
 const burgerToggle = ref(false);
 const showMoreDropDown = ref<any>(false);
   const drowdownToggle = ref(false);
+  const drowdownToggle2 = ref(false)
+
+const blogs = ref<any>([])
+
+
+
+const { data }: any = await useFetch(config.public.apiBase + '/getDBlogs?type=Experience')
+blogs.value = data.value.dBlogs
 
 const visible = ref(false)
 
@@ -150,6 +204,7 @@ const moreDropdownToggle = () => {
 watch(() => route.name , () => {
   showMoreDropDown.value = false
   drowdownToggle.value = false
+  drowdownToggle2.value = false
   visible.value = false
 })
 
@@ -169,12 +224,14 @@ nav {
   left: 0;
   z-index: 2;
 
-  min-height: 64px;
+ // min-height: 64px;
+  min-height: 59px;
 
   .navbar {
     background: transparent;
     padding: 0 0.5rem;
-    height: 64px;
+   // height: 64px;
+    height: 59px;
     // height: 3.25rem;
     align-items: center;
     display: flex;

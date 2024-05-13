@@ -8,7 +8,11 @@
             <a-col :xs="24" :sm="24" :md="14" :lg="14" >
                 <a-typography-paragraph>
                     <MobileOutlined />
-                    VIP hotline: +856-20-58276666 - Tour hotline: +856-20-52241111 - Thai hotline: +66-92193-7777
+                    VIP hotline: +856-20-58276666 
+                    <br>
+                     Tour hotline: +856-20-52241111 
+                     <br>
+                      Thai hotline: +66-92193-7777
                 </a-typography-paragraph>
             </a-col>
             <a-col :xs="24" :sm="24" :md="6" :xl="6">

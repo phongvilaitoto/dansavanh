@@ -1,5 +1,11 @@
 <template>
-    <a-layout>
+
+<HeaderTitle
+  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/bfc6193d-e7fc-4cda-9e03-4388a845b5df.jpg"
+  :title="$t('eventTitle')"
+  :caption="$t('')"
+  />
+    <!-- <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
       <a-row justify="center" style="
@@ -8,11 +14,6 @@
           text-align: center;
           background-color: transparent;
         ">
-        <!-- <a-col :span="14">
-      <h5 class="headerT2">
-       {{$t('dActivities')}}
-      </h5>
-      </a-col> -->
       <a-col :xs="24" :sm="24" :md="24" :lg="12">
            
              <h1 class="headerT1">
@@ -22,7 +23,7 @@
       </a-col>
       </a-row>
     </div>
-  </a-layout>
+  </a-layout> -->
   
   <a-layout-content class="content-container">
     <a-row justify="center">

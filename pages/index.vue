@@ -5,6 +5,9 @@
   <a-layout-content 
   data-aos="fade-up"
   class="content-container" :style="{background: '#F4F4F4', color:'#000'}">
+  <VideoPlayer 
+  style="margin-top: 30px"
+  video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"/>
     <div  >
       <Welcome />
     </div>
@@ -44,12 +47,13 @@ import Welcome from '~/components/home/Welcome.vue';
 import HotelInfo from '~/components/home/HotelInfo.vue';
 import News from './news/index.vue';
 import Swiper from '@/components/home/Swiper.vue'
+import VideoPlayer from '~/components/VideoPlayer.vue';
 
 const localePath = useLocalePath()
 </script>
 
 
-<style scoped>
+<style scoped lang="scss">
 
 :deep(.slick-slide) {
   text-align: center;

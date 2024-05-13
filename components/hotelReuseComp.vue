@@ -45,35 +45,7 @@
         </a-col>
 
       </a-row>
-      <div  
-      v-if="hotel.detail.usedList.includes('facilities')"
-      class="max-width">
-      <a-col
-          :span="24"
-          style="align-content: center; justify-content: center; display: flex"
-        >
-          <img
-            src="/assets/image/decoration-1.png"
-            alt=""
-            :style="{ height: '50px', display: 'block' }"
-          />
-        </a-col>
-        <a-row justify="center">
-          <a-col :span="24">
-            <h1
-            class="headerTitle"
-            >           
-              {{$t('facilities')}}
-            </h1>
-          </a-col>
-        </a-row>
-        <a-row justify="center" :gutter="10">
-          <a-col :lg="8" class="facility-card" v-for="i in hotel.detail.facilities" :key="i" style="width: 100%">
-            <img style="width: 100%; height: 100%; object-fit: cover;" :src="i.img" alt="" />
-            <span class="text-shadow" style="font-size: 25px">{{ i.titles[selectedIdx] }}</span>
-          </a-col>
-        </a-row>
-      </div>
+     
 
 
 
@@ -114,11 +86,15 @@
         <a-row>
         <a-col v-for="i in hotel.detail.rooms" >
           <a-row 
-        @click="router.push(localePath('/contact'))"
+     align="middle"
         class="room-container">
           <a-col :xs="24" :sm="24" :lg="14" class="room-cover"
-          :style="`background-image: url('${i.img}')`"
-          ></a-col>
+         
+          >
+          <RoomSwiper :rooms="[i,...hotel.detail.rooms]"
+         
+          />
+          </a-col>
           <a-col :xs="24" :sm="24" :lg="10" class="room-info">
             <div class="text-box">
               <h2>{{ i.titles[selectedIdx] }}</h2>
@@ -132,7 +108,8 @@
                 v-if="i.options.includes('TV')"
                  placement="bottom">
                   <template #content class="popOver">
-                    <p>This room has Cable TV</p>
+                    <!-- <p>This room has Cable TV</p> -->
+
                   </template>
                   <a-button class="circle-hover">
                     <DesktopOutlined />
@@ -142,7 +119,7 @@
                 v-if="i.options.includes('WIFI')"
                  placement="bottom">
                   <template #content>
-                    <p>This room has WIFI</p>
+                    <!-- <p>This room has WIFI</p> -->
                   </template>
                   <a-button class="circle-hover">
                     <WifiOutlined />
@@ -152,7 +129,7 @@
                 v-if="i.options.includes('CAFE')"
                 placement="bottom">
                   <template #content>
-                    <p>This room has Cafe Bar</p>
+                    <!-- <p>This room has Cafe Bar</p> -->
                   </template>
                   <a-button class="circle-hover">
                     <CoffeeOutlined />
@@ -161,11 +138,14 @@
               </p>
               </p>
 
-              <button class="btn btn-2 hover-slide-up"
-            @click="$router.push('/contact')"
+<a href="https://wa.me/8562052241111">
+  <button class="btn btn-2 hover-slide-up"
+          
             >
         <span>{{$t('contact')}}</span>
       </button>
+</a>
+             
               <!-- <a-button @click="router.push('/contact')" class="view-button text-uppercase bg-white"> Contact </a-button> -->
             </div>
           </a-col>
@@ -174,6 +154,63 @@
         </a-row>
       
       </div>
+
+
+
+
+<div class="max-width" v-if="hotel.detail.usedList.includes('facilities')"
+
+>
+
+<div 
+      
+    
+      class="line-header">
+        <span>{{$t('facilities')}} </span>
+        <!-- <p></p> -->
+        <img
+          src="/assets/image/decoration-1.png"
+          alt=""
+          :style="{ height: '50px', display: 'block', marginBottom: '50px' }"
+        />
+        </div>
+
+<Facility :facilities="hotel.detail.facilities" />
+</div>
+
+      <!-- <div  
+      v-if="hotel.detail.usedList.includes('facilities')"
+      class="max-width">
+      <a-col
+          :span="24"
+          style="align-content: center; justify-content: center; display: flex"
+        >
+          <img
+            src="/assets/image/decoration-1.png"
+            alt=""
+            :style="{ height: '50px', display: 'block' }"
+          />
+        </a-col>
+        <a-row justify="center">
+          <a-col :span="24">
+            <h1
+            class="headerTitle"
+            >           
+              {{$t('facilities')}}
+            </h1>
+          </a-col>
+        </a-row>
+        <a-row justify="center" :gutter="10">
+          <a-col :lg="8" class="facility-card" v-for="i in hotel.detail.facilities" :key="i" style="width: 100%">
+            <img style="width: 100%; height: 100%; object-fit: cover;" :src="i.img" alt="" />
+            <span class="text-shadow" style="font-size: 25px">{{ i.titles[selectedIdx] }}</span>
+          </a-col>
+        </a-row>
+      </div> -->
+
+
+
+
       <div    v-if="hotel.detail.usedList.includes('galleries')">
       
         <div class="line-header">
@@ -192,12 +229,14 @@
           <img src="" alt="" />
         </a-col>
       </a-row> -->
+      <br><br>
     </a-layout-content>
   </template>
   
   <script setup lang="ts">
   
   import Gallery from '@/components/gallery.vue'
+  import Facility from '@/components/Facility.vue'
 
   const {hotel} = defineProps(['hotel'])
 
@@ -378,7 +417,8 @@ const isOdd = (n: number) => { return n % 2 !== 0 }
     .circle-hover{
       color: #6e6e6e;
       background-color: #fff;
-      box-shadow: inset 0 0 0 2px #ffd4
+      box-shadow: inset 0 0 0 2px #ffd4;
+      border-radius: 0;
   }
   }
   .gallery-card {
@@ -406,8 +446,18 @@ const isOdd = (n: number) => { return n % 2 !== 0 }
       aspect-ratio: 16/10;
       background-color: #5e5e5e;
       width: 200px;
-      background-image: url("https://storage.googleapis.com/dsv-bucket/dvs-gallery/34.jpeg");
+  
+     
       background-position: center;
+
+
+
+      height: 410px;
+      @media only screen and (max-width : 1067px) {
+       height: 510px;
+      }
+      
+  
     }
     /* @media (min-width: 576px) {
         .room-info {  
@@ -422,6 +472,7 @@ const isOdd = (n: number) => { return n % 2 !== 0 }
       width: 100%;
       /* border: 1px solid red; */
       z-index: 999;
+  
   
       .text-box {
         /* border: 1px solid red; */

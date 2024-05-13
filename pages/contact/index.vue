@@ -1,5 +1,10 @@
 <template>
-  <a-layout>
+        <HeaderTitle2
+  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/8d8c4bf8-8796-481c-ab80-adc67f98c6b0.jpg"
+  :title="$t('contactTitle')"
+  :caption="$t('contactSubTitle')"
+  />
+  <!-- <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
       <a-row
@@ -17,19 +22,16 @@
           <h1 class="headerT1" style="font-size: 65px">
             {{$t('contactTitle')}}
             </h1>
-          <!-- <a-typography-title class="t1">CONTACT</a-typography-title> -->
+    <a-typography-title class="t1">CONTACT</a-typography-title> 
         </a-col>
         <a-col :span="22">
           <h5 class="headerT2" style="margin-top: -20px">
        {{$t('contactSubTitle')}}
       </h5>
-          <!-- <span style="color: #fff"
-            >Get in touch for a booking or a greeting</span
-          > -->
         </a-col>
       </a-row>
     </div>
-  </a-layout>
+  </a-layout> -->
   <a-layout-content class="
   max-width
   content-container">

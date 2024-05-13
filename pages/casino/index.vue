@@ -1,25 +1,10 @@
 <template>
+  <HeaderTitle
+  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/246eab63-3b9f-4118-a876-94bc2a075f59.jpg"
+  :title="$t('ourResortsCasino')"
+  :caption="$t('aMagicPlace')"
+  />
   <!-- <a-layout>
-    <a-row justify="center" style="
-        padding-top: 180px;
-        padding-bottom: 72px;
-        background-color: #a3a0a0;
-        text-align: center;
-      ">
-      <a-col :span="14">
-        <h5 class="headerT2">
-          {{ $t('aMagicPlace') }}
-        </h5>
-      </a-col>
-      <a-col :xs="24" :sm="24" :md="24" :lg="12">
-        <h1 class="headerT1">
-          {{ $t('ourResortsCasino') }}</h1>
-      </a-col>
-    </a-row>
-  </a-layout> -->
-
-
-  <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
       <a-row justify="center" style="
@@ -42,7 +27,7 @@
       </a-col>
       </a-row>
     </div>
-  </a-layout>
+  </a-layout> -->
 
 
   <a-layout-content style="padding: 20px 50px">
@@ -120,7 +105,9 @@
   </a-layout-content>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeaderTitle from '@/components/HeaderTitle.vue'
+</script>
 
 <style lang="scss" scoped>
 

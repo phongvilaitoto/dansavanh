@@ -1,6 +1,12 @@
 <template>
+
+<HeaderTitle
+  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/def3f3bd-1a3e-40b8-a4a0-1ce625911419.jpg"
+  :title="$t('ourHotels')"
+  :caption="$t('stepInTheWorld')"
+  />
   
-  <a-layout>
+  <!-- <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
       <a-row justify="center" style="
@@ -23,12 +29,12 @@
       </a-col>
       </a-row>
     </div>
-  </a-layout>
+  </a-layout> -->
 
 
 
 
-  <a-layout-content class="layout">
+  <a-layout-content class="layout" style="margin-bottom: 50px">
     <div class="blog" >
       <a-row 
       v-for="(i, idx) in main.hotels"
@@ -46,7 +52,7 @@
               {{ i.descriptions[selectedIdx] }}
             </p>
             <button class="btn btn-2 hover-slide-up"
-            @click="router.push(localePath(i.link))"
+            @click="router.push(localePath('/hotels/' + i.titles[selectedIdx]))"
             >
         <span>{{$t('viewHotelButton')}}</span>
       </button>
@@ -73,26 +79,26 @@ const isOdd = (n: number) => { return n % 2 !== 0 }
 
 <style scoped lang="scss">
 
-.cover {
-  background-image: url("/assets/image/hotels/homeLocation.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  .bg-cover{
-    display: block;
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background-color: #000;
-  background-color: rgba(0,0,0,.3);
-  }
-}
+// .cover {
+//   background-image: url("/assets/image/hotels/homeLocation.jpg");
+//   background-attachment: fixed;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   position: relative;
+//   .bg-cover{
+//     display: block;
+//   content: '';
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   width: 100%;
+//   height: 100%;
+//   z-index: 0;
+//   background-color: #000;
+//   background-color: rgba(0,0,0,.3);
+//   }
+// }
 .blog {
     background-color: #f4f4f4 !important; 
     /* margin-top: 20px; */

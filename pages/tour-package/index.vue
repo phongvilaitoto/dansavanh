@@ -12,13 +12,13 @@
         ">
         <a-col :span="14">
       <h5 class="headerT2">
-       {{$t('careerSubTitle')}}
+       {{$t('tourPackageSubTitle')}}
       </h5>
       </a-col>
       <a-col :xs="24" :sm="24" :md="24" :lg="12">
            
              <h1 class="headerT1">
-            {{$t('careerTitle')}}
+            {{$t('tourPackageTitle')}}
             </h1>
 
       </a-col>
@@ -33,10 +33,10 @@
       <a-col :span="24" style="text-align: center; justify-content: center">
         <h1 class="headerTitle text-uppercase" style="margin-top: 30px"
         
-          >{{ $t('dCareer') }}</h1
+          >{{ $t('tourPackage') }}</h1
         >
       </a-col>
-      <a-col
+      <!-- <a-col
         :span="24"
         style="
           display: flex;
@@ -49,7 +49,7 @@
     class="headerT2 text-black"
           >{{$t('bestPlacesToWork')}}</p
         >
-      </a-col>
+      </a-col> -->
       <a-col
         :span="24"
         style="align-content: center; justify-content: center; display: flex; margin-top: 20px;"
@@ -60,23 +60,29 @@
           :style="{ width: '160px', margin: '20xp 0 0 ' }"
         />
       </a-col>
-      <a-col :span="24" style="text-align: center; justify-content: center">
-        <!-- <a-typography-title :level="4"
+      <!-- <a-col :span="24" style="text-align: center; justify-content: center">
+        <a-typography-title :level="4"
         
           >Available jobs</a-typography-title
-        > -->
-        <h3 class="headerTitle text-uppercase">
-        
-        {{ $t('availableJobs') }}</h3>
-      </a-col>
+        >
+        <h3 class="headerTitle text-uppercase">{{ $t('availableJobs') }}</h3>
+      </a-col> -->
     </a-row>
     <div :style="{ padding: '24px', minHeight: '280px' }">
      <div class="career_box">
-      <div class="text-box cursor" style="margin: 30px 10px 30px 10px"
+      <div class="text-box cursor" style="margin: 10px 10px 10px 10px; display: flex"
       @click="router.push(localePath('/more/career') + '/' + i._id)"
-       v-for="i in blogs" :key="i">
+       v-for="i in blogs" :key="i"
+    
+       >
+       <img 
+       style="width: 100%; height: 300px"
+       src="https://storage.googleapis.com/dsv-bucket/imgs/imgs/9b5773e0-906b-4566-988b-2d6242182066.jpg" alt="">
+       <div style="margin-left: 20px; margin-top: 80px">
         <h3 class="text-uppercase">{{ i.titles[selectedIdx] }}</h3>
         <p>{{ i.captions[selectedIdx] }}</p>
+       </div>
+
       </div>
      </div>
     </div>
@@ -109,7 +115,7 @@ blogs.value = data.value.dBlogs
 <style scoped lang="scss">
 
 .cover {
-  background-image: url("/assets/image/more/career-header.JPG");
+  background-image: url("https://storage.googleapis.com/dsv-bucket/imgs/imgs/f475dd95-133e-409e-bf3b-81ab7584da43.jpg");
   /* background-attachment: fixed;   */
   background-position: center center;
   background-repeat: no-repeat;

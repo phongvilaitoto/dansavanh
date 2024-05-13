@@ -26,9 +26,10 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@pinia/nuxt": "^0.5.1",
     "ant-design-vue": "^4.1.1",
+    "nitropack": "^2.8.1",
     "pinia": "^2.1.7",
+    "plyr": "^3.7.8",
     "swiper": "^11.0.6",
-    "vue3-google-map": "^0.20.0",
-    "nitropack": "^2.8.1"
+    "vue3-google-map": "^0.20.0"
   }
 }

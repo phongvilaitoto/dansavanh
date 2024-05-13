@@ -1,5 +1,10 @@
 <template>
-  <a-layout>
+    <HeaderTitle
+  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/28091e24-afc4-49ab-ad63-b1d137ec940e.jpg"
+  :title="$t('sportAndActivities')"
+  :caption="$t('dActivities')"
+  />
+  <!-- <a-layout>
     <div class="cover">
       <div class="bg-cover"></div>
       <a-row justify="center" style="
@@ -22,7 +27,7 @@
       </a-col>
       </a-row>
     </div>
-  </a-layout>
+  </a-layout> -->
   <a-layout-content class="layout" style="padding: 20px 0">
     <a-row justify="center">
 
@@ -94,6 +99,11 @@
             <p>
               {{ i.captions[selectedIdx] }}
             </p>
+            <button class="btn btn-2 hover-slide-up"
+            @click="$router.push(localePath('/experience') + '/' + i._id)"
+            >
+        <span>{{$t('discoverMore')}}</span>
+      </button>
           </div>
         </a-col>
       </a-row>
@@ -125,6 +135,8 @@ const config = useRuntimeConfig()
 const store = useMainStore()
 const {isOddFunc} = store
 const {selectedIdx, main} = storeToRefs(store)
+
+const localePath = useLocalePath()
 
 const blogs = ref<any>([])
 

@@ -1,26 +1,26 @@
 <template>
     <div >
   
-        <Swiper :slides-per-view="1" :space-between="10" :loop="true" 
+        <Swiper :slides-per-view="3" :space-between="10" :loop="true" 
         :modules="[Pagination]"
         :pagination="{ clickable: true }"
     
             @swiper="onSwiper"  :autoplay="true">
 
-            <SwiperSlide v-for="(image, idx) in main.home.imgs" :key="idx" @click="swipy.slideNext()">
+            <SwiperSlide v-for="(i, idx) in [...facilities, facilities[2]]" :key="idx" @click="swipy.slideNext()">
                 <div class="is-desktop" :style="{
-                    width: '100%', height: '620px',
+                    width: '100%', height: '575px',
                     backgroundSize: 'cover',
-                    backgroundImage: 'url(' + image + ')',
+                    backgroundImage: 'url(' + i.img + ')',
                     backgroundPosition: 'center'
                 
                 }">
 
                 </div>
                 <div class="is-mobile" :style="{
-                    width: '100%', height: '520px',
+                    width: '100%', height: '725px',
                     backgroundSize: 'cover',
-                    backgroundImage: 'url(' + image + ')',
+                    backgroundImage: 'url(' + i.img + ')',
                     backgroundPosition: 'center'
                 }">
 
@@ -39,7 +39,9 @@
             style="
            
             position: absolute; color: white; font-size: 30px; margin-top: -80px; z-index: 99999;">
-            {{$t("eventTitle")}} {{swipy.realIndex + 1}}
+
+            {{facilities[swipy.realIndex].titles[selectedIdx]}}
+            <!-- {{$t("eventTitle")}} {{swipy.realIndex + 1}} -->
             </p>
            </div>
     </div>
@@ -51,6 +53,8 @@ import { useMainStore } from '@/stores/mainStore'
 const store = useMainStore()
 
 const {main, selectedIdx} = storeToRefs(store) 
+
+const {facilities} = defineProps(['facilities'])
 
 import { Navigation, Pagination, } from 'swiper/modules';
 import { Swiper, SwiperSlide, } from 'swiper/vue';
