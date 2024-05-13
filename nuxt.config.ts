@@ -11,6 +11,7 @@ export default defineNuxtConfig({
       apiBase: 'https://server.khonkong.com/client-api',
       //apiBase: 'http://localhost:4000/client-api',
     },
+    
   },
   nitro: {
     // baseURL: "https://khonkong.com",

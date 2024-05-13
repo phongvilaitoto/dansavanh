@@ -1,0 +1,229 @@
+{
+  "version": 3,
+  "overrides": {
+    "casino/index.html": {
+      "path": "casino"
+    },
+    "contact/index.html": {
+      "path": "contact"
+    },
+    "experience/index.html": {
+      "path": "experience"
+    },
+    "events/index.html": {
+      "path": "events"
+    },
+    "gallery/index.html": {
+      "path": "gallery"
+    },
+    "cn/casino/index.html": {
+      "path": "cn/casino"
+    },
+    "hotels/golf/index.html": {
+      "path": "hotels/golf"
+    },
+    "th/contact/index.html": {
+      "path": "th/contact"
+    },
+    "th/events/index.html": {
+      "path": "th/events"
+    },
+    "cn/events/index.html": {
+      "path": "cn/events"
+    },
+    "th/experience/index.html": {
+      "path": "th/experience"
+    },
+    "th/casino/index.html": {
+      "path": "th/casino"
+    },
+    "cn/contact/index.html": {
+      "path": "cn/contact"
+    },
+    "cn/gallery/index.html": {
+      "path": "cn/gallery"
+    },
+    "cn/experience/index.html": {
+      "path": "cn/experience"
+    },
+    "th/gallery/index.html": {
+      "path": "th/gallery"
+    },
+    "th/hotels/golf/index.html": {
+      "path": "th/hotels/golf"
+    },
+    "hotels/index.html": {
+      "path": "hotels"
+    },
+    "cn/hotels/golf/index.html": {
+      "path": "cn/hotels/golf"
+    },
+    "th/hotels/index.html": {
+      "path": "th/hotels"
+    },
+    "cn/hotels/index.html": {
+      "path": "cn/hotels"
+    },
+    "hotels/numngum/index.html": {
+      "path": "hotels/numngum"
+    },
+    "cn/hotels/numngum/index.html": {
+      "path": "cn/hotels/numngum"
+    },
+    "th/hotels/vientaine-hotel/index.html": {
+      "path": "th/hotels/vientaine-hotel"
+    },
+    "index-test/index.html": {
+      "path": "index-test"
+    },
+    "cn/hotels/vientaine-hotel/index.html": {
+      "path": "cn/hotels/vientaine-hotel"
+    },
+    "th/hotels/numngum/index.html": {
+      "path": "th/hotels/numngum"
+    },
+    "hotels/vientaine-hotel/index.html": {
+      "path": "hotels/vientaine-hotel"
+    },
+    "th/index-test/index.html": {
+      "path": "th/index-test"
+    },
+    "cn/index-test/index.html": {
+      "path": "cn/index-test"
+    },
+    "index.html": {
+      "path": ""
+    },
+    "th/index.html": {
+      "path": "th"
+    },
+    "invesment-project/index.html": {
+      "path": "invesment-project"
+    },
+    "cn/index.html": {
+      "path": "cn"
+    },
+    "th/invesment-project/index.html": {
+      "path": "th/invesment-project"
+    },
+    "cn/invesment-project/index.html": {
+      "path": "cn/invesment-project"
+    },
+    "investment-project/index.html": {
+      "path": "investment-project"
+    },
+    "th/investment-project/index.html": {
+      "path": "th/investment-project"
+    },
+    "cn/investment-project/index.html": {
+      "path": "cn/investment-project"
+    },
+    "cn/more/news/index.html": {
+      "path": "cn/more/news"
+    },
+    "more/testimoniels/index.html": {
+      "path": "more/testimoniels"
+    },
+    "more/career/index.html": {
+      "path": "more/career"
+    },
+    "th/more/career/index.html": {
+      "path": "th/more/career"
+    },
+    "cn/more/career/index.html": {
+      "path": "cn/more/career"
+    },
+    "th/more/testimoniels/index.html": {
+      "path": "th/more/testimoniels"
+    },
+    "cn/more/testimoniels/index.html": {
+      "path": "cn/more/testimoniels"
+    },
+    "more/news/index.html": {
+      "path": "more/news"
+    },
+    "th/more/news/index.html": {
+      "path": "th/more/news"
+    },
+    "near-by/index.html": {
+      "path": "near-by"
+    },
+    "th/near-by/index.html": {
+      "path": "th/near-by"
+    },
+    "cn/near-by/index.html": {
+      "path": "cn/near-by"
+    },
+    "news/index.html": {
+      "path": "news"
+    },
+    "th/news/index.html": {
+      "path": "th/news"
+    },
+    "cn/news/index.html": {
+      "path": "cn/news"
+    },
+    "offer/index.html": {
+      "path": "offer"
+    },
+    "th/offer/index.html": {
+      "path": "th/offer"
+    },
+    "cn/offer/index.html": {
+      "path": "cn/offer"
+    },
+    "tour-package/index.html": {
+      "path": "tour-package"
+    },
+    "th/tour-package/index.html": {
+      "path": "th/tour-package"
+    },
+    "cn/tour-package/index.html": {
+      "path": "cn/tour-package"
+    }
+  },
+  "routes": [
+    {
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      },
+      "src": "/_nuxt/builds/meta/(.*)"
+    },
+    {
+      "headers": {
+        "cache-control": "public, max-age=1, immutable"
+      },
+      "src": "/_nuxt/builds/(.*)"
+    },
+    {
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      },
+      "src": "/_nuxt/(.*)"
+    },
+    {
+      "src": "/_nuxt/builds/meta(.*)",
+      "headers": {
+        "cache-control": "public,max-age=31536000,immutable"
+      },
+      "continue": true
+    },
+    {
+      "src": "/_nuxt/builds(.*)",
+      "headers": {
+        "cache-control": "public,max-age=31536000,immutable"
+      },
+      "continue": true
+    },
+    {
+      "src": "/_nuxt(.*)",
+      "headers": {
+        "cache-control": "public,max-age=31536000,immutable"
+      },
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
+}
