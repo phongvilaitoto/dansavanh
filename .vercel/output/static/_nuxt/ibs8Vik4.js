@@ -1,1 +1,0 @@
-import{K as c,M as s}from"./BKD-lbj-.js";const u=async i=>{const a=s(),{data:o}=await c(a.public.apiBase+"/getDLang","$nAhL1HD0Oo"),t=o.value.dLang,e={};for(let n in t)e[n]=t[n][2];return e};export{u as default};
