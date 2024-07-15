@@ -1,1 +1,0 @@
-import{r as c}from"./DnChpox-.js";let t={};function u(n,i){}function a(n,i,r){!i&&!t[r]&&(n(!1,r),t[r]=!0)}function f(n,i){a(u,n,i)}const g=(n,i,r)=>{f(n,`[ant-design-vue: ${i}] ${r}`)};function l(n){const i=typeof n=="function"?n():n,r=c(i);function o(e){r.value=e}return[r,o]}export{g as d,l as u};
