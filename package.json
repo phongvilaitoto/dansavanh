@@ -5,9 +5,6 @@
   "resolutions": {
     "string-width": "4.2.3"
   },
-  "engines": {
-    "node": "20.x"
-  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -36,6 +33,6 @@
     "vue3-google-map": "^0.20.0"
   },
   "volta": {
-    "node": "22.3.0"
+    "node": "20.x"
   }
 }
