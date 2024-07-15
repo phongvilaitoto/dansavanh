@@ -3855,7 +3855,7 @@ function _expandFromEnv(value) {
 
 const inlineAppConfig = {
   "nuxt": {
-    "buildId": "ea945062-d947-429c-bdff-e8ce1c2fff8b"
+    "buildId": "97d37e62-8127-46bb-8c57-6ede4e266f78"
   }
 };
 
@@ -3894,7 +3894,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "apiBase": "https://server.khonkong.com/client-api",
+    "apiBase": "https://server.dansavanh.net/client-api",
     "i18n": {
       "baseUrl": "",
       "defaultLocale": "en",
@@ -4700,7 +4700,7 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('data', unstorage_47drivers_47fs_45lite({"driver":"fsLite","base":"/Users/macbook/Desktop/PJ/dsv_front/.data/kv"}));
+storage.mount('data', unstorage_47drivers_47fs_45lite({"driver":"fsLite","base":"C:\\Users\\MSII\\Desktop\\pj\\dansavanh\\.data\\kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -5183,11 +5183,11 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const _lazy_itrBRZ = () => import('./routes/renderer.mjs');
+const _lazy_PbIzY0 = () => import('./routes/renderer.mjs');
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_itrBRZ, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_itrBRZ, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_error', handler: _lazy_PbIzY0, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_PbIzY0, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

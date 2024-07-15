@@ -1,27 +1,24 @@
 <template>
-<!-- <div>
-  <a-extract-style> -->
-  <NuxtLayout>
-      <NuxtPage  />
-    </NuxtLayout>
-    <client-only>
-      <nuxt-facebook-chat :options="options" />
-    </client-only>
-  <!-- </a-extract-style>
 
-</div> -->
+  <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+    <!-- <client-only>
+      <nuxt-facebook-chat :options="options" />
+    </client-only> -->
+
 </template>
 <script setup lang="ts">
 
 
-import { NuxtFacebookChatOptions } from 'nuxt-facebook-chat';
+// import { NuxtFacebookChatOptions } from 'nuxt-facebook-chat';
 
-// Define your chat options
-const options: NuxtFacebookChatOptions = {
-  pageId: "1782751151960317",  // Your Facebook Page ID
-  locale: "th_TH",            // Set the locale for the chat
-  themeColor: "#E04040",      // Customize the chat theme color
-};
+// // Define your chat options
+// const options: NuxtFacebookChatOptions = {
+//   pageId: "1782751151960317",  // Your Facebook Page ID
+//   locale: "th_TH",            // Set the locale for the chat
+//   themeColor: "#E04040",      // Customize the chat theme color
+// };
 
 import { useMainStore } from '@/stores/mainStore'
 import { storeToRefs } from 'pinia'

@@ -3,18 +3,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // link: [{ rel: 'icon', type: 'image/*', href: '/public/favicon.ico' }]
 export default defineNuxtConfig({
-  ssr: false,
+ 
   runtimeConfig: {
   
     public: {
     
-      apiBase: 'https://server.khonkong.com/client-api',
+      apiBase: 'https://server.dansavanh.net/client-api',
       //apiBase: 'http://localhost:4000/client-api',
     },
     
   },
   nitro: {
-    // baseURL: "https://khonkong.com",
+  
     prerender: {
       crawlLinks: true,
       failOnError: false, 
@@ -49,7 +49,8 @@ export default defineNuxtConfig({
   //     }
   //   }
   // },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
+  ssr: false,
   antd:{
     extractStyle: true,
   },
