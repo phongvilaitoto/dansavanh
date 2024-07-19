@@ -1,6 +1,5 @@
 <template>
-  
-  <HotelReuseComp :hotel="main.hotels[2]"/>
+  <HotelReuseComp :hotel="main.hotels[2]" />
   <!-- <a-layout>
       <div class="cover">
         <div class="bg-cover"></div>
@@ -131,17 +130,16 @@
 </template>
 
 <script setup lang="ts">
+import HotelReuseComp from "@/components/hotelReuseComp.vue";
 
-import HotelReuseComp from '@/components/hotelReuseComp.vue'
+import { useMainStore } from "@/stores/mainStore";
+import { storeToRefs } from "pinia";
 
-import { useMainStore } from '@/stores/mainStore'
-import { storeToRefs } from 'pinia'
+const { main, selectedIdx } = storeToRefs(useMainStore());
 
-const {main, selectedIdx} = storeToRefs(useMainStore())
+import Gallery from "@/components/gallery.vue";
 
-import Gallery from '@/components/gallery.vue'
-
-const router = useRouter()
+const router = useRouter();
 </script>
 
 <style scoped lang="scss">
@@ -155,7 +153,6 @@ const router = useRouter()
   min-height: 60px;
 
   span {
-
     font-size: 70px;
     position: absolute;
     top: 24px;
@@ -185,18 +182,18 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-.bg-cover{
-  display: block;
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background-color: #000;
-  background-color: rgba(0,0,0,.3);
-}  
+  .bg-cover {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
 
 /* card  */
@@ -220,16 +217,14 @@ a {
   display: flex;
   justify-content: center;
 
-
   .room-cover {
     width: 100%;
-    .bg{
+    .bg {
       width: 100%;
       height: 100%;
       display: block;
       background-color: #5e5e5e;
       aspect-ratio: 16/10;
-
     }
   }
   .room-info {
@@ -240,7 +235,7 @@ a {
     /* border: 1px solid red; */
     z-index: 999;
     @media (min-width: 576px) {
-    justify-content:flex-start !important;
+      justify-content: flex-start !important;
     }
 
     .text-box {
@@ -252,8 +247,8 @@ a {
       border-radius: 3px;
       @media (min-width: 576px) {
         padding: 48px;
-    /* justify-content:flex-start !important; */
-    }
+        /* justify-content:flex-start !important; */
+      }
       span {
         font-size: 13px;
         letter-spacing: 5px;
@@ -276,17 +271,16 @@ a {
   }
 }
 
-
 /* hover pop  */
-.details{
+.details {
   display: flex;
   gap: 10px;
- 
-  .circle-hover{
+
+  .circle-hover {
     color: #6e6e6e;
     background-color: #fff;
-    box-shadow: inset 0 0 0 2px #ffd4
-}
+    box-shadow: inset 0 0 0 2px #ffd4;
+  }
 }
 .gallery-card {
   display: block;
@@ -297,13 +291,7 @@ a {
 }
 </style>
 
-
-
-
 <style lang="scss" scoped>
-  
-
-
 /* room  */
 .room-container {
   margin-bottom: 30px;
@@ -339,7 +327,7 @@ a {
       border-radius: 3px;
       @media (min-width: 576px) {
         padding: 48px;
-  }
+      }
       span {
         font-size: 13px;
         letter-spacing: 5px;
@@ -350,7 +338,7 @@ a {
         font-weight: 700;
         margin: 20px 0;
         margin-top: 0 !important;
-       
+
         text-transform: uppercase;
       }
       p {
@@ -361,71 +349,63 @@ a {
     }
   }
 }
+</style>
 
-  </style>
-  
-  <style scoped lang="scss">
-  
-  
-  /* card  */
-  .promotion-container {
-    margin-bottom: 30px;
+<style scoped lang="scss">
+/* card  */
+.promotion-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  .pro-cover {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    .pro-cover {
-      display: flex;
-      justify-content:flex-start;
-      align-items: center;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    /* z-index: 999; */
+    .img {
+      display: grid;
+      place-content: center;
+      //  background-color: #6e6e6e;
+      color: #fff;
+      /* display: block; */
       width: 100%;
-      /* z-index: 999; */
-      .img{
-        display: grid;
-        place-content: center;
-      //  background-color: #6e6e6e;
-        color: #fff;
-        /* display: block; */
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 16/10;
-      }
-      img{
-        display: grid;
-        place-content: center;
-      //  background-color: #6e6e6e;
-        color: #fff;
-        /* display: block; */
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 16/10;
-      }
+      height: 100%;
+      aspect-ratio: 16/10;
     }
-    .text-box {
-        /* border: 1px solid red; */
-        justify-self: center;
-        /* background-color: #fff; */
-        padding: 10px;
-        color: #000;
-        border-radius: 3px;
-       
-        h1 {
-          font-weight: 700;
-          margin: 10px 0;
-          margin-top: 0 !important;
-     
-          text-transform: uppercase;
-        }
-        p {
-          font-weight: 200;
-          font-size: 16px;
-          margin-bottom: 24px;
-          color: #313131;
-        }
-      }
+    img {
+      display: grid;
+      place-content: center;
+      //  background-color: #6e6e6e;
+      color: #fff;
+      /* display: block; */
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16/10;
+    }
   }
-  
-  
+  .text-box {
+    /* border: 1px solid red; */
+    justify-self: center;
+    /* background-color: #fff; */
+    padding: 10px;
+    color: #000;
+    border-radius: 3px;
 
+    h1 {
+      font-weight: 700;
+      margin: 10px 0;
+      margin-top: 0 !important;
 
-  </style>
-  
+      text-transform: uppercase;
+    }
+    p {
+      font-weight: 200;
+      font-size: 16px;
+      margin-bottom: 24px;
+      color: #313131;
+    }
+  }
+}
+</style>

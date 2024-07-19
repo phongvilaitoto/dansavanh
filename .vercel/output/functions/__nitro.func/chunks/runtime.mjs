@@ -79,7 +79,6 @@ function stringifyQuery(query) {
 const PROTOCOL_STRICT_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{1,2})/;
 const PROTOCOL_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{2})?/;
 const PROTOCOL_RELATIVE_REGEX = /^([/\\]\s*){2,}[^/\\]/;
-const TRAILING_SLASH_RE = /\/$|\/\?|\/#/;
 const JOIN_LEADING_SLASH_RE = /^\.?\//;
 function hasProtocol(inputString, opts = {}) {
   if (typeof opts === "boolean") {
@@ -91,48 +90,19 @@ function hasProtocol(inputString, opts = {}) {
   return PROTOCOL_REGEX.test(inputString) || (opts.acceptRelative ? PROTOCOL_RELATIVE_REGEX.test(inputString) : false);
 }
 function hasTrailingSlash(input = "", respectQueryAndFragment) {
-  if (!respectQueryAndFragment) {
+  {
     return input.endsWith("/");
   }
-  return TRAILING_SLASH_RE.test(input);
 }
 function withoutTrailingSlash(input = "", respectQueryAndFragment) {
-  if (!respectQueryAndFragment) {
+  {
     return (hasTrailingSlash(input) ? input.slice(0, -1) : input) || "/";
   }
-  if (!hasTrailingSlash(input, true)) {
-    return input || "/";
-  }
-  let path = input;
-  let fragment = "";
-  const fragmentIndex = input.indexOf("#");
-  if (fragmentIndex >= 0) {
-    path = input.slice(0, fragmentIndex);
-    fragment = input.slice(fragmentIndex);
-  }
-  const [s0, ...s] = path.split("?");
-  const cleanPath = s0.endsWith("/") ? s0.slice(0, -1) : s0;
-  return (cleanPath || "/") + (s.length > 0 ? `?${s.join("?")}` : "") + fragment;
 }
 function withTrailingSlash(input = "", respectQueryAndFragment) {
-  if (!respectQueryAndFragment) {
+  {
     return input.endsWith("/") ? input : input + "/";
   }
-  if (hasTrailingSlash(input, true)) {
-    return input || "/";
-  }
-  let path = input;
-  let fragment = "";
-  const fragmentIndex = input.indexOf("#");
-  if (fragmentIndex >= 0) {
-    path = input.slice(0, fragmentIndex);
-    fragment = input.slice(fragmentIndex);
-    if (!path) {
-      return fragment;
-    }
-  }
-  const [s0, ...s] = path.split("?");
-  return s0 + "/" + (s.length > 0 ? `?${s.join("?")}` : "") + fragment;
 }
 function hasLeadingSlash(input = "") {
   return input.startsWith("/");
@@ -251,7 +221,7 @@ function parseURL(input = "", defaultProto) {
     };
   }
   if (!hasProtocol(input, { acceptRelative: true })) {
-    return defaultProto ? parseURL(defaultProto + input) : parsePath(input);
+    return parsePath(input);
   }
   const [, protocol = "", auth, hostAndPath = ""] = input.replace(/\\/g, "/").match(/^[\s\0]*([\w+.-]{2,}:)?\/\/([^/@]+@)?(.*)/) || [];
   const [, host = "", path = ""] = hostAndPath.match(/([^#/?]*)(.*)?/) || [];
@@ -2012,9 +1982,6 @@ function getQuery(event) {
   return getQuery$1(event.path || "");
 }
 function isMethod(event, expected, allowHead) {
-  if (allowHead && event.method === "HEAD") {
-    return true;
-  }
   if (typeof expected === "string") {
     if (event.method === expected) {
       return true;
@@ -2025,7 +1992,7 @@ function isMethod(event, expected, allowHead) {
   return false;
 }
 function assertMethod(event, expected, allowHead) {
-  if (!isMethod(event, expected, allowHead)) {
+  if (!isMethod(event, expected)) {
     throw createError$1({
       statusCode: 405,
       statusMessage: "HTTP method is not allowed."
@@ -2090,7 +2057,7 @@ function readRawBody(event, encoding = "utf8") {
     });
     return encoding ? promise2.then((buff) => buff.toString(encoding)) : promise2;
   }
-  if (!Number.parseInt(event.node.req.headers["content-length"] || "")) {
+  if (!Number.parseInt(event.node.req.headers["content-length"] || "") && !String(event.node.req.headers["transfer-encoding"] ?? "").split(",").map((e) => e.trim()).filter(Boolean).includes("chunked")) {
     return Promise.resolve(void 0);
   }
   const promise = event.node.req[RawBodySymbol] = new Promise(
@@ -2314,7 +2281,10 @@ function sendRedirect(event, location, code = 302) {
 }
 function setResponseHeaders(event, headers) {
   for (const [name, value] of Object.entries(headers)) {
-    event.node.res.setHeader(name, value);
+    event.node.res.setHeader(
+      name,
+      value
+    );
   }
 }
 const setHeaders = setResponseHeaders;
@@ -2448,12 +2418,21 @@ async function proxyRequest(event, target, opts = {}) {
   });
 }
 async function sendProxy(event, target, opts = {}) {
-  const response = await _getFetch(opts.fetch)(target, {
-    headers: opts.headers,
-    ignoreResponseError: true,
-    // make $ofetch.raw transparent
-    ...opts.fetchOptions
-  });
+  let response;
+  try {
+    response = await _getFetch(opts.fetch)(target, {
+      headers: opts.headers,
+      ignoreResponseError: true,
+      // make $ofetch.raw transparent
+      ...opts.fetchOptions
+    });
+  } catch (error) {
+    throw createError$1({
+      status: 502,
+      statusMessage: "Bad Gateway",
+      cause: error
+    });
+  }
   event.node.res.statusCode = sanitizeStatusCode(
     response.status,
     event.node.res.statusCode
@@ -2602,6 +2581,9 @@ class H3Event {
     __publicField(this, "_requestBody");
     // Response
     __publicField(this, "_handled", false);
+    // Hooks
+    __publicField(this, "_onBeforeResponseCalled");
+    __publicField(this, "_onAfterResponseCalled");
     this.node = { req, res };
   }
   // --- Request ---
@@ -2637,11 +2619,11 @@ class H3Event {
     return this.toString();
   }
   // --- Deprecated ---
-  /** @deprecated Please use `event.node.req` instead. **/
+  /** @deprecated Please use `event.node.req` instead. */
   get req() {
     return this.node.req;
   }
-  /** @deprecated Please use `event.node.res` instead. **/
+  /** @deprecated Please use `event.node.res` instead. */
   get res() {
     return this.node.res;
   }
@@ -2820,16 +2802,19 @@ function createAppEventHandler(stack, options) {
       if (_body !== void 0) {
         const _response = { body: _body };
         if (options.onBeforeResponse) {
+          event._onBeforeResponseCalled = true;
           await options.onBeforeResponse(event, _response);
         }
         await handleHandlerResponse(event, _response.body, spacing);
         if (options.onAfterResponse) {
+          event._onAfterResponseCalled = true;
           await options.onAfterResponse(event, _response);
         }
         return;
       }
       if (event.handled) {
         if (options.onAfterResponse) {
+          event._onAfterResponseCalled = true;
           await options.onAfterResponse(event, void 0);
         }
         return;
@@ -2842,6 +2827,7 @@ function createAppEventHandler(stack, options) {
       });
     }
     if (options.onAfterResponse) {
+      event._onAfterResponseCalled = true;
       await options.onAfterResponse(event, void 0);
     }
   });
@@ -3087,6 +3073,7 @@ function toNodeListener(app) {
       if (!isError(_error)) {
         error.unhandled = true;
       }
+      setResponseStatus(event, error.statusCode, error.statusMessage);
       if (app.options.onError) {
         await app.options.onError(error, event);
       }
@@ -3096,7 +3083,13 @@ function toNodeListener(app) {
       if (error.unhandled || error.fatal) {
         console.error("[h3]", error.fatal ? "[fatal]" : "[unhandled]", error);
       }
+      if (app.options.onBeforeResponse && !event._onBeforeResponseCalled) {
+        await app.options.onBeforeResponse(event, { body: error });
+      }
       await sendError(event, error, !!app.options.debug);
+      if (app.options.onAfterResponse && !event._onAfterResponseCalled) {
+        await app.options.onAfterResponse(event, { body: error });
+      }
     }
   };
   return toNodeHandle;
@@ -3769,7 +3762,7 @@ function isUppercase(char = "") {
   return char !== char.toLowerCase();
 }
 function splitByCase(str, separators) {
-  const splitters = separators ?? STR_SPLITTERS;
+  const splitters = STR_SPLITTERS;
   const parts = [];
   if (!str || typeof str !== "string") {
     return parts;
@@ -3809,7 +3802,7 @@ function splitByCase(str, separators) {
   return parts;
 }
 function kebabCase(str, joiner) {
-  return str ? (Array.isArray(str) ? str : splitByCase(str)).map((p) => p.toLowerCase()).join(joiner ?? "-") : "";
+  return str ? (Array.isArray(str) ? str : splitByCase(str)).map((p) => p.toLowerCase()).join(joiner ) : "";
 }
 function snakeCase(str) {
   return kebabCase(str || "", "_");
@@ -3854,9 +3847,7 @@ function _expandFromEnv(value) {
 }
 
 const inlineAppConfig = {
-  "nuxt": {
-    "buildId": "fc8773ea-381c-4044-a72e-33241f4c1681"
-  }
+  "nuxt": {}
 };
 
 
@@ -3866,6 +3857,7 @@ const appConfig = defuFn(inlineAppConfig);
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
+    "buildId": "1e9a0190-6387-4615-9bea-f96fed1442e6",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -3954,7 +3946,13 @@ const _inlineRuntimeConfig = {
         "autoImportTranslationFunctions": false
       }
     },
-    "aos": {}
+    "aos": {},
+    "socialShare": {
+      "baseUrl": "https://www.dansavanh.net",
+      "styled": false,
+      "label": true,
+      "icon": true
+    }
   }
 };
 const envOptions = {
@@ -4700,7 +4698,7 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('data', unstorage_47drivers_47fs_45lite({"driver":"fsLite","base":"C:\\Users\\MSII\\Desktop\\pj\\dansavanh\\.data\\kv"}));
+storage.mount('data', unstorage_47drivers_47fs_45lite({"driver":"fsLite","base":"C:\\Users\\LENOVO\\Desktop\\108\\dansavanh\\.data\\kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -4920,6 +4918,9 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions) {
         fetch: globalThis.$fetch
       });
       event.context = incomingEvent.context;
+      event.context.cache = {
+        options: _opts
+      };
       const body = await handler(event) || _resSendBody;
       const headers = event.node.res.getHeaders();
       headers.etag = String(
@@ -5183,11 +5184,11 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const _lazy_PbIzY0 = () => import('./routes/renderer.mjs');
+const _lazy_azo8a7 = () => import('./routes/renderer.mjs');
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_PbIzY0, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_PbIzY0, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_error', handler: _lazy_azo8a7, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_azo8a7, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -5324,5 +5325,5 @@ const vercel = (function(req, res) {
   return handler(req, res);
 });
 
-export { send as a, setResponseStatus as b, setResponseHeaders as c, useRuntimeConfig as d, eventHandler as e, getQuery as f, getResponseStatus as g, createError$1 as h, getRouteRules as i, joinRelativeURL as j, getResponseStatusText as k, setResponseHeader as s, useNitroApp as u, vercel as v };
+export { send as a, setResponseStatus as b, setResponseHeaders as c, useNitroApp as d, eventHandler as e, getQuery as f, getResponseStatus as g, createError$1 as h, getRouteRules as i, joinRelativeURL as j, getResponseStatusText as k, setResponseHeader as s, useRuntimeConfig as u, vercel as v };
 //# sourceMappingURL=runtime.mjs.map

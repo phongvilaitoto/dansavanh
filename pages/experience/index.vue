@@ -1,8 +1,8 @@
 <template>
-    <HeaderTitle
-  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/28091e24-afc4-49ab-ad63-b1d137ec940e.jpg"
-  :title="$t('sportAndActivities')"
-  :caption="$t('dActivities')"
+  <HeaderTitle
+    img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/28091e24-afc4-49ab-ad63-b1d137ec940e.jpg"
+    :title="$t('sportAndActivities')"
+    :caption="$t('dActivities')"
   />
   <!-- <a-layout>
     <div class="cover">
@@ -30,12 +30,8 @@
   </a-layout> -->
   <a-layout-content class="layout" style="padding: 20px 0">
     <a-row justify="center">
-
       <a-col :span="24" style="text-align: center; justify-content: center">
-        <h2 class="headerTitle text-uppercase"
-        
-          >{{$t('tonsOfActivities')}}</h2
-        >
+        <h2 class="headerTitle text-uppercase">{{ $t("tonsOfActivities") }}</h2>
       </a-col>
       <a-col
         :span="24"
@@ -46,12 +42,8 @@
           gap: 10px;
         "
       >
-        <p
-    class="headerT2 text-black"
-          > {{ $t('fromSport') }}</p
-        >
+        <p class="headerT2 text-black">{{ $t("fromSport") }}</p>
       </a-col>
-
 
       <!-- <a-col :span="20">
         <h2 style="color: #000;  text-align: center; margin: 0; padding: 50px 0 50px"> {{$t('tonsOfActivities')}}</h2>
@@ -62,9 +54,15 @@
         </p>
       </a-col> -->
 
-
-      <a-col :span="24" style="align-content: center; justify-content: center; display: flex">
-        <img src="/assets/image/decoration-1.png" alt="" :style="{ height: '50px', display: 'block' }" />
+      <a-col
+        :span="24"
+        style="align-content: center; justify-content: center; display: flex"
+      >
+        <img
+          src="/assets/image/decoration-1.png"
+          alt=""
+          :style="{ height: '50px', display: 'block' }"
+        />
       </a-col>
     </a-row>
     <div class="blog max-width">
@@ -87,62 +85,70 @@
         </a-col> 
       </a-row>
       <br> -->
-      <a-row :class="isOddFunc(idx) ? 'bg-right' : 'bg-left'"
-      v-for="(i, idx) in blogs"
+      <a-row
+        :class="isOddFunc(idx) ? 'bg-right' : 'bg-left'"
+        v-for="(i, idx) in blogs"
       >
-        <a-col :md="12" :lg="14" class="bg vte"
-        :style="`background-image: url('${i.img}')`"
+        <a-col
+          :md="12"
+          :lg="14"
+          class="bg vte"
+          :style="`background-image: url('${i.img}')`"
         ></a-col>
         <a-col :md="12" :lg="10" class="text-container">
           <div class="text-box">
-            <h1>{{i.titles[selectedIdx]}}</h1>
+            <h1>{{ i.titles[selectedIdx] }}</h1>
             <p>
               {{ i.captions[selectedIdx] }}
             </p>
-            <button class="btn btn-2 hover-slide-up"
-            @click="$router.push(localePath('/experience') + '/' + i._id)"
+            <button
+              class="btn btn-2 hover-slide-up"
+              @click="$router.push(localePath('/experience') + '/' + i._id)"
             >
-        <span>{{$t('discoverMore')}}</span>
-      </button>
+              <span>{{ $t("discoverMore") }}</span>
+            </button>
           </div>
         </a-col>
       </a-row>
-
-
-
-     
     </div>
     <div class="line-header">
       <span>GALLERY</span>
-      <img src="/assets/image/decoration-1.png" alt="" :style="{ height: '40px', display: 'block' }" />
+      <img
+        src="/assets/image/decoration-1.png"
+        alt=""
+        :style="{ height: '40px', display: 'block' }"
+      />
     </div>
-    <a-row justify="center" >
-      <Gallery :galleries="main.experienceGalleries"/>
+    <a-row justify="center">
+      <Gallery :galleries="main.experienceGalleries" />
     </a-row>
   </a-layout-content>
-
 </template>
 
 <script setup lang="ts">
-import Gallery from '@/components/gallery.vue'
+import Gallery from "@/components/gallery.vue";
 
+import { useMainStore } from "@/stores/mainStore";
+import { storeToRefs } from "pinia";
 
-import { useMainStore } from '@/stores/mainStore'
-import { storeToRefs } from 'pinia'
+const config = useRuntimeConfig();
 
-const config = useRuntimeConfig()
+const store = useMainStore();
+const { isOddFunc } = store;
+const { selectedIdx, main } = storeToRefs(store);
 
-const store = useMainStore()
-const {isOddFunc} = store
-const {selectedIdx, main} = storeToRefs(store)
+const localePath = useLocalePath();
 
-const localePath = useLocalePath()
+const blogs = ref<any>([]);
 
-const blogs = ref<any>([])
-
-const { data }: any = await useFetch(config.public.apiBase + '/getDBlogs?type=Experience')
-blogs.value = data.value.dBlogs
-
+const { data }: any = await useFetch(
+  config.public.apiBase + "/getDBlogs?type=Experience"
+);
+blogs.value = data.value.dBlogs;
+useHead({
+  title: "Experience",
+  meta: [{ name: "description", content: "Experience" }],
+});
 </script>
 
 <style scoped lang="scss">
@@ -158,7 +164,7 @@ blogs.value = data.value.dBlogs
   /* border: 10px solid red; */
   span {
     /* display: block; */
-   // font-family: var(--font-family);
+    font-family: "Playfair Display", serif;
     font-size: 70px;
     position: absolute;
     top: 24px;
@@ -171,23 +177,9 @@ blogs.value = data.value.dBlogs
     -ms-pointer-events: none;
     -o-pointer-events: none;
     opacity: 0.03;
+    font-family: "Playfair Display", serif;
   }
 }
-
-// .t1 {
-//   // font-size: 42px;
-//   font-family: var(--font-family);
-//   font-weight: 700;
-//   line-height: 1em;
-
-//   @media only screen and (min-width : 320px) {
-//     font-size: 45px;
-//   }
-
-//   @media only screen and (min-width: 576px) {
-//     font-size: 82px;
-//   }
-// }
 
 .cover {
   background-image: url("/assets/image/experience/activity2.jpg");
@@ -202,8 +194,8 @@ blogs.value = data.value.dBlogs
   // min-height: 320px;
   height: 100%;
 
-  background-position: center bottom!important;
-//background-position: center center;
+  background-position: center bottom !important;
+  //background-position: center center;
   // @media only screen and (min-width : 768px) {
   //   height: 400px;
   // }
@@ -220,7 +212,6 @@ blogs.value = data.value.dBlogs
     z-index: 0;
     background-color: #000;
     background-color: rgba(0, 0, 0, 0.3);
-
   }
 }
 
@@ -231,6 +222,7 @@ blogs.value = data.value.dBlogs
 
   .bg-left,
   .bg-right {
+    background-color: #fff;
     .bg {
       background-color: #6e6e6e;
       background-image: url("https://storage.googleapis.com/dsv-bucket/dvs-gallery/28.jpeg");
@@ -242,9 +234,7 @@ blogs.value = data.value.dBlogs
       width: 100%;
       max-width: 100%;
       height: 100%;
-      
     }
-
 
     .text-container {
       display: flex;
@@ -282,7 +272,7 @@ blogs.value = data.value.dBlogs
     font-weight: 700;
     margin: 20px 0;
     margin-top: 0 !important;
-   //font-family: var(--font-family);
+    //font-family: var(--font-family);
     text-transform: uppercase;
   }
 

@@ -1,39 +1,17 @@
 <template>
   <HeaderTitle
-  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/246eab63-3b9f-4118-a876-94bc2a075f59.jpg"
-  :title="$t('ourResortsCasino')"
-  :caption="$t('aMagicPlace')"
+    img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/246eab63-3b9f-4118-a876-94bc2a075f59.jpg"
+    :title="$t('ourResortsCasino')"
+    :caption="$t('aMagicPlace')"
   />
-  <!-- <a-layout>
-    <div class="cover">
-      <div class="bg-cover"></div>
-      <a-row justify="center" style="
-          padding-top: 180px;
-          padding-bottom: 62px;
-          text-align: center;
-          background-color: transparent;
-        ">
-        <a-col :span="14">
-      <h5 class="headerT2">
-       {{$t('aMagicPlace')}}
-      </h5>
-      </a-col>
-      <a-col :xs="24" :sm="24" :md="24" :lg="12">
-           
-             <h1 class="headerT1">
-            {{$t('ourResortsCasino')}}
-            </h1>
-
-      </a-col>
-      </a-row>
-    </div>
-  </a-layout> -->
-
-
-  <a-layout-content style="padding: 20px 50px">
+  <a-layout-content style="padding: 20px 50px; margin-bottom: 20px">
     <div class="header">
       <span>CASINO</span>
-      <img src="/assets/image/decoration-1.png" alt="" :style="{ height: '50px', display: 'block' }" />
+      <img
+        src="/assets/image/decoration-1.png"
+        alt=""
+        :style="{ height: '50px', display: 'block' }"
+      />
     </div>
   </a-layout-content>
   <a-layout-content>
@@ -43,9 +21,9 @@
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>{{ $t('casinoTitle1') }}</h2>
+            <h2>{{ $t("casinoTitle1") }}</h2>
             <p>
-              {{ $t('casinoCaption1') }}
+              {{ $t("casinoCaption1") }}
             </p>
           </div>
         </a-col>
@@ -55,35 +33,33 @@
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>{{ $t('casinoTitle2') }}</h2>
+            <h2>{{ $t("casinoTitle2") }}</h2>
             <p>
-              {{ $t('casinoCaption2') }}
+              {{ $t("casinoCaption2") }}
             </p>
           </div>
         </a-col>
-
       </a-row>
       <a-row class="bg-left">
         <a-col :md="12" :lg="16" class="bg baccarat"></a-col>
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>{{ $t('casinoTitle3') }}</h2>
+            <h2>{{ $t("casinoTitle3") }}</h2>
             <p>
-              {{ $t('casinoCaption3') }}
+              {{ $t("casinoCaption3") }}
             </p>
           </div>
         </a-col>
       </a-row>
-      <a-row class="bg-right ">
-        <a-col :md="12" :lg="16" class="bg dragonTiger">
-        </a-col>
+      <a-row class="bg-right">
+        <a-col :md="12" :lg="16" class="bg dragonTiger"> </a-col>
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>{{ $t('casinoTitle4') }}</h2>
+            <h2>{{ $t("casinoTitle4") }}</h2>
             <p>
-              {{ $t('casinoCaption4') }}
+              {{ $t("casinoCaption4") }}
             </p>
           </div>
         </a-col>
@@ -93,24 +69,28 @@
         <a-col :md="12" :lg="8" class="text-container">
           <div class="text-box">
             <span>DANSAVANH & CASINO</span>
-            <h2>{{ $t('casinoTitle5') }}</h2>
+            <h2>{{ $t("casinoTitle5") }}</h2>
             <p>
-              {{ $t('casinoCaption5') }}
+              {{ $t("casinoCaption5") }}
             </p>
           </div>
         </a-col>
       </a-row>
     </div>
-    <br><br>
+    <br /><br />
   </a-layout-content>
 </template>
 
 <script setup lang="ts">
-import HeaderTitle from '@/components/HeaderTitle.vue'
+import HeaderTitle from "@/components/HeaderTitle.vue";
+
+useHead({
+  title: "Casino",
+  meta: [{ name: "description", content: "Casino" }],
+});
 </script>
 
 <style lang="scss" scoped>
-
 .cover {
   background-image: url("/assets/image/casino/casino-blackjack.jpg");
   background-attachment: fixed;
@@ -124,12 +104,7 @@ import HeaderTitle from '@/components/HeaderTitle.vue'
   // min-height: 320px;
   height: 100%;
 
-  background-position: center bottom!important;
-//background-position: center center;
-  // @media only screen and (min-width : 768px) {
-  //   height: 400px;
-  // }
-
+  background-position: center bottom !important;
   .bg-cover {
     display: block;
     content: "";
@@ -142,10 +117,8 @@ import HeaderTitle from '@/components/HeaderTitle.vue'
     z-index: 0;
     background-color: #000;
     background-color: rgba(0, 0, 0, 0.3);
-
   }
 }
-
 
 .header {
   display: flex;
@@ -158,7 +131,7 @@ import HeaderTitle from '@/components/HeaderTitle.vue'
   span {
     /* display: block; */
     // font-family: var(--font-family);
-    font-size: 140px;
+    font-size: 5rem;
     position: absolute;
     top: 24px;
     /* left: 0;
@@ -170,6 +143,7 @@ import HeaderTitle from '@/components/HeaderTitle.vue'
     -ms-pointer-events: none;
     -o-pointer-events: none;
     opacity: 0.03;
+    font-family: "Playfair Display", serif;
   }
 }
 
@@ -180,6 +154,7 @@ import HeaderTitle from '@/components/HeaderTitle.vue'
 
   .bg-left,
   .bg-right {
+    border-radius: 6px;
     .bg {
       background-repeat: no-repeat;
       background-position: center;
@@ -215,28 +190,6 @@ import HeaderTitle from '@/components/HeaderTitle.vue'
   }
 }
 
-/* .blog {
-  margin-top: 30px;
-  padding: 0 !important;
-
-  .bg{
-    background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      aspect-ratio: 16/9;
-      width: 100%;
-      max-width: 100%;
-      height: 100%;
-  }
-  .text-container{
-    display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: -4px;
-      right: 4%;
-      width: 100%;
-  }
-} */
 /* textbox  */
 .text-box {
   justify-self: center;
@@ -266,52 +219,6 @@ import HeaderTitle from '@/components/HeaderTitle.vue'
     margin-bottom: 24px;
   }
 }
-
-/* .left {
-      &.hasbg{
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      aspect-ratio: 16/9;
-      width: 100%;
-      max-width: 100%;
-      height: 100%;
-
-      }
-      &.hasTextBox{
-        display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 4px;
-      left: 12%;
-      width: 100%;
-      z-index: 999;
-      }
-    }
-    .right {
-      
-      &.hasbg{
-        padding: 10px;
-        background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      aspect-ratio: 16/9;
-      width: 100%;
-      height: 100%;
-      right: -8%;
-
-      }
-      &.hasTextBox{
-        display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: -4px;
-      right: 4%;
-      width: 100%;
-      }
-     
-     
-    } */
 
 /* box set up  */
 .blackjack {

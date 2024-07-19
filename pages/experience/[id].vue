@@ -1,13 +1,9 @@
 <template>
-
-   <ReuseBlog/>
-
+  <ReuseBlog />
 </template>
 
 <script lang="ts" setup>
-import ReuseBlog from '@/components/blogReuseComp.vue'
+import ReuseBlog from "@/components/blogReuseComp.vue";
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

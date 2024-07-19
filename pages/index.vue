@@ -1,60 +1,61 @@
 <template>
-
   <div>
     <Swiper />
-  <a-layout-content 
-  data-aos="fade-up"
-  class="content-container" :style="{background: '#F4F4F4', color:'#000'}">
-  <VideoPlayer 
-  style="margin-top: 30px"
-  video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"/>
-    <div  >
-      <Welcome />
-    </div>
-  </a-layout-content>
-  <a-layout-content  data-aos="slide-up"> 
-    <section class="has-background">
-    <div class="max-width" >
-      <HotelInfo  />
-      <br>
-    </div>
-    </section>
-  </a-layout-content>
-  <a-layout-content data-aos="fade-up">
-    <section>
-   <div class="content-container">
-   <div class="max-width" >
-    <News :isComp="true" />
+    <a-layout-content
+      data-aos="fade-up"
+      class="content-container"
+      :style="{ background: '#F4F4F4', color: '#000' }"
+    >
+      <div>
+        <Welcome />
+      </div>
+    </a-layout-content>
+    <a-layout-content data-aos="slide-up">
+      <section class="has-background">
+        <div class="max-width">
+          <HotelInfo />
+          <br />
+        </div>
+      </section>
+    </a-layout-content>
+    <a-layout-content data-aos="fade-up">
+      <section>
+        <div class="content-container">
+          <div class="max-width">
+            <News :isComp="true" />
 
-    <div class="text-center">
-      <button class="btn btn-2 hover-slide-up"
-            @click="$router.push(localePath('/news'))"
-            >
-        <span>{{$t('viewNews')}}</span>
-      </button>
-      <br><br>
-    </div>
-   </div>
-   </div>
-    </section>
-
-  </a-layout-content>
+            <div class="text-center">
+              <button
+                class="btn btn-2 hover-slide-up"
+                @click="$router.push(localePath('/news'))"
+              >
+                <span>{{ $t("viewNews") }}</span>
+              </button>
+              <br /><br />
+            </div>
+          </div>
+        </div>
+      </section>
+    </a-layout-content>
   </div>
 </template>
 
 <script setup lang="ts">
-import Welcome from '~/components/home/Welcome.vue';
-import HotelInfo from '~/components/home/HotelInfo.vue';
-import News from './news/index.vue';
-import Swiper from '@/components/home/Swiper.vue'
-import VideoPlayer from '~/components/VideoPlayer.vue';
+import Welcome from "~/components/home/Welcome.vue";
+import HotelInfo from "~/components/home/HotelInfo.vue";
+import News from "./news/index.vue";
+import Swiper from "@/components/home/Swiper.vue";
 
-const localePath = useLocalePath()
+const localePath = useLocalePath();
+
+// set header
+useHead({
+  title: "DANSAVANH",
+  meta: [{ name: "description", content: "DANSAVANH" }],
+});
 </script>
 
-
 <style scoped lang="scss">
-
 :deep(.slick-slide) {
   text-align: center;
   background: #364d79;
@@ -62,9 +63,9 @@ const localePath = useLocalePath()
   display: grid;
 }
 :deep(.slick-slide .slick-dots) {
-li{
-  border: 10px solid red !important;
-}
+  li {
+    border: 10px solid red !important;
+  }
 }
 :deep(.slick-slide .slide-container) {
   position: relative;
@@ -76,46 +77,36 @@ li{
   bottom: 24px;
   left: 0;
   right: 0;
-
 }
 :deep(.slick-slide img) {
- aspect-ratio: 16/6;
- width: 100%;
- /* height: 100%; */
- display: block;
- object-fit: cover;
+  aspect-ratio: 16/6;
+  width: 100%;
+  /* height: 100%; */
+  display: block;
+  object-fit: cover;
 }
 
-
-.content-container{
+.content-container {
   padding: 0 20px;
   padding-bottom: 20px;
   @media (min-width: 576px) {
     padding: 0 50px;
   }
 
-
-  @media only screen and (min-width :1068px) {
+  @media only screen and (min-width: 1068px) {
     padding: 0 50px 0 50px;
-    
   }
 
-
-
-  @media only screen and (max-width : 1067px) {
-   padding: 0 20px 0 20px;
+  @media only screen and (max-width: 1067px) {
+    padding: 0 20px 0 20px;
   }
-
 }
 
-
-
 /* section has background */
-.has-background{
+.has-background {
   padding: 1rem;
-  background-image: url('/assets/image/home/home-bg-1.jpg');
+  background-image: url("/assets/image/home/home-bg-1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 </style>

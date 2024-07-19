@@ -1,239 +1,81 @@
 <template>
-  
-<HotelReuseComp :hotel="main.hotels[1]"/>
-    <!-- <a-layout>
-      <div class="cover">
-        <div class="bg-cover"></div>
-        <a-row
-     
-          style="
-            padding-top: 180px;
-            padding-bottom: 50px;
-            text-align:center;
-            justify-content: center;
-            background-color: transparent;
-          "
-        >
-          <a-col :span="22">
+  <HotelReuseComp :hotel="main.hotels[1]" />
+</template>
 
-            <h1 class="headerT1" style="font-size: 45px">
-            {{$t('DANSAVANH GOLF & COUNTRY CLUB')}}
-            </h1>
-          </a-col>
-        </a-row>
-      </div>
-    </a-layout>
+<script setup lang="ts">
+import HotelReuseComp from "@/components/hotelReuseComp.vue";
 
-    <a-layout-content style="padding-bottom: 20px">
-      <a-row justify="center">
-        <a-col :span="14">
-          <hr style="border: 0; margin-top: 24px; border-top: 1px solid #eee" />
-        </a-col>
-        <a-col :span="16" style="text-align: center">
-          <p style="font-size: 19px; font-weight: 300; margin-top: 24px">
-            Well known for its kind of view that blends the art of green fairways enclosed with forest of pines at elevations. Enjoy a business meeting leisurely accompanied by chirping birds and excellent entertainment facilities, a hard to come by venue for golfers.
-          </p>
-        </a-col>
-        <a-col
-          :span="24"
-          style="align-content: center; justify-content: center; display: flex"
-        >
-          <img
-            src="/assets/image/decoration-1.png"
-            alt=""
-            :style="{ height: '50px', display: 'block' }"
-          />
-        </a-col>
-      </a-row>
-      <div class="blog" >
-      <a-row class="bg-left">
-        <a-col :md="12" :lg="16" class="bg numngum"></a-col>
-        <a-col :md="12" :lg="8" class="text-container">
-          <div class="text-box">
-            <span>DANSAVANH & GOLF</span>
-            <h2>OUTSTANDING GOLF COURSE</h2>
-            <p>
-              More than a thousand feet above sea level , an internationally recognised natural quality golf course in Laos PDR. A championship track that could tire you off even on cart and we trust that you will want to challenge more than once.
-            </p>
-            
-          </div>
-        </a-col>
-      </a-row>
-      <a-row class="bg-right">
-        <a-col :md="12" :lg="16" class="bg vte"></a-col>
-        <a-col :md="12" :lg="8" class="text-container">
-          <div class="text-box">
-            <span>DANSAVANH & GOLF</span>
-            <h2>GOLF CLUB FACILITIES</h2>
-            <p>
-              Beneath the magnificent nature view, restaurants and entertainment facilities are available round the clock. Try your luck at CLUB 20 over a glass of beer or watching live sports matches on big screen is just as awesome.
-            </p>
-            
-          </div>
-        </a-col>
-      </a-row>
-      <a-row class="bg-left">
-        <a-col :md="12" :lg="16" class="bg golf"></a-col>
-        <a-col :md="12" :lg="8" class="text-container">
-          <div class="text-box">
-            <span>DANSAVANH & GOLF</span>
-            <h2>MAINTAINED FIELDS</h2>
-            <p>
-              Freshness in the air or smoothness on the green, this is just the ideal getaway for all golfers.
-            </p>
-          </div>
-        </a-col>
-      </a-row>
-    </div>
-      <div class="line-header">
-        <span>ROOM </span>
-        <img
-          src="/assets/image/decoration-1.png"
-          alt=""
-          :style="{ height: '50px', display: 'block' }"
-        />
-      </div>
-      <div class="content-container">
-        
+import { useMainStore } from "@/stores/mainStore";
+import { storeToRefs } from "pinia";
 
+const { main, selectedIdx } = storeToRefs(useMainStore());
+</script>
 
-
-        <a-row>
-
-          <div class="max-width">
-          
-      <a-col v-for="i in 3" >
-        <a-row 
-      @click="router.push('/offer/5f6da3a70215d?i=OFFER ' + i)"
-      class="room-container">
-        <a-col :xs="24" :sm="24" :lg="14" class="room-cover"></a-col>
-        <a-col :xs="24" :sm="24" :lg="10" class="room-info">
-          <div class="text-box">
-            <h2>STANDARD ROOM {{ i }}</h2>
-            
-            <p>
-         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet autem eius animi laudantium consectetur quisquam, consequuntur, cum illum itaque qui omnis quas laboriosam minus. Ratione, velit necessitatibus? Laboriosam, cum voluptate?
-              
-              <br><br><p class="details">
-
-              <a-popover placement="bottom">
-                <template #content class="popOver">
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <DesktopOutlined />
-                </a-button>
-              </a-popover>
-              <a-popover placement="bottom">
-                <template #content>
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <WifiOutlined />
-                </a-button>
-              </a-popover>
-              <a-popover placement="bottom">
-                <template #content>
-                  <p>Content</p>
-                </template>
-                <a-button class="circle-hover">
-                  <CoffeeOutlined />
-                </a-button>
-              </a-popover>
-            </p>
-            </p>
-            <a-button @click="router.push('/contact')" class="view-button text-uppercase bg-white"> Contact </a-button>
-          </div>
-        </a-col>
-      </a-row>
-      </a-col>
-
-      </div>
-      </a-row>
-       
-      </div>
-    </a-layout-content> -->
-  </template>
-  
-  <script setup lang="ts">
-  import HotelReuseComp from '@/components/hotelReuseComp.vue'
-
-  import { useMainStore } from '@/stores/mainStore'
-import { storeToRefs } from 'pinia'
-
-const {main, selectedIdx} = storeToRefs(useMainStore())
-
-
-  
-  </script>
-
-  <style scoped lang="scss">
-  .line-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-top: 30px;
-    min-height: 60px;
-    /* border: 10px solid red; */
-    span {
-      /* display: block; */
-      font-family: var(--font-family);
-      font-size: 70px;
-      position: absolute;
-      top: 24px;
-      /* left: 0;
-    right: 0; */
-      line-height: 0 !important;
-      pointer-events: none;
-      -webkit-pointer-events: none;
-      -moz-pointer-events: none;
-      -ms-pointer-events: none;
-      -o-pointer-events: none;
-      opacity: 0.03;
-    }
-  }
-
-
-  a {
-    color: #000;
-  }
-
-  
-  .t1 {
-    margin-top: 50px;
-    font-size: 41px;
+<style scoped lang="scss">
+.line-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 30px;
+  min-height: 60px;
+  /* border: 10px solid red; */
+  span {
+    /* display: block; */
     font-family: var(--font-family);
-    font-weight: 700;
+    font-size: 70px;
+    position: absolute;
+    top: 24px;
+    /* left: 0;
+    right: 0; */
+    line-height: 0 !important;
+    pointer-events: none;
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    opacity: 0.03;
   }
-  .cover {
-    background-image: url("/assets/image/hotels/golf1.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    min-height: 320px;
-    /* max-height: 300px; */
-    .bg-cover{
-      display: block;
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      background-color: #000;
-      background-color: rgba(0, 0, 0, 0.3);
-    }
+}
+
+a {
+  color: #000;
+}
+
+.t1 {
+  margin-top: 50px;
+  font-size: 41px;
+  font-family: var(--font-family);
+  font-weight: 700;
+}
+.cover {
+  background-image: url("/assets/image/hotels/golf1.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 320px;
+  /* max-height: 300px; */
+  .bg-cover {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.3);
   }
-  
-  /* blog  */
-  .blog {
-    background-color: #f4f4f4 !important; 
-    margin-top: 20px;
+}
+
+/* blog  */
+.blog {
+  background-color: #f4f4f4 !important;
+  margin-top: 20px;
   padding: 0 !important;
 
   .bg-left,
@@ -288,7 +130,6 @@ const {main, selectedIdx} = storeToRefs(useMainStore())
   border-radius: 3px;
   @media (min-width: 576px) {
     padding: 48px;
-
   }
   span {
     font-size: 13px;
@@ -310,86 +151,77 @@ const {main, selectedIdx} = storeToRefs(useMainStore())
   }
 }
 
-  /* room  */
-  .room-container {
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-    .room-cover {
-      width: 100%;
-      .bg{
-        display: block;
-        aspect-ratio: 16/10;
-        background-color: #5e5e5e;
-
-      }
+/* room  */
+.room-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  .room-cover {
+    width: 100%;
+    .bg {
+      display: block;
+      aspect-ratio: 16/10;
+      background-color: #5e5e5e;
     }
-    /* @media (min-width: 576px) {
+  }
+  /* @media (min-width: 576px) {
       .room-info {  
         right: 5%;
        
       }
     } */
-    .room-info {
-      display: flex;
-      justify-content:center;
-      align-items: center;
-      width: 100%;
-      z-index: 999;
-      @media (min-width: 576px) {
-        justify-content:flex-start;
+  .room-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 999;
+    @media (min-width: 576px) {
+      justify-content: flex-start;
+    }
 
+    .text-box {
+      /* border: 1px solid red; */
+      justify-self: center;
+      background-color: #fff;
+      padding: 48px;
+      color: #000;
+      border-radius: 3px;
+      span {
+        font-size: 13px;
+        letter-spacing: 5px;
+        opacity: 0.7;
+        display: block;
       }
-
-      
-      .text-box {
-        /* border: 1px solid red; */
-        justify-self: center;
-        background-color: #fff;
-        padding: 48px;
-        color: #000;
-        border-radius: 3px;
-        span {
-          font-size: 13px;
-          letter-spacing: 5px;
-          opacity: 0.7;
-          display: block;
-        }
-        h2 {
-          font-weight: 700;
-          margin: 20px 0;
-          margin-top: 0 !important;
-          font-family: var(--font-family);
-          text-transform: uppercase;
-        }
-        p {
-          font-weight: 200;
-          font-size: 16px;
-          margin-bottom: 24px;
-        }
+      h2 {
+        font-weight: 700;
+        margin: 20px 0;
+        margin-top: 0 !important;
+        font-family: var(--font-family);
+        text-transform: uppercase;
+      }
+      p {
+        font-weight: 200;
+        font-size: 16px;
+        margin-bottom: 24px;
       }
     }
   }
-  
-  
-  /* hover pop  */
-  .details{
-    display: flex;
-    gap: 10px;
-    .circle-hover{
-      color: #6e6e6e;
-      background-color: #fff;
-      box-shadow: inset 0 0 0 2px #ffd4
+}
+
+/* hover pop  */
+.details {
+  display: flex;
+  gap: 10px;
+  .circle-hover {
+    color: #6e6e6e;
+    background-color: #fff;
+    box-shadow: inset 0 0 0 2px #ffd4;
   }
-  }
+}
+</style>
 
-  </style>
-  
-
-  <style lang="scss" scoped>
-  
-
-
+<style lang="scss" scoped>
 /* room  */
 .room-container {
   margin-bottom: 30px;
@@ -425,7 +257,7 @@ const {main, selectedIdx} = storeToRefs(useMainStore())
       border-radius: 3px;
       @media (min-width: 576px) {
         padding: 48px;
-  }
+      }
       span {
         font-size: 13px;
         letter-spacing: 5px;
@@ -436,7 +268,7 @@ const {main, selectedIdx} = storeToRefs(useMainStore())
         font-weight: 700;
         margin: 20px 0;
         margin-top: 0 !important;
-       
+
         text-transform: uppercase;
       }
       p {
@@ -447,6 +279,4 @@ const {main, selectedIdx} = storeToRefs(useMainStore())
     }
   }
 }
-
-  </style>
-  
+</style>

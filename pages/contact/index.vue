@@ -1,80 +1,41 @@
 <template>
-        <HeaderTitle2
-  img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/8d8c4bf8-8796-481c-ab80-adc67f98c6b0.jpg"
-  :title="$t('contactTitle')"
-  :caption="$t('contactSubTitle')"
+  <HeaderTitle2
+    img="https://storage.googleapis.com/dsv-bucket/imgs/imgs/8d8c4bf8-8796-481c-ab80-adc67f98c6b0.jpg"
+    :title="$t('contactTitle')"
+    :caption="$t('contactSubTitle')"
   />
-  <!-- <a-layout>
-    <div class="cover">
-      <div class="bg-cover"></div>
-      <a-row
-      
-        style="
-        padding-top: 160px;
-            padding-bottom: 50px;
-            text-align:left;
-            justify-content: center;
-            background-color: transparent;
-        "
-      >
-        <a-col :span="22">
-
-          <h1 class="headerT1" style="font-size: 65px">
-            {{$t('contactTitle')}}
-            </h1>
-    <a-typography-title class="t1">CONTACT</a-typography-title> 
-        </a-col>
-        <a-col :span="22">
-          <h5 class="headerT2" style="margin-top: -20px">
-       {{$t('contactSubTitle')}}
-      </h5>
-        </a-col>
-      </a-row>
-    </div>
-  </a-layout> -->
-  <a-layout-content class="
-  max-width
-  content-container">
-  
-
+  <a-layout-content class="max-width content-container">
     <a-row justify="end" style="margin-top: 50px">
-
-      <a-col
-        :span="24"
-      
-      >
-
-      <div style="margin: 2rem 0 2rem">
-          <span style="cursor: pointer" @click="$router.push(localePath('/'))">HOME</span> 
-          <span style="margin: 0 10px 0 10px;color: #A9A9A9;">/</span> 
-          <span style="color: #A9A9A9;">CONTACT</span>
+      <a-col :span="24">
+        <div style="margin: 2rem 0 2rem">
+          <span style="cursor: pointer" @click="$router.push(localePath('/'))"
+            >HOME</span
+          >
+          <span style="margin: 0 10px 0 10px; color: #a9a9a9">/</span>
+          <span style="color: #a9a9a9">CONTACT</span>
         </div>
-
       </a-col>
       <a-col>
-        <a
-         
-         href="https://www.facebook.com/casino.dansavanh"
-         target="_blank"
-       >
-         <img src="assets/image/contact/fb2.png" alt=""></a>
+        <a href="https://www.facebook.com/casino.dansavanh" target="_blank">
+          <img src="assets/image/contact/fb2.png" alt=""
+        /></a>
       </a-col>
     </a-row>
 
-    <div :style="{  minHeight: '280px' }">
+    <div :style="{ minHeight: '280px' }">
       <!-- map  -->
       <a-row>
         <a-col :span="24" class="map-container">
-        <h3>{{$t('clickOnMarker')}}</h3>
+          <h3>{{ $t("clickOnMarker") }}</h3>
           <GmapVue />
         </a-col>
       </a-row>
       <a-row>
         <a-col :lg="24" class="contact-container">
           <div class="text-box">
-            <h3 style="margin-bottom: 15px">{{$t('dLocation')}}</h3>
-            <h4 style="margin-bottom: 15px">{{$t('gettingHere')}}</h4>
-            <p  style="text-align: center">
+            <h3 style="margin-bottom: 15px">{{ $t("dLocation") }}</h3>
+            <h4 style="margin-bottom: 15px">{{ $t("gettingHere") }}</h4>
+            <p style="text-align: center">
               Wattay Airport – Look out for Dansavanh Meet & Greet counter at
               the arrival hall.
               <br />
@@ -91,9 +52,11 @@
               A private limousine can be arranged via VIP hotline<br />
             </p>
             <p style="text-align: center">
-              Please <a href="https://wa.me/8562052241111" target="_blank"
+              Please
+              <a href="https://wa.me/8562052241111" target="_blank"
                 ><b>click here</b></a
-              > to contact us on WhatsApp:&nbsp;<span
+              >
+              to contact us on WhatsApp:&nbsp;<span
                 style="font-family: Calibri, sans-serif; font-size: 11pt"
                 ><a href="https://wa.me/8562052241111" target="_blank"
                   ><b>+8562052241111</b></a
@@ -122,186 +85,143 @@
           </div>
         </a-col>
       </a-row>
-      <a-row justify="center" :gutter="20" >
-        <a-col :sm="24" :md="12" :lg="8" >
+      <a-row justify="center" :gutter="20">
+        <a-col :sm="24" :md="12" :lg="8">
           <div class="icon_block">
-          <CarOutlined class="icon" />
-          <h4 style="font-weight: 700">{{$t('shuttleBus')}}</h4>
-          <img class="img" src="/assets/image/contact/bus2.png" />
-          </div>
-        </a-col>
-        <a-col :sm="24" :md="12" :lg="8" >
-          <div class="icon_block">
-          <PhoneOutlined class="icon" />
-          <h4 style="font-weight: 700">{{$t('tel')}}</h4>
-          <p style="font-weight: 600 !important; font-size: 16px;">
-            {{ $t('telInfo') }}<br /><br />
-            <span class="nmr">{{ $t('tel1') }}:</span>
-            <span class="nmr2">+856 21 217 595</span><br />
-            <span class="nmr">{{ $t('tel2') }}:</span>
-            <span class="nmr2">+856 20 5827 5555</span><br />
-            <span class="nmr">{{ $t('tel3') }}:</span>
-            <span class="nmr2">+6684-604-0827</span>
-          </p>
+            <CarOutlined class="icon" />
+            <h4 style="font-weight: 700">{{ $t("shuttleBus") }}</h4>
+            <img class="img" src="/assets/image/contact/bus2.png" />
           </div>
         </a-col>
         <a-col :sm="24" :md="12" :lg="8">
-        <div class="icon_block">
-          <RedEnvelopeOutlined class="icon" />
-          <h4 style="font-weight: 700">{{ $t('email') }}</h4>
-          <p style="font-weight: 600 !important">
-            {{ $t('emailInfo') }}<br /><br />
-            info@dansavanh.net
-          </p>
-        </div>
-          
+          <div class="icon_block">
+            <PhoneOutlined class="icon" />
+            <h4 style="font-weight: 700">{{ $t("tel") }}</h4>
+            <p style="font-weight: 600 !important; font-size: 16px">
+              {{ $t("telInfo") }}<br /><br />
+              <span class="nmr">{{ $t("tel1") }}:</span>
+              <span class="nmr2">+856 21 217 595</span><br />
+              <span class="nmr">{{ $t("tel2") }}:</span>
+              <span class="nmr2">+856 20 5827 5555</span><br />
+              <span class="nmr">{{ $t("tel3") }}:</span>
+              <span class="nmr2">+6684-604-0827</span>
+            </p>
+          </div>
+        </a-col>
+        <a-col :sm="24" :md="12" :lg="8">
+          <div class="icon_block">
+            <RedEnvelopeOutlined class="icon" />
+            <h4 style="font-weight: 700">{{ $t("email") }}</h4>
+            <p style="font-weight: 600 !important">
+              {{ $t("emailInfo") }}<br /><br />
+              info@dansavanh.net
+            </p>
+          </div>
         </a-col>
       </a-row>
-      <!-- <div class="line-header">
-        <h2>CONTACT FORM </h2>
-        <img
-          src="/assets/image/decoration-1.png"
-          alt=""
-          :style="{ height: '50px', display: 'block' }"
-        />
-      </div> -->
     </div>
   </a-layout-content>
-  <a-row justify="center"  style="background: white; padding: 100px 20px 100px 20px">
-    
-  <a-col>
-    <div class="text-center" style="max-width: 750px; margin: auto">
-      <h1 class="text-bold" style="font-size: 40px">{{$t('contactForm')}}</h1>
-    <p style="font-size: 20px; " class="text-thin">{{$t('contactFormCaption')}}</p>
-
-     <img style="width: 200px; margin: 30px 0 30px" src="/assets/image/decoration-1.png" alt="" />
-    </div>
-    
-    <form @submit.prevent="submit">
-      <input required v-model="formState.user.name" type="text" class="input" :placeholder="$t('formName')"/>
-      <input required v-model="formState.user.phone" type="text" class="input" :placeholder="$t('formPhone')"/>
-      <input required v-model="formState.user.email" type="email" class="input" :placeholder="$t('formEmail')"/>
-      <textarea required v-model="formState.user.message" type="text" class="input" rows="6" :placeholder="$t('formMessage')"/>
-      <div class="text-center">
-        <button 
-       
-        class="btn btn-2 hover-slide-up "
-          
-            type="submit"
-            >
-        <span>{{$t('formSubmit')}}</span>
-      </button>
-      </div>
-    </form>
-  </a-col>
-    
-  </a-row>
-  <!-- <a-layout-content style="background-color: #fff; padding: 1rem">
-    <a-row>
-      <a-col :span="24" style="text-align: center">
-        <a-typography-title
-          style="
-            font-family: var(--font-family) !important;
-            text-transform: uppercase;
-          "
-          >Contact form</a-typography-title
-        >
-        <p>
-          You can still contact us, right here - right now. Use this contact
-          form to send an e-mail. Usually we respond in 1 business day.
-        </p>
-        <img style="width: 200px" src="/assets/image/decoration-1.png" alt="" />
-      </a-col>
-    </a-row>
-    <a-row class="content-container" justify="center">
-      <a-col
-        :span="18"
-        :lg="{ offset: 6 }"
-        :md="{ offset: 6 }"
-        :sm="{ offset: 3, span: 24 }"
-        :xs="{ offset: 0, span: 24 }"
-      >
-        <div>
-          <a-form
-            :model="formState"
-            v-bind="layout"
-            name="nest-messages"
-            :validate-messages="validateMessages"
-            @finish="onFinish"
-          >
-            <a-form-item :name="['user', 'name']" :rules="[{ required: true }]">
-              <a-input v-model:value="formState.user.name" placeholder="Name" />
-            </a-form-item>
-            <a-form-item
-              :name="['user', 'phone']"
-              :rules="[
-                {
-                  required: true,
-                  min: 8,
-                  message: 'Please enter a valid phone number!',
-                },
-              ]"
-            >
-              <a-input
-                v-model:value="formState.user.phone"
-                placeholder="phone number"
-              />
-            </a-form-item>
-            <a-form-item :name="['user', 'email']" :rules="[{ type: 'email' }]">
-              <a-input
-                v-model:value="formState.user.email"
-                placeholder="Email"
-              />
-            </a-form-item>
-
-            <a-form-item :name="['user', 'message']">
-              <a-textarea
-                v-model:value="formState.user.message"
-                placeholder="Message"
-              />
-            </a-form-item>
-            <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">
-              <a-button type="primary" html-type="submit">Submit</a-button>
-            </a-form-item>
-          </a-form>
-        </div>
-      </a-col>
-    </a-row>
-  </a-layout-content> -->
-  <a-layout-content>
-    <a-row class="content-container subscription "
+  <a-row
     justify="center"
-    
-     style="height: 450px;">
-      <a-col :span="24">
-       <div class="text-center">
-        <h1 class="text-white" style="font-size: 40px">{{$t('newsLetter')}}</h1>
-        <p class=" text-white " style="font-size: 20px">
-          {{$t('newsLetterCaption')}}
+    style="background: white; padding: 100px 20px 100px 20px"
+  >
+    <a-col>
+      <div class="text-center" style="max-width: 750px; margin: auto">
+        <h1 class="text-bold" style="font-size: 40px">
+          {{ $t("contactForm") }}
+        </h1>
+        <p style="font-size: 20px" class="text-thin">
+          {{ $t("contactFormCaption") }}
         </p>
-       </div>
+
+        <img
+          style="width: 200px; margin: 30px 0 30px"
+          src="/assets/image/decoration-1.png"
+          alt=""
+        />
+      </div>
+
+      <form @submit.prevent="submit">
+        <input
+          required
+          v-model="formState.user.name"
+          type="text"
+          class="input"
+          :placeholder="$t('formName')"
+        />
+        <input
+          required
+          v-model="formState.user.phone"
+          type="text"
+          class="input"
+          :placeholder="$t('formPhone')"
+        />
+        <input
+          required
+          v-model="formState.user.email"
+          type="email"
+          class="input"
+          :placeholder="$t('formEmail')"
+        />
+        <textarea
+          required
+          v-model="formState.user.message"
+          type="text"
+          class="input"
+          rows="6"
+          :placeholder="$t('formMessage')"
+        />
+        <div class="text-center">
+          <button class="btn btn-2 hover-slide-up" type="submit">
+            <span>{{ $t("formSubmit") }}</span>
+          </button>
+        </div>
+      </form>
+    </a-col>
+  </a-row>
+
+  <a-layout-content>
+    <a-row
+      class="content-container subscription"
+      justify="center"
+      style="height: 450px"
+    >
+      <a-col :span="24">
+        <div class="text-center">
+          <h1 class="text-white" style="font-size: 40px">
+            {{ $t("newsLetter") }}
+          </h1>
+          <p class="text-white" style="font-size: 20px">
+            {{ $t("newsLetterCaption") }}
+          </p>
+        </div>
       </a-col>
       <a-col :span="24">
         <!-- subscription form -->
         <form
-          class="subscrip-form "
-          style=" width: 100%"
-        @submit.prevent="submit"
+          class="subscrip-form"
+          style="width: 100%"
+          @submit.prevent="submit"
         >
-          <div class="input-container" style="max-width: 600px; margin: auto;">
-          <input required v-model="formState.subscriber.email" type="email" class="input" :placeholder="$t('newsLetterEmail')">
-          <button  class="btn btn-2 hover-slide-up mail-btn"
-            style="background: #6fb586; height: 55px;"
-           type="submit"
+          <div class="input-container" style="max-width: 600px; margin: auto">
+            <input
+              required
+              v-model="formState.subscriber.email"
+              type="email"
+              class="input"
+              :placeholder="$t('newsLetterEmail')"
+            />
+            <button
+              class="btn btn-2 hover-slide-up mail-btn"
+              style="background: #6fb586; height: 55px"
+              type="submit"
             >
-        <span>{{$t('newsLetterSubmit')}}</span>
-      </button>
+              <span>{{ $t("newsLetterSubmit") }}</span>
+            </button>
           </div>
         </form>
       </a-col>
-      
     </a-row>
-    
   </a-layout-content>
 </template>
 <script setup lang="ts">
@@ -309,33 +229,31 @@ import GmapVue from "~/components/contact/Gmap.vue";
 import type { UnwrapRef } from "vue";
 import type { Rule } from "ant-design-vue/es/form";
 import { reactive } from "vue";
-import { notification }  from 'ant-design-vue';
+import { notification } from "ant-design-vue";
 
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 
 const openNotificationWithIcon = (type: string) => {
-  const noti: any = notification
-  noti[type] ({
-        message: 'Thank you! Your email is sent.',
-        description:
-          'Thank you! Your email is sent.',
-      });
-    };
+  const noti: any = notification;
+  noti[type]({
+    message: "Thank you! Your email is sent.",
+    description: "Thank you! Your email is sent.",
+  });
+};
 
-
-    const submit = () => {
-      formState.user = {
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-      }
-      formState.subscriber = {
-        email: ''
-      }
-      openNotificationWithIcon('success')
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+const submit = () => {
+  formState.user = {
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  };
+  formState.subscriber = {
+    email: "",
+  };
+  openNotificationWithIcon("success");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
 const layout = {
   wrapperCol: { span: 16 },
@@ -371,6 +289,12 @@ const onFinish = (values: any) => {
 const onSubscribeFinish = (values: any) => {
   console.log("Success:", values);
 };
+
+// set header
+useHead({
+  title: "Contact",
+  meta: [{ name: "description", content: "Contact" }],
+});
 </script>
 
 <style scoped lang="scss">
@@ -397,7 +321,6 @@ p {
     color: #fff;
     text-align: center;
     h1 {
-   
       font-weight: 700;
       margin: 0;
     }
@@ -458,7 +381,6 @@ a {
   min-height: 320px;
   position: relative;
 
-  
   .bg-cover {
     display: block;
     content: "";
@@ -483,7 +405,6 @@ h4 {
   line-height: 1.1;
   text-transform: uppercase;
   margin-bottom: 12px;
-
 }
 
 h4 {
@@ -526,7 +447,6 @@ h4 {
     /* width: 100%; */
     display: block;
     max-width: 100%;
-
   }
   .nmr {
     font-size: 16px;

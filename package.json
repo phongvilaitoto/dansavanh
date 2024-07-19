@@ -18,6 +18,7 @@
   "devDependencies": {
     "@ant-design-vue/nuxt": "^1.4.1",
     "@nuxtjs/i18n": "^8.1.1",
+    "@stefanobartoletti/nuxt-social-share": "^1.0.0",
     "nuxt": "^3.9.3",
     "nuxt-aos": "^1.2.4",
     "nuxt-facebook-chat": "^1.0.5",
