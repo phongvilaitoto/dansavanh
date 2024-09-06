@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      apiBase: "https://server.dansavanh.net/client-api",
+      apiBase: "https://freedomain.h-game.co/client-api",
       //apiBase: 'http://localhost:4000/client-api',
     },
   },
