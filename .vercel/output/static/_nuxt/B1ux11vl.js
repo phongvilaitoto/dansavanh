@@ -1,0 +1,1 @@
+import{_ as o}from"./r63IUM8y.js";import{f as e,o as r,g as t}from"./DWpC7Mcx.js";import"./BsOELllo.js";import"./DjHQjyA4.js";const i=e({__name:"[id]",setup(a){return(_,m)=>(r(),t(o))}});export{i as default};

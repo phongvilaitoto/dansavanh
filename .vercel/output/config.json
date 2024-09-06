@@ -1,194 +1,8 @@
 {
   "version": 3,
   "overrides": {
-    "contact/index.html": {
-      "path": "contact"
-    },
-    "casino/index.html": {
-      "path": "casino"
-    },
-    "events/index.html": {
-      "path": "events"
-    },
-    "experience/index.html": {
-      "path": "experience"
-    },
-    "gallery/index.html": {
-      "path": "gallery"
-    },
-    "hotels/vientaine-hotel/index.html": {
-      "path": "hotels/vientaine-hotel"
-    },
-    "hotels/index.html": {
-      "path": "hotels"
-    },
-    "hotels/numngum/index.html": {
-      "path": "hotels/numngum"
-    },
-    "index-test/index.html": {
-      "path": "index-test"
-    },
-    "cn/index.html": {
-      "path": "cn"
-    },
-    "invesment-project/index.html": {
-      "path": "invesment-project"
-    },
-    "th/index.html": {
-      "path": "th"
-    },
-    "investment-project/index.html": {
-      "path": "investment-project"
-    },
-    "th/investment-project/index.html": {
-      "path": "th/investment-project"
-    },
-    "cn/invesment-project/index.html": {
-      "path": "cn/invesment-project"
-    },
-    "th/invesment-project/index.html": {
-      "path": "th/invesment-project"
-    },
-    "cn/investment-project/index.html": {
-      "path": "cn/investment-project"
-    },
     "index.html": {
       "path": ""
-    },
-    "th/hotels/golf/index.html": {
-      "path": "th/hotels/golf"
-    },
-    "cn/hotels/golf/index.html": {
-      "path": "cn/hotels/golf"
-    },
-    "more/career/index.html": {
-      "path": "more/career"
-    },
-    "cn/more/career/index.html": {
-      "path": "cn/more/career"
-    },
-    "th/more/career/index.html": {
-      "path": "th/more/career"
-    },
-    "cn/casino/index.html": {
-      "path": "cn/casino"
-    },
-    "th/casino/index.html": {
-      "path": "th/casino"
-    },
-    "cn/contact/index.html": {
-      "path": "cn/contact"
-    },
-    "cn/experience/index.html": {
-      "path": "cn/experience"
-    },
-    "th/contact/index.html": {
-      "path": "th/contact"
-    },
-    "cn/events/index.html": {
-      "path": "cn/events"
-    },
-    "th/events/index.html": {
-      "path": "th/events"
-    },
-    "th/experience/index.html": {
-      "path": "th/experience"
-    },
-    "th/gallery/index.html": {
-      "path": "th/gallery"
-    },
-    "hotels/golf/index.html": {
-      "path": "hotels/golf"
-    },
-    "th/index-test/index.html": {
-      "path": "th/index-test"
-    },
-    "cn/gallery/index.html": {
-      "path": "cn/gallery"
-    },
-    "th/hotels/vientaine-hotel/index.html": {
-      "path": "th/hotels/vientaine-hotel"
-    },
-    "th/hotels/numngum/index.html": {
-      "path": "th/hotels/numngum"
-    },
-    "cn/hotels/numngum/index.html": {
-      "path": "cn/hotels/numngum"
-    },
-    "cn/index-test/index.html": {
-      "path": "cn/index-test"
-    },
-    "cn/hotels/vientaine-hotel/index.html": {
-      "path": "cn/hotels/vientaine-hotel"
-    },
-    "more/news/index.html": {
-      "path": "more/news"
-    },
-    "cn/more/news/index.html": {
-      "path": "cn/more/news"
-    },
-    "cn/more/testimoniels/index.html": {
-      "path": "cn/more/testimoniels"
-    },
-    "more/testimoniels/index.html": {
-      "path": "more/testimoniels"
-    },
-    "th/more/testimoniels/index.html": {
-      "path": "th/more/testimoniels"
-    },
-    "th/more/news/index.html": {
-      "path": "th/more/news"
-    },
-    "th/hotels/index.html": {
-      "path": "th/hotels"
-    },
-    "cn/hotels/index.html": {
-      "path": "cn/hotels"
-    },
-    "new/index.html": {
-      "path": "new"
-    },
-    "near-by/index.html": {
-      "path": "near-by"
-    },
-    "cn/near-by/index.html": {
-      "path": "cn/near-by"
-    },
-    "th/near-by/index.html": {
-      "path": "th/near-by"
-    },
-    "th/new/index.html": {
-      "path": "th/new"
-    },
-    "cn/new/index.html": {
-      "path": "cn/new"
-    },
-    "news/index.html": {
-      "path": "news"
-    },
-    "th/news/index.html": {
-      "path": "th/news"
-    },
-    "cn/news/index.html": {
-      "path": "cn/news"
-    },
-    "offer/index.html": {
-      "path": "offer"
-    },
-    "tour-package/index.html": {
-      "path": "tour-package"
-    },
-    "th/offer/index.html": {
-      "path": "th/offer"
-    },
-    "cn/offer/index.html": {
-      "path": "cn/offer"
-    },
-    "th/tour-package/index.html": {
-      "path": "th/tour-package"
-    },
-    "cn/tour-package/index.html": {
-      "path": "cn/tour-package"
     }
   },
   "routes": [
@@ -233,6 +47,14 @@
     },
     {
       "handle": "filesystem"
+    },
+    {
+      "src": "/__nuxt_error",
+      "dest": "/__nitro"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/__nitro"
     }
   ]
 }
