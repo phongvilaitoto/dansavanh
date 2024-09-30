@@ -61,7 +61,7 @@
           font-family: 'Playfair Display', serif;
         "
       >
-        {{ $t("eventTitle") }} {{ swipy.realIndex + 1 }}
+        {{ main.home.imgsTitles[selectedIdx][swipy.realIndex] }}
       </p>
     </div>
   </div>

@@ -28,9 +28,10 @@
       </a-col>
     </a-row>
 
+
     <VideoPlayer
       style="margin: 30px 0"
-      video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+      :video=" main.home.video"
     />
 
     <!-- card  -->
