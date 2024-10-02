@@ -17,6 +17,8 @@ export default defineNuxtConfig({
   // },
 
 
+
+
   nitro: {
     preset: 'vercel-edge',
 
@@ -26,6 +28,10 @@ export default defineNuxtConfig({
       //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
     },
   },
+
+
+
+  
   app: {
     baseURL: "/",
     head: {
