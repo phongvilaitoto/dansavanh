@@ -2127,6 +2127,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@upstash/redis@npm:^1.34.0":
+  version: 1.34.1
+  resolution: "@upstash/redis@npm:1.34.1"
+  dependencies:
+    crypto-js: "npm:^4.2.0"
+  checksum: 10c0/55a7ff2d9494e47a235919f087bb1ee2d9ca228602ae5e30b85e3a4b4f2b20955ba2201bb89cc13746b9bf58f6b5fdfd44a7ca005bd5fc0f1e23856dec333d06
+  languageName: node
+  linkType: hard
+
+"@vercel/kv@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@vercel/kv@npm:3.0.0"
+  dependencies:
+    "@upstash/redis": "npm:^1.34.0"
+  checksum: 10c0/55c0e197967c21161ba7bbee02be821975d8e900f2ca3946c9bfaefa1cb5ce94f9ce04aef07aca027c8c39a5ab2e9a2b54edc5c6b617c994d2a8fddfd9d55dc8
+  languageName: node
+  linkType: hard
+
 "@vercel/nft@npm:^0.26.5":
   version: 0.26.5
   resolution: "@vercel/nft@npm:0.26.5"
@@ -3280,6 +3298,13 @@ __metadata:
     uWebSockets.js:
       optional: true
   checksum: 10c0/b950c64d36f3f11fdb8e0faf3107598660d89d77eb860e68b535fe6acba9f0f2f0507cc7250bd219a3ef2fe08718db91b591e6912b7324fcfc8fd1b8d9f78c96
+  languageName: node
+  linkType: hard
+
+"crypto-js@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "crypto-js@npm:4.2.0"
+  checksum: 10c0/8fbdf9d56f47aea0794ab87b0eb9833baf80b01a7c5c1b0edc7faf25f662fb69ab18dc2199e2afcac54670ff0cd9607a9045a3f7a80336cccd18d77a55b9fdf0
   languageName: node
   linkType: hard
 
@@ -5896,6 +5921,7 @@ __metadata:
     "@nuxtjs/i18n": "npm:^8.1.1"
     "@pinia/nuxt": "npm:^0.5.1"
     "@stefanobartoletti/nuxt-social-share": "npm:^1.0.0"
+    "@vercel/kv": "npm:^3.0.0"
     ant-design-vue: "npm:^4.1.1"
     nitropack: "npm:^2.8.1"
     nuxt: "npm:^3.9.3"

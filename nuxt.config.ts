@@ -17,17 +17,24 @@ export default defineNuxtConfig({
   // },
 
 
-
-
   nitro: {
-    preset: 'vercel-edge',
-
-    prerender: {
-      crawlLinks: true,
-      // routes: ['/sitemap.xml'],
-      //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
-    },
+    storage: {
+      data: {
+        driver: 'vercelKV'
+        /* Vercel KV driver options */
+      }
+    }
   },
+
+  // nitro: {
+  //   preset: 'vercel-edge',
+
+  //   prerender: {
+  //     crawlLinks: true,
+  //     // routes: ['/sitemap.xml'],
+  //     //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
+  //   },
+  // },
 
 
 
