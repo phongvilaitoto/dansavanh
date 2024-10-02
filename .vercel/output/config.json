@@ -3,6 +3,192 @@
   "overrides": {
     "index.html": {
       "path": ""
+    },
+    "offer/index.html": {
+      "path": "offer"
+    },
+    "experience/index.html": {
+      "path": "experience"
+    },
+    "contact/index.html": {
+      "path": "contact"
+    },
+    "cn/contact/index.html": {
+      "path": "cn/contact"
+    },
+    "th/contact/index.html": {
+      "path": "th/contact"
+    },
+    "th/events/index.html": {
+      "path": "th/events"
+    },
+    "cn/events/index.html": {
+      "path": "cn/events"
+    },
+    "events/index.html": {
+      "path": "events"
+    },
+    "th/offer/index.html": {
+      "path": "th/offer"
+    },
+    "new/index.html": {
+      "path": "new"
+    },
+    "casino/index.html": {
+      "path": "casino"
+    },
+    "cn/experience/index.html": {
+      "path": "cn/experience"
+    },
+    "hotels/golf/index.html": {
+      "path": "hotels/golf"
+    },
+    "cn/news/index.html": {
+      "path": "cn/news"
+    },
+    "th/news/index.html": {
+      "path": "th/news"
+    },
+    "th/index.html": {
+      "path": "th"
+    },
+    "cn/offer/index.html": {
+      "path": "cn/offer"
+    },
+    "cn/index.html": {
+      "path": "cn"
+    },
+    "th/new/index.html": {
+      "path": "th/new"
+    },
+    "news/index.html": {
+      "path": "news"
+    },
+    "th/casino/index.html": {
+      "path": "th/casino"
+    },
+    "cn/new/index.html": {
+      "path": "cn/new"
+    },
+    "cn/index-test/index.html": {
+      "path": "cn/index-test"
+    },
+    "th/index-test/index.html": {
+      "path": "th/index-test"
+    },
+    "th/experience/index.html": {
+      "path": "th/experience"
+    },
+    "index-test/index.html": {
+      "path": "index-test"
+    },
+    "cn/casino/index.html": {
+      "path": "cn/casino"
+    },
+    "cn/more/testimoniels/index.html": {
+      "path": "cn/more/testimoniels"
+    },
+    "th/more/testimoniels/index.html": {
+      "path": "th/more/testimoniels"
+    },
+    "more/testimoniels/index.html": {
+      "path": "more/testimoniels"
+    },
+    "cn/more/career/index.html": {
+      "path": "cn/more/career"
+    },
+    "th/more/career/index.html": {
+      "path": "th/more/career"
+    },
+    "more/career/index.html": {
+      "path": "more/career"
+    },
+    "th/hotels/golf/index.html": {
+      "path": "th/hotels/golf"
+    },
+    "th/tour-package/index.html": {
+      "path": "th/tour-package"
+    },
+    "cn/tour-package/index.html": {
+      "path": "cn/tour-package"
+    },
+    "tour-package/index.html": {
+      "path": "tour-package"
+    },
+    "cn/investment-project/index.html": {
+      "path": "cn/investment-project"
+    },
+    "hotels/vientaine-hotel/index.html": {
+      "path": "hotels/vientaine-hotel"
+    },
+    "th/investment-project/index.html": {
+      "path": "th/investment-project"
+    },
+    "th/hotels/vientaine-hotel/index.html": {
+      "path": "th/hotels/vientaine-hotel"
+    },
+    "cn/hotels/index.html": {
+      "path": "cn/hotels"
+    },
+    "investment-project/index.html": {
+      "path": "investment-project"
+    },
+    "th/hotels/index.html": {
+      "path": "th/hotels"
+    },
+    "hotels/index.html": {
+      "path": "hotels"
+    },
+    "invesment-project/index.html": {
+      "path": "invesment-project"
+    },
+    "th/invesment-project/index.html": {
+      "path": "th/invesment-project"
+    },
+    "cn/invesment-project/index.html": {
+      "path": "cn/invesment-project"
+    },
+    "cn/gallery/index.html": {
+      "path": "cn/gallery"
+    },
+    "th/gallery/index.html": {
+      "path": "th/gallery"
+    },
+    "gallery/index.html": {
+      "path": "gallery"
+    },
+    "cn/more/news/index.html": {
+      "path": "cn/more/news"
+    },
+    "th/more/news/index.html": {
+      "path": "th/more/news"
+    },
+    "more/news/index.html": {
+      "path": "more/news"
+    },
+    "cn/hotels/vientaine-hotel/index.html": {
+      "path": "cn/hotels/vientaine-hotel"
+    },
+    "th/hotels/numngum/index.html": {
+      "path": "th/hotels/numngum"
+    },
+    "cn/hotels/numngum/index.html": {
+      "path": "cn/hotels/numngum"
+    },
+    "hotels/numngum/index.html": {
+      "path": "hotels/numngum"
+    },
+    "th/near-by/index.html": {
+      "path": "th/near-by"
+    },
+    "near-by/index.html": {
+      "path": "near-by"
+    },
+    "cn/near-by/index.html": {
+      "path": "cn/near-by"
+    },
+    "cn/hotels/golf/index.html": {
+      "path": "cn/hotels/golf"
     }
   },
   "routes": [

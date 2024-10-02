@@ -8,14 +8,24 @@ export default defineNuxtConfig({
     },
   },
 
+  // nitro: {
+  //   prerender: {
+  //     crawlLinks: true,
+  //     failOnError: false,
+  //   },
+  //   preset: "vercel",
+  // },
+
+
   nitro: {
+    preset: 'vercel-edge',
+
     prerender: {
       crawlLinks: true,
-      failOnError: false,
+      // routes: ['/sitemap.xml'],
+      //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
     },
-    preset: "vercel",
   },
-
   app: {
     baseURL: "/",
     head: {
@@ -27,7 +37,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
 
-  ssr: false,
+  ssr: true,
 
   antd: {
     extractStyle: true,
