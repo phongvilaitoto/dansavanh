@@ -17,6 +17,8 @@
         @click="swipy.slideNext()"
         class="swiper-slide slide-animation"
       >
+
+      
         <div
           class="is-desktop"
           :style="{
