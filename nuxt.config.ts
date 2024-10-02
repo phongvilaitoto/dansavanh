@@ -31,7 +31,7 @@ export default defineNuxtConfig({
 
 
 
-  
+
   app: {
     baseURL: "/",
     head: {
@@ -77,7 +77,7 @@ export default defineNuxtConfig({
         file: { path: "cn.ts", cache: false },
       },
     ],
-    lazy: true,
+    lazy: false,
     langDir: "lang",
     defaultLocale: "en",
     strategy: "prefix_except_default",
