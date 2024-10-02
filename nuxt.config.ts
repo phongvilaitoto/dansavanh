@@ -18,13 +18,17 @@ export default defineNuxtConfig({
 
 
   nitro: {
-    storage: {
-      data: {
-        driver: 'vercelKV'
-        /* Vercel KV driver options */
-      }
-    }
+    preset: 'vercel-edge',
+
+    prerender: {
+      
+      crawlLinks: true,
+      routes: ['/sitemap.xml'],
+      //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
+    },
   },
+
+
 
   // nitro: {
   //   preset: 'vercel-edge',
