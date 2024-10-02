@@ -27,9 +27,11 @@ const { main } = storeToRefs(useMainStore());
 
 // const route = useRoute()
 // const router = useRouter()
-
-const { data }: any = await useFetch(config.public.apiBase + "/getDMain");
-Object.assign(main.value, data.value.dMain);
+onMounted(async () => {
+  
+  const { data }: any = await useFetch(config.public.apiBase + "/getDMain");
+  Object.assign(main.value, data.value.dMain);
+})
 
 // if(route.path === '/') router.push('/en')
 useHead({
