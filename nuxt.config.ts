@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   // },
 
 
-  
+
   nitro: {
     preset: 'vercel-edge'
   },
@@ -47,7 +47,7 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/*", href: "/public/favicon.ico" }],
     },
   },
-  devtools: { enabled: true },
+  // devtools: { enabled: true },
   ssr: true,
   
   antd: {
@@ -65,22 +65,24 @@ export default defineNuxtConfig({
     "@stefanobartoletti/nuxt-social-share",
   ],
 
+
+  
   i18n: {
-    locales: [
-      {
-        code: "en",
-        file: { path: "en.ts", cache: false },
-      },
-      {
-        code: "th",
-        file: { path: "th.ts", cache: false },
-      },
-      {
-        code: "cn",
-        file: { path: "cn.ts", cache: false },
-      },
-    ],
-    lazy: false,
+    // locales: [
+    //   {
+    //     code: "en",
+    //     file: { path: "en.ts", cache: false },
+    //   },
+    //   {
+    //     code: "th",
+    //     file: { path: "th.ts", cache: false },
+    //   },
+    //   {
+    //     code: "cn",
+    //     file: { path: "cn.ts", cache: false },
+    //   },
+    // ],
+    lazy: true,
     langDir: "lang",
     defaultLocale: "en",
     strategy: "prefix_except_default",
