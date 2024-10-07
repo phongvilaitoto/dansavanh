@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/transfer/ListBody.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { Fragment as _Fragment, createVNode as _createVNode } from \"vue\";\nimport { defineComponent, computed, ref, watch } from 'vue';\nimport classNames from '../_util/classNames';\nimport ListItem from './ListItem';\nimport Pagination from '../pagination';\nimport PropTypes from '../_util/vue-types';\nimport { booleanType } from '../_util/type';\nexport const transferListBodyProps = {\n  prefixCls: String,\n  filteredRenderItems: PropTypes.array.def([]),\n  selectedKeys: PropTypes.array,\n  disabled: booleanType(),\n  showRemove: booleanType(),\n  pagination: PropTypes.any,\n  onItemSelect: Function,\n  onScroll: Function,\n  onItemRemove: Function\n};\nfunction parsePagination(pagination) {\n  if (!pagination) {\n    return null;\n  }\n  const defaultPagination = {\n    pageSize: 10,\n    simple: true,\n    showSizeChanger: false,\n    showLessItems: false\n  };\n  if (typeof pagination === 'object') {\n    return _extends(_extends({}, defaultPagination), pagination);\n  }\n  return defaultPagination;\n}\nconst ListBody = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ListBody',\n  inheritAttrs: false,\n  props: transferListBodyProps,\n  emits: ['itemSelect', 'itemRemove', 'scroll'],\n  setup(props, _ref) {\n    let {\n      emit,\n      expose\n    } = _ref;\n    const current = ref(1);\n    const handleItemSelect = item => {\n      const {\n        selectedKeys\n      } = props;\n      const checked = selectedKeys.indexOf(item.key) >= 0;\n      emit('itemSelect', item.key, !checked);\n    };\n    const handleItemRemove = item => {\n      emit('itemRemove', [item.key]);\n    };\n    const handleScroll = e => {\n      emit('scroll', e);\n    };\n    const mergedPagination = computed(() => parsePagination(props.pagination));\n    watch([mergedPagination, () => props.filteredRenderItems], () => {\n      if (mergedPagination.value) {\n        // Calculate the page number\n        const maxPageCount = Math.ceil(props.filteredRenderItems.length / mergedPagination.value.pageSize);\n        current.value = Math.min(current.value, maxPageCount);\n      }\n    }, {\n      immediate: true\n    });\n    const items = computed(() => {\n      const {\n        filteredRenderItems\n      } = props;\n      let displayItems = filteredRenderItems;\n      if (mergedPagination.value) {\n        displayItems = filteredRenderItems.slice((current.value - 1) * mergedPagination.value.pageSize, current.value * mergedPagination.value.pageSize);\n      }\n      return displayItems;\n    });\n    const onPageChange = cur => {\n      current.value = cur;\n    };\n    expose({\n      items\n    });\n    return () => {\n      const {\n        prefixCls,\n        filteredRenderItems,\n        selectedKeys,\n        disabled: globalDisabled,\n        showRemove\n      } = props;\n      let paginationNode = null;\n      if (mergedPagination.value) {\n        paginationNode = _createVNode(Pagination, {\n          \"simple\": mergedPagination.value.simple,\n          \"showSizeChanger\": mergedPagination.value.showSizeChanger,\n          \"showLessItems\": mergedPagination.value.showLessItems,\n          \"size\": \"small\",\n          \"disabled\": globalDisabled,\n          \"class\": `${prefixCls}-pagination`,\n          \"total\": filteredRenderItems.length,\n          \"pageSize\": mergedPagination.value.pageSize,\n          \"current\": current.value,\n          \"onChange\": onPageChange\n        }, null);\n      }\n      const itemsList = items.value.map(_ref2 => {\n        let {\n          renderedEl,\n          renderedText,\n          item\n        } = _ref2;\n        const {\n          disabled\n        } = item;\n        const checked = selectedKeys.indexOf(item.key) >= 0;\n        return _createVNode(ListItem, {\n          \"disabled\": globalDisabled || disabled,\n          \"key\": item.key,\n          \"item\": item,\n          \"renderedText\": renderedText,\n          \"renderedEl\": renderedEl,\n          \"checked\": checked,\n          \"prefixCls\": prefixCls,\n          \"onClick\": handleItemSelect,\n          \"onRemove\": handleItemRemove,\n          \"showRemove\": showRemove\n        }, null);\n      });\n      return _createVNode(_Fragment, null, [_createVNode(\"ul\", {\n        \"class\": classNames(`${prefixCls}-content`, {\n          [`${prefixCls}-content-show-remove`]: showRemove\n        }),\n        \"onScroll\": handleScroll\n      }, [itemsList]), paginationNode]);\n    };\n  }\n});\nexport default ListBody;",
+      "start": 1718517098498,
+      "end": 1718517098553,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098553,
+      "end": 1718517098553,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098554,
+      "end": 1718517098554,
+      "order": "normal"
+    }
+  ]
+}

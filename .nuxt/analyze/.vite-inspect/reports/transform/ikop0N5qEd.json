@@ -1,0 +1,245 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/components/gallery.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-08a4346c\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"masonry\" }\nconst _hoisted_2 = [\"src\"]\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'gallery',\n  props: ['galleries'],\n  setup(__props) {\n\r\nconst {galleries} = __props\r\n\r\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.galleries, (i) => {\n      return (_openBlock(), _createElementBlock(\"div\", {\n        class: \"item\",\n        key: i\n      }, [\n        _createElementVNode(\"img\", {\n          style: {\"width\":\"100%\"},\n          src: i\n        }, null, 8, _hoisted_2)\n      ]))\n    }), 128))\n  ]))\n}\n}\n\n})",
+      "start": 1718517096644,
+      "end": 1718517096644
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096644,
+      "end": 1718517096644,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096644,
+      "end": 1718517096644,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096644,
+      "end": 1718517096644,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096644,
+      "end": 1718517096644,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096644,
+      "end": 1718517096644,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096644,
+      "end": 1718517096644,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\";\nconst _withScopeId = (n) => (_pushScopeId(\"data-v-08a4346c\"), n = n(), _popScopeId(), n);\nconst _hoisted_1 = { class: \"masonry\" };\nconst _hoisted_2 = [\"src\"];\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"gallery\",\n  props: [\"galleries\"],\n  setup(__props) {\n    const { galleries } = __props;\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.galleries, (i) => {\n          return _openBlock(), _createElementBlock(\"div\", {\n            class: \"item\",\n            key: i\n          }, [\n            _createElementVNode(\"img\", {\n              style: { \"width\": \"100%\" },\n              src: i\n            }, null, 8, _hoisted_2)\n          ]);\n        }), 128))\n      ]);\n    };\n  }\n});\n",
+      "start": 1718517096644,
+      "end": 1718517096701,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/components/gallery.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-08a4346c\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"masonry\" }\nconst _hoisted_2 = [\"src\"]\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'gallery',\n  props: ['galleries'],\n  setup(__props) {\n\r\nconst {galleries} = __props\r\n\r\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.galleries, (i) => {\n      return (_openBlock(), _createElementBlock(\"div\", {\n        class: \"item\",\n        key: i\n      }, [\n        _createElementVNode(\"img\", {\n          style: {\"width\":\"100%\"},\n          src: i\n        }, null, 8, _hoisted_2)\n      ]))\n    }), 128))\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,cAAc,aAAa,YAAY,WAAW,aAAa,YAAY,sBAAsB,qBAAqB,sBAAsB,qBAAqB,eAAe,cAAc,cAAc,mBAAmB;AAExO,MAAM,eAAe,QAAM,aAAa,iBAAiB,GAAE,IAAE,EAAE,GAAE,YAAY,GAAE;AAC/E,MAAM,aAAa,EAAE,OAAO,UAAU;AACtC,MAAM,aAAa,CAAC,KAAK;AAGzB,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO,CAAC,WAAW;AAAA,EACnB,MAAM,SAAS;AAEjB,UAAM,EAAC,UAAS,IAAI;AAGpB,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,oBAAoB,OAAO,YAAY;AAAA,SAC1D,WAAW,IAAI,GAAG,oBAAoB,WAAW,MAAM,YAAY,QAAQ,WAAW,CAAC,MAAM;AAC5F,iBAAQ,WAAW,GAAG,oBAAoB,OAAO;AAAA,YAC/C,OAAO;AAAA,YACP,KAAK;AAAA,UACP,GAAG;AAAA,YACD,oBAAoB,OAAO;AAAA,cACzB,OAAO,EAAC,SAAQ,OAAM;AAAA,cACtB,KAAK;AAAA,YACP,GAAG,MAAM,GAAG,UAAU;AAAA,UACxB,CAAC;AAAA,QACH,CAAC,GAAG,GAAG;AAAA,MACT,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096701,
+      "end": 1718517096701,
+      "order": "normal"
+    }
+  ]
+}

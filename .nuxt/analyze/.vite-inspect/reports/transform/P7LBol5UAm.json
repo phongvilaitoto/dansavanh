@@ -1,0 +1,238 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/components/contact/Gmap.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\r\n    <GoogleMap\r\n      :api-key=\"apiKey\"\r\n      style=\"width: 100%; height: 550px\"\r\n      :center=\"defaultCenter\"\r\n      :zoom=\"10\"\r\n    >\r\n      <MarkerCluster>\r\n        <CustomMarker\r\n          v-for=\"location in locations\"\r\n          :key=\"location\"\r\n          :options=\"{ position: location.position, anchorPoint: 'BOTTOM_CENTER' }\"\r\n        >\r\n          <div style=\"text-align: center\">\r\n            <img\r\n              @click=\"ShowInfo(location)\"\r\n                src=\"assets/image/map.jpeg\"\r\n              width=\"50\"\r\n              height=\"50\"\r\n              style=\"margin-top: 8px; cursor: pointer\"\r\n            />\r\n          </div>\r\n          <InfoWindow\r\n            v-if=\"selectedLocation === location\"\r\n            :options=\"{ position: location.position }\"\r\n          >\r\n            <div id=\"content\">\r\n              <div id=\"siteNotice\"></div>\r\n              <h1 id=\"firstHeading\" class=\"firstHeading\">{{ location.title }}</h1>\r\n              <div id=\"bodyContent\">\r\n                <img :src=\"location.image\" style=\"width: 200px\" />\r\n  \r\n                <p>\r\n                  <a\r\n                    @click=\"MapLink(location.position.lat, location.position.lng)\"\r\n                  >\r\n                    - Navigate to here</a\r\n                  >\r\n                </p>\r\n              </div>\r\n            </div>\r\n          </InfoWindow>\r\n        </CustomMarker>\r\n      </MarkerCluster>\r\n    </GoogleMap>\r\n  </template>\r\n  \r\n  <script setup lang=\"ts\">\r\n  import { apiKey } from \"@/plugins/vue-google-maps\";\r\n  import {\r\n    GoogleMap,\r\n    CustomMarker,\r\n    InfoWindow,\r\n    Marker,\r\n    MarkerCluster,\r\n  } from \"vue3-google-map\";\r\n  //import Image1 from \"@/assets/image/hotels/hotel-namngum.jpg\";\r\n  //import Image2 from \"@/assets/image/hotels/hotel-golf.jpg\";\r\n  //import Image3 from \"@/assets/image/hotels/hotel-vientiane.jpg\"; -->\r\n  // set variable\r\n  const defaultCenter = {\r\n    lat: 18.265426666666665,\r\n    lng: 102.62241633333333,\r\n  };\r\n  const locations = ref<any>([\r\n    {\r\n      title: \"Dansavanh Casino Resort\",\r\n     // Image: Image1,\r\n      image: 'https://www.dansavanh.net/assets/images/fb2.png',\r\n      position: {\r\n        lat: 18.431522,\r\n        lng: 102.648778,\r\n      },\r\n    },\r\n    {\r\n      title: \"Dansavanh Golf & Resort\",\r\n   //   Image: Image2,\r\n   image: 'https://www.dansavanh.net/assets/images/fb2.png',\r\n      position: {\r\n        lat: 18.394955,\r\n        lng: 102.649904,\r\n      },\r\n    },\r\n    {\r\n      title: \"Dansavanh Vientiane Hotel\",\r\n   //   Image: Image3,\r\n   image: 'https://www.dansavanh.net/assets/images/fb2.png',\r\n      position: {\r\n        lat: 17.970802,\r\n        lng: 102.568567,\r\n      },\r\n    },\r\n  ]);\r\n  \r\n  const selectedLocation = ref<any>(null);\r\n  const ShowInfo = (location: any) => {\r\n    selectedLocation.value =\r\n      location === selectedLocation.value ? null : location;\r\n  };\r\n  \r\n  // set map link\r\n  const MapLink = (lat: any, lng: any) => {\r\n    const googleMapsUrl = `https://www.google.com/maps/place/${lat},${lng}`;\r\n    window.open(googleMapsUrl, \"_blank\");\r\n  };\r\n  </script>\r\n  \r\n  <style lang=\"scss\" scoped></style>",
+      "start": 1718517093926,
+      "end": 1718517093981,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093981,
+      "end": 1718517093981,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093981,
+      "end": 1718517093981,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093981,
+      "end": 1718517093981,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093981,
+      "end": 1718517093982,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093982,
+      "end": 1718517093982,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093982,
+      "end": 1718517093982,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517093982,
+      "end": 1718517093982,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517093982,
+      "end": 1718517093982,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517093982,
+      "end": 1718517093982,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"C:/Users/MSII/Desktop/pj/dansavanh/components/contact/Gmap.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"C:/Users/MSII/Desktop/pj/dansavanh/components/contact/Gmap.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1718517093982,
+      "end": 1718517094063,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517094063,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "normal"
+    }
+  ]
+}

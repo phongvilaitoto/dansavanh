@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-mentions/src/DropdownMenu.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createVNode as _createVNode } from \"vue\";\nimport Menu, { Item as MenuItem } from '../../menu';\nimport { onBeforeUnmount, defineComponent, inject, shallowRef } from 'vue';\nimport MentionsContextKey from './MentionsContext';\nimport Spin from '../../spin';\nfunction noop() {}\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'DropdownMenu',\n  props: {\n    prefixCls: String,\n    options: {\n      type: Array,\n      default: () => []\n    }\n  },\n  setup(props, _ref) {\n    let {\n      slots\n    } = _ref;\n    const {\n      activeIndex,\n      setActiveIndex,\n      selectOption,\n      onFocus = noop,\n      loading\n    } = inject(MentionsContextKey, {\n      activeIndex: shallowRef(),\n      loading: shallowRef(false)\n    });\n    let timeoutId;\n    const onMousedown = e => {\n      clearTimeout(timeoutId);\n      timeoutId = setTimeout(() => {\n        onFocus(e);\n      });\n    };\n    onBeforeUnmount(() => {\n      clearTimeout(timeoutId);\n    });\n    return () => {\n      var _a;\n      const {\n        prefixCls,\n        options\n      } = props;\n      const activeOption = options[activeIndex.value] || {};\n      return _createVNode(Menu, {\n        \"prefixCls\": `${prefixCls}-menu`,\n        \"activeKey\": activeOption.value,\n        \"onSelect\": _ref2 => {\n          let {\n            key\n          } = _ref2;\n          const option = options.find(_ref3 => {\n            let {\n              value\n            } = _ref3;\n            return value === key;\n          });\n          selectOption(option);\n        },\n        \"onMousedown\": onMousedown\n      }, {\n        default: () => [!loading.value && options.map((option, index) => {\n          var _a, _b;\n          const {\n            value,\n            disabled,\n            label = option.value,\n            class: className,\n            style\n          } = option;\n          return _createVNode(MenuItem, {\n            \"key\": value,\n            \"disabled\": disabled,\n            \"onMouseenter\": () => {\n              setActiveIndex(index);\n            },\n            \"class\": className,\n            \"style\": style\n          }, {\n            default: () => [(_b = (_a = slots.option) === null || _a === void 0 ? void 0 : _a.call(slots, option)) !== null && _b !== void 0 ? _b : typeof label === 'function' ? label(option) : label]\n          });\n        }), !loading.value && options.length === 0 ? _createVNode(MenuItem, {\n          \"key\": \"notFoundContent\",\n          \"disabled\": true\n        }, {\n          default: () => [(_a = slots.notFoundContent) === null || _a === void 0 ? void 0 : _a.call(slots)]\n        }) : null, loading.value && _createVNode(MenuItem, {\n          \"key\": \"loading\",\n          \"disabled\": true\n        }, {\n          default: () => [_createVNode(Spin, {\n            \"size\": \"small\"\n          }, null)]\n        })]\n      });\n    };\n  }\n});",
+      "start": 1718517099861,
+      "end": 1718517099895,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099895,
+      "end": 1718517099895,
+      "order": "normal"
+    }
+  ]
+}

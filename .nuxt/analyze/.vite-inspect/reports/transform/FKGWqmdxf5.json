@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/input/ResizableTextArea.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { computed, watchEffect, getCurrentInstance, watch, onBeforeUnmount, ref, defineComponent, withDirectives } from 'vue';\nimport ResizeObserver from '../vc-resize-observer';\nimport classNames from '../_util/classNames';\nimport raf from '../_util/raf';\nimport warning from '../_util/warning';\nimport antInput from '../_util/antInputDirective';\nimport omit from '../_util/omit';\nimport { textAreaProps } from './inputProps';\nimport calculateAutoSizeStyle from './calculateNodeHeight';\nconst RESIZE_START = 0;\nconst RESIZE_MEASURING = 1;\nconst RESIZE_STABLE = 2;\nconst ResizableTextArea = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ResizableTextArea',\n  inheritAttrs: false,\n  props: textAreaProps(),\n  setup(props, _ref) {\n    let {\n      attrs,\n      emit,\n      expose\n    } = _ref;\n    let nextFrameActionId;\n    let resizeFrameId;\n    const textAreaRef = ref();\n    const textareaStyles = ref({});\n    const resizeStatus = ref(RESIZE_STABLE);\n    onBeforeUnmount(() => {\n      raf.cancel(nextFrameActionId);\n      raf.cancel(resizeFrameId);\n    });\n    // https://github.com/ant-design/ant-design/issues/21870\n    const fixFirefoxAutoScroll = () => {\n      try {\n        if (document.activeElement === textAreaRef.value) {\n          const currentStart = textAreaRef.value.selectionStart;\n          const currentEnd = textAreaRef.value.selectionEnd;\n          const scrollTop = textAreaRef.value.scrollTop;\n          textAreaRef.value.setSelectionRange(currentStart, currentEnd);\n          textAreaRef.value.scrollTop = scrollTop;\n        }\n      } catch (e) {\n        // Fix error in Chrome:\n        // Failed to read the 'selectionStart' property from 'HTMLInputElement'\n        // http://stackoverflow.com/q/21177489/3040605\n      }\n    };\n    const minRows = ref();\n    const maxRows = ref();\n    watchEffect(() => {\n      const autoSize = props.autoSize || props.autosize;\n      if (autoSize) {\n        minRows.value = autoSize.minRows;\n        maxRows.value = autoSize.maxRows;\n      } else {\n        minRows.value = undefined;\n        maxRows.value = undefined;\n      }\n    });\n    const needAutoSize = computed(() => !!(props.autoSize || props.autosize));\n    const startResize = () => {\n      resizeStatus.value = RESIZE_START;\n    };\n    watch([() => props.value, minRows, maxRows, needAutoSize], () => {\n      if (needAutoSize.value) {\n        startResize();\n      }\n    }, {\n      immediate: true,\n      flush: 'post'\n    });\n    const autoSizeStyle = ref();\n    watch([resizeStatus, textAreaRef], () => {\n      if (!textAreaRef.value) return;\n      if (resizeStatus.value === RESIZE_START) {\n        resizeStatus.value = RESIZE_MEASURING;\n      } else if (resizeStatus.value === RESIZE_MEASURING) {\n        const textareaStyles = calculateAutoSizeStyle(textAreaRef.value, false, minRows.value, maxRows.value);\n        resizeStatus.value = RESIZE_STABLE;\n        autoSizeStyle.value = textareaStyles;\n      } else {\n        fixFirefoxAutoScroll();\n      }\n    }, {\n      immediate: true,\n      flush: 'post'\n    });\n    const instance = getCurrentInstance();\n    const resizeRafRef = ref();\n    const cleanRaf = () => {\n      raf.cancel(resizeRafRef.value);\n    };\n    const onInternalResize = size => {\n      if (resizeStatus.value === RESIZE_STABLE) {\n        emit('resize', size);\n        if (needAutoSize.value) {\n          cleanRaf();\n          resizeRafRef.value = raf(() => {\n            startResize();\n          });\n        }\n      }\n    };\n    onBeforeUnmount(() => {\n      cleanRaf();\n    });\n    const resizeTextarea = () => {\n      startResize();\n    };\n    expose({\n      resizeTextarea,\n      textArea: textAreaRef,\n      instance\n    });\n    warning(props.autosize === undefined, 'Input.TextArea', 'autosize is deprecated, please use autoSize instead.');\n    const renderTextArea = () => {\n      const {\n        prefixCls,\n        disabled\n      } = props;\n      const otherProps = omit(props, ['prefixCls', 'onPressEnter', 'autoSize', 'autosize', 'defaultValue', 'allowClear', 'type', 'lazy', 'maxlength', 'valueModifiers']);\n      const cls = classNames(prefixCls, attrs.class, {\n        [`${prefixCls}-disabled`]: disabled\n      });\n      const mergedAutoSizeStyle = needAutoSize.value ? autoSizeStyle.value : null;\n      const style = [attrs.style, textareaStyles.value, mergedAutoSizeStyle];\n      const textareaProps = _extends(_extends(_extends({}, otherProps), attrs), {\n        style,\n        class: cls\n      });\n      if (resizeStatus.value === RESIZE_START || resizeStatus.value === RESIZE_MEASURING) {\n        style.push({\n          overflowX: 'hidden',\n          overflowY: 'hidden'\n        });\n      }\n      if (!textareaProps.autofocus) {\n        delete textareaProps.autofocus;\n      }\n      if (textareaProps.rows === 0) {\n        delete textareaProps.rows;\n      }\n      return _createVNode(ResizeObserver, {\n        \"onResize\": onInternalResize,\n        \"disabled\": !needAutoSize.value\n      }, {\n        default: () => [withDirectives(_createVNode(\"textarea\", _objectSpread(_objectSpread({}, textareaProps), {}, {\n          \"ref\": textAreaRef\n        }), null), [[antInput]])]\n      });\n    };\n    return () => {\n      return renderTextArea();\n    };\n  }\n});\nexport default ResizableTextArea;",
+      "start": 1718517098229,
+      "end": 1718517098318,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098318,
+      "end": 1718517098318,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098318,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    }
+  ]
+}

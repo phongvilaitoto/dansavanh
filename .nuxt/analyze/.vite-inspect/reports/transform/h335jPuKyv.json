@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/page-header/style/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { genComponentStyleHook, mergeToken } from '../../theme/internal';\nimport { resetComponent, textEllipsis } from '../../style';\nimport { operationUnit } from '../../style';\nconst genPageHeaderStyle = token => {\n  const {\n    componentCls,\n    antCls\n  } = token;\n  return {\n    [componentCls]: _extends(_extends({}, resetComponent(token)), {\n      position: 'relative',\n      padding: `${token.pageHeaderPaddingVertical}px ${token.pageHeaderPadding}px`,\n      backgroundColor: token.colorBgContainer,\n      [`&${componentCls}-ghost`]: {\n        backgroundColor: token.pageHeaderGhostBg\n      },\n      [`&.has-footer`]: {\n        paddingBottom: 0\n      },\n      [`${componentCls}-back`]: {\n        marginRight: token.marginMD,\n        fontSize: token.fontSizeLG,\n        lineHeight: 1,\n        [`&-button`]: _extends(_extends({}, operationUnit(token)), {\n          color: token.pageHeaderBackColor,\n          cursor: 'pointer'\n        })\n      },\n      [`${antCls}-divider-vertical`]: {\n        height: '14px',\n        margin: `0 ${token.marginSM}`,\n        verticalAlign: 'middle'\n      },\n      [`${antCls}-breadcrumb + &-heading`]: {\n        marginTop: token.marginXS\n      },\n      [`${componentCls}-heading`]: {\n        display: 'flex',\n        justifyContent: 'space-between',\n        [`&-left`]: {\n          display: 'flex',\n          alignItems: 'center',\n          margin: `${token.marginXS / 2}px 0`,\n          overflow: 'hidden'\n        },\n        [`&-title`]: _extends({\n          marginRight: token.marginSM,\n          marginBottom: 0,\n          color: token.colorTextHeading,\n          fontWeight: 600,\n          fontSize: token.pageHeaderHeadingTitle,\n          lineHeight: `${token.controlHeight}px`\n        }, textEllipsis),\n        [`${antCls}-avatar`]: {\n          marginRight: token.marginSM\n        },\n        [`&-sub-title`]: _extends({\n          marginRight: token.marginSM,\n          color: token.colorTextDescription,\n          fontSize: token.pageHeaderHeadingSubTitle,\n          lineHeight: token.lineHeight\n        }, textEllipsis),\n        [`&-extra`]: {\n          margin: `${token.marginXS / 2}px 0`,\n          whiteSpace: 'nowrap',\n          [`> *`]: {\n            marginLeft: token.marginSM,\n            whiteSpace: 'unset'\n          },\n          [`> *:first-child`]: {\n            marginLeft: 0\n          }\n        }\n      },\n      [`${componentCls}-content`]: {\n        paddingTop: token.pageHeaderContentPaddingVertical\n      },\n      [`${componentCls}-footer`]: {\n        marginTop: token.marginMD,\n        [`${antCls}-tabs`]: {\n          [`> ${antCls}-tabs-nav`]: {\n            margin: 0,\n            [`&::before`]: {\n              border: 'none'\n            }\n          },\n          [`${antCls}-tabs-tab`]: {\n            paddingTop: token.paddingXS,\n            paddingBottom: token.paddingXS,\n            fontSize: token.pageHeaderTabFontSize\n          }\n        }\n      },\n      [`${componentCls}-compact ${componentCls}-heading`]: {\n        flexWrap: 'wrap'\n      },\n      // rtl style\n      [`&${token.componentCls}-rtl`]: {\n        direction: 'rtl'\n      }\n    })\n  };\n};\n// ============================== Export ==============================\nexport default genComponentStyleHook('PageHeader', token => {\n  const PageHeaderToken = mergeToken(token, {\n    pageHeaderPadding: token.paddingLG,\n    pageHeaderPaddingVertical: token.paddingMD,\n    pageHeaderPaddingBreadcrumb: token.paddingSM,\n    pageHeaderContentPaddingVertical: token.paddingSM,\n    pageHeaderBackColor: token.colorTextBase,\n    pageHeaderGhostBg: 'transparent',\n    pageHeaderHeadingTitle: token.fontSizeHeading4,\n    pageHeaderHeadingSubTitle: token.fontSize,\n    pageHeaderTabFontSize: token.fontSizeLG\n  });\n  return [genPageHeaderStyle(PageHeaderToken)];\n});",
+      "start": 1718517097512,
+      "end": 1718517097571,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097571,
+      "end": 1718517097571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097571,
+      "end": 1718517097572,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097572,
+      "end": 1718517097572,
+      "order": "normal"
+    }
+  ]
+}

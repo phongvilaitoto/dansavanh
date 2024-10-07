@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-picker/panels/YearPanel/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport YearHeader from './YearHeader';\nimport YearBody, { YEAR_COL_COUNT } from './YearBody';\nimport { createKeydownHandler } from '../../utils/uiUtil';\nimport useMergeProps from '../../hooks/useMergeProps';\nexport const YEAR_DECADE_COUNT = 10;\nfunction YearPanel(_props) {\n  const props = useMergeProps(_props);\n  const {\n    prefixCls,\n    operationRef,\n    onViewDateChange,\n    generateConfig,\n    value,\n    viewDate,\n    sourceMode,\n    onSelect,\n    onPanelChange\n  } = props;\n  const panelPrefixCls = `${prefixCls}-year-panel`;\n  // ======================= Keyboard =======================\n  operationRef.value = {\n    onKeydown: event => createKeydownHandler(event, {\n      onLeftRight: diff => {\n        onSelect(generateConfig.addYear(value || viewDate, diff), 'key');\n      },\n      onCtrlLeftRight: diff => {\n        onSelect(generateConfig.addYear(value || viewDate, diff * YEAR_DECADE_COUNT), 'key');\n      },\n      onUpDown: diff => {\n        onSelect(generateConfig.addYear(value || viewDate, diff * YEAR_COL_COUNT), 'key');\n      },\n      onEnter: () => {\n        onPanelChange(sourceMode === 'date' ? 'date' : 'month', value || viewDate);\n      }\n    })\n  };\n  // ==================== View Operation ====================\n  const onDecadeChange = diff => {\n    const newDate = generateConfig.addYear(viewDate, diff * 10);\n    onViewDateChange(newDate);\n    onPanelChange(null, newDate);\n  };\n  return _createVNode(\"div\", {\n    \"class\": panelPrefixCls\n  }, [_createVNode(YearHeader, _objectSpread(_objectSpread({}, props), {}, {\n    \"prefixCls\": prefixCls,\n    \"onPrevDecade\": () => {\n      onDecadeChange(-1);\n    },\n    \"onNextDecade\": () => {\n      onDecadeChange(1);\n    },\n    \"onDecadeClick\": () => {\n      onPanelChange('decade', viewDate);\n    }\n  }), null), _createVNode(YearBody, _objectSpread(_objectSpread({}, props), {}, {\n    \"prefixCls\": prefixCls,\n    \"onSelect\": date => {\n      onPanelChange(sourceMode === 'date' ? 'date' : 'month', date);\n      onSelect(date, 'mouse');\n    }\n  }), null)]);\n}\nYearPanel.displayName = 'YearPanel';\nYearPanel.inheritAttrs = false;\nexport default YearPanel;",
+      "start": 1718517100016,
+      "end": 1718517100050,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100050,
+      "end": 1718517100050,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100050,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100051,
+      "end": 1718517100051,
+      "order": "normal"
+    }
+  ]
+}

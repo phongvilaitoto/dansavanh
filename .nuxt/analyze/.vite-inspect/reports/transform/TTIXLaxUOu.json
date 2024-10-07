@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/time-picker/time-picker.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nimport { defineComponent, ref } from 'vue';\nimport generatePicker from '../date-picker/generatePicker';\nimport { commonProps, datePickerProps, rangePickerProps } from '../date-picker/generatePicker/props';\nimport devWarning from '../vc-util/devWarning';\nimport { useInjectFormItemContext } from '../form/FormItemContext';\nimport omit from '../_util/omit';\nimport { booleanType, stringType } from '../_util/type';\nexport const timePickerProps = () => ({\n  format: String,\n  showNow: booleanType(),\n  showHour: booleanType(),\n  showMinute: booleanType(),\n  showSecond: booleanType(),\n  use12Hours: booleanType(),\n  hourStep: Number,\n  minuteStep: Number,\n  secondStep: Number,\n  hideDisabledOptions: booleanType(),\n  popupClassName: String,\n  status: stringType()\n});\nfunction createTimePicker(generateConfig) {\n  const DatePicker = generatePicker(generateConfig, _extends(_extends({}, timePickerProps()), {\n    order: {\n      type: Boolean,\n      default: true\n    }\n  }));\n  const {\n    TimePicker: InternalTimePicker,\n    RangePicker: InternalRangePicker\n  } = DatePicker;\n  const TimePicker = defineComponent({\n    name: 'ATimePicker',\n    inheritAttrs: false,\n    props: _extends(_extends(_extends(_extends({}, commonProps()), datePickerProps()), timePickerProps()), {\n      addon: {\n        type: Function\n      }\n    }),\n    slots: Object,\n    setup(p, _ref) {\n      let {\n        slots,\n        expose,\n        emit,\n        attrs\n      } = _ref;\n      const props = p;\n      const formItemContext = useInjectFormItemContext();\n      devWarning(!(slots.addon || props.addon), 'TimePicker', '`addon` is deprecated. Please use `v-slot:renderExtraFooter` instead.');\n      const pickerRef = ref();\n      expose({\n        focus: () => {\n          var _a;\n          (_a = pickerRef.value) === null || _a === void 0 ? void 0 : _a.focus();\n        },\n        blur: () => {\n          var _a;\n          (_a = pickerRef.value) === null || _a === void 0 ? void 0 : _a.blur();\n        }\n      });\n      const onChange = (value, dateString) => {\n        emit('update:value', value);\n        emit('change', value, dateString);\n        formItemContext.onFieldChange();\n      };\n      const onOpenChange = open => {\n        emit('update:open', open);\n        emit('openChange', open);\n      };\n      const onFocus = e => {\n        emit('focus', e);\n      };\n      const onBlur = e => {\n        emit('blur', e);\n        formItemContext.onFieldBlur();\n      };\n      const onOk = value => {\n        emit('ok', value);\n      };\n      return () => {\n        const {\n          id = formItemContext.id.value\n        } = props;\n        //restProps.addon\n        return _createVNode(InternalTimePicker, _objectSpread(_objectSpread(_objectSpread({}, attrs), omit(props, ['onUpdate:value', 'onUpdate:open'])), {}, {\n          \"id\": id,\n          \"dropdownClassName\": props.popupClassName,\n          \"mode\": undefined,\n          \"ref\": pickerRef,\n          \"renderExtraFooter\": props.addon || slots.addon || props.renderExtraFooter || slots.renderExtraFooter,\n          \"onChange\": onChange,\n          \"onOpenChange\": onOpenChange,\n          \"onFocus\": onFocus,\n          \"onBlur\": onBlur,\n          \"onOk\": onOk\n        }), slots);\n      };\n    }\n  });\n  const TimeRangePicker = defineComponent({\n    name: 'ATimeRangePicker',\n    inheritAttrs: false,\n    props: _extends(_extends(_extends(_extends({}, commonProps()), rangePickerProps()), timePickerProps()), {\n      order: {\n        type: Boolean,\n        default: true\n      }\n    }),\n    slots: Object,\n    setup(p, _ref2) {\n      let {\n        slots,\n        expose,\n        emit,\n        attrs\n      } = _ref2;\n      const props = p;\n      const pickerRef = ref();\n      const formItemContext = useInjectFormItemContext();\n      expose({\n        focus: () => {\n          var _a;\n          (_a = pickerRef.value) === null || _a === void 0 ? void 0 : _a.focus();\n        },\n        blur: () => {\n          var _a;\n          (_a = pickerRef.value) === null || _a === void 0 ? void 0 : _a.blur();\n        }\n      });\n      const onChange = (values, dateStrings) => {\n        emit('update:value', values);\n        emit('change', values, dateStrings);\n        formItemContext.onFieldChange();\n      };\n      const onOpenChange = open => {\n        emit('update:open', open);\n        emit('openChange', open);\n      };\n      const onFocus = e => {\n        emit('focus', e);\n      };\n      const onBlur = e => {\n        emit('blur', e);\n        formItemContext.onFieldBlur();\n      };\n      const onPanelChange = (values, modes) => {\n        emit('panelChange', values, modes);\n      };\n      const onOk = values => {\n        emit('ok', values);\n      };\n      const onCalendarChange = (values, dateStrings, info) => {\n        emit('calendarChange', values, dateStrings, info);\n      };\n      return () => {\n        const {\n          id = formItemContext.id.value\n        } = props;\n        return _createVNode(InternalRangePicker, _objectSpread(_objectSpread(_objectSpread({}, attrs), omit(props, ['onUpdate:open', 'onUpdate:value'])), {}, {\n          \"id\": id,\n          \"dropdownClassName\": props.popupClassName,\n          \"picker\": \"time\",\n          \"mode\": undefined,\n          \"ref\": pickerRef,\n          \"onChange\": onChange,\n          \"onOpenChange\": onOpenChange,\n          \"onFocus\": onFocus,\n          \"onBlur\": onBlur,\n          \"onPanelChange\": onPanelChange,\n          \"onOk\": onOk,\n          \"onCalendarChange\": onCalendarChange\n        }), slots);\n      };\n    }\n  });\n  return {\n    TimePicker,\n    TimeRangePicker\n  };\n}\nexport default createTimePicker;",
+      "start": 1718517098615,
+      "end": 1718517098664,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098664,
+      "end": 1718517098665,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098665,
+      "end": 1718517098665,
+      "order": "normal"
+    }
+  ]
+}

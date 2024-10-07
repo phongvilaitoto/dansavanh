@@ -1,0 +1,236 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/float-button/FloatButton.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport classNames from '../_util/classNames';\nimport { defineComponent, computed, ref } from 'vue';\nimport Tooltip from '../tooltip';\nimport Badge from '../badge';\nimport Content from './FloatButtonContent';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport { useInjectFloatButtonGroupContext } from './context';\nimport warning from '../_util/warning';\nimport { initDefaultProps } from '../_util/props-util';\nimport { floatButtonProps } from './interface';\n// import { useCompactItemContext } from '../space/Compact';\n// CSSINJS\nimport useStyle from './style';\nexport const floatButtonPrefixCls = 'float-btn';\nconst FloatButton = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AFloatButton',\n  inheritAttrs: false,\n  props: initDefaultProps(floatButtonProps(), {\n    type: 'default',\n    shape: 'circle'\n  }),\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots\n    } = _ref;\n    const {\n      prefixCls,\n      direction\n    } = useConfigInject(floatButtonPrefixCls, props);\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const {\n      shape: groupShape\n    } = useInjectFloatButtonGroupContext();\n    const floatButtonRef = ref(null);\n    const mergeShape = computed(() => {\n      return (groupShape === null || groupShape === void 0 ? void 0 : groupShape.value) || props.shape;\n    });\n    return () => {\n      var _a;\n      const {\n          prefixCls: customPrefixCls,\n          type = 'default',\n          shape = 'circle',\n          description = (_a = slots.description) === null || _a === void 0 ? void 0 : _a.call(slots),\n          tooltip,\n          badge = {}\n        } = props,\n        restProps = __rest(props, [\"prefixCls\", \"type\", \"shape\", \"description\", \"tooltip\", \"badge\"]);\n      const classString = classNames(prefixCls.value, `${prefixCls.value}-${type}`, `${prefixCls.value}-${mergeShape.value}`, {\n        [`${prefixCls.value}-rtl`]: direction.value === 'rtl'\n      }, attrs.class, hashId.value);\n      const buttonNode = _createVNode(Tooltip, {\n        \"placement\": \"left\"\n      }, {\n        title: slots.tooltip || tooltip ? () => slots.tooltip && slots.tooltip() || tooltip : undefined,\n        default: () => _createVNode(Badge, badge, {\n          default: () => [_createVNode(\"div\", {\n            \"class\": `${prefixCls.value}-body`\n          }, [_createVNode(Content, {\n            \"prefixCls\": prefixCls.value\n          }, {\n            icon: slots.icon,\n            description: () => description\n          })])]\n        })\n      });\n      if (process.env.NODE_ENV !== 'production') {\n        warning(!(shape === 'circle' && description), 'FloatButton', 'supported only when `shape` is `square`. Due to narrow space for text, short sentence is recommended.');\n      }\n      return wrapSSR(props.href ? _createVNode(\"a\", _objectSpread(_objectSpread(_objectSpread({\n        \"ref\": floatButtonRef\n      }, attrs), restProps), {}, {\n        \"class\": classString\n      }), [buttonNode]) : _createVNode(\"button\", _objectSpread(_objectSpread(_objectSpread({\n        \"ref\": floatButtonRef\n      }, attrs), restProps), {}, {\n        \"class\": classString,\n        \"type\": \"button\"\n      }), [buttonNode]));\n    };\n  }\n});\nexport default FloatButton;",
+      "start": 1718517097400,
+      "end": 1718517097431,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nvar __rest = function(s, e) {\n  var t = {};\n  for (var p in s)\n    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)\n      t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\")\n    for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n      if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))\n        t[p[i]] = s[p[i]];\n    }\n  return t;\n};\nimport classNames from \"../_util/classNames\";\nimport { defineComponent, computed, ref } from \"vue\";\nimport Tooltip from \"../tooltip\";\nimport Badge from \"../badge\";\nimport Content from \"./FloatButtonContent\";\nimport useConfigInject from \"../config-provider/hooks/useConfigInject\";\nimport { useInjectFloatButtonGroupContext } from \"./context\";\nimport warning from \"../_util/warning\";\nimport { initDefaultProps } from \"../_util/props-util\";\nimport { floatButtonProps } from \"./interface\";\nimport useStyle from \"./style\";\nexport const floatButtonPrefixCls = \"float-btn\";\nconst FloatButton = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: \"AFloatButton\",\n  inheritAttrs: false,\n  props: initDefaultProps(floatButtonProps(), {\n    type: \"default\",\n    shape: \"circle\"\n  }),\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots\n    } = _ref;\n    const {\n      prefixCls,\n      direction\n    } = useConfigInject(floatButtonPrefixCls, props);\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const {\n      shape: groupShape\n    } = useInjectFloatButtonGroupContext();\n    const floatButtonRef = ref(null);\n    const mergeShape = computed(() => {\n      return (groupShape === null || groupShape === void 0 ? void 0 : groupShape.value) || props.shape;\n    });\n    return () => {\n      var _a;\n      const {\n        prefixCls: customPrefixCls,\n        type = \"default\",\n        shape = \"circle\",\n        description = (_a = slots.description) === null || _a === void 0 ? void 0 : _a.call(slots),\n        tooltip,\n        badge = {}\n      } = props, restProps = __rest(props, [\"prefixCls\", \"type\", \"shape\", \"description\", \"tooltip\", \"badge\"]);\n      const classString = classNames(prefixCls.value, `${prefixCls.value}-${type}`, `${prefixCls.value}-${mergeShape.value}`, {\n        [`${prefixCls.value}-rtl`]: direction.value === \"rtl\"\n      }, attrs.class, hashId.value);\n      const buttonNode = _createVNode(Tooltip, {\n        \"placement\": \"left\"\n      }, {\n        title: slots.tooltip || tooltip ? () => slots.tooltip && slots.tooltip() || tooltip : void 0,\n        default: () => _createVNode(Badge, badge, {\n          default: () => [_createVNode(\"div\", {\n            \"class\": `${prefixCls.value}-body`\n          }, [_createVNode(Content, {\n            \"prefixCls\": prefixCls.value\n          }, {\n            icon: slots.icon,\n            description: () => description\n          })])]\n        })\n      });\n      if (false) {\n        warning(!(shape === \"circle\" && description), \"FloatButton\", \"supported only when `shape` is `square`. Due to narrow space for text, short sentence is recommended.\");\n      }\n      return wrapSSR(props.href ? _createVNode(\"a\", _objectSpread(_objectSpread(_objectSpread({\n        \"ref\": floatButtonRef\n      }, attrs), restProps), {}, {\n        \"class\": classString\n      }), [buttonNode]) : _createVNode(\"button\", _objectSpread(_objectSpread(_objectSpread({\n        \"ref\": floatButtonRef\n      }, attrs), restProps), {}, {\n        \"class\": classString,\n        \"type\": \"button\"\n      }), [buttonNode]));\n    };\n  }\n});\nexport default FloatButton;\n",
+      "start": 1718517097432,
+      "end": 1718517097487,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097487,
+      "end": 1718517097487,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097487,
+      "end": 1718517097487,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097487,
+      "end": 1718517097487,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097487,
+      "end": 1718517097487,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097487,
+      "end": 1718517097488,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097488,
+      "end": 1718517097488,
+      "order": "normal"
+    }
+  ]
+}

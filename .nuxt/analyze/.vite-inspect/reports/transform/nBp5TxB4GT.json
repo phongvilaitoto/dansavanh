@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/segmented/src/segmented.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nimport { defineComponent, shallowRef, computed } from 'vue';\nimport classNames from '../../_util/classNames';\nimport useConfigInject from '../../config-provider/hooks/useConfigInject';\nimport { initDefaultProps } from '../../_util/props-util';\nimport useStyle from '../style';\nimport { functionType, someType, arrayType, booleanType, stringType } from '../../_util/type';\nimport MotionThumb from './MotionThumb';\nfunction normalizeOptions(options) {\n  return options.map(option => {\n    if (typeof option === 'object' && option !== null) {\n      return option;\n    }\n    return {\n      label: option === null || option === void 0 ? void 0 : option.toString(),\n      title: option === null || option === void 0 ? void 0 : option.toString(),\n      value: option\n    };\n  });\n}\nexport const segmentedProps = () => {\n  return {\n    prefixCls: String,\n    options: arrayType(),\n    block: booleanType(),\n    disabled: booleanType(),\n    size: stringType(),\n    value: _extends(_extends({}, someType([String, Number])), {\n      required: true\n    }),\n    motionName: String,\n    onChange: functionType(),\n    'onUpdate:value': functionType()\n  };\n};\nconst SegmentedOption = (props, _ref) => {\n  let {\n    slots,\n    emit\n  } = _ref;\n  const {\n    value,\n    disabled,\n    payload,\n    title,\n    prefixCls,\n    label = slots.label,\n    checked,\n    className\n  } = props;\n  const handleChange = event => {\n    if (disabled) {\n      return;\n    }\n    emit('change', event, value);\n  };\n  return _createVNode(\"label\", {\n    \"class\": classNames({\n      [`${prefixCls}-item-disabled`]: disabled\n    }, className)\n  }, [_createVNode(\"input\", {\n    \"class\": `${prefixCls}-item-input`,\n    \"type\": \"radio\",\n    \"disabled\": disabled,\n    \"checked\": checked,\n    \"onChange\": handleChange\n  }, null), _createVNode(\"div\", {\n    \"class\": `${prefixCls}-item-label`,\n    \"title\": typeof title === 'string' ? title : ''\n  }, [typeof label === 'function' ? label({\n    value,\n    disabled,\n    payload,\n    title\n  }) : label !== null && label !== void 0 ? label : value])]);\n};\nSegmentedOption.inheritAttrs = false;\nexport default defineComponent({\n  name: 'ASegmented',\n  inheritAttrs: false,\n  props: initDefaultProps(segmentedProps(), {\n    options: [],\n    motionName: 'thumb-motion'\n  }),\n  slots: Object,\n  setup(props, _ref2) {\n    let {\n      emit,\n      slots,\n      attrs\n    } = _ref2;\n    const {\n      prefixCls,\n      direction,\n      size\n    } = useConfigInject('segmented', props);\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const rootRef = shallowRef();\n    const thumbShow = shallowRef(false);\n    const segmentedOptions = computed(() => normalizeOptions(props.options));\n    const handleChange = (_event, val) => {\n      if (props.disabled) {\n        return;\n      }\n      emit('update:value', val);\n      emit('change', val);\n    };\n    return () => {\n      const pre = prefixCls.value;\n      return wrapSSR(_createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"class\": classNames(pre, {\n          [hashId.value]: true,\n          [`${pre}-block`]: props.block,\n          [`${pre}-disabled`]: props.disabled,\n          [`${pre}-lg`]: size.value == 'large',\n          [`${pre}-sm`]: size.value == 'small',\n          [`${pre}-rtl`]: direction.value === 'rtl'\n        }, attrs.class),\n        \"ref\": rootRef\n      }), [_createVNode(\"div\", {\n        \"class\": `${pre}-group`\n      }, [_createVNode(MotionThumb, {\n        \"containerRef\": rootRef,\n        \"prefixCls\": pre,\n        \"value\": props.value,\n        \"motionName\": `${pre}-${props.motionName}`,\n        \"direction\": direction.value,\n        \"getValueIndex\": val => segmentedOptions.value.findIndex(n => n.value === val),\n        \"onMotionStart\": () => {\n          thumbShow.value = true;\n        },\n        \"onMotionEnd\": () => {\n          thumbShow.value = false;\n        }\n      }, null), segmentedOptions.value.map(segmentedOption => _createVNode(SegmentedOption, _objectSpread(_objectSpread({\n        \"key\": segmentedOption.value,\n        \"prefixCls\": pre,\n        \"checked\": segmentedOption.value === props.value,\n        \"onChange\": handleChange\n      }, segmentedOption), {}, {\n        \"className\": classNames(segmentedOption.className, `${pre}-item`, {\n          [`${pre}-item-selected`]: segmentedOption.value === props.value && !thumbShow.value\n        }),\n        \"disabled\": !!props.disabled || !!segmentedOption.disabled\n      }), slots))])]));\n    };\n  }\n});",
+      "start": 1718517098622,
+      "end": 1718517098670,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098670,
+      "end": 1718517098670,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098670,
+      "end": 1718517098670,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098670,
+      "end": 1718517098670,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098670,
+      "end": 1718517098670,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098670,
+      "end": 1718517098670,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098670,
+      "end": 1718517098670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098670,
+      "end": 1718517098670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098670,
+      "end": 1718517098670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098671,
+      "end": 1718517098671,
+      "order": "normal"
+    }
+  ]
+}

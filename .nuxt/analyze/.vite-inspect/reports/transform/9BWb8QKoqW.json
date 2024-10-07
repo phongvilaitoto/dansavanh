@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/@ant-design/icons-vue/es/components/AntdIcon.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "var _excluded = [\"class\", \"icon\", \"spin\", \"rotate\", \"tabindex\", \"twoToneColor\", \"onClick\"];\nimport { createVNode as _createVNode } from \"vue\";\n\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== \"undefined\" && arr[Symbol.iterator] || arr[\"@@iterator\"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\n\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\n\nimport VueIcon from './IconBase';\nimport { getTwoToneColor, setTwoToneColor } from './twoTonePrimaryColor';\nimport { normalizeTwoToneColors } from '../utils';\nimport { blue } from '@ant-design/colors';\nimport { useInjectIconContext } from './Context';\nimport { InsertStyles } from './InsertStyle'; // Initial setting\n\nsetTwoToneColor(blue.primary);\n\nvar Icon = function Icon(props, context) {\n  var _classObj;\n\n  var _props$context$attrs = _objectSpread({}, props, context.attrs),\n      cls = _props$context$attrs[\"class\"],\n      icon = _props$context$attrs.icon,\n      spin = _props$context$attrs.spin,\n      rotate = _props$context$attrs.rotate,\n      tabindex = _props$context$attrs.tabindex,\n      twoToneColor = _props$context$attrs.twoToneColor,\n      onClick = _props$context$attrs.onClick,\n      restProps = _objectWithoutProperties(_props$context$attrs, _excluded);\n\n  var _useInjectIconContext = useInjectIconContext(),\n      prefixCls = _useInjectIconContext.prefixCls,\n      rootClassName = _useInjectIconContext.rootClassName;\n\n  var classObj = (_classObj = {}, _defineProperty(_classObj, rootClassName.value, !!rootClassName.value), _defineProperty(_classObj, prefixCls.value, true), _defineProperty(_classObj, \"\".concat(prefixCls.value, \"-\").concat(icon.name), Boolean(icon.name)), _defineProperty(_classObj, \"\".concat(prefixCls.value, \"-spin\"), !!spin || icon.name === 'loading'), _classObj);\n  var iconTabIndex = tabindex;\n\n  if (iconTabIndex === undefined && onClick) {\n    iconTabIndex = -1;\n  }\n\n  var svgStyle = rotate ? {\n    msTransform: \"rotate(\".concat(rotate, \"deg)\"),\n    transform: \"rotate(\".concat(rotate, \"deg)\")\n  } : undefined;\n\n  var _normalizeTwoToneColo = normalizeTwoToneColors(twoToneColor),\n      _normalizeTwoToneColo2 = _slicedToArray(_normalizeTwoToneColo, 2),\n      primaryColor = _normalizeTwoToneColo2[0],\n      secondaryColor = _normalizeTwoToneColo2[1];\n\n  return _createVNode(\"span\", _objectSpread({\n    \"role\": \"img\",\n    \"aria-label\": icon.name\n  }, restProps, {\n    \"onClick\": onClick,\n    \"class\": [classObj, cls],\n    \"tabindex\": iconTabIndex\n  }), [_createVNode(VueIcon, {\n    \"icon\": icon,\n    \"primaryColor\": primaryColor,\n    \"secondaryColor\": secondaryColor,\n    \"style\": svgStyle\n  }, null), _createVNode(InsertStyles, null, null)]);\n};\n\nIcon.props = {\n  spin: Boolean,\n  rotate: Number,\n  icon: Object,\n  twoToneColor: [String, Array]\n};\nIcon.displayName = 'AntdIcon';\nIcon.inheritAttrs = false;\nIcon.getTwoToneColor = getTwoToneColor;\nIcon.setTwoToneColor = setTwoToneColor;\nexport default Icon;",
+      "start": 1718517096677,
+      "end": 1718517096854,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096854,
+      "end": 1718517096854,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096854,
+      "end": 1718517096855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096855,
+      "end": 1718517096855,
+      "order": "normal"
+    }
+  ]
+}

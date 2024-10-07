@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/list/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { provide, defineComponent, ref, watch, computed, toRef } from 'vue';\nimport classNames from '../_util/classNames';\nimport Spin from '../spin';\nimport Pagination from '../pagination';\nimport { Row } from '../grid';\nimport Item from './Item';\nimport { flattenChildren } from '../_util/props-util';\nimport initDefaultProps from '../_util/props-util/initDefaultProps';\nimport { arrayType, someType, booleanType, objectType, vNodeType, functionType } from '../_util/type';\nimport ItemMeta from './ItemMeta';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport useBreakpoint from '../_util/hooks/useBreakpoint';\nimport { responsiveArray } from '../_util/responsiveObserve';\nimport eagerComputed from '../_util/eagerComputed';\n// CSSINJS\nimport useStyle from './style';\nexport const listProps = () => ({\n  bordered: booleanType(),\n  dataSource: arrayType(),\n  extra: vNodeType(),\n  grid: objectType(),\n  itemLayout: String,\n  loading: someType([Boolean, Object]),\n  loadMore: vNodeType(),\n  pagination: someType([Boolean, Object]),\n  prefixCls: String,\n  rowKey: someType([String, Number, Function]),\n  renderItem: functionType(),\n  size: String,\n  split: booleanType(),\n  header: vNodeType(),\n  footer: vNodeType(),\n  locale: objectType()\n});\nimport { ListContextKey } from './contextKey';\nconst List = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AList',\n  inheritAttrs: false,\n  Item,\n  props: initDefaultProps(listProps(), {\n    dataSource: [],\n    bordered: false,\n    split: true,\n    loading: false,\n    pagination: false\n  }),\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs\n    } = _ref;\n    var _a, _b;\n    provide(ListContextKey, {\n      grid: toRef(props, 'grid'),\n      itemLayout: toRef(props, 'itemLayout')\n    });\n    const defaultPaginationProps = {\n      current: 1,\n      total: 0\n    };\n    const {\n      prefixCls,\n      direction,\n      renderEmpty\n    } = useConfigInject('list', props);\n    // Style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const paginationObj = computed(() => props.pagination && typeof props.pagination === 'object' ? props.pagination : {});\n    const paginationCurrent = ref((_a = paginationObj.value.defaultCurrent) !== null && _a !== void 0 ? _a : 1);\n    const paginationSize = ref((_b = paginationObj.value.defaultPageSize) !== null && _b !== void 0 ? _b : 10);\n    watch(paginationObj, () => {\n      if ('current' in paginationObj.value) {\n        paginationCurrent.value = paginationObj.value.current;\n      }\n      if ('pageSize' in paginationObj.value) {\n        paginationSize.value = paginationObj.value.pageSize;\n      }\n    });\n    const listItemsKeys = [];\n    const triggerPaginationEvent = eventName => (page, pageSize) => {\n      paginationCurrent.value = page;\n      paginationSize.value = pageSize;\n      if (paginationObj.value[eventName]) {\n        paginationObj.value[eventName](page, pageSize);\n      }\n    };\n    const onPaginationChange = triggerPaginationEvent('onChange');\n    const onPaginationShowSizeChange = triggerPaginationEvent('onShowSizeChange');\n    const loadingProp = computed(() => {\n      if (typeof props.loading === 'boolean') {\n        return {\n          spinning: props.loading\n        };\n      } else {\n        return props.loading;\n      }\n    });\n    const isLoading = computed(() => loadingProp.value && loadingProp.value.spinning);\n    const sizeCls = computed(() => {\n      let size = '';\n      switch (props.size) {\n        case 'large':\n          size = 'lg';\n          break;\n        case 'small':\n          size = 'sm';\n          break;\n        default:\n          break;\n      }\n      return size;\n    });\n    const classObj = computed(() => ({\n      [`${prefixCls.value}`]: true,\n      [`${prefixCls.value}-vertical`]: props.itemLayout === 'vertical',\n      [`${prefixCls.value}-${sizeCls.value}`]: sizeCls.value,\n      [`${prefixCls.value}-split`]: props.split,\n      [`${prefixCls.value}-bordered`]: props.bordered,\n      [`${prefixCls.value}-loading`]: isLoading.value,\n      [`${prefixCls.value}-grid`]: !!props.grid,\n      [`${prefixCls.value}-rtl`]: direction.value === 'rtl'\n    }));\n    const paginationProps = computed(() => {\n      const pp = _extends(_extends(_extends({}, defaultPaginationProps), {\n        total: props.dataSource.length,\n        current: paginationCurrent.value,\n        pageSize: paginationSize.value\n      }), props.pagination || {});\n      const largestPage = Math.ceil(pp.total / pp.pageSize);\n      if (pp.current > largestPage) {\n        pp.current = largestPage;\n      }\n      return pp;\n    });\n    const splitDataSource = computed(() => {\n      let dd = [...props.dataSource];\n      if (props.pagination) {\n        if (props.dataSource.length > (paginationProps.value.current - 1) * paginationProps.value.pageSize) {\n          dd = [...props.dataSource].splice((paginationProps.value.current - 1) * paginationProps.value.pageSize, paginationProps.value.pageSize);\n        }\n      }\n      return dd;\n    });\n    const screens = useBreakpoint();\n    const currentBreakpoint = eagerComputed(() => {\n      for (let i = 0; i < responsiveArray.length; i += 1) {\n        const breakpoint = responsiveArray[i];\n        if (screens.value[breakpoint]) {\n          return breakpoint;\n        }\n      }\n      return undefined;\n    });\n    const colStyle = computed(() => {\n      if (!props.grid) {\n        return undefined;\n      }\n      const columnCount = currentBreakpoint.value && props.grid[currentBreakpoint.value] ? props.grid[currentBreakpoint.value] : props.grid.column;\n      if (columnCount) {\n        return {\n          width: `${100 / columnCount}%`,\n          maxWidth: `${100 / columnCount}%`\n        };\n      }\n      return undefined;\n    });\n    const renderInnerItem = (item, index) => {\n      var _a;\n      const renderItem = (_a = props.renderItem) !== null && _a !== void 0 ? _a : slots.renderItem;\n      if (!renderItem) return null;\n      let key;\n      const rowKeyType = typeof props.rowKey;\n      if (rowKeyType === 'function') {\n        key = props.rowKey(item);\n      } else if (rowKeyType === 'string' || rowKeyType === 'number') {\n        key = item[props.rowKey];\n      } else {\n        key = item.key;\n      }\n      if (!key) {\n        key = `list-item-${index}`;\n      }\n      listItemsKeys[index] = key;\n      return renderItem({\n        item,\n        index\n      });\n    };\n    return () => {\n      var _a, _b, _c, _d, _e, _f, _g, _h;\n      const loadMore = (_a = props.loadMore) !== null && _a !== void 0 ? _a : (_b = slots.loadMore) === null || _b === void 0 ? void 0 : _b.call(slots);\n      const footer = (_c = props.footer) !== null && _c !== void 0 ? _c : (_d = slots.footer) === null || _d === void 0 ? void 0 : _d.call(slots);\n      const header = (_e = props.header) !== null && _e !== void 0 ? _e : (_f = slots.header) === null || _f === void 0 ? void 0 : _f.call(slots);\n      const children = flattenChildren((_g = slots.default) === null || _g === void 0 ? void 0 : _g.call(slots));\n      const isSomethingAfterLastItem = !!(loadMore || props.pagination || footer);\n      const classString = classNames(_extends(_extends({}, classObj.value), {\n        [`${prefixCls.value}-something-after-last-item`]: isSomethingAfterLastItem\n      }), attrs.class, hashId.value);\n      const paginationContent = props.pagination ? _createVNode(\"div\", {\n        \"class\": `${prefixCls.value}-pagination`\n      }, [_createVNode(Pagination, _objectSpread(_objectSpread({}, paginationProps.value), {}, {\n        \"onChange\": onPaginationChange,\n        \"onShowSizeChange\": onPaginationShowSizeChange\n      }), null)]) : null;\n      let childrenContent = isLoading.value && _createVNode(\"div\", {\n        \"style\": {\n          minHeight: '53px'\n        }\n      }, null);\n      if (splitDataSource.value.length > 0) {\n        listItemsKeys.length = 0;\n        const items = splitDataSource.value.map((item, index) => renderInnerItem(item, index));\n        const childrenList = items.map((child, index) => _createVNode(\"div\", {\n          \"key\": listItemsKeys[index],\n          \"style\": colStyle.value\n        }, [child]));\n        childrenContent = props.grid ? _createVNode(Row, {\n          \"gutter\": props.grid.gutter\n        }, {\n          default: () => [childrenList]\n        }) : _createVNode(\"ul\", {\n          \"class\": `${prefixCls.value}-items`\n        }, [items]);\n      } else if (!children.length && !isLoading.value) {\n        childrenContent = _createVNode(\"div\", {\n          \"class\": `${prefixCls.value}-empty-text`\n        }, [((_h = props.locale) === null || _h === void 0 ? void 0 : _h.emptyText) || renderEmpty('List')]);\n      }\n      const paginationPosition = paginationProps.value.position || 'bottom';\n      return wrapSSR(_createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"class\": classString\n      }), [(paginationPosition === 'top' || paginationPosition === 'both') && paginationContent, header && _createVNode(\"div\", {\n        \"class\": `${prefixCls.value}-header`\n      }, [header]), _createVNode(Spin, loadingProp.value, {\n        default: () => [childrenContent, children]\n      }), footer && _createVNode(\"div\", {\n        \"class\": `${prefixCls.value}-footer`\n      }, [footer]), loadMore || (paginationPosition === 'bottom' || paginationPosition === 'both') && paginationContent]));\n    };\n  }\n});\n/* istanbul ignore next */\nList.install = function (app) {\n  app.component(List.name, List);\n  app.component(List.Item.name, List.Item);\n  app.component(List.Item.Meta.name, List.Item.Meta);\n  return app;\n};\nexport { ItemMeta as ListItemMeta, Item as ListItem };\nexport default List;",
+      "start": 1718517096416,
+      "end": 1718517096478,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096478,
+      "end": 1718517096479,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "normal"
+    }
+  ]
+}

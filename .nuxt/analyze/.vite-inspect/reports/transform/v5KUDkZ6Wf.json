@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/_util/cssinjs/theme/ThemeCache.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "export function sameDerivativeOption(left, right) {\n  if (left.length !== right.length) {\n    return false;\n  }\n  for (let i = 0; i < left.length; i++) {\n    if (left[i] !== right[i]) {\n      return false;\n    }\n  }\n  return true;\n}\nexport default class ThemeCache {\n  constructor() {\n    this.cache = new Map();\n    this.keys = [];\n    this.cacheCallTimes = 0;\n  }\n  size() {\n    return this.keys.length;\n  }\n  internalGet(derivativeOption) {\n    let updateCallTimes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;\n    let cache = {\n      map: this.cache\n    };\n    derivativeOption.forEach(derivative => {\n      var _a;\n      if (!cache) {\n        cache = undefined;\n      } else {\n        cache = (_a = cache === null || cache === void 0 ? void 0 : cache.map) === null || _a === void 0 ? void 0 : _a.get(derivative);\n      }\n    });\n    if ((cache === null || cache === void 0 ? void 0 : cache.value) && updateCallTimes) {\n      cache.value[1] = this.cacheCallTimes++;\n    }\n    return cache === null || cache === void 0 ? void 0 : cache.value;\n  }\n  get(derivativeOption) {\n    var _a;\n    return (_a = this.internalGet(derivativeOption, true)) === null || _a === void 0 ? void 0 : _a[0];\n  }\n  has(derivativeOption) {\n    return !!this.internalGet(derivativeOption);\n  }\n  set(derivativeOption, value) {\n    // New cache\n    if (!this.has(derivativeOption)) {\n      if (this.size() + 1 > ThemeCache.MAX_CACHE_SIZE + ThemeCache.MAX_CACHE_OFFSET) {\n        const [targetKey] = this.keys.reduce((result, key) => {\n          const [, callTimes] = result;\n          if (this.internalGet(key)[1] < callTimes) {\n            return [key, this.internalGet(key)[1]];\n          }\n          return result;\n        }, [this.keys[0], this.cacheCallTimes]);\n        this.delete(targetKey);\n      }\n      this.keys.push(derivativeOption);\n    }\n    let cache = this.cache;\n    derivativeOption.forEach((derivative, index) => {\n      if (index === derivativeOption.length - 1) {\n        cache.set(derivative, {\n          value: [value, this.cacheCallTimes++]\n        });\n      } else {\n        const cacheValue = cache.get(derivative);\n        if (!cacheValue) {\n          cache.set(derivative, {\n            map: new Map()\n          });\n        } else if (!cacheValue.map) {\n          cacheValue.map = new Map();\n        }\n        cache = cache.get(derivative).map;\n      }\n    });\n  }\n  deleteByPath(currentCache, derivatives) {\n    var _a;\n    const cache = currentCache.get(derivatives[0]);\n    if (derivatives.length === 1) {\n      if (!cache.map) {\n        currentCache.delete(derivatives[0]);\n      } else {\n        currentCache.set(derivatives[0], {\n          map: cache.map\n        });\n      }\n      return (_a = cache.value) === null || _a === void 0 ? void 0 : _a[0];\n    }\n    const result = this.deleteByPath(cache.map, derivatives.slice(1));\n    if ((!cache.map || cache.map.size === 0) && !cache.value) {\n      currentCache.delete(derivatives[0]);\n    }\n    return result;\n  }\n  delete(derivativeOption) {\n    // If cache exists\n    if (this.has(derivativeOption)) {\n      this.keys = this.keys.filter(item => !sameDerivativeOption(item, derivativeOption));\n      return this.deleteByPath(this.cache, derivativeOption);\n    }\n    return undefined;\n  }\n}\nThemeCache.MAX_CACHE_SIZE = 20;\nThemeCache.MAX_CACHE_OFFSET = 5;",
+      "start": 1718517097847,
+      "end": 1718517097881,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097881,
+      "end": 1718517097881,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097881,
+      "end": 1718517097881,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097881,
+      "end": 1718517097881,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097881,
+      "end": 1718517097881,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097881,
+      "end": 1718517097881,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097881,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097882,
+      "end": 1718517097882,
+      "order": "normal"
+    }
+  ]
+}

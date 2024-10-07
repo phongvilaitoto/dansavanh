@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-tree/utils/treeUtil.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { getPosition, isTreeNode } from '../util';\nimport { warning } from '../../vc-util/warning';\nimport { camelize, filterEmpty } from '../../_util/props-util';\nimport omit from '../../_util/omit';\nexport function getKey(key, pos) {\n  if (key !== null && key !== undefined) {\n    return key;\n  }\n  return pos;\n}\nexport function fillFieldNames(fieldNames) {\n  const {\n    title,\n    _title,\n    key,\n    children\n  } = fieldNames || {};\n  const mergedTitle = title || 'title';\n  return {\n    title: mergedTitle,\n    _title: _title || [mergedTitle],\n    key: key || 'key',\n    children: children || 'children'\n  };\n}\n/**\n * Warning if TreeNode do not provides key\n */\nexport function warningWithoutKey(treeData, fieldNames) {\n  const keys = new Map();\n  function dig(list) {\n    let path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n    (list || []).forEach(treeNode => {\n      const key = treeNode[fieldNames.key];\n      const children = treeNode[fieldNames.children];\n      warning(key !== null && key !== undefined, `Tree node must have a certain key: [${path}${key}]`);\n      const recordKey = String(key);\n      warning(!keys.has(recordKey) || key === null || key === undefined, `Same 'key' exist in the Tree: ${recordKey}`);\n      keys.set(recordKey, true);\n      dig(children, `${path}${recordKey} > `);\n    });\n  }\n  dig(treeData);\n}\n/**\n * Convert `children` of Tree into `treeData` structure.\n */\nexport function convertTreeToData(rootNodes) {\n  function dig() {\n    let node = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n    const treeNodes = filterEmpty(node);\n    return treeNodes.map(treeNode => {\n      var _a, _b, _c, _d;\n      // Filter invalidate node\n      if (!isTreeNode(treeNode)) {\n        warning(!treeNode, 'Tree/TreeNode can only accept TreeNode as children.');\n        return null;\n      }\n      const slots = treeNode.children || {};\n      const key = treeNode.key;\n      const props = {};\n      for (const [k, v] of Object.entries(treeNode.props)) {\n        props[camelize(k)] = v;\n      }\n      const {\n        isLeaf,\n        checkable,\n        selectable,\n        disabled,\n        disableCheckbox\n      } = props;\n      // 默认值为 undefined\n      const newProps = {\n        isLeaf: isLeaf || isLeaf === '' || undefined,\n        checkable: checkable || checkable === '' || undefined,\n        selectable: selectable || selectable === '' || undefined,\n        disabled: disabled || disabled === '' || undefined,\n        disableCheckbox: disableCheckbox || disableCheckbox === '' || undefined\n      };\n      const slotsProps = _extends(_extends({}, props), newProps);\n      const {\n          title = (_a = slots.title) === null || _a === void 0 ? void 0 : _a.call(slots, slotsProps),\n          icon = (_b = slots.icon) === null || _b === void 0 ? void 0 : _b.call(slots, slotsProps),\n          switcherIcon = (_c = slots.switcherIcon) === null || _c === void 0 ? void 0 : _c.call(slots, slotsProps)\n        } = props,\n        rest = __rest(props, [\"title\", \"icon\", \"switcherIcon\"]);\n      const children = (_d = slots.default) === null || _d === void 0 ? void 0 : _d.call(slots);\n      const dataNode = _extends(_extends(_extends({}, rest), {\n        title,\n        icon,\n        switcherIcon,\n        key,\n        isLeaf\n      }), newProps);\n      const parsedChildren = dig(children);\n      if (parsedChildren.length) {\n        dataNode.children = parsedChildren;\n      }\n      return dataNode;\n    });\n  }\n  return dig(rootNodes);\n}\n/**\n * Flat nest tree data into flatten list. This is used for virtual list render.\n * @param treeNodeList Origin data node list\n * @param expandedKeys\n * need expanded keys, provides `true` means all expanded (used in `rc-tree-select`).\n */\nexport function flattenTreeData(treeNodeList, expandedKeys, fieldNames) {\n  const {\n    _title: fieldTitles,\n    key: fieldKey,\n    children: fieldChildren\n  } = fillFieldNames(fieldNames);\n  const expandedKeySet = new Set(expandedKeys === true ? [] : expandedKeys);\n  const flattenList = [];\n  function dig(list) {\n    let parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;\n    return list.map((treeNode, index) => {\n      const pos = getPosition(parent ? parent.pos : '0', index);\n      const mergedKey = getKey(treeNode[fieldKey], pos);\n      // Pick matched title in field title list\n      let mergedTitle;\n      for (let i = 0; i < fieldTitles.length; i += 1) {\n        const fieldTitle = fieldTitles[i];\n        if (treeNode[fieldTitle] !== undefined) {\n          mergedTitle = treeNode[fieldTitle];\n          break;\n        }\n      }\n      // Add FlattenDataNode into list\n      const flattenNode = _extends(_extends({}, omit(treeNode, [...fieldTitles, fieldKey, fieldChildren])), {\n        title: mergedTitle,\n        key: mergedKey,\n        parent,\n        pos,\n        children: null,\n        data: treeNode,\n        isStart: [...(parent ? parent.isStart : []), index === 0],\n        isEnd: [...(parent ? parent.isEnd : []), index === list.length - 1]\n      });\n      flattenList.push(flattenNode);\n      // Loop treeNode children\n      if (expandedKeys === true || expandedKeySet.has(mergedKey)) {\n        flattenNode.children = dig(treeNode[fieldChildren] || [], flattenNode);\n      } else {\n        flattenNode.children = [];\n      }\n      return flattenNode;\n    });\n  }\n  dig(treeNodeList);\n  return flattenList;\n}\n/**\n * Traverse all the data by `treeData`.\n * Please not use it out of the `rc-tree` since we may refactor this code.\n */\nexport function traverseDataNodes(dataNodes, callback,\n// To avoid too many params, let use config instead of origin param\nconfig) {\n  let mergedConfig = {};\n  if (typeof config === 'object') {\n    mergedConfig = config;\n  } else {\n    mergedConfig = {\n      externalGetKey: config\n    };\n  }\n  mergedConfig = mergedConfig || {};\n  // Init config\n  const {\n    childrenPropName,\n    externalGetKey,\n    fieldNames\n  } = mergedConfig;\n  const {\n    key: fieldKey,\n    children: fieldChildren\n  } = fillFieldNames(fieldNames);\n  const mergeChildrenPropName = childrenPropName || fieldChildren;\n  // Get keys\n  let syntheticGetKey;\n  if (externalGetKey) {\n    if (typeof externalGetKey === 'string') {\n      syntheticGetKey = node => node[externalGetKey];\n    } else if (typeof externalGetKey === 'function') {\n      syntheticGetKey = node => externalGetKey(node);\n    }\n  } else {\n    syntheticGetKey = (node, pos) => getKey(node[fieldKey], pos);\n  }\n  // Process\n  function processNode(node, index, parent, pathNodes) {\n    const children = node ? node[mergeChildrenPropName] : dataNodes;\n    const pos = node ? getPosition(parent.pos, index) : '0';\n    const connectNodes = node ? [...pathNodes, node] : [];\n    // Process node if is not root\n    if (node) {\n      const key = syntheticGetKey(node, pos);\n      const data = {\n        node,\n        index,\n        pos,\n        key,\n        parentPos: parent.node ? parent.pos : null,\n        level: parent.level + 1,\n        nodes: connectNodes\n      };\n      callback(data);\n    }\n    // Process children node\n    if (children) {\n      children.forEach((subNode, subIndex) => {\n        processNode(subNode, subIndex, {\n          node,\n          pos,\n          level: parent ? parent.level + 1 : -1\n        }, connectNodes);\n      });\n    }\n  }\n  processNode(null);\n}\n/**\n * Convert `treeData` into entity records.\n */\nexport function convertDataToEntities(dataNodes) {\n  let {\n    initWrapper,\n    processEntity,\n    onProcessFinished,\n    externalGetKey,\n    childrenPropName,\n    fieldNames\n  } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n  let /** @deprecated Use `config.externalGetKey` instead */\n  legacyExternalGetKey = arguments.length > 2 ? arguments[2] : undefined;\n  // Init config\n  const mergedExternalGetKey = externalGetKey || legacyExternalGetKey;\n  const posEntities = {};\n  const keyEntities = {};\n  let wrapper = {\n    posEntities,\n    keyEntities\n  };\n  if (initWrapper) {\n    wrapper = initWrapper(wrapper) || wrapper;\n  }\n  traverseDataNodes(dataNodes, item => {\n    const {\n      node,\n      index,\n      pos,\n      key,\n      parentPos,\n      level,\n      nodes\n    } = item;\n    const entity = {\n      node,\n      nodes,\n      index,\n      key,\n      pos,\n      level\n    };\n    const mergedKey = getKey(key, pos);\n    posEntities[pos] = entity;\n    keyEntities[mergedKey] = entity;\n    // Fill children\n    entity.parent = posEntities[parentPos];\n    if (entity.parent) {\n      entity.parent.children = entity.parent.children || [];\n      entity.parent.children.push(entity);\n    }\n    if (processEntity) {\n      processEntity(entity, wrapper);\n    }\n  }, {\n    externalGetKey: mergedExternalGetKey,\n    childrenPropName,\n    fieldNames\n  });\n  if (onProcessFinished) {\n    onProcessFinished(wrapper);\n  }\n  return wrapper;\n}\n/**\n * Get TreeNode props with Tree props.\n */\nexport function getTreeNodeProps(key, _ref) {\n  let {\n    expandedKeysSet,\n    selectedKeysSet,\n    loadedKeysSet,\n    loadingKeysSet,\n    checkedKeysSet,\n    halfCheckedKeysSet,\n    dragOverNodeKey,\n    dropPosition,\n    keyEntities\n  } = _ref;\n  const entity = keyEntities[key];\n  const treeNodeProps = {\n    eventKey: key,\n    expanded: expandedKeysSet.has(key),\n    selected: selectedKeysSet.has(key),\n    loaded: loadedKeysSet.has(key),\n    loading: loadingKeysSet.has(key),\n    checked: checkedKeysSet.has(key),\n    halfChecked: halfCheckedKeysSet.has(key),\n    pos: String(entity ? entity.pos : ''),\n    parent: entity.parent,\n    // [Legacy] Drag props\n    // Since the interaction of drag is changed, the semantic of the props are\n    // not accuracy, I think it should be finally removed\n    dragOver: dragOverNodeKey === key && dropPosition === 0,\n    dragOverGapTop: dragOverNodeKey === key && dropPosition === -1,\n    dragOverGapBottom: dragOverNodeKey === key && dropPosition === 1\n  };\n  return treeNodeProps;\n}\nexport function convertNodePropsToEventData(props) {\n  const {\n    data,\n    expanded,\n    selected,\n    checked,\n    loaded,\n    loading,\n    halfChecked,\n    dragOver,\n    dragOverGapTop,\n    dragOverGapBottom,\n    pos,\n    active,\n    eventKey\n  } = props;\n  const eventData = _extends(_extends({\n    dataRef: data\n  }, data), {\n    expanded,\n    selected,\n    checked,\n    loaded,\n    loading,\n    halfChecked,\n    dragOver,\n    dragOverGapTop,\n    dragOverGapBottom,\n    pos,\n    active,\n    eventKey,\n    key: eventKey\n  });\n  if (!('props' in eventData)) {\n    Object.defineProperty(eventData, 'props', {\n      get() {\n        warning(false, 'Second param return from event is node data instead of TreeNode instance. Please read value directly instead of reading from `props`.');\n        return props;\n      }\n    });\n  }\n  return eventData;\n}",
+      "start": 1718517098496,
+      "end": 1718517098547,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098547,
+      "end": 1718517098547,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098547,
+      "end": 1718517098548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098548,
+      "end": 1718517098548,
+      "order": "normal"
+    }
+  ]
+}

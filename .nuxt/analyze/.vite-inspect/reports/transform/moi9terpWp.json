@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-picker/hooks/useCellClassName.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isInRange } from '../utils/dateUtil';\nimport { getValue } from '../utils/miscUtil';\nexport default function useCellClassName(_ref) {\n  let {\n    cellPrefixCls,\n    generateConfig,\n    rangedValue,\n    hoverRangedValue,\n    isInView,\n    isSameCell,\n    offsetCell,\n    today,\n    value\n  } = _ref;\n  function getClassName(currentDate) {\n    const prevDate = offsetCell(currentDate, -1);\n    const nextDate = offsetCell(currentDate, 1);\n    const rangeStart = getValue(rangedValue, 0);\n    const rangeEnd = getValue(rangedValue, 1);\n    const hoverStart = getValue(hoverRangedValue, 0);\n    const hoverEnd = getValue(hoverRangedValue, 1);\n    const isRangeHovered = isInRange(generateConfig, hoverStart, hoverEnd, currentDate);\n    function isRangeStart(date) {\n      return isSameCell(rangeStart, date);\n    }\n    function isRangeEnd(date) {\n      return isSameCell(rangeEnd, date);\n    }\n    const isHoverStart = isSameCell(hoverStart, currentDate);\n    const isHoverEnd = isSameCell(hoverEnd, currentDate);\n    const isHoverEdgeStart = (isRangeHovered || isHoverEnd) && (!isInView(prevDate) || isRangeEnd(prevDate));\n    const isHoverEdgeEnd = (isRangeHovered || isHoverStart) && (!isInView(nextDate) || isRangeStart(nextDate));\n    return {\n      // In view\n      [`${cellPrefixCls}-in-view`]: isInView(currentDate),\n      // Range\n      [`${cellPrefixCls}-in-range`]: isInRange(generateConfig, rangeStart, rangeEnd, currentDate),\n      [`${cellPrefixCls}-range-start`]: isRangeStart(currentDate),\n      [`${cellPrefixCls}-range-end`]: isRangeEnd(currentDate),\n      [`${cellPrefixCls}-range-start-single`]: isRangeStart(currentDate) && !rangeEnd,\n      [`${cellPrefixCls}-range-end-single`]: isRangeEnd(currentDate) && !rangeStart,\n      [`${cellPrefixCls}-range-start-near-hover`]: isRangeStart(currentDate) && (isSameCell(prevDate, hoverStart) || isInRange(generateConfig, hoverStart, hoverEnd, prevDate)),\n      [`${cellPrefixCls}-range-end-near-hover`]: isRangeEnd(currentDate) && (isSameCell(nextDate, hoverEnd) || isInRange(generateConfig, hoverStart, hoverEnd, nextDate)),\n      // Range Hover\n      [`${cellPrefixCls}-range-hover`]: isRangeHovered,\n      [`${cellPrefixCls}-range-hover-start`]: isHoverStart,\n      [`${cellPrefixCls}-range-hover-end`]: isHoverEnd,\n      // Range Edge\n      [`${cellPrefixCls}-range-hover-edge-start`]: isHoverEdgeStart,\n      [`${cellPrefixCls}-range-hover-edge-end`]: isHoverEdgeEnd,\n      [`${cellPrefixCls}-range-hover-edge-start-near-range`]: isHoverEdgeStart && isSameCell(prevDate, rangeEnd),\n      [`${cellPrefixCls}-range-hover-edge-end-near-range`]: isHoverEdgeEnd && isSameCell(nextDate, rangeStart),\n      // Others\n      [`${cellPrefixCls}-today`]: isSameCell(today, currentDate),\n      [`${cellPrefixCls}-selected`]: isSameCell(value, currentDate)\n    };\n  }\n  return getClassName;\n}",
+      "start": 1718517100241,
+      "end": 1718517100271,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100271,
+      "end": 1718517100271,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100271,
+      "end": 1718517100272,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100272,
+      "end": 1718517100272,
+      "order": "normal"
+    }
+  ]
+}

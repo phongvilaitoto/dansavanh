@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/float-button/FloatButtonGroup.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { resolveDirective as _resolveDirective, withDirectives as _withDirectives, createVNode as _createVNode, vShow as _vShow, Fragment as _Fragment } from \"vue\";\nimport { defineComponent, ref, computed, watch, onBeforeUnmount } from 'vue';\nimport CloseOutlined from \"@ant-design/icons-vue/es/icons/CloseOutlined\";\nimport FileTextOutlined from \"@ant-design/icons-vue/es/icons/FileTextOutlined\";\nimport classNames from '../_util/classNames';\nimport { getTransitionProps, Transition } from '../_util/transition';\nimport FloatButton, { floatButtonPrefixCls } from './FloatButton';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport { useProvideFloatButtonGroupContext } from './context';\nimport { findDOMNode, initDefaultProps } from '../_util/props-util';\nimport { floatButtonGroupProps } from './interface';\nimport canUseDom from '../_util/canUseDom';\n// CSSINJS\nimport useStyle from './style';\nimport useMergedState from '../_util/hooks/useMergedState';\nconst FloatButtonGroup = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AFloatButtonGroup',\n  inheritAttrs: false,\n  props: initDefaultProps(floatButtonGroupProps(), {\n    type: 'default',\n    shape: 'circle'\n  }),\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots,\n      emit\n    } = _ref;\n    const {\n      prefixCls,\n      direction\n    } = useConfigInject(floatButtonPrefixCls, props);\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const [open, setOpen] = useMergedState(false, {\n      value: computed(() => props.open)\n    });\n    const floatButtonGroupRef = ref(null);\n    const floatButtonRef = ref(null);\n    useProvideFloatButtonGroupContext({\n      shape: computed(() => props.shape)\n    });\n    const hoverTypeAction = {\n      onMouseenter() {\n        var _a;\n        setOpen(true);\n        emit('update:open', true);\n        (_a = props.onOpenChange) === null || _a === void 0 ? void 0 : _a.call(props, true);\n      },\n      onMouseleave() {\n        var _a;\n        setOpen(false);\n        emit('update:open', false);\n        (_a = props.onOpenChange) === null || _a === void 0 ? void 0 : _a.call(props, false);\n      }\n    };\n    const hoverAction = computed(() => {\n      return props.trigger === 'hover' ? hoverTypeAction : {};\n    });\n    const handleOpenChange = () => {\n      var _a;\n      const nextOpen = !open.value;\n      emit('update:open', nextOpen);\n      (_a = props.onOpenChange) === null || _a === void 0 ? void 0 : _a.call(props, nextOpen);\n      setOpen(nextOpen);\n    };\n    const onClick = e => {\n      var _a, _b, _c;\n      if ((_a = floatButtonGroupRef.value) === null || _a === void 0 ? void 0 : _a.contains(e.target)) {\n        if ((_b = findDOMNode(floatButtonRef.value)) === null || _b === void 0 ? void 0 : _b.contains(e.target)) {\n          handleOpenChange();\n        }\n        return;\n      }\n      setOpen(false);\n      emit('update:open', false);\n      (_c = props.onOpenChange) === null || _c === void 0 ? void 0 : _c.call(props, false);\n    };\n    watch(computed(() => props.trigger), value => {\n      if (!canUseDom()) {\n        return;\n      }\n      document.removeEventListener('click', onClick);\n      if (value === 'click') {\n        document.addEventListener('click', onClick);\n      }\n    }, {\n      immediate: true\n    });\n    onBeforeUnmount(() => {\n      document.removeEventListener('click', onClick);\n    });\n    return () => {\n      var _a;\n      const {\n        shape = 'circle',\n        type = 'default',\n        tooltip,\n        description,\n        trigger\n      } = props;\n      const groupPrefixCls = `${prefixCls.value}-group`;\n      const groupCls = classNames(groupPrefixCls, hashId.value, attrs.class, {\n        [`${groupPrefixCls}-rtl`]: direction.value === 'rtl',\n        [`${groupPrefixCls}-${shape}`]: shape,\n        [`${groupPrefixCls}-${shape}-shadow`]: !trigger\n      });\n      const wrapperCls = classNames(hashId.value, `${groupPrefixCls}-wrap`);\n      const transitionProps = getTransitionProps(`${groupPrefixCls}-wrap`);\n      return wrapSSR(_createVNode(\"div\", _objectSpread(_objectSpread({\n        \"ref\": floatButtonGroupRef\n      }, attrs), {}, {\n        \"class\": groupCls\n      }, hoverAction.value), [trigger && ['click', 'hover'].includes(trigger) ? _createVNode(_Fragment, null, [_createVNode(Transition, transitionProps, {\n        default: () => [_withDirectives(_createVNode(\"div\", {\n          \"class\": wrapperCls\n        }, [slots.default && slots.default()]), [[_vShow, open.value]])]\n      }), _createVNode(FloatButton, {\n        \"ref\": floatButtonRef,\n        \"type\": type,\n        \"shape\": shape,\n        \"tooltip\": tooltip,\n        \"description\": description\n      }, {\n        icon: () => {\n          var _a, _b;\n          return open.value ? ((_a = slots.closeIcon) === null || _a === void 0 ? void 0 : _a.call(slots)) || _createVNode(CloseOutlined, null, null) : ((_b = slots.icon) === null || _b === void 0 ? void 0 : _b.call(slots)) || _createVNode(FileTextOutlined, null, null);\n        },\n        tooltip: slots.tooltip,\n        description: slots.description\n      })]) : (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots)]));\n    };\n  }\n});\nexport default FloatButtonGroup;",
+      "start": 1718517097400,
+      "end": 1718517097432,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097432,
+      "end": 1718517097432,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097433,
+      "end": 1718517097433,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097433,
+      "end": 1718517097434,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097434,
+      "end": 1718517097434,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097434,
+      "end": 1718517097434,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097434,
+      "end": 1718517097434,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097434,
+      "end": 1718517097434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097434,
+      "end": 1718517097434,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/pages/near-by/index.vue?macro=true&vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-a20ac1cd\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = {\n  class: \"max-width\",\n  style: {\"padding\":\"0 10px 0 10px\",\"min-height\":\"80vh\",\"margin-top\":\"150px\"}\n}\n\nimport { reactive, ref } from 'vue';\r\n\r\n\r\n\r\n\r\n\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'index',\n  setup(__props) {\n\r\nconst isLoading = ref(true)\r\n\r\n\r\nconst room = reactive({\r\n    title: 'Near By Title',\r\n    description: 'A place of quiet contemplation pervaded by the spiritual tranquility of the town itself, Amantaka’s spa offers guests an exceptional personalised experience. The spa menu draws on Lao healing traditions, incorporating local herbs and traditional Buddhist rituals.',\r\n    images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/9e99bfdb-6d77-4ee9-85fd-83221ee7abb1.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/84faa7d0-02cf-4108-a575-d7c8b08ebea7.jpg', ],\r\n    subImages: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/e7463c82-ed23-42e4-ac86-a120c93b8453.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/9e99bfdb-6d77-4ee9-85fd-83221ee7abb1.jpg','https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg',],\r\n    items: [\r\n        {\r\n            title: 'Embark on a holistic journey',\r\n            description: 'Our Signature Wellness Journeys are designed to meet individual needs while incorporating local wellness traditions and healing techniques. Each includes a massage and a personalised bath with local herbs. The Samun Pai incorporates herbal poultices, while the Anamai Hang Kai includes a detoxifying scrub and a mineral wrap.'\r\n        },\r\n        {\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        {\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        \r\n    ],\r\n    subItems: [\r\n        {\r\n            images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/09997ce6-c88a-425a-bda0-7fe8fbbe0478.jpg'],\r\n            title: 'Embark on a holistic journey',\r\n            description: 'Our Signature Wellness Journeys are designed to meet individual needs while incorporating local wellness traditions and healing techniques. Each includes a massage and a personalised bath with local herbs. The Samun Pai incorporates herbal poultices, while the Anamai Hang Kai includes a detoxifying scrub and a mineral wrap.'\r\n        },\r\n        {\r\n            images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg'],\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        \r\n    ]\r\n})\r\n\r\n//const { data }: any = await useFetch(config.API_BASE_URL + '/get-edws?type=Wellness')\r\n\r\n\r\n //const room2 = reactive(data.value.edws[1])\r\n\r\n// const { data }: any = await useFetch(config.API_BASE_URL + '/get-room/' + route.params.id)\r\n// const { data: roomsData }: any = await useFetch(config.API_BASE_URL + '/get-rooms')\r\n// const room = ref<any>(data.value.room)\r\n// const rooms = ref<any>(roomsData.value.rooms)\r\nisLoading.value = false\r\n\r\n\r\n\r\n\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_Wellness = _resolveComponent(\"Wellness\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createVNode(_component_Wellness, { room: room }, null, 8, [\"room\"])\n  ]))\n}\n}\n\n})",
+      "start": 1718517093083,
+      "end": 1718517093083
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093083,
+      "end": 1718517093083,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093083,
+      "end": 1718517093083,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093083,
+      "end": 1718517093083,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093083,
+      "end": 1718517093084,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093084,
+      "end": 1718517093084,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093084,
+      "end": 1718517093084,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\";\nconst _withScopeId = (n) => (_pushScopeId(\"data-v-a20ac1cd\"), n = n(), _popScopeId(), n);\nconst _hoisted_1 = {\n  class: \"max-width\",\n  style: { \"padding\": \"0 10px 0 10px\", \"min-height\": \"80vh\", \"margin-top\": \"150px\" }\n};\nimport { reactive, ref } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  setup(__props) {\n    const isLoading = ref(true);\n    const room = reactive({\n      title: \"Near By Title\",\n      description: \"A place of quiet contemplation pervaded by the spiritual tranquility of the town itself, Amantaka’s spa offers guests an exceptional personalised experience. The spa menu draws on Lao healing traditions, incorporating local herbs and traditional Buddhist rituals.\",\n      images: [\"https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg\", \"https://storage.googleapis.com/dsv-bucket/imgs/imgs/9e99bfdb-6d77-4ee9-85fd-83221ee7abb1.jpg\", \"https://storage.googleapis.com/dsv-bucket/imgs/imgs/84faa7d0-02cf-4108-a575-d7c8b08ebea7.jpg\"],\n      subImages: [\"https://storage.googleapis.com/dsv-bucket/imgs/imgs/e7463c82-ed23-42e4-ac86-a120c93b8453.jpg\", \"https://storage.googleapis.com/dsv-bucket/imgs/imgs/9e99bfdb-6d77-4ee9-85fd-83221ee7abb1.jpg\", \"https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg\"],\n      items: [\n        {\n          title: \"Embark on a holistic journey\",\n          description: \"Our Signature Wellness Journeys are designed to meet individual needs while incorporating local wellness traditions and healing techniques. Each includes a massage and a personalised bath with local herbs. The Samun Pai incorporates herbal poultices, while the Anamai Hang Kai includes a detoxifying scrub and a mineral wrap.\"\n        },\n        {\n          title: \"Generations of wisdom\",\n          description: \"Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.\"\n        },\n        {\n          title: \"Generations of wisdom\",\n          description: \"Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.\"\n        }\n      ],\n      subItems: [\n        {\n          images: [\"https://storage.googleapis.com/dsv-bucket/imgs/imgs/09997ce6-c88a-425a-bda0-7fe8fbbe0478.jpg\"],\n          title: \"Embark on a holistic journey\",\n          description: \"Our Signature Wellness Journeys are designed to meet individual needs while incorporating local wellness traditions and healing techniques. Each includes a massage and a personalised bath with local herbs. The Samun Pai incorporates herbal poultices, while the Anamai Hang Kai includes a detoxifying scrub and a mineral wrap.\"\n        },\n        {\n          images: [\"https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg\"],\n          title: \"Generations of wisdom\",\n          description: \"Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.\"\n        }\n      ]\n    });\n    isLoading.value = false;\n    return (_ctx, _cache) => {\n      const _component_Wellness = _resolveComponent(\"Wellness\");\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_Wellness, { room }, null, 8, [\"room\"])\n      ]);\n    };\n  }\n});\n",
+      "start": 1718517093084,
+      "end": 1718517093399,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/pages/near-by/index.vue?macro=true&vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-a20ac1cd\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = {\n  class: \"max-width\",\n  style: {\"padding\":\"0 10px 0 10px\",\"min-height\":\"80vh\",\"margin-top\":\"150px\"}\n}\n\nimport { reactive, ref } from 'vue';\r\n\r\n\r\n\r\n\r\n\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'index',\n  setup(__props) {\n\r\nconst isLoading = ref(true)\r\n\r\n\r\nconst room = reactive({\r\n    title: 'Near By Title',\r\n    description: 'A place of quiet contemplation pervaded by the spiritual tranquility of the town itself, Amantaka’s spa offers guests an exceptional personalised experience. The spa menu draws on Lao healing traditions, incorporating local herbs and traditional Buddhist rituals.',\r\n    images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/9e99bfdb-6d77-4ee9-85fd-83221ee7abb1.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/84faa7d0-02cf-4108-a575-d7c8b08ebea7.jpg', ],\r\n    subImages: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/e7463c82-ed23-42e4-ac86-a120c93b8453.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/9e99bfdb-6d77-4ee9-85fd-83221ee7abb1.jpg','https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg',],\r\n    items: [\r\n        {\r\n            title: 'Embark on a holistic journey',\r\n            description: 'Our Signature Wellness Journeys are designed to meet individual needs while incorporating local wellness traditions and healing techniques. Each includes a massage and a personalised bath with local herbs. The Samun Pai incorporates herbal poultices, while the Anamai Hang Kai includes a detoxifying scrub and a mineral wrap.'\r\n        },\r\n        {\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        {\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        \r\n    ],\r\n    subItems: [\r\n        {\r\n            images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/09997ce6-c88a-425a-bda0-7fe8fbbe0478.jpg'],\r\n            title: 'Embark on a holistic journey',\r\n            description: 'Our Signature Wellness Journeys are designed to meet individual needs while incorporating local wellness traditions and healing techniques. Each includes a massage and a personalised bath with local herbs. The Samun Pai incorporates herbal poultices, while the Anamai Hang Kai includes a detoxifying scrub and a mineral wrap.'\r\n        },\r\n        {\r\n            images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg'],\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        \r\n    ]\r\n})\r\n\r\n//const { data }: any = await useFetch(config.API_BASE_URL + '/get-edws?type=Wellness')\r\n\r\n\r\n //const room2 = reactive(data.value.edws[1])\r\n\r\n// const { data }: any = await useFetch(config.API_BASE_URL + '/get-room/' + route.params.id)\r\n// const { data: roomsData }: any = await useFetch(config.API_BASE_URL + '/get-rooms')\r\n// const room = ref<any>(data.value.room)\r\n// const rooms = ref<any>(roomsData.value.rooms)\r\nisLoading.value = false\r\n\r\n\r\n\r\n\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_Wellness = _resolveComponent(\"Wellness\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createVNode(_component_Wellness, { room: room }, null, 8, [\"room\"])\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,oBAAoB,mBAAmB,eAAe,cAAc,aAAa,YAAY,sBAAsB,qBAAqB,eAAe,cAAc,cAAc,mBAAmB;AAE/M,MAAM,eAAe,QAAM,aAAa,iBAAiB,GAAE,IAAE,EAAE,GAAE,YAAY,GAAE;AAC/E,MAAM,aAAa;AAAA,EACjB,OAAO;AAAA,EACP,OAAO,EAAC,WAAU,iBAAgB,cAAa,QAAO,cAAa,QAAO;AAC5E;AAEA,SAAS,UAAU,WAAW;AAO9B,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAEjB,UAAM,YAAY,IAAI,IAAI;AAG1B,UAAM,OAAO,SAAS;AAAA,MAClB,OAAO;AAAA,MACP,aAAa;AAAA,MACb,QAAQ,CAAC,gGAAgG,gGAAgG,8FAAgG;AAAA,MACzS,WAAW,CAAC,gGAAgG,gGAA+F,8FAA+F;AAAA,MAC1S,OAAO;AAAA,QACH;AAAA,UACI,OAAO;AAAA,UACP,aAAa;AAAA,QACjB;AAAA,QACA;AAAA,UACI,OAAO;AAAA,UACP,aAAY;AAAA,QAChB;AAAA,QACA;AAAA,UACI,OAAO;AAAA,UACP,aAAY;AAAA,QAChB;AAAA,MAEJ;AAAA,MACA,UAAU;AAAA,QACN;AAAA,UACI,QAAQ,CAAC,8FAA8F;AAAA,UACvG,OAAO;AAAA,UACP,aAAa;AAAA,QACjB;AAAA,QACA;AAAA,UACI,QAAQ,CAAC,8FAA8F;AAAA,UACvG,OAAO;AAAA,UACP,aAAY;AAAA,QAChB;AAAA,MAEJ;AAAA,IACJ,CAAC;AAWD,cAAU,QAAQ;AAMlB,WAAO,CAAC,MAAU,WAAgB;AAChC,YAAM,sBAAsB,kBAAkB,UAAU;AAExD,aAAQ,WAAW,GAAG,oBAAoB,OAAO,YAAY;AAAA,QAC3D,aAAa,qBAAqB,EAAE,KAAW,GAAG,MAAM,GAAG,CAAC,MAAM,CAAC;AAAA,MACrE,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517093399,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517093400,
+      "end": 1718517093404,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517093404,
+      "end": 1718517093405,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517093405,
+      "end": 1718517093405,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517093405,
+      "end": 1718517093408,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517093410,
+      "end": 1718517093410,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "\nconst __nuxt_page_meta = null\nexport default __nuxt_page_meta\n",
+      "start": 1718517093410,
+      "end": 1718517093411,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA;AAAA;AAAA;"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517093411,
+      "end": 1718517093411,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517093411,
+      "end": 1718517093411,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517093411,
+      "end": 1718517093411,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517093412,
+      "end": 1718517093412,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517093412,
+      "end": 1718517093412,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517093412,
+      "end": 1718517093412,
+      "order": "normal"
+    }
+  ]
+}

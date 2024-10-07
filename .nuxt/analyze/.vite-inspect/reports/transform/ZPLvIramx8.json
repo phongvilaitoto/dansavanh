@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/rate/style/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { genComponentStyleHook, mergeToken } from '../../theme/internal';\nimport { resetComponent } from '../../style';\nconst genRateStarStyle = token => {\n  const {\n    componentCls\n  } = token;\n  return {\n    [`${componentCls}-star`]: {\n      position: 'relative',\n      display: 'inline-block',\n      color: 'inherit',\n      cursor: 'pointer',\n      '&:not(:last-child)': {\n        marginInlineEnd: token.marginXS\n      },\n      '> div': {\n        transition: `all ${token.motionDurationMid}, outline 0s`,\n        '&:hover': {\n          transform: token.rateStarHoverScale\n        },\n        '&:focus': {\n          outline: 0\n        },\n        '&:focus-visible': {\n          outline: `${token.lineWidth}px dashed ${token.rateStarColor}`,\n          transform: token.rateStarHoverScale\n        }\n      },\n      '&-first, &-second': {\n        color: token.defaultColor,\n        transition: `all ${token.motionDurationMid}`,\n        userSelect: 'none',\n        [token.iconCls]: {\n          verticalAlign: 'middle'\n        }\n      },\n      '&-first': {\n        position: 'absolute',\n        top: 0,\n        insetInlineStart: 0,\n        width: '50%',\n        height: '100%',\n        overflow: 'hidden',\n        opacity: 0\n      },\n      [`&-half ${componentCls}-star-first, &-half ${componentCls}-star-second`]: {\n        opacity: 1\n      },\n      [`&-half ${componentCls}-star-first, &-full ${componentCls}-star-second`]: {\n        color: 'inherit'\n      }\n    }\n  };\n};\nconst genRateRtlStyle = token => ({\n  [`&-rtl${token.componentCls}`]: {\n    direction: 'rtl'\n  }\n});\nconst genRateStyle = token => {\n  const {\n    componentCls\n  } = token;\n  return {\n    [componentCls]: _extends(_extends(_extends(_extends(_extends({}, resetComponent(token)), {\n      display: 'inline-block',\n      margin: 0,\n      padding: 0,\n      color: token.rateStarColor,\n      fontSize: token.rateStarSize,\n      lineHeight: 'unset',\n      listStyle: 'none',\n      outline: 'none',\n      // disable styles\n      [`&-disabled${componentCls} ${componentCls}-star`]: {\n        cursor: 'default',\n        '&:hover': {\n          transform: 'scale(1)'\n        }\n      }\n    }), genRateStarStyle(token)), {\n      // text styles\n      [`+ ${componentCls}-text`]: {\n        display: 'inline-block',\n        marginInlineStart: token.marginXS,\n        fontSize: token.fontSize\n      }\n    }), genRateRtlStyle(token))\n  };\n};\n// ============================== Export ==============================\nexport default genComponentStyleHook('Rate', token => {\n  const {\n    colorFillContent\n  } = token;\n  const rateToken = mergeToken(token, {\n    rateStarColor: token['yellow-6'],\n    rateStarSize: token.controlHeightLG * 0.5,\n    rateStarHoverScale: 'scale(1.1)',\n    defaultColor: colorFillContent\n  });\n  return [genRateStyle(rateToken)];\n});",
+      "start": 1718517097635,
+      "end": 1718517097675,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097675,
+      "end": 1718517097675,
+      "order": "normal"
+    }
+  ]
+}

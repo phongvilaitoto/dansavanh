@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/anchor/AnchorLink.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { defineComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue';\nimport { initDefaultProps } from '../_util/props-util';\nimport classNames from '../_util/classNames';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport { useInjectAnchor } from './context';\nimport { objectType, anyType } from '../_util/type';\nexport const anchorLinkProps = () => ({\n  prefixCls: String,\n  href: String,\n  title: anyType(),\n  target: String,\n  /* private use  */\n  customTitleProps: objectType()\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AAnchorLink',\n  inheritAttrs: false,\n  props: initDefaultProps(anchorLinkProps(), {\n    href: '#'\n  }),\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs\n    } = _ref;\n    let mergedTitle = null;\n    const {\n      handleClick: contextHandleClick,\n      scrollTo,\n      unregisterLink,\n      registerLink,\n      activeLink\n    } = useInjectAnchor();\n    const {\n      prefixCls\n    } = useConfigInject('anchor', props);\n    const handleClick = e => {\n      const {\n        href\n      } = props;\n      contextHandleClick(e, {\n        title: mergedTitle,\n        href\n      });\n      scrollTo(href);\n    };\n    watch(() => props.href, (val, oldVal) => {\n      nextTick(() => {\n        unregisterLink(oldVal);\n        registerLink(val);\n      });\n    });\n    onMounted(() => {\n      registerLink(props.href);\n    });\n    onBeforeUnmount(() => {\n      unregisterLink(props.href);\n    });\n    return () => {\n      var _a;\n      const {\n        href,\n        target,\n        title = slots.title,\n        customTitleProps = {}\n      } = props;\n      const pre = prefixCls.value;\n      mergedTitle = typeof title === 'function' ? title(customTitleProps) : title;\n      const active = activeLink.value === href;\n      const wrapperClassName = classNames(`${pre}-link`, {\n        [`${pre}-link-active`]: active\n      }, attrs.class);\n      const titleClassName = classNames(`${pre}-link-title`, {\n        [`${pre}-link-title-active`]: active\n      });\n      return _createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"class\": wrapperClassName\n      }), [_createVNode(\"a\", {\n        \"class\": titleClassName,\n        \"href\": href,\n        \"title\": typeof mergedTitle === 'string' ? mergedTitle : '',\n        \"target\": target,\n        \"onClick\": handleClick\n      }, [slots.customTitle ? slots.customTitle(customTitleProps) : mergedTitle]), (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots)]);\n    };\n  }\n});",
+      "start": 1718517097277,
+      "end": 1718517097287,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097287,
+      "end": 1718517097287,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097287,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097288,
+      "end": 1718517097288,
+      "order": "normal"
+    }
+  ]
+}

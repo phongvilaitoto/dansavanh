@@ -1,0 +1,236 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/segmented/src/MotionThumb.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createVNode as _createVNode } from \"vue\";\nimport { addClass, removeClass } from '../../vc-util/Dom/class';\nimport { onBeforeUnmount, nextTick, Transition, watch, defineComponent, computed, ref } from 'vue';\nimport { anyType } from '../../_util/type';\nconst calcThumbStyle = targetElement => targetElement ? {\n  left: targetElement.offsetLeft,\n  right: targetElement.parentElement.clientWidth - targetElement.clientWidth - targetElement.offsetLeft,\n  width: targetElement.clientWidth\n} : null;\nconst toPX = value => value !== undefined ? `${value}px` : undefined;\nconst MotionThumb = defineComponent({\n  props: {\n    value: anyType(),\n    getValueIndex: anyType(),\n    prefixCls: anyType(),\n    motionName: anyType(),\n    onMotionStart: anyType(),\n    onMotionEnd: anyType(),\n    direction: anyType(),\n    containerRef: anyType()\n  },\n  emits: ['motionStart', 'motionEnd'],\n  setup(props, _ref) {\n    let {\n      emit\n    } = _ref;\n    const thumbRef = ref();\n    // =========================== Effect ===========================\n    const findValueElement = val => {\n      var _a;\n      const index = props.getValueIndex(val);\n      const ele = (_a = props.containerRef.value) === null || _a === void 0 ? void 0 : _a.querySelectorAll(`.${props.prefixCls}-item`)[index];\n      return (ele === null || ele === void 0 ? void 0 : ele.offsetParent) && ele;\n    };\n    const prevStyle = ref(null);\n    const nextStyle = ref(null);\n    watch(() => props.value, (value, prevValue) => {\n      const prev = findValueElement(prevValue);\n      const next = findValueElement(value);\n      const calcPrevStyle = calcThumbStyle(prev);\n      const calcNextStyle = calcThumbStyle(next);\n      prevStyle.value = calcPrevStyle;\n      nextStyle.value = calcNextStyle;\n      if (prev && next) {\n        emit('motionStart');\n      } else {\n        emit('motionEnd');\n      }\n    }, {\n      flush: 'post'\n    });\n    const thumbStart = computed(() => {\n      var _a, _b;\n      return props.direction === 'rtl' ? toPX(-((_a = prevStyle.value) === null || _a === void 0 ? void 0 : _a.right)) : toPX((_b = prevStyle.value) === null || _b === void 0 ? void 0 : _b.left);\n    });\n    const thumbActive = computed(() => {\n      var _a, _b;\n      return props.direction === 'rtl' ? toPX(-((_a = nextStyle.value) === null || _a === void 0 ? void 0 : _a.right)) : toPX((_b = nextStyle.value) === null || _b === void 0 ? void 0 : _b.left);\n    });\n    // =========================== Motion ===========================\n    let timeid;\n    const onAppearStart = el => {\n      clearTimeout(timeid);\n      nextTick(() => {\n        if (el) {\n          el.style.transform = `translateX(var(--thumb-start-left))`;\n          el.style.width = `var(--thumb-start-width)`;\n        }\n      });\n    };\n    const onAppearActive = el => {\n      timeid = setTimeout(() => {\n        if (el) {\n          addClass(el, `${props.motionName}-appear-active`);\n          el.style.transform = `translateX(var(--thumb-active-left))`;\n          el.style.width = `var(--thumb-active-width)`;\n        }\n      });\n    };\n    const onAppearEnd = el => {\n      prevStyle.value = null;\n      nextStyle.value = null;\n      if (el) {\n        el.style.transform = null;\n        el.style.width = null;\n        removeClass(el, `${props.motionName}-appear-active`);\n      }\n      emit('motionEnd');\n    };\n    const mergedStyle = computed(() => {\n      var _a, _b;\n      return {\n        '--thumb-start-left': thumbStart.value,\n        '--thumb-start-width': toPX((_a = prevStyle.value) === null || _a === void 0 ? void 0 : _a.width),\n        '--thumb-active-left': thumbActive.value,\n        '--thumb-active-width': toPX((_b = nextStyle.value) === null || _b === void 0 ? void 0 : _b.width)\n      };\n    });\n    onBeforeUnmount(() => {\n      clearTimeout(timeid);\n    });\n    return () => {\n      // It's little ugly which should be refactor when @umi/test update to latest jsdom\n      const motionProps = {\n        ref: thumbRef,\n        style: mergedStyle.value,\n        class: [`${props.prefixCls}-thumb`]\n      };\n      if (process.env.NODE_ENV === 'test') {\n        motionProps['data-test-style'] = JSON.stringify(mergedStyle.value);\n      }\n      return _createVNode(Transition, {\n        \"appear\": true,\n        \"onBeforeEnter\": onAppearStart,\n        \"onEnter\": onAppearActive,\n        \"onAfterEnter\": onAppearEnd\n      }, {\n        default: () => [!prevStyle.value || !nextStyle.value ? null : _createVNode(\"div\", motionProps, null)]\n      });\n    };\n  }\n});\nexport default MotionThumb;",
+      "start": 1718517099498,
+      "end": 1718517099543,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099543,
+      "end": 1718517099543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { createVNode as _createVNode } from \"vue\";\nimport { addClass, removeClass } from \"../../vc-util/Dom/class\";\nimport { onBeforeUnmount, nextTick, Transition, watch, defineComponent, computed, ref } from \"vue\";\nimport { anyType } from \"../../_util/type\";\nconst calcThumbStyle = (targetElement) => targetElement ? {\n  left: targetElement.offsetLeft,\n  right: targetElement.parentElement.clientWidth - targetElement.clientWidth - targetElement.offsetLeft,\n  width: targetElement.clientWidth\n} : null;\nconst toPX = (value) => value !== void 0 ? `${value}px` : void 0;\nconst MotionThumb = defineComponent({\n  props: {\n    value: anyType(),\n    getValueIndex: anyType(),\n    prefixCls: anyType(),\n    motionName: anyType(),\n    onMotionStart: anyType(),\n    onMotionEnd: anyType(),\n    direction: anyType(),\n    containerRef: anyType()\n  },\n  emits: [\"motionStart\", \"motionEnd\"],\n  setup(props, _ref) {\n    let {\n      emit\n    } = _ref;\n    const thumbRef = ref();\n    const findValueElement = (val) => {\n      var _a;\n      const index = props.getValueIndex(val);\n      const ele = (_a = props.containerRef.value) === null || _a === void 0 ? void 0 : _a.querySelectorAll(`.${props.prefixCls}-item`)[index];\n      return (ele === null || ele === void 0 ? void 0 : ele.offsetParent) && ele;\n    };\n    const prevStyle = ref(null);\n    const nextStyle = ref(null);\n    watch(() => props.value, (value, prevValue) => {\n      const prev = findValueElement(prevValue);\n      const next = findValueElement(value);\n      const calcPrevStyle = calcThumbStyle(prev);\n      const calcNextStyle = calcThumbStyle(next);\n      prevStyle.value = calcPrevStyle;\n      nextStyle.value = calcNextStyle;\n      if (prev && next) {\n        emit(\"motionStart\");\n      } else {\n        emit(\"motionEnd\");\n      }\n    }, {\n      flush: \"post\"\n    });\n    const thumbStart = computed(() => {\n      var _a, _b;\n      return props.direction === \"rtl\" ? toPX(-((_a = prevStyle.value) === null || _a === void 0 ? void 0 : _a.right)) : toPX((_b = prevStyle.value) === null || _b === void 0 ? void 0 : _b.left);\n    });\n    const thumbActive = computed(() => {\n      var _a, _b;\n      return props.direction === \"rtl\" ? toPX(-((_a = nextStyle.value) === null || _a === void 0 ? void 0 : _a.right)) : toPX((_b = nextStyle.value) === null || _b === void 0 ? void 0 : _b.left);\n    });\n    let timeid;\n    const onAppearStart = (el) => {\n      clearTimeout(timeid);\n      nextTick(() => {\n        if (el) {\n          el.style.transform = `translateX(var(--thumb-start-left))`;\n          el.style.width = `var(--thumb-start-width)`;\n        }\n      });\n    };\n    const onAppearActive = (el) => {\n      timeid = setTimeout(() => {\n        if (el) {\n          addClass(el, `${props.motionName}-appear-active`);\n          el.style.transform = `translateX(var(--thumb-active-left))`;\n          el.style.width = `var(--thumb-active-width)`;\n        }\n      });\n    };\n    const onAppearEnd = (el) => {\n      prevStyle.value = null;\n      nextStyle.value = null;\n      if (el) {\n        el.style.transform = null;\n        el.style.width = null;\n        removeClass(el, `${props.motionName}-appear-active`);\n      }\n      emit(\"motionEnd\");\n    };\n    const mergedStyle = computed(() => {\n      var _a, _b;\n      return {\n        \"--thumb-start-left\": thumbStart.value,\n        \"--thumb-start-width\": toPX((_a = prevStyle.value) === null || _a === void 0 ? void 0 : _a.width),\n        \"--thumb-active-left\": thumbActive.value,\n        \"--thumb-active-width\": toPX((_b = nextStyle.value) === null || _b === void 0 ? void 0 : _b.width)\n      };\n    });\n    onBeforeUnmount(() => {\n      clearTimeout(timeid);\n    });\n    return () => {\n      const motionProps = {\n        ref: thumbRef,\n        style: mergedStyle.value,\n        class: [`${props.prefixCls}-thumb`]\n      };\n      if (false) {\n        motionProps[\"data-test-style\"] = JSON.stringify(mergedStyle.value);\n      }\n      return _createVNode(Transition, {\n        \"appear\": true,\n        \"onBeforeEnter\": onAppearStart,\n        \"onEnter\": onAppearActive,\n        \"onAfterEnter\": onAppearEnd\n      }, {\n        default: () => [!prevStyle.value || !nextStyle.value ? null : _createVNode(\"div\", motionProps, null)]\n      });\n    };\n  }\n});\nexport default MotionThumb;\n",
+      "start": 1718517099543,
+      "end": 1718517099570,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099570,
+      "end": 1718517099570,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099570,
+      "end": 1718517099570,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099570,
+      "end": 1718517099571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099571,
+      "end": 1718517099571,
+      "order": "normal"
+    }
+  ]
+}

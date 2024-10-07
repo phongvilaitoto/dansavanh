@@ -1,0 +1,266 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/lang/cn.ts?hash=6ef3b995&locale=cn",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "export default defineI18nLocale(async (locale) => {\r\n  const config = useRuntimeConfig();\r\n\r\n  const { data }: any = await useFetch(config.public.apiBase + \"/getDLang\");\r\n\r\n  const object = data.value.dLang;\r\n  const newObject: any = {};\r\n\r\n  for (let field in object) {\r\n    newObject[field] = object[field][2];\r\n  }\r\n  return newObject;\r\n});\r\n",
+      "start": 1718517092811,
+      "end": 1718517093339,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093339,
+      "end": 1718517093339,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093339,
+      "end": 1718517093339,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093339,
+      "end": 1718517093339,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093339,
+      "end": 1718517093339,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093339,
+      "end": 1718517093339,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093339,
+      "end": 1718517093339,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "export default defineI18nLocale(async (locale) => {\n  const config = useRuntimeConfig();\n  const { data } = await useFetch(config.public.apiBase + \"/getDLang\");\n  const object = data.value.dLang;\n  const newObject = {};\n  for (let field in object) {\n    newObject[field] = object[field][2];\n  }\n  return newObject;\n});\n",
+      "start": 1718517093339,
+      "end": 1718517093428,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/lang/cn.ts?hash=6ef3b995&locale=cn"
+        ],
+        "sourcesContent": [
+          "export default defineI18nLocale(async (locale) => {\r\n  const config = useRuntimeConfig();\r\n\r\n  const { data }: any = await useFetch(config.public.apiBase + \"/getDLang\");\r\n\r\n  const object = data.value.dLang;\r\n  const newObject: any = {};\r\n\r\n  for (let field in object) {\r\n    newObject[field] = object[field][2];\r\n  }\r\n  return newObject;\r\n});\r\n"
+        ],
+        "mappings": "AAAA,eAAe,iBAAiB,OAAO,WAAW;AAChD,QAAM,SAAS,iBAAiB;AAEhC,QAAM,EAAE,KAAK,IAAS,MAAM,SAAS,OAAO,OAAO,UAAU,WAAW;AAExE,QAAM,SAAS,KAAK,MAAM;AAC1B,QAAM,YAAiB,CAAC;AAExB,WAAS,SAAS,QAAQ;AACxB,cAAU,KAAK,IAAI,OAAO,KAAK,EAAE,CAAC;AAAA,EACpC;AACA,SAAO;AACT,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517093428,
+      "end": 1718517093428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517093428,
+      "end": 1718517093428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517093428,
+      "end": 1718517093428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517093428,
+      "end": 1718517093428,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093428,
+      "end": 1718517093428,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517093428,
+      "end": 1718517093428,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517093428,
+      "end": 1718517093428,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517093429,
+      "end": 1718517093429,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "result": "export default defineI18nLocale(async (locale) => {\n  const config = useRuntimeConfig();\n  const { data } = await useFetch(config.public.apiBase + \"/getDLang\", '$nAhL1HD0Oo');\n  const object = data.value.dLang;\n  const newObject = {};\n  for (let field in object) {\n    newObject[field] = object[field][2];\n  }\n  return newObject;\n});\n",
+      "start": 1718517093429,
+      "end": 1718517093431,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,gBAAC,CAAC,CAAC;AACvE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "result": "export default (async (locale) => {\n  const config = useRuntimeConfig();\n  const { data } = await useFetch(config.public.apiBase + \"/getDLang\", '$nAhL1HD0Oo');\n  const object = data.value.dLang;\n  const newObject = {};\n  for (let field in object) {\n    newObject[field] = object[field][2];\n  }\n  return newObject;\n});\n",
+      "start": 1718517093431,
+      "end": 1718517093431,
+      "order": "post",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517093431,
+      "end": 1718517093431,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { useRuntimeConfig } from '#app/nuxt';\nimport { useFetch } from '#app/composables/fetch';\nexport default (async (locale) => {\n  const config = useRuntimeConfig();\n  const { data } = await useFetch(config.public.apiBase + \"/getDLang\", '$nAhL1HD0Oo');\n  const object = data.value.dLang;\n  const newObject = {};\n  for (let field in object) {\n    newObject[field] = object[field][2];\n  }\n  return newObject;\n});\n",
+      "start": 1718517093431,
+      "end": 1718517093436,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517093437,
+      "end": 1718517093437,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517093437,
+      "end": 1718517093438,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517093439,
+      "end": 1718517093439,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517093439,
+      "end": 1718517093439,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517093439,
+      "end": 1718517093439,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517093439,
+      "end": 1718517093439,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517093439,
+      "end": 1718517093440,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517093440,
+      "end": 1718517093440,
+      "order": "normal"
+    }
+  ]
+}

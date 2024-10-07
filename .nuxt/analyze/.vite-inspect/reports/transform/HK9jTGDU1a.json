@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/avatar/Avatar.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { computed, defineComponent, nextTick, onMounted, shallowRef, watch } from 'vue';\nimport { getPropsSlot } from '../_util/props-util';\nimport PropTypes from '../_util/vue-types';\nimport useBreakpoint from '../_util/hooks/useBreakpoint';\nimport { responsiveArray } from '../_util/responsiveObserve';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport ResizeObserver from '../vc-resize-observer';\nimport eagerComputed from '../_util/eagerComputed';\nimport useStyle from './style';\nimport { useAvatarInjectContext } from './AvatarContext';\nexport const avatarProps = () => ({\n  prefixCls: String,\n  shape: {\n    type: String,\n    default: 'circle'\n  },\n  size: {\n    type: [Number, String, Object],\n    default: () => 'default'\n  },\n  src: String,\n  /** Srcset of image avatar */\n  srcset: String,\n  icon: PropTypes.any,\n  alt: String,\n  gap: Number,\n  draggable: {\n    type: Boolean,\n    default: undefined\n  },\n  crossOrigin: String,\n  loadError: {\n    type: Function\n  }\n});\nconst Avatar = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AAvatar',\n  inheritAttrs: false,\n  props: avatarProps(),\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs\n    } = _ref;\n    const isImgExist = shallowRef(true);\n    const isMounted = shallowRef(false);\n    const scale = shallowRef(1);\n    const avatarChildrenRef = shallowRef(null);\n    const avatarNodeRef = shallowRef(null);\n    const {\n      prefixCls\n    } = useConfigInject('avatar', props);\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const avatarCtx = useAvatarInjectContext();\n    const size = computed(() => {\n      return props.size === 'default' ? avatarCtx.size : props.size;\n    });\n    const screens = useBreakpoint();\n    const responsiveSize = eagerComputed(() => {\n      if (typeof props.size !== 'object') {\n        return undefined;\n      }\n      const currentBreakpoint = responsiveArray.find(screen => screens.value[screen]);\n      const currentSize = props.size[currentBreakpoint];\n      return currentSize;\n    });\n    const responsiveSizeStyle = hasIcon => {\n      if (responsiveSize.value) {\n        return {\n          width: `${responsiveSize.value}px`,\n          height: `${responsiveSize.value}px`,\n          lineHeight: `${responsiveSize.value}px`,\n          fontSize: `${hasIcon ? responsiveSize.value / 2 : 18}px`\n        };\n      }\n      return {};\n    };\n    const setScaleParam = () => {\n      if (!avatarChildrenRef.value || !avatarNodeRef.value) {\n        return;\n      }\n      const childrenWidth = avatarChildrenRef.value.offsetWidth; // offsetWidth avoid affecting be transform scale\n      const nodeWidth = avatarNodeRef.value.offsetWidth;\n      // denominator is 0 is no meaning\n      if (childrenWidth !== 0 && nodeWidth !== 0) {\n        const {\n          gap = 4\n        } = props;\n        if (gap * 2 < nodeWidth) {\n          scale.value = nodeWidth - gap * 2 < childrenWidth ? (nodeWidth - gap * 2) / childrenWidth : 1;\n        }\n      }\n    };\n    const handleImgLoadError = () => {\n      const {\n        loadError\n      } = props;\n      const errorFlag = loadError === null || loadError === void 0 ? void 0 : loadError();\n      if (errorFlag !== false) {\n        isImgExist.value = false;\n      }\n    };\n    watch(() => props.src, () => {\n      nextTick(() => {\n        isImgExist.value = true;\n        scale.value = 1;\n      });\n    });\n    watch(() => props.gap, () => {\n      nextTick(() => {\n        setScaleParam();\n      });\n    });\n    onMounted(() => {\n      nextTick(() => {\n        setScaleParam();\n        isMounted.value = true;\n      });\n    });\n    return () => {\n      var _a, _b;\n      const {\n        shape,\n        src,\n        alt,\n        srcset,\n        draggable,\n        crossOrigin\n      } = props;\n      const mergeShape = (_a = avatarCtx.shape) !== null && _a !== void 0 ? _a : shape;\n      const icon = getPropsSlot(slots, props, 'icon');\n      const pre = prefixCls.value;\n      const classString = {\n        [`${attrs.class}`]: !!attrs.class,\n        [pre]: true,\n        [`${pre}-lg`]: size.value === 'large',\n        [`${pre}-sm`]: size.value === 'small',\n        [`${pre}-${mergeShape}`]: true,\n        [`${pre}-image`]: src && isImgExist.value,\n        [`${pre}-icon`]: icon,\n        [hashId.value]: true\n      };\n      const sizeStyle = typeof size.value === 'number' ? {\n        width: `${size.value}px`,\n        height: `${size.value}px`,\n        lineHeight: `${size.value}px`,\n        fontSize: icon ? `${size.value / 2}px` : '18px'\n      } : {};\n      const children = (_b = slots.default) === null || _b === void 0 ? void 0 : _b.call(slots);\n      let childrenToRender;\n      if (src && isImgExist.value) {\n        childrenToRender = _createVNode(\"img\", {\n          \"draggable\": draggable,\n          \"src\": src,\n          \"srcset\": srcset,\n          \"onError\": handleImgLoadError,\n          \"alt\": alt,\n          \"crossorigin\": crossOrigin\n        }, null);\n      } else if (icon) {\n        childrenToRender = icon;\n      } else if (isMounted.value || scale.value !== 1) {\n        const transformString = `scale(${scale.value}) translateX(-50%)`;\n        const childrenStyle = {\n          msTransform: transformString,\n          WebkitTransform: transformString,\n          transform: transformString\n        };\n        const sizeChildrenStyle = typeof size.value === 'number' ? {\n          lineHeight: `${size.value}px`\n        } : {};\n        childrenToRender = _createVNode(ResizeObserver, {\n          \"onResize\": setScaleParam\n        }, {\n          default: () => [_createVNode(\"span\", {\n            \"class\": `${pre}-string`,\n            \"ref\": avatarChildrenRef,\n            \"style\": _extends(_extends({}, sizeChildrenStyle), childrenStyle)\n          }, [children])]\n        });\n      } else {\n        childrenToRender = _createVNode(\"span\", {\n          \"class\": `${pre}-string`,\n          \"ref\": avatarChildrenRef,\n          \"style\": {\n            opacity: 0\n          }\n        }, [children]);\n      }\n      return wrapSSR(_createVNode(\"span\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"ref\": avatarNodeRef,\n        \"class\": classString,\n        \"style\": [sizeStyle, responsiveSizeStyle(!!icon), attrs.style]\n      }), [childrenToRender]));\n    };\n  }\n});\nexport default Avatar;",
+      "start": 1718517097285,
+      "end": 1718517097331,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097331,
+      "end": 1718517097331,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097331,
+      "end": 1718517097332,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097332,
+      "end": 1718517097332,
+      "order": "normal"
+    }
+  ]
+}

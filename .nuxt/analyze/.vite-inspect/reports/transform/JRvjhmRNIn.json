@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/pagination/Pagination.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode, createTextVNode as _createTextVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { computed, toRef, defineComponent } from 'vue';\nimport LeftOutlined from \"@ant-design/icons-vue/es/icons/LeftOutlined\";\nimport RightOutlined from \"@ant-design/icons-vue/es/icons/RightOutlined\";\nimport DoubleLeftOutlined from \"@ant-design/icons-vue/es/icons/DoubleLeftOutlined\";\nimport DoubleRightOutlined from \"@ant-design/icons-vue/es/icons/DoubleRightOutlined\";\nimport MiniSelect, { MiddleSelect } from './Select';\nimport { useLocaleReceiver } from '../locale-provider/LocaleReceiver';\nimport VcPagination from '../vc-pagination';\nimport enUS from '../vc-pagination/locale/en_US';\nimport classNames from '../_util/classNames';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport useBreakpoint from '../_util/hooks/useBreakpoint';\nimport { booleanType, arrayType, stringType, functionType, someType } from '../_util/type';\n// CSSINJS\nimport useStyle from './style';\nexport const paginationProps = () => ({\n  total: Number,\n  defaultCurrent: Number,\n  disabled: booleanType(),\n  current: Number,\n  defaultPageSize: Number,\n  pageSize: Number,\n  hideOnSinglePage: booleanType(),\n  showSizeChanger: booleanType(),\n  pageSizeOptions: arrayType(),\n  buildOptionText: functionType(),\n  showQuickJumper: someType([Boolean, Object]),\n  showTotal: functionType(),\n  size: stringType(),\n  simple: booleanType(),\n  locale: Object,\n  prefixCls: String,\n  selectPrefixCls: String,\n  totalBoundaryShowSizeChanger: Number,\n  selectComponentClass: String,\n  itemRender: functionType(),\n  role: String,\n  responsive: Boolean,\n  showLessItems: booleanType(),\n  onChange: functionType(),\n  onShowSizeChange: functionType(),\n  'onUpdate:current': functionType(),\n  'onUpdate:pageSize': functionType()\n});\nexport const paginationConfig = () => _extends(_extends({}, paginationProps()), {\n  position: stringType()\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'APagination',\n  inheritAttrs: false,\n  props: paginationProps(),\n  // emits: ['change', 'showSizeChange', 'update:current', 'update:pageSize'],\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs\n    } = _ref;\n    const {\n      prefixCls,\n      configProvider,\n      direction,\n      size\n    } = useConfigInject('pagination', props);\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const selectPrefixCls = computed(() => configProvider.getPrefixCls('select', props.selectPrefixCls));\n    const breakpoint = useBreakpoint();\n    const [locale] = useLocaleReceiver('Pagination', enUS, toRef(props, 'locale'));\n    const getIconsProps = pre => {\n      const ellipsis = _createVNode(\"span\", {\n        \"class\": `${pre}-item-ellipsis`\n      }, [_createTextVNode(\"\\u2022\\u2022\\u2022\")]);\n      const prevIcon = _createVNode(\"button\", {\n        \"class\": `${pre}-item-link`,\n        \"type\": \"button\",\n        \"tabindex\": -1\n      }, [direction.value === 'rtl' ? _createVNode(RightOutlined, null, null) : _createVNode(LeftOutlined, null, null)]);\n      const nextIcon = _createVNode(\"button\", {\n        \"class\": `${pre}-item-link`,\n        \"type\": \"button\",\n        \"tabindex\": -1\n      }, [direction.value === 'rtl' ? _createVNode(LeftOutlined, null, null) : _createVNode(RightOutlined, null, null)]);\n      const jumpPrevIcon = _createVNode(\"a\", {\n        \"rel\": \"nofollow\",\n        \"class\": `${pre}-item-link`\n      }, [_createVNode(\"div\", {\n        \"class\": `${pre}-item-container`\n      }, [direction.value === 'rtl' ? _createVNode(DoubleRightOutlined, {\n        \"class\": `${pre}-item-link-icon`\n      }, null) : _createVNode(DoubleLeftOutlined, {\n        \"class\": `${pre}-item-link-icon`\n      }, null), ellipsis])]);\n      const jumpNextIcon = _createVNode(\"a\", {\n        \"rel\": \"nofollow\",\n        \"class\": `${pre}-item-link`\n      }, [_createVNode(\"div\", {\n        \"class\": `${pre}-item-container`\n      }, [direction.value === 'rtl' ? _createVNode(DoubleLeftOutlined, {\n        \"class\": `${pre}-item-link-icon`\n      }, null) : _createVNode(DoubleRightOutlined, {\n        \"class\": `${pre}-item-link-icon`\n      }, null), ellipsis])]);\n      return {\n        prevIcon,\n        nextIcon,\n        jumpPrevIcon,\n        jumpNextIcon\n      };\n    };\n    return () => {\n      var _a;\n      const {\n          itemRender = slots.itemRender,\n          buildOptionText = slots.buildOptionText,\n          selectComponentClass,\n          responsive\n        } = props,\n        restProps = __rest(props, [\"itemRender\", \"buildOptionText\", \"selectComponentClass\", \"responsive\"]);\n      const isSmall = size.value === 'small' || !!(((_a = breakpoint.value) === null || _a === void 0 ? void 0 : _a.xs) && !size.value && responsive);\n      const paginationProps = _extends(_extends(_extends(_extends(_extends({}, restProps), getIconsProps(prefixCls.value)), {\n        prefixCls: prefixCls.value,\n        selectPrefixCls: selectPrefixCls.value,\n        selectComponentClass: selectComponentClass || (isSmall ? MiniSelect : MiddleSelect),\n        locale: locale.value,\n        buildOptionText\n      }), attrs), {\n        class: classNames({\n          [`${prefixCls.value}-mini`]: isSmall,\n          [`${prefixCls.value}-rtl`]: direction.value === 'rtl'\n        }, attrs.class, hashId.value),\n        itemRender\n      });\n      return wrapSSR(_createVNode(VcPagination, paginationProps, null));\n    };\n  }\n});",
+      "start": 1718517097514,
+      "end": 1718517097573,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097573,
+      "end": 1718517097573,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097573,
+      "end": 1718517097574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097574,
+      "end": 1718517097574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097574,
+      "end": 1718517097574,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097574,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097576,
+      "end": 1718517097576,
+      "order": "normal"
+    }
+  ]
+}

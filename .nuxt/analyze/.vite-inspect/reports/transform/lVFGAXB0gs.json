@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-picker/generate/dayjs.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import dayjs from 'dayjs';\nimport weekday from 'dayjs/plugin/weekday';\nimport localeData from 'dayjs/plugin/localeData';\nimport weekOfYear from 'dayjs/plugin/weekOfYear';\nimport weekYear from 'dayjs/plugin/weekYear';\nimport quarterOfYear from 'dayjs/plugin/quarterOfYear';\nimport advancedFormat from 'dayjs/plugin/advancedFormat';\nimport customParseFormat from 'dayjs/plugin/customParseFormat';\nimport { noteOnce } from '../../vc-util/warning';\ndayjs.extend(customParseFormat);\ndayjs.extend(advancedFormat);\ndayjs.extend(weekday);\ndayjs.extend(localeData);\ndayjs.extend(weekOfYear);\ndayjs.extend(weekYear);\ndayjs.extend(quarterOfYear);\ndayjs.extend((_o, c) => {\n  // todo support Wo (ISO week)\n  const proto = c.prototype;\n  const oldFormat = proto.format;\n  proto.format = function f(formatStr) {\n    const str = (formatStr || '').replace('Wo', 'wo');\n    return oldFormat.bind(this)(str);\n  };\n});\nconst localeMap = {\n  // ar_EG:\n  // az_AZ:\n  // bg_BG:\n  bn_BD: 'bn-bd',\n  by_BY: 'be',\n  // ca_ES:\n  // cs_CZ:\n  // da_DK:\n  // de_DE:\n  // el_GR:\n  en_GB: 'en-gb',\n  en_US: 'en',\n  // es_ES:\n  // et_EE:\n  // fa_IR:\n  // fi_FI:\n  fr_BE: 'fr',\n  fr_CA: 'fr-ca',\n  // fr_FR:\n  // ga_IE:\n  // gl_ES:\n  // he_IL:\n  // hi_IN:\n  // hr_HR:\n  // hu_HU:\n  hy_AM: 'hy-am',\n  // id_ID:\n  // is_IS:\n  // it_IT:\n  // ja_JP:\n  // ka_GE:\n  // kk_KZ:\n  // km_KH:\n  kmr_IQ: 'ku',\n  // kn_IN:\n  // ko_KR:\n  // ku_IQ: // previous ku in antd\n  // lt_LT:\n  // lv_LV:\n  // mk_MK:\n  // ml_IN:\n  // mn_MN:\n  // ms_MY:\n  // nb_NO:\n  // ne_NP:\n  nl_BE: 'nl-be',\n  // nl_NL:\n  // pl_PL:\n  pt_BR: 'pt-br',\n  // pt_PT:\n  // ro_RO:\n  // ru_RU:\n  // sk_SK:\n  // sl_SI:\n  // sr_RS:\n  // sv_SE:\n  // ta_IN:\n  // th_TH:\n  // tr_TR:\n  // uk_UA:\n  // ur_PK:\n  // vi_VN:\n  zh_CN: 'zh-cn',\n  zh_HK: 'zh-hk',\n  zh_TW: 'zh-tw'\n};\nconst parseLocale = locale => {\n  const mapLocale = localeMap[locale];\n  return mapLocale || locale.split('_')[0];\n};\nconst parseNoMatchNotice = () => {\n  /* istanbul ignore next */\n  noteOnce(false, 'Not match any format. Please help to fire a issue about this.');\n};\nconst advancedFormatRegex = /\\[([^\\]]+)]|Q|wo|ww|w|WW|W|zzz|z|gggg|GGGG|k{1,2}|S/g;\nfunction findTargetStr(val, index, segmentation) {\n  const items = [...new Set(val.split(segmentation))];\n  let idx = 0;\n  for (let i = 0; i < items.length; i++) {\n    const item = items[i];\n    idx += item.length;\n    if (idx > index) {\n      return item;\n    }\n    idx += segmentation.length;\n  }\n}\nconst toDateWithValueFormat = (val, valueFormat) => {\n  if (!val) return null;\n  if (dayjs.isDayjs(val)) {\n    return val;\n  }\n  const matchs = valueFormat.matchAll(advancedFormatRegex);\n  let baseDate = dayjs(val, valueFormat);\n  if (matchs === null) {\n    return baseDate;\n  }\n  for (const match of matchs) {\n    const origin = match[0];\n    const index = match['index'];\n    if (origin === 'Q') {\n      const segmentation = val.slice(index - 1, index);\n      const quarterStr = findTargetStr(val, index, segmentation).match(/\\d+/)[0];\n      baseDate = baseDate.quarter(parseInt(quarterStr));\n    }\n    if (origin.toLowerCase() === 'wo') {\n      const segmentation = val.slice(index - 1, index);\n      const weekStr = findTargetStr(val, index, segmentation).match(/\\d+/)[0];\n      baseDate = baseDate.week(parseInt(weekStr));\n    }\n    if (origin.toLowerCase() === 'ww') {\n      baseDate = baseDate.week(parseInt(val.slice(index, index + origin.length)));\n    }\n    if (origin.toLowerCase() === 'w') {\n      baseDate = baseDate.week(parseInt(val.slice(index, index + origin.length + 1)));\n    }\n  }\n  return baseDate;\n};\nconst generateConfig = {\n  // get\n  getNow: () => dayjs(),\n  getFixedDate: string => dayjs(string, ['YYYY-M-DD', 'YYYY-MM-DD']),\n  getEndDate: date => date.endOf('month'),\n  getWeekDay: date => {\n    const clone = date.locale('en');\n    return clone.weekday() + clone.localeData().firstDayOfWeek();\n  },\n  getYear: date => date.year(),\n  getMonth: date => date.month(),\n  getDate: date => date.date(),\n  getHour: date => date.hour(),\n  getMinute: date => date.minute(),\n  getSecond: date => date.second(),\n  // set\n  addYear: (date, diff) => date.add(diff, 'year'),\n  addMonth: (date, diff) => date.add(diff, 'month'),\n  addDate: (date, diff) => date.add(diff, 'day'),\n  setYear: (date, year) => date.year(year),\n  setMonth: (date, month) => date.month(month),\n  setDate: (date, num) => date.date(num),\n  setHour: (date, hour) => date.hour(hour),\n  setMinute: (date, minute) => date.minute(minute),\n  setSecond: (date, second) => date.second(second),\n  // Compare\n  isAfter: (date1, date2) => date1.isAfter(date2),\n  isValidate: date => date.isValid(),\n  locale: {\n    getWeekFirstDay: locale => dayjs().locale(parseLocale(locale)).localeData().firstDayOfWeek(),\n    getWeekFirstDate: (locale, date) => date.locale(parseLocale(locale)).weekday(0),\n    getWeek: (locale, date) => date.locale(parseLocale(locale)).week(),\n    getShortWeekDays: locale => dayjs().locale(parseLocale(locale)).localeData().weekdaysMin(),\n    getShortMonths: locale => dayjs().locale(parseLocale(locale)).localeData().monthsShort(),\n    format: (locale, date, format) => date.locale(parseLocale(locale)).format(format),\n    parse: (locale, text, formats) => {\n      const localeStr = parseLocale(locale);\n      for (let i = 0; i < formats.length; i += 1) {\n        const format = formats[i];\n        const formatText = text;\n        if (format.includes('wo') || format.includes('Wo')) {\n          // parse Wo\n          const year = formatText.split('-')[0];\n          const weekStr = formatText.split('-')[1];\n          const firstWeek = dayjs(year, 'YYYY').startOf('year').locale(localeStr);\n          for (let j = 0; j <= 52; j += 1) {\n            const nextWeek = firstWeek.add(j, 'week');\n            if (nextWeek.format('Wo') === weekStr) {\n              return nextWeek;\n            }\n          }\n          parseNoMatchNotice();\n          return null;\n        }\n        const date = dayjs(formatText, format, true).locale(localeStr);\n        if (date.isValid()) {\n          return date;\n        }\n      }\n      if (!text) {\n        parseNoMatchNotice();\n      }\n      return null;\n    }\n  },\n  toDate: (value, valueFormat) => {\n    if (Array.isArray(value)) {\n      return value.map(val => toDateWithValueFormat(val, valueFormat));\n    } else {\n      return toDateWithValueFormat(value, valueFormat);\n    }\n  },\n  toString: (value, valueFormat) => {\n    if (Array.isArray(value)) {\n      return value.map(val => dayjs.isDayjs(val) ? val.format(valueFormat) : val);\n    } else {\n      return dayjs.isDayjs(value) ? value.format(valueFormat) : value;\n    }\n  }\n};\nexport default generateConfig;",
+      "start": 1718517098134,
+      "end": 1718517098168,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098168,
+      "end": 1718517098168,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098168,
+      "end": 1718517098169,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098169,
+      "end": 1718517098169,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/components/WellnessChild.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\r\n    <div>\r\n        <div >\r\n            <!-- \r\n                ee\r\n       {{ items }} -->\r\n\r\n            <a-row justify=\"center\" \r\n            style=\"margin-bottom: 20px\"\r\n            data-aos=\"fade-up\" v-for=\"(i, idx) in items\" :key=\"idx\"\r\n                :gutter=\"52\">\r\n                <a-col :xs=\"24\" :sm=\"24\" :md=\"14\" :lg=\"14\" v-if=\"isOdd(idx)\" >\r\n                    <!-- <div class=\"zoom-img\" @click=\"setVisible(true, i.image)\">\r\n                        <img class=\"img-height\" :src=\"i.image\" alt=\"\">\r\n                    </div> -->\r\n\r\n                    <dynamic-swiper :images=\"i.images\"></dynamic-swiper>\r\n\r\n                </a-col>\r\n                <a-col :xs=\"0\" :sm=\"0\" :md=\"8\" :lg=\"8\">\r\n\r\n                    <h3  class=\"mb-20 mt-20\">{{ i.title }}</h3>\r\n                    <p>{{ i.description }}</p>\r\n\r\n                    <!-- <div style=\"position: absolute; bottom: 0; width: 100%;\">\r\n\r\n                    \r\n\r\n                        <a :href=\"i.link\" target=\"_blank\" class=\"text-underline text-more text-whitney\">\r\n                        Make an enquiry\r\n                    </a>\r\n                    </div> -->\r\n                </a-col>\r\n\r\n                <a-col :xs=\"24\" :sm=\"24\" :md=\"14\" :lg=\"14\" v-if=\"isEven(idx)\" >\r\n                    <!-- <div class=\"zoom-img\" @click=\"setVisible(true, i.image)\">\r\n                        <img class=\"img-height\" :src=\"i.image\" alt=\"\">\r\n                    </div> -->\r\n\r\n                    <dynamic-swiper :images=\"i.images\"></dynamic-swiper>\r\n\r\n                </a-col>\r\n\r\n                <a-col  :xs=\"24\" :sm=\"24\" :md=\"0\" :lg=\"0\">\r\n\r\n                    <h3  class=\"mb-20 mt-20\">{{ i.title }}</h3>\r\n                    <p>{{ i.description }}</p>\r\n                    <!-- <a :href=\"i.link\" target=\"_blank\" class=\"text-underline text-more text-whitney\">\r\n                        Make an enquiry\r\n                    </a> -->\r\n\r\n\r\n                </a-col>\r\n\r\n            </a-row>\r\n\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\n\r\nconst isOdd = (idx: number) => /^-?\\d*[13579]$/.test(idx.toString())\r\nconst isEven = (idx: number) => /^-?\\d*[02468]$/.test(idx.toString())\r\n\r\nconst { items } = defineProps(['items'])\r\n\r\n// const facilities = ref([\r\n//     {\r\n//         title: 'Cruise the fabled Mekong River',\r\n//         description: 'The mighty Mekong River starts its journey in the Tibetan Plateau and passes through Laos on its way to the South China Sea. Explore its bends and banks on one of Amantaka’s private boats, cruising to Pak Ou Caves or finding the perfect spot for a riverside picnic upstream. As the sun sets over forested mountains, enjoy cocktails and canapés while witnessing the town’s evening rituals from the water.',\r\n//         images: ['https://www.aman.com/sites/default/files/styles/media_text_side_by_side_x_wide/public/2021-03/Amantaka%2C%20Laos%20-%20Luang%20Prabang%2C%20Mekong%20River%20Sunset.jpg?itok=RXZ_LECg']\r\n//     },\r\n//     {\r\n//         title: 'Family Adventure',\r\n//         description: 'Multi-generational activities abound in Luang Prabang, whether hiking to a waterfall for a swim in turquoise limestone pools, enjoying a cooking class on Amantaka’s organic farm or connecting with the gentle giants of the local elephant sanctuary.',\r\n//         images: ['https://www.aman.com/sites/default/files/styles/media_text_side_by_side_x_wide/public/2021-02/Amantaka_Experiences-Overview_5.jpg?itok=oq24p9Of']\r\n//     }\r\n// ])\r\n</script>\r\n\r\n\r\n\r\n<style scoped lang=\"scss\">\r\n.img-height {\r\n    height: 500px;\r\n    object-fit: cover;\r\n    width: 100%\r\n}\r\n\r\n// .push-margin {\r\n//     .media(laptop, {\r\n//         //    margin-bottom: -150px;\r\n//     });\r\n\r\n// }\r\n</style>",
+      "start": 1718517097877,
+      "end": 1718517098011,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098011,
+      "end": 1718517098011,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098011,
+      "end": 1718517098011,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098011,
+      "end": 1718517098011,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098011,
+      "end": 1718517098012,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098012,
+      "end": 1718517098012,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098012,
+      "end": 1718517098012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098012,
+      "end": 1718517098012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098012,
+      "end": 1718517098012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098012,
+      "end": 1718517098012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"C:/Users/MSII/Desktop/pj/dansavanh/components/WellnessChild.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"C:/Users/MSII/Desktop/pj/dansavanh/components/WellnessChild.vue?vue&type=script&setup=true&lang.ts\";\nimport \"C:/Users/MSII/Desktop/pj/dansavanh/components/WellnessChild.vue?vue&type=style&index=0&scoped=54bbf43f&lang.scss\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-54bbf43f\"]]);\n",
+      "start": 1718517098012,
+      "end": 1718517098102,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098102,
+      "end": 1718517098102,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098102,
+      "end": 1718517098103,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098103,
+      "end": 1718517098103,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098103,
+      "end": 1718517098103,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098103,
+      "end": 1718517098103,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098103,
+      "end": 1718517098103,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098103,
+      "end": 1718517098103,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098103,
+      "end": 1718517098103,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098103,
+      "end": 1718517098103,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098103,
+      "end": 1718517098103,
+      "order": "normal"
+    }
+  ]
+}

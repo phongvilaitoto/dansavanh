@@ -1,0 +1,236 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/anchor/Anchor.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nimport { defineComponent, nextTick, onBeforeUnmount, onMounted, onUpdated, reactive, ref, computed } from 'vue';\nimport scrollIntoView from 'scroll-into-view-if-needed';\nimport classNames from '../_util/classNames';\nimport addEventListener from '../vc-util/Dom/addEventListener';\nimport Affix from '../affix';\nimport scrollTo from '../_util/scrollTo';\nimport getScroll from '../_util/getScroll';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport useProvideAnchor from './context';\nimport useStyle from './style';\nimport AnchorLink from './AnchorLink';\nimport PropTypes from '../_util/vue-types';\nimport devWarning from '../vc-util/devWarning';\nimport { arrayType } from '../_util/type';\nfunction getDefaultContainer() {\n  return window;\n}\nfunction getOffsetTop(element, container) {\n  if (!element.getClientRects().length) {\n    return 0;\n  }\n  const rect = element.getBoundingClientRect();\n  if (rect.width || rect.height) {\n    if (container === window) {\n      container = element.ownerDocument.documentElement;\n      return rect.top - container.clientTop;\n    }\n    return rect.top - container.getBoundingClientRect().top;\n  }\n  return rect.top;\n}\nconst sharpMatcherRegx = /#([\\S ]+)$/;\nexport const anchorProps = () => ({\n  prefixCls: String,\n  offsetTop: Number,\n  bounds: Number,\n  affix: {\n    type: Boolean,\n    default: true\n  },\n  showInkInFixed: {\n    type: Boolean,\n    default: false\n  },\n  getContainer: Function,\n  wrapperClass: String,\n  wrapperStyle: {\n    type: Object,\n    default: undefined\n  },\n  getCurrentAnchor: Function,\n  targetOffset: Number,\n  items: arrayType(),\n  direction: PropTypes.oneOf(['vertical', 'horizontal']).def('vertical'),\n  onChange: Function,\n  onClick: Function\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AAnchor',\n  inheritAttrs: false,\n  props: anchorProps(),\n  setup(props, _ref) {\n    let {\n      emit,\n      attrs,\n      slots,\n      expose\n    } = _ref;\n    var _a;\n    const {\n      prefixCls,\n      getTargetContainer,\n      direction\n    } = useConfigInject('anchor', props);\n    const anchorDirection = computed(() => {\n      var _a;\n      return (_a = props.direction) !== null && _a !== void 0 ? _a : 'vertical';\n    });\n    if (process.env.NODE_ENV !== 'production') {\n      devWarning(props.items && typeof slots.default !== 'function', 'Anchor', '`Anchor children` is deprecated. Please use `items` instead.');\n    }\n    if (process.env.NODE_ENV !== 'production') {\n      devWarning(!(anchorDirection.value === 'horizontal' && ((_a = props.items) === null || _a === void 0 ? void 0 : _a.some(n => 'children' in n))), 'Anchor', '`Anchor items#children` is not supported when `Anchor` direction is horizontal.');\n    }\n    const spanLinkNode = ref(null);\n    const anchorRef = ref();\n    const state = reactive({\n      links: [],\n      scrollContainer: null,\n      scrollEvent: null,\n      animating: false\n    });\n    const activeLink = ref(null);\n    const getContainer = computed(() => {\n      const {\n        getContainer\n      } = props;\n      return getContainer || (getTargetContainer === null || getTargetContainer === void 0 ? void 0 : getTargetContainer.value) || getDefaultContainer;\n    });\n    // func...\n    const getCurrentAnchor = function () {\n      let offsetTop = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;\n      let bounds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;\n      const linkSections = [];\n      const container = getContainer.value();\n      state.links.forEach(link => {\n        const sharpLinkMatch = sharpMatcherRegx.exec(link.toString());\n        if (!sharpLinkMatch) {\n          return;\n        }\n        const target = document.getElementById(sharpLinkMatch[1]);\n        if (target) {\n          const top = getOffsetTop(target, container);\n          if (top < offsetTop + bounds) {\n            linkSections.push({\n              link,\n              top\n            });\n          }\n        }\n      });\n      if (linkSections.length) {\n        const maxSection = linkSections.reduce((prev, curr) => curr.top > prev.top ? curr : prev);\n        return maxSection.link;\n      }\n      return '';\n    };\n    const setCurrentActiveLink = link => {\n      const {\n        getCurrentAnchor\n      } = props;\n      if (activeLink.value === link) {\n        return;\n      }\n      activeLink.value = typeof getCurrentAnchor === 'function' ? getCurrentAnchor(link) : link;\n      emit('change', link);\n    };\n    const handleScrollTo = link => {\n      const {\n        offsetTop,\n        targetOffset\n      } = props;\n      setCurrentActiveLink(link);\n      const sharpLinkMatch = sharpMatcherRegx.exec(link);\n      if (!sharpLinkMatch) {\n        return;\n      }\n      const targetElement = document.getElementById(sharpLinkMatch[1]);\n      if (!targetElement) {\n        return;\n      }\n      const container = getContainer.value();\n      const scrollTop = getScroll(container, true);\n      const eleOffsetTop = getOffsetTop(targetElement, container);\n      let y = scrollTop + eleOffsetTop;\n      y -= targetOffset !== undefined ? targetOffset : offsetTop || 0;\n      state.animating = true;\n      scrollTo(y, {\n        callback: () => {\n          state.animating = false;\n        },\n        getContainer: getContainer.value\n      });\n    };\n    expose({\n      scrollTo: handleScrollTo\n    });\n    const handleScroll = () => {\n      if (state.animating) {\n        return;\n      }\n      const {\n        offsetTop,\n        bounds,\n        targetOffset\n      } = props;\n      const currentActiveLink = getCurrentAnchor(targetOffset !== undefined ? targetOffset : offsetTop || 0, bounds);\n      setCurrentActiveLink(currentActiveLink);\n    };\n    const updateInk = () => {\n      const linkNode = anchorRef.value.querySelector(`.${prefixCls.value}-link-title-active`);\n      if (linkNode && spanLinkNode.value) {\n        const horizontalAnchor = anchorDirection.value === 'horizontal';\n        spanLinkNode.value.style.top = horizontalAnchor ? '' : `${linkNode.offsetTop + linkNode.clientHeight / 2}px`;\n        spanLinkNode.value.style.height = horizontalAnchor ? '' : `${linkNode.clientHeight}px`;\n        spanLinkNode.value.style.left = horizontalAnchor ? `${linkNode.offsetLeft}px` : '';\n        spanLinkNode.value.style.width = horizontalAnchor ? `${linkNode.clientWidth}px` : '';\n        if (horizontalAnchor) {\n          scrollIntoView(linkNode, {\n            scrollMode: 'if-needed',\n            block: 'nearest'\n          });\n        }\n      }\n    };\n    useProvideAnchor({\n      registerLink: link => {\n        if (!state.links.includes(link)) {\n          state.links.push(link);\n        }\n      },\n      unregisterLink: link => {\n        const index = state.links.indexOf(link);\n        if (index !== -1) {\n          state.links.splice(index, 1);\n        }\n      },\n      activeLink,\n      scrollTo: handleScrollTo,\n      handleClick: (e, info) => {\n        emit('click', e, info);\n      },\n      direction: anchorDirection\n    });\n    onMounted(() => {\n      nextTick(() => {\n        const container = getContainer.value();\n        state.scrollContainer = container;\n        state.scrollEvent = addEventListener(state.scrollContainer, 'scroll', handleScroll);\n        handleScroll();\n      });\n    });\n    onBeforeUnmount(() => {\n      if (state.scrollEvent) {\n        state.scrollEvent.remove();\n      }\n    });\n    onUpdated(() => {\n      if (state.scrollEvent) {\n        const currentContainer = getContainer.value();\n        if (state.scrollContainer !== currentContainer) {\n          state.scrollContainer = currentContainer;\n          state.scrollEvent.remove();\n          state.scrollEvent = addEventListener(state.scrollContainer, 'scroll', handleScroll);\n          handleScroll();\n        }\n      }\n      updateInk();\n    });\n    const createNestedLink = options => Array.isArray(options) ? options.map(option => {\n      const {\n        children,\n        key,\n        href,\n        target,\n        class: cls,\n        style,\n        title\n      } = option;\n      return _createVNode(AnchorLink, {\n        \"key\": key,\n        \"href\": href,\n        \"target\": target,\n        \"class\": cls,\n        \"style\": style,\n        \"title\": title,\n        \"customTitleProps\": option\n      }, {\n        default: () => [anchorDirection.value === 'vertical' ? createNestedLink(children) : null],\n        customTitle: slots.customTitle\n      });\n    }) : null;\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    return () => {\n      var _a;\n      const {\n        offsetTop,\n        affix,\n        showInkInFixed\n      } = props;\n      const pre = prefixCls.value;\n      const inkClass = classNames(`${pre}-ink`, {\n        [`${pre}-ink-visible`]: activeLink.value\n      });\n      const wrapperClass = classNames(hashId.value, props.wrapperClass, `${pre}-wrapper`, {\n        [`${pre}-wrapper-horizontal`]: anchorDirection.value === 'horizontal',\n        [`${pre}-rtl`]: direction.value === 'rtl'\n      });\n      const anchorClass = classNames(pre, {\n        [`${pre}-fixed`]: !affix && !showInkInFixed\n      });\n      const wrapperStyle = _extends({\n        maxHeight: offsetTop ? `calc(100vh - ${offsetTop}px)` : '100vh'\n      }, props.wrapperStyle);\n      const anchorContent = _createVNode(\"div\", {\n        \"class\": wrapperClass,\n        \"style\": wrapperStyle,\n        \"ref\": anchorRef\n      }, [_createVNode(\"div\", {\n        \"class\": anchorClass\n      }, [_createVNode(\"span\", {\n        \"class\": inkClass,\n        \"ref\": spanLinkNode\n      }, null), Array.isArray(props.items) ? createNestedLink(props.items) : (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots)])]);\n      return wrapSSR(!affix ? anchorContent : _createVNode(Affix, _objectSpread(_objectSpread({}, attrs), {}, {\n        \"offsetTop\": offsetTop,\n        \"target\": getContainer.value\n      }), {\n        default: () => [anchorContent]\n      }));\n    };\n  }\n});",
+      "start": 1718517097277,
+      "end": 1718517097286,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097286,
+      "end": 1718517097286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nimport { defineComponent, nextTick, onBeforeUnmount, onMounted, onUpdated, reactive, ref, computed } from \"vue\";\nimport scrollIntoView from \"scroll-into-view-if-needed\";\nimport classNames from \"../_util/classNames\";\nimport addEventListener from \"../vc-util/Dom/addEventListener\";\nimport Affix from \"../affix\";\nimport scrollTo from \"../_util/scrollTo\";\nimport getScroll from \"../_util/getScroll\";\nimport useConfigInject from \"../config-provider/hooks/useConfigInject\";\nimport useProvideAnchor from \"./context\";\nimport useStyle from \"./style\";\nimport AnchorLink from \"./AnchorLink\";\nimport PropTypes from \"../_util/vue-types\";\nimport devWarning from \"../vc-util/devWarning\";\nimport { arrayType } from \"../_util/type\";\nfunction getDefaultContainer() {\n  return window;\n}\nfunction getOffsetTop(element, container) {\n  if (!element.getClientRects().length) {\n    return 0;\n  }\n  const rect = element.getBoundingClientRect();\n  if (rect.width || rect.height) {\n    if (container === window) {\n      container = element.ownerDocument.documentElement;\n      return rect.top - container.clientTop;\n    }\n    return rect.top - container.getBoundingClientRect().top;\n  }\n  return rect.top;\n}\nconst sharpMatcherRegx = /#([\\S ]+)$/;\nexport const anchorProps = () => ({\n  prefixCls: String,\n  offsetTop: Number,\n  bounds: Number,\n  affix: {\n    type: Boolean,\n    default: true\n  },\n  showInkInFixed: {\n    type: Boolean,\n    default: false\n  },\n  getContainer: Function,\n  wrapperClass: String,\n  wrapperStyle: {\n    type: Object,\n    default: void 0\n  },\n  getCurrentAnchor: Function,\n  targetOffset: Number,\n  items: arrayType(),\n  direction: PropTypes.oneOf([\"vertical\", \"horizontal\"]).def(\"vertical\"),\n  onChange: Function,\n  onClick: Function\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: \"AAnchor\",\n  inheritAttrs: false,\n  props: anchorProps(),\n  setup(props, _ref) {\n    let {\n      emit,\n      attrs,\n      slots,\n      expose\n    } = _ref;\n    var _a;\n    const {\n      prefixCls,\n      getTargetContainer,\n      direction\n    } = useConfigInject(\"anchor\", props);\n    const anchorDirection = computed(() => {\n      var _a2;\n      return (_a2 = props.direction) !== null && _a2 !== void 0 ? _a2 : \"vertical\";\n    });\n    if (false) {\n      devWarning(props.items && typeof slots.default !== \"function\", \"Anchor\", \"`Anchor children` is deprecated. Please use `items` instead.\");\n    }\n    if (false) {\n      devWarning(!(anchorDirection.value === \"horizontal\" && ((_a = props.items) === null || _a === void 0 ? void 0 : _a.some((n) => \"children\" in n))), \"Anchor\", \"`Anchor items#children` is not supported when `Anchor` direction is horizontal.\");\n    }\n    const spanLinkNode = ref(null);\n    const anchorRef = ref();\n    const state = reactive({\n      links: [],\n      scrollContainer: null,\n      scrollEvent: null,\n      animating: false\n    });\n    const activeLink = ref(null);\n    const getContainer = computed(() => {\n      const {\n        getContainer: getContainer2\n      } = props;\n      return getContainer2 || (getTargetContainer === null || getTargetContainer === void 0 ? void 0 : getTargetContainer.value) || getDefaultContainer;\n    });\n    const getCurrentAnchor = function() {\n      let offsetTop = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;\n      let bounds = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 5;\n      const linkSections = [];\n      const container = getContainer.value();\n      state.links.forEach((link) => {\n        const sharpLinkMatch = sharpMatcherRegx.exec(link.toString());\n        if (!sharpLinkMatch) {\n          return;\n        }\n        const target = document.getElementById(sharpLinkMatch[1]);\n        if (target) {\n          const top = getOffsetTop(target, container);\n          if (top < offsetTop + bounds) {\n            linkSections.push({\n              link,\n              top\n            });\n          }\n        }\n      });\n      if (linkSections.length) {\n        const maxSection = linkSections.reduce((prev, curr) => curr.top > prev.top ? curr : prev);\n        return maxSection.link;\n      }\n      return \"\";\n    };\n    const setCurrentActiveLink = (link) => {\n      const {\n        getCurrentAnchor: getCurrentAnchor2\n      } = props;\n      if (activeLink.value === link) {\n        return;\n      }\n      activeLink.value = typeof getCurrentAnchor2 === \"function\" ? getCurrentAnchor2(link) : link;\n      emit(\"change\", link);\n    };\n    const handleScrollTo = (link) => {\n      const {\n        offsetTop,\n        targetOffset\n      } = props;\n      setCurrentActiveLink(link);\n      const sharpLinkMatch = sharpMatcherRegx.exec(link);\n      if (!sharpLinkMatch) {\n        return;\n      }\n      const targetElement = document.getElementById(sharpLinkMatch[1]);\n      if (!targetElement) {\n        return;\n      }\n      const container = getContainer.value();\n      const scrollTop = getScroll(container, true);\n      const eleOffsetTop = getOffsetTop(targetElement, container);\n      let y = scrollTop + eleOffsetTop;\n      y -= targetOffset !== void 0 ? targetOffset : offsetTop || 0;\n      state.animating = true;\n      scrollTo(y, {\n        callback: () => {\n          state.animating = false;\n        },\n        getContainer: getContainer.value\n      });\n    };\n    expose({\n      scrollTo: handleScrollTo\n    });\n    const handleScroll = () => {\n      if (state.animating) {\n        return;\n      }\n      const {\n        offsetTop,\n        bounds,\n        targetOffset\n      } = props;\n      const currentActiveLink = getCurrentAnchor(targetOffset !== void 0 ? targetOffset : offsetTop || 0, bounds);\n      setCurrentActiveLink(currentActiveLink);\n    };\n    const updateInk = () => {\n      const linkNode = anchorRef.value.querySelector(`.${prefixCls.value}-link-title-active`);\n      if (linkNode && spanLinkNode.value) {\n        const horizontalAnchor = anchorDirection.value === \"horizontal\";\n        spanLinkNode.value.style.top = horizontalAnchor ? \"\" : `${linkNode.offsetTop + linkNode.clientHeight / 2}px`;\n        spanLinkNode.value.style.height = horizontalAnchor ? \"\" : `${linkNode.clientHeight}px`;\n        spanLinkNode.value.style.left = horizontalAnchor ? `${linkNode.offsetLeft}px` : \"\";\n        spanLinkNode.value.style.width = horizontalAnchor ? `${linkNode.clientWidth}px` : \"\";\n        if (horizontalAnchor) {\n          scrollIntoView(linkNode, {\n            scrollMode: \"if-needed\",\n            block: \"nearest\"\n          });\n        }\n      }\n    };\n    useProvideAnchor({\n      registerLink: (link) => {\n        if (!state.links.includes(link)) {\n          state.links.push(link);\n        }\n      },\n      unregisterLink: (link) => {\n        const index = state.links.indexOf(link);\n        if (index !== -1) {\n          state.links.splice(index, 1);\n        }\n      },\n      activeLink,\n      scrollTo: handleScrollTo,\n      handleClick: (e, info) => {\n        emit(\"click\", e, info);\n      },\n      direction: anchorDirection\n    });\n    onMounted(() => {\n      nextTick(() => {\n        const container = getContainer.value();\n        state.scrollContainer = container;\n        state.scrollEvent = addEventListener(state.scrollContainer, \"scroll\", handleScroll);\n        handleScroll();\n      });\n    });\n    onBeforeUnmount(() => {\n      if (state.scrollEvent) {\n        state.scrollEvent.remove();\n      }\n    });\n    onUpdated(() => {\n      if (state.scrollEvent) {\n        const currentContainer = getContainer.value();\n        if (state.scrollContainer !== currentContainer) {\n          state.scrollContainer = currentContainer;\n          state.scrollEvent.remove();\n          state.scrollEvent = addEventListener(state.scrollContainer, \"scroll\", handleScroll);\n          handleScroll();\n        }\n      }\n      updateInk();\n    });\n    const createNestedLink = (options) => Array.isArray(options) ? options.map((option) => {\n      const {\n        children,\n        key,\n        href,\n        target,\n        class: cls,\n        style,\n        title\n      } = option;\n      return _createVNode(AnchorLink, {\n        \"key\": key,\n        \"href\": href,\n        \"target\": target,\n        \"class\": cls,\n        \"style\": style,\n        \"title\": title,\n        \"customTitleProps\": option\n      }, {\n        default: () => [anchorDirection.value === \"vertical\" ? createNestedLink(children) : null],\n        customTitle: slots.customTitle\n      });\n    }) : null;\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    return () => {\n      var _a2;\n      const {\n        offsetTop,\n        affix,\n        showInkInFixed\n      } = props;\n      const pre = prefixCls.value;\n      const inkClass = classNames(`${pre}-ink`, {\n        [`${pre}-ink-visible`]: activeLink.value\n      });\n      const wrapperClass = classNames(hashId.value, props.wrapperClass, `${pre}-wrapper`, {\n        [`${pre}-wrapper-horizontal`]: anchorDirection.value === \"horizontal\",\n        [`${pre}-rtl`]: direction.value === \"rtl\"\n      });\n      const anchorClass = classNames(pre, {\n        [`${pre}-fixed`]: !affix && !showInkInFixed\n      });\n      const wrapperStyle = _extends({\n        maxHeight: offsetTop ? `calc(100vh - ${offsetTop}px)` : \"100vh\"\n      }, props.wrapperStyle);\n      const anchorContent = _createVNode(\"div\", {\n        \"class\": wrapperClass,\n        \"style\": wrapperStyle,\n        \"ref\": anchorRef\n      }, [_createVNode(\"div\", {\n        \"class\": anchorClass\n      }, [_createVNode(\"span\", {\n        \"class\": inkClass,\n        \"ref\": spanLinkNode\n      }, null), Array.isArray(props.items) ? createNestedLink(props.items) : (_a2 = slots.default) === null || _a2 === void 0 ? void 0 : _a2.call(slots)])]);\n      return wrapSSR(!affix ? anchorContent : _createVNode(Affix, _objectSpread(_objectSpread({}, attrs), {}, {\n        \"offsetTop\": offsetTop,\n        \"target\": getContainer.value\n      }), {\n        default: () => [anchorContent]\n      }));\n    };\n  }\n});\n",
+      "start": 1718517097286,
+      "end": 1718517097305,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097305,
+      "end": 1718517097305,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097305,
+      "end": 1718517097305,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097305,
+      "end": 1718517097305,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097305,
+      "end": 1718517097305,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097305,
+      "end": 1718517097306,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097306,
+      "end": 1718517097306,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/result/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { defineComponent, computed } from 'vue';\nimport PropTypes from '../_util/vue-types';\nimport CheckCircleFilled from \"@ant-design/icons-vue/es/icons/CheckCircleFilled\";\nimport CloseCircleFilled from \"@ant-design/icons-vue/es/icons/CloseCircleFilled\";\nimport ExclamationCircleFilled from \"@ant-design/icons-vue/es/icons/ExclamationCircleFilled\";\nimport WarningFilled from \"@ant-design/icons-vue/es/icons/WarningFilled\";\nimport noFound from './noFound';\nimport serverError from './serverError';\nimport unauthorized from './unauthorized';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport classNames from '../_util/classNames';\nimport useStyle from './style';\nexport const IconMap = {\n  success: CheckCircleFilled,\n  error: CloseCircleFilled,\n  info: ExclamationCircleFilled,\n  warning: WarningFilled\n};\nexport const ExceptionMap = {\n  '404': noFound,\n  '500': serverError,\n  '403': unauthorized\n};\n// ExceptionImageMap keys\nconst ExceptionStatus = Object.keys(ExceptionMap);\nexport const resultProps = () => ({\n  prefixCls: String,\n  icon: PropTypes.any,\n  status: {\n    type: [Number, String],\n    default: 'info'\n  },\n  title: PropTypes.any,\n  subTitle: PropTypes.any,\n  extra: PropTypes.any\n});\nconst renderIcon = (prefixCls, _ref) => {\n  let {\n    status,\n    icon\n  } = _ref;\n  if (ExceptionStatus.includes(`${status}`)) {\n    const SVGComponent = ExceptionMap[status];\n    return _createVNode(\"div\", {\n      \"class\": `${prefixCls}-icon ${prefixCls}-image`\n    }, [_createVNode(SVGComponent, null, null)]);\n  }\n  const IconComponent = IconMap[status];\n  const iconNode = icon || _createVNode(IconComponent, null, null);\n  return _createVNode(\"div\", {\n    \"class\": `${prefixCls}-icon`\n  }, [iconNode]);\n};\nconst renderExtra = (prefixCls, extra) => extra && _createVNode(\"div\", {\n  \"class\": `${prefixCls}-extra`\n}, [extra]);\nconst Result = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AResult',\n  inheritAttrs: false,\n  props: resultProps(),\n  slots: Object,\n  setup(props, _ref2) {\n    let {\n      slots,\n      attrs\n    } = _ref2;\n    const {\n      prefixCls,\n      direction\n    } = useConfigInject('result', props);\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const className = computed(() => classNames(prefixCls.value, hashId.value, `${prefixCls.value}-${props.status}`, {\n      [`${prefixCls.value}-rtl`]: direction.value === 'rtl'\n    }));\n    return () => {\n      var _a, _b, _c, _d, _e, _f, _g, _h;\n      const title = (_a = props.title) !== null && _a !== void 0 ? _a : (_b = slots.title) === null || _b === void 0 ? void 0 : _b.call(slots);\n      const subTitle = (_c = props.subTitle) !== null && _c !== void 0 ? _c : (_d = slots.subTitle) === null || _d === void 0 ? void 0 : _d.call(slots);\n      const icon = (_e = props.icon) !== null && _e !== void 0 ? _e : (_f = slots.icon) === null || _f === void 0 ? void 0 : _f.call(slots);\n      const extra = (_g = props.extra) !== null && _g !== void 0 ? _g : (_h = slots.extra) === null || _h === void 0 ? void 0 : _h.call(slots);\n      const pre = prefixCls.value;\n      return wrapSSR(_createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"class\": [className.value, attrs.class]\n      }), [renderIcon(pre, {\n        status: props.status,\n        icon\n      }), _createVNode(\"div\", {\n        \"class\": `${pre}-title`\n      }, [title]), subTitle && _createVNode(\"div\", {\n        \"class\": `${pre}-subtitle`\n      }, [subTitle]), renderExtra(pre, extra), slots.default && _createVNode(\"div\", {\n        \"class\": `${pre}-content`\n      }, [slots.default()])]));\n    };\n  }\n});\n/* add resource */\nResult.PRESENTED_IMAGE_403 = ExceptionMap[403];\nResult.PRESENTED_IMAGE_404 = ExceptionMap[404];\nResult.PRESENTED_IMAGE_500 = ExceptionMap[500];\n/* istanbul ignore next */\nResult.install = function (app) {\n  app.component(Result.name, Result);\n  return app;\n};\nexport default Result;",
+      "start": 1718517096474,
+      "end": 1718517096548,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096548,
+      "end": 1718517096548,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096548,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    }
+  ]
+}

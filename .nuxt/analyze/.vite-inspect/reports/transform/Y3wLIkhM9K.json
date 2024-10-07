@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/input-number/src/utils/MiniDecimal.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/* eslint-disable max-classes-per-file */\nimport { getNumberPrecision, isE, num2str, trimNumber, validateNumber } from './numberUtil';\nimport { supportBigInt } from './supportUtil';\nfunction isEmpty(value) {\n  return !value && value !== 0 && !Number.isNaN(value) || !String(value).trim();\n}\n/**\n * We can remove this when IE not support anymore\n */\nexport class NumberDecimal {\n  constructor(value) {\n    this.origin = '';\n    if (isEmpty(value)) {\n      this.empty = true;\n      return;\n    }\n    this.origin = String(value);\n    this.number = Number(value);\n  }\n  negate() {\n    return new NumberDecimal(-this.toNumber());\n  }\n  add(value) {\n    if (this.isInvalidate()) {\n      return new NumberDecimal(value);\n    }\n    const target = Number(value);\n    if (Number.isNaN(target)) {\n      return this;\n    }\n    const number = this.number + target;\n    // [Legacy] Back to safe integer\n    if (number > Number.MAX_SAFE_INTEGER) {\n      return new NumberDecimal(Number.MAX_SAFE_INTEGER);\n    }\n    if (number < Number.MIN_SAFE_INTEGER) {\n      return new NumberDecimal(Number.MIN_SAFE_INTEGER);\n    }\n    const maxPrecision = Math.max(getNumberPrecision(this.number), getNumberPrecision(target));\n    return new NumberDecimal(number.toFixed(maxPrecision));\n  }\n  isEmpty() {\n    return this.empty;\n  }\n  isNaN() {\n    return Number.isNaN(this.number);\n  }\n  isInvalidate() {\n    return this.isEmpty() || this.isNaN();\n  }\n  equals(target) {\n    return this.toNumber() === (target === null || target === void 0 ? void 0 : target.toNumber());\n  }\n  lessEquals(target) {\n    return this.add(target.negate().toString()).toNumber() <= 0;\n  }\n  toNumber() {\n    return this.number;\n  }\n  toString() {\n    let safe = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;\n    if (!safe) {\n      return this.origin;\n    }\n    if (this.isInvalidate()) {\n      return '';\n    }\n    return num2str(this.number);\n  }\n}\nexport class BigIntDecimal {\n  constructor(value) {\n    this.origin = '';\n    if (isEmpty(value)) {\n      this.empty = true;\n      return;\n    }\n    this.origin = String(value);\n    // Act like Number convert\n    if (value === '-' || Number.isNaN(value)) {\n      this.nan = true;\n      return;\n    }\n    let mergedValue = value;\n    // We need convert back to Number since it require `toFixed` to handle this\n    if (isE(mergedValue)) {\n      mergedValue = Number(mergedValue);\n    }\n    mergedValue = typeof mergedValue === 'string' ? mergedValue : num2str(mergedValue);\n    if (validateNumber(mergedValue)) {\n      const trimRet = trimNumber(mergedValue);\n      this.negative = trimRet.negative;\n      const numbers = trimRet.trimStr.split('.');\n      this.integer = BigInt(numbers[0]);\n      const decimalStr = numbers[1] || '0';\n      this.decimal = BigInt(decimalStr);\n      this.decimalLen = decimalStr.length;\n    } else {\n      this.nan = true;\n    }\n  }\n  getMark() {\n    return this.negative ? '-' : '';\n  }\n  getIntegerStr() {\n    return this.integer.toString();\n  }\n  getDecimalStr() {\n    return this.decimal.toString().padStart(this.decimalLen, '0');\n  }\n  /**\n   * Align BigIntDecimal with same decimal length. e.g. 12.3 + 5 = 1230000\n   * This is used for add function only.\n   */\n  alignDecimal(decimalLength) {\n    const str = `${this.getMark()}${this.getIntegerStr()}${this.getDecimalStr().padEnd(decimalLength, '0')}`;\n    return BigInt(str);\n  }\n  negate() {\n    const clone = new BigIntDecimal(this.toString());\n    clone.negative = !clone.negative;\n    return clone;\n  }\n  add(value) {\n    if (this.isInvalidate()) {\n      return new BigIntDecimal(value);\n    }\n    const offset = new BigIntDecimal(value);\n    if (offset.isInvalidate()) {\n      return this;\n    }\n    const maxDecimalLength = Math.max(this.getDecimalStr().length, offset.getDecimalStr().length);\n    const myAlignedDecimal = this.alignDecimal(maxDecimalLength);\n    const offsetAlignedDecimal = offset.alignDecimal(maxDecimalLength);\n    const valueStr = (myAlignedDecimal + offsetAlignedDecimal).toString();\n    // We need fill string length back to `maxDecimalLength` to avoid parser failed\n    const {\n      negativeStr,\n      trimStr\n    } = trimNumber(valueStr);\n    const hydrateValueStr = `${negativeStr}${trimStr.padStart(maxDecimalLength + 1, '0')}`;\n    return new BigIntDecimal(`${hydrateValueStr.slice(0, -maxDecimalLength)}.${hydrateValueStr.slice(-maxDecimalLength)}`);\n  }\n  isEmpty() {\n    return this.empty;\n  }\n  isNaN() {\n    return this.nan;\n  }\n  isInvalidate() {\n    return this.isEmpty() || this.isNaN();\n  }\n  equals(target) {\n    return this.toString() === (target === null || target === void 0 ? void 0 : target.toString());\n  }\n  lessEquals(target) {\n    return this.add(target.negate().toString()).toNumber() <= 0;\n  }\n  toNumber() {\n    if (this.isNaN()) {\n      return NaN;\n    }\n    return Number(this.toString());\n  }\n  toString() {\n    let safe = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;\n    if (!safe) {\n      return this.origin;\n    }\n    if (this.isInvalidate()) {\n      return '';\n    }\n    return trimNumber(`${this.getMark()}${this.getIntegerStr()}.${this.getDecimalStr()}`).fullStr;\n  }\n}\nexport default function getMiniDecimal(value) {\n  // We use BigInt here.\n  // Will fallback to Number if not support.\n  if (supportBigInt()) {\n    return new BigIntDecimal(value);\n  }\n  return new NumberDecimal(value);\n}\n/**\n * Align the logic of toFixed to around like 1.5 => 2.\n * If set `cutOnly`, will just remove the over decimal part.\n */\nexport function toFixed(numStr, separatorStr, precision) {\n  let cutOnly = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;\n  if (numStr === '') {\n    return '';\n  }\n  const {\n    negativeStr,\n    integerStr,\n    decimalStr\n  } = trimNumber(numStr);\n  const precisionDecimalStr = `${separatorStr}${decimalStr}`;\n  const numberWithoutDecimal = `${negativeStr}${integerStr}`;\n  if (precision >= 0) {\n    // We will get last + 1 number to check if need advanced number\n    const advancedNum = Number(decimalStr[precision]);\n    if (advancedNum >= 5 && !cutOnly) {\n      const advancedDecimal = getMiniDecimal(numStr).add(`${negativeStr}0.${'0'.repeat(precision)}${10 - advancedNum}`);\n      return toFixed(advancedDecimal.toString(), separatorStr, precision, cutOnly);\n    }\n    if (precision === 0) {\n      return numberWithoutDecimal;\n    }\n    return `${numberWithoutDecimal}${separatorStr}${decimalStr.padEnd(precision, '0').slice(0, precision)}`;\n  }\n  if (precisionDecimalStr === '.0') {\n    return numberWithoutDecimal;\n  }\n  return `${numberWithoutDecimal}${precisionDecimalStr}`;\n}",
+      "start": 1718517098230,
+      "end": 1718517098319,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098319,
+      "end": 1718517098319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098319,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    }
+  ]
+}

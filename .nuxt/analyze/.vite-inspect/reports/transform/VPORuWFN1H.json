@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/table/hooks/useFilter/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport devWarning from '../../../vc-util/devWarning';\nimport useState from '../../../_util/hooks/useState';\nimport { computed } from 'vue';\nimport { getColumnPos, renderColumnTitle, getColumnKey } from '../../util';\nimport FilterDropdown from './FilterDropdown';\nfunction collectFilterStates(columns, init, pos) {\n  let filterStates = [];\n  (columns || []).forEach((column, index) => {\n    var _a, _b;\n    const columnPos = getColumnPos(index, pos);\n    const hasFilterDropdown = column.filterDropdown || ((_a = column === null || column === void 0 ? void 0 : column.slots) === null || _a === void 0 ? void 0 : _a.filterDropdown) || column.customFilterDropdown;\n    if (column.filters || hasFilterDropdown || 'onFilter' in column) {\n      if ('filteredValue' in column) {\n        // Controlled\n        let filteredValues = column.filteredValue;\n        if (!hasFilterDropdown) {\n          filteredValues = (_b = filteredValues === null || filteredValues === void 0 ? void 0 : filteredValues.map(String)) !== null && _b !== void 0 ? _b : filteredValues;\n        }\n        filterStates.push({\n          column,\n          key: getColumnKey(column, columnPos),\n          filteredKeys: filteredValues,\n          forceFiltered: column.filtered\n        });\n      } else {\n        // Uncontrolled\n        filterStates.push({\n          column,\n          key: getColumnKey(column, columnPos),\n          filteredKeys: init && column.defaultFilteredValue ? column.defaultFilteredValue : undefined,\n          forceFiltered: column.filtered\n        });\n      }\n    }\n    if ('children' in column) {\n      filterStates = [...filterStates, ...collectFilterStates(column.children, init, columnPos)];\n    }\n  });\n  return filterStates;\n}\nfunction injectFilter(prefixCls, dropdownPrefixCls, columns, filterStates, locale, triggerFilter, getPopupContainer, pos) {\n  return columns.map((column, index) => {\n    var _a;\n    const columnPos = getColumnPos(index, pos);\n    const {\n      filterMultiple = true,\n      filterMode,\n      filterSearch\n    } = column;\n    let newColumn = column;\n    const hasFilterDropdown = column.filterDropdown || ((_a = column === null || column === void 0 ? void 0 : column.slots) === null || _a === void 0 ? void 0 : _a.filterDropdown) || column.customFilterDropdown;\n    if (newColumn.filters || hasFilterDropdown) {\n      const columnKey = getColumnKey(newColumn, columnPos);\n      const filterState = filterStates.find(_ref => {\n        let {\n          key\n        } = _ref;\n        return columnKey === key;\n      });\n      newColumn = _extends(_extends({}, newColumn), {\n        title: renderProps => _createVNode(FilterDropdown, {\n          \"tablePrefixCls\": prefixCls,\n          \"prefixCls\": `${prefixCls}-filter`,\n          \"dropdownPrefixCls\": dropdownPrefixCls,\n          \"column\": newColumn,\n          \"columnKey\": columnKey,\n          \"filterState\": filterState,\n          \"filterMultiple\": filterMultiple,\n          \"filterMode\": filterMode,\n          \"filterSearch\": filterSearch,\n          \"triggerFilter\": triggerFilter,\n          \"locale\": locale,\n          \"getPopupContainer\": getPopupContainer\n        }, {\n          default: () => [renderColumnTitle(column.title, renderProps)]\n        })\n      });\n    }\n    if ('children' in newColumn) {\n      newColumn = _extends(_extends({}, newColumn), {\n        children: injectFilter(prefixCls, dropdownPrefixCls, newColumn.children, filterStates, locale, triggerFilter, getPopupContainer, columnPos)\n      });\n    }\n    return newColumn;\n  });\n}\nexport function flattenKeys(filters) {\n  let keys = [];\n  (filters || []).forEach(_ref2 => {\n    let {\n      value,\n      children\n    } = _ref2;\n    keys.push(value);\n    if (children) {\n      keys = [...keys, ...flattenKeys(children)];\n    }\n  });\n  return keys;\n}\nfunction generateFilterInfo(filterStates) {\n  const currentFilters = {};\n  filterStates.forEach(_ref3 => {\n    let {\n      key,\n      filteredKeys,\n      column\n    } = _ref3;\n    var _a;\n    const hasFilterDropdown = column.filterDropdown || ((_a = column === null || column === void 0 ? void 0 : column.slots) === null || _a === void 0 ? void 0 : _a.filterDropdown) || column.customFilterDropdown;\n    const {\n      filters\n    } = column;\n    if (hasFilterDropdown) {\n      currentFilters[key] = filteredKeys || null;\n    } else if (Array.isArray(filteredKeys)) {\n      const keys = flattenKeys(filters);\n      currentFilters[key] = keys.filter(originKey => filteredKeys.includes(String(originKey)));\n    } else {\n      currentFilters[key] = null;\n    }\n  });\n  return currentFilters;\n}\nexport function getFilterData(data, filterStates) {\n  return filterStates.reduce((currentData, filterState) => {\n    const {\n      column: {\n        onFilter,\n        filters\n      },\n      filteredKeys\n    } = filterState;\n    if (onFilter && filteredKeys && filteredKeys.length) {\n      return currentData.filter(record => filteredKeys.some(key => {\n        const keys = flattenKeys(filters);\n        const keyIndex = keys.findIndex(k => String(k) === String(key));\n        const realKey = keyIndex !== -1 ? keys[keyIndex] : key;\n        return onFilter(realKey, record);\n      }));\n    }\n    return currentData;\n  }, data);\n}\nfunction getMergedColumns(rawMergedColumns) {\n  return rawMergedColumns.flatMap(column => {\n    if ('children' in column) {\n      return [column, ...getMergedColumns(column.children || [])];\n    }\n    return [column];\n  });\n}\nfunction useFilter(_ref4) {\n  let {\n    prefixCls,\n    dropdownPrefixCls,\n    mergedColumns: rawMergedColumns,\n    locale,\n    onFilterChange,\n    getPopupContainer\n  } = _ref4;\n  const mergedColumns = computed(() => getMergedColumns(rawMergedColumns.value));\n  const [filterStates, setFilterStates] = useState(collectFilterStates(mergedColumns.value, true));\n  const mergedFilterStates = computed(() => {\n    const collectedStates = collectFilterStates(mergedColumns.value, false);\n    if (collectedStates.length === 0) {\n      return collectedStates;\n    }\n    let filteredKeysIsAllNotControlled = true;\n    let filteredKeysIsAllControlled = true;\n    collectedStates.forEach(_ref5 => {\n      let {\n        filteredKeys\n      } = _ref5;\n      if (filteredKeys !== undefined) {\n        filteredKeysIsAllNotControlled = false;\n      } else {\n        filteredKeysIsAllControlled = false;\n      }\n    });\n    // Return if not controlled\n    if (filteredKeysIsAllNotControlled) {\n      // Filter column may have been removed\n      const keyList = (mergedColumns.value || []).map((column, index) => getColumnKey(column, getColumnPos(index)));\n      return filterStates.value.filter(_ref6 => {\n        let {\n          key\n        } = _ref6;\n        return keyList.includes(key);\n      }).map(item => {\n        const col = mergedColumns.value[keyList.findIndex(key => key === item.key)];\n        return _extends(_extends({}, item), {\n          column: _extends(_extends({}, item.column), col),\n          forceFiltered: col.filtered\n        });\n      });\n    }\n    devWarning(filteredKeysIsAllControlled, 'Table', 'Columns should all contain `filteredValue` or not contain `filteredValue`.');\n    return collectedStates;\n  });\n  const filters = computed(() => generateFilterInfo(mergedFilterStates.value));\n  const triggerFilter = filterState => {\n    const newFilterStates = mergedFilterStates.value.filter(_ref7 => {\n      let {\n        key\n      } = _ref7;\n      return key !== filterState.key;\n    });\n    newFilterStates.push(filterState);\n    setFilterStates(newFilterStates);\n    onFilterChange(generateFilterInfo(newFilterStates), newFilterStates);\n  };\n  const transformColumns = innerColumns => {\n    return injectFilter(prefixCls.value, dropdownPrefixCls.value, innerColumns, mergedFilterStates.value, locale.value, triggerFilter, getPopupContainer.value);\n  };\n  return [transformColumns, mergedFilterStates, filters];\n}\nexport default useFilter;",
+      "start": 1718517098460,
+      "end": 1718517098502,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098502,
+      "end": 1718517098502,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098503,
+      "end": 1718517098503,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098503,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098505,
+      "end": 1718517098505,
+      "order": "normal"
+    }
+  ]
+}

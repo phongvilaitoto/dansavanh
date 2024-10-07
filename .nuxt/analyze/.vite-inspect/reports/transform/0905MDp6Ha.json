@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/date-picker/generatePicker/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport PickerButton from '../PickerButton';\nimport PickerTag from '../PickerTag';\nimport generateSinglePicker from './generateSinglePicker';\nimport generateRangePicker from './generateRangePicker';\nexport * from './interface';\nexport const Components = {\n  button: PickerButton,\n  rangeItem: PickerTag\n};\nfunction toArray(list) {\n  if (!list) {\n    return [];\n  }\n  return Array.isArray(list) ? list : [list];\n}\nexport function getTimeProps(props) {\n  const {\n    format,\n    picker,\n    showHour,\n    showMinute,\n    showSecond,\n    use12Hours\n  } = props;\n  const firstFormat = toArray(format)[0];\n  const showTimeObj = _extends({}, props);\n  if (firstFormat && typeof firstFormat === 'string') {\n    if (!firstFormat.includes('s') && showSecond === undefined) {\n      showTimeObj.showSecond = false;\n    }\n    if (!firstFormat.includes('m') && showMinute === undefined) {\n      showTimeObj.showMinute = false;\n    }\n    if (!firstFormat.includes('H') && !firstFormat.includes('h') && showHour === undefined) {\n      showTimeObj.showHour = false;\n    }\n    if ((firstFormat.includes('a') || firstFormat.includes('A')) && use12Hours === undefined) {\n      showTimeObj.use12Hours = true;\n    }\n  }\n  if (picker === 'time') {\n    return showTimeObj;\n  }\n  if (typeof firstFormat === 'function') {\n    // format of showTime should use default when format is custom format function\n    delete showTimeObj.format;\n  }\n  return {\n    showTime: showTimeObj\n  };\n}\nfunction generatePicker(generateConfig, extraProps) {\n  // =========================== Picker ===========================\n  const {\n    DatePicker,\n    WeekPicker,\n    MonthPicker,\n    YearPicker,\n    TimePicker,\n    QuarterPicker\n  } = generateSinglePicker(generateConfig, extraProps);\n  // ======================== Range Picker ========================\n  const RangePicker = generateRangePicker(generateConfig, extraProps);\n  return {\n    DatePicker,\n    WeekPicker,\n    MonthPicker,\n    YearPicker,\n    TimePicker,\n    QuarterPicker,\n    RangePicker\n  };\n}\nexport default generatePicker;",
+      "start": 1718517098143,
+      "end": 1718517098182,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098182,
+      "end": 1718517098182,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098182,
+      "end": 1718517098183,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098183,
+      "end": 1718517098183,
+      "order": "normal"
+    }
+  ]
+}

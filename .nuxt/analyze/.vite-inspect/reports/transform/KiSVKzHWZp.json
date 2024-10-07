@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-trigger/Trigger.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { Fragment as _Fragment, createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nimport { computed, defineComponent, inject, provide, shallowRef } from 'vue';\nimport { triggerProps, noop } from './interface';\nimport contains from '../vc-util/Dom/contains';\nimport raf from '../_util/raf';\nimport { hasProp, getComponent, getEvents, filterEmpty, getSlot, findDOMNode } from '../_util/props-util';\nimport addEventListener from '../vc-util/Dom/addEventListener';\nimport Popup from './Popup';\nimport { getAlignFromPlacement, getAlignPopupClassName } from './utils/alignUtil';\nimport BaseMixin from '../_util/BaseMixin';\nimport Portal from '../_util/PortalWrapper';\nimport classNames from '../_util/classNames';\nimport { cloneElement } from '../_util/vnode';\nimport supportsPassive from '../_util/supportsPassive';\nimport { useProvidePortal } from './context';\nconst ALL_HANDLERS = ['onClick', 'onMousedown', 'onTouchstart', 'onMouseenter', 'onMouseleave', 'onFocus', 'onBlur', 'onContextmenu'];\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'Trigger',\n  mixins: [BaseMixin],\n  inheritAttrs: false,\n  props: triggerProps(),\n  setup(props) {\n    const align = computed(() => {\n      const {\n        popupPlacement,\n        popupAlign,\n        builtinPlacements\n      } = props;\n      if (popupPlacement && builtinPlacements) {\n        return getAlignFromPlacement(builtinPlacements, popupPlacement, popupAlign);\n      }\n      return popupAlign;\n    });\n    const popupRef = shallowRef(null);\n    const setPopupRef = val => {\n      popupRef.value = val;\n    };\n    return {\n      vcTriggerContext: inject('vcTriggerContext', {}),\n      popupRef,\n      setPopupRef,\n      triggerRef: shallowRef(null),\n      align,\n      focusTime: null,\n      clickOutsideHandler: null,\n      contextmenuOutsideHandler1: null,\n      contextmenuOutsideHandler2: null,\n      touchOutsideHandler: null,\n      attachId: null,\n      delayTimer: null,\n      hasPopupMouseDown: false,\n      preClickTime: null,\n      preTouchTime: null,\n      mouseDownTimeout: null,\n      childOriginEvents: {}\n    };\n  },\n  data() {\n    const props = this.$props;\n    let popupVisible;\n    if (this.popupVisible !== undefined) {\n      popupVisible = !!props.popupVisible;\n    } else {\n      popupVisible = !!props.defaultPopupVisible;\n    }\n    ALL_HANDLERS.forEach(h => {\n      this[`fire${h}`] = e => {\n        this.fireEvents(h, e);\n      };\n    });\n    return {\n      prevPopupVisible: popupVisible,\n      sPopupVisible: popupVisible,\n      point: null\n    };\n  },\n  watch: {\n    popupVisible(val) {\n      if (val !== undefined) {\n        this.prevPopupVisible = this.sPopupVisible;\n        this.sPopupVisible = val;\n      }\n    }\n  },\n  created() {\n    provide('vcTriggerContext', {\n      onPopupMouseDown: this.onPopupMouseDown,\n      onPopupMouseenter: this.onPopupMouseenter,\n      onPopupMouseleave: this.onPopupMouseleave\n    });\n    useProvidePortal(this);\n  },\n  deactivated() {\n    this.setPopupVisible(false);\n  },\n  mounted() {\n    this.$nextTick(() => {\n      this.updatedCal();\n    });\n  },\n  updated() {\n    this.$nextTick(() => {\n      this.updatedCal();\n    });\n  },\n  beforeUnmount() {\n    this.clearDelayTimer();\n    this.clearOutsideHandler();\n    clearTimeout(this.mouseDownTimeout);\n    raf.cancel(this.attachId);\n  },\n  methods: {\n    updatedCal() {\n      const props = this.$props;\n      const state = this.$data;\n      // We must listen to `mousedown` or `touchstart`, edge case:\n      // https://github.com/ant-design/ant-design/issues/5804\n      // https://github.com/react-component/calendar/issues/250\n      // https://github.com/react-component/trigger/issues/50\n      if (state.sPopupVisible) {\n        let currentDocument;\n        if (!this.clickOutsideHandler && (this.isClickToHide() || this.isContextmenuToShow())) {\n          currentDocument = props.getDocument(this.getRootDomNode());\n          this.clickOutsideHandler = addEventListener(currentDocument, 'mousedown', this.onDocumentClick);\n        }\n        // always hide on mobile\n        if (!this.touchOutsideHandler) {\n          currentDocument = currentDocument || props.getDocument(this.getRootDomNode());\n          this.touchOutsideHandler = addEventListener(currentDocument, 'touchstart', this.onDocumentClick, supportsPassive ? {\n            passive: false\n          } : false);\n        }\n        // close popup when trigger type contains 'onContextmenu' and document is scrolling.\n        if (!this.contextmenuOutsideHandler1 && this.isContextmenuToShow()) {\n          currentDocument = currentDocument || props.getDocument(this.getRootDomNode());\n          this.contextmenuOutsideHandler1 = addEventListener(currentDocument, 'scroll', this.onContextmenuClose);\n        }\n        // close popup when trigger type contains 'onContextmenu' and window is blur.\n        if (!this.contextmenuOutsideHandler2 && this.isContextmenuToShow()) {\n          this.contextmenuOutsideHandler2 = addEventListener(window, 'blur', this.onContextmenuClose);\n        }\n      } else {\n        this.clearOutsideHandler();\n      }\n    },\n    onMouseenter(e) {\n      const {\n        mouseEnterDelay\n      } = this.$props;\n      this.fireEvents('onMouseenter', e);\n      this.delaySetPopupVisible(true, mouseEnterDelay, mouseEnterDelay ? null : e);\n    },\n    onMouseMove(e) {\n      this.fireEvents('onMousemove', e);\n      this.setPoint(e);\n    },\n    onMouseleave(e) {\n      this.fireEvents('onMouseleave', e);\n      this.delaySetPopupVisible(false, this.$props.mouseLeaveDelay);\n    },\n    onPopupMouseenter() {\n      const {\n        vcTriggerContext = {}\n      } = this;\n      if (vcTriggerContext.onPopupMouseenter) {\n        vcTriggerContext.onPopupMouseenter();\n      }\n      this.clearDelayTimer();\n    },\n    onPopupMouseleave(e) {\n      var _a;\n      if (e && e.relatedTarget && !e.relatedTarget.setTimeout && contains((_a = this.popupRef) === null || _a === void 0 ? void 0 : _a.getElement(), e.relatedTarget)) {\n        return;\n      }\n      if (this.isMouseLeaveToHide()) {\n        this.delaySetPopupVisible(false, this.$props.mouseLeaveDelay);\n      }\n      const {\n        vcTriggerContext = {}\n      } = this;\n      if (vcTriggerContext.onPopupMouseleave) {\n        vcTriggerContext.onPopupMouseleave(e);\n      }\n    },\n    onFocus(e) {\n      this.fireEvents('onFocus', e);\n      // incase focusin and focusout\n      this.clearDelayTimer();\n      if (this.isFocusToShow()) {\n        this.focusTime = Date.now();\n        this.delaySetPopupVisible(true, this.$props.focusDelay);\n      }\n    },\n    onMousedown(e) {\n      this.fireEvents('onMousedown', e);\n      this.preClickTime = Date.now();\n    },\n    onTouchstart(e) {\n      this.fireEvents('onTouchstart', e);\n      this.preTouchTime = Date.now();\n    },\n    onBlur(e) {\n      if (!contains(e.target, e.relatedTarget || document.activeElement)) {\n        this.fireEvents('onBlur', e);\n        this.clearDelayTimer();\n        if (this.isBlurToHide()) {\n          this.delaySetPopupVisible(false, this.$props.blurDelay);\n        }\n      }\n    },\n    onContextmenu(e) {\n      e.preventDefault();\n      this.fireEvents('onContextmenu', e);\n      this.setPopupVisible(true, e);\n    },\n    onContextmenuClose() {\n      if (this.isContextmenuToShow()) {\n        this.close();\n      }\n    },\n    onClick(event) {\n      this.fireEvents('onClick', event);\n      // focus will trigger click\n      if (this.focusTime) {\n        let preTime;\n        if (this.preClickTime && this.preTouchTime) {\n          preTime = Math.min(this.preClickTime, this.preTouchTime);\n        } else if (this.preClickTime) {\n          preTime = this.preClickTime;\n        } else if (this.preTouchTime) {\n          preTime = this.preTouchTime;\n        }\n        if (Math.abs(preTime - this.focusTime) < 20) {\n          return;\n        }\n        this.focusTime = 0;\n      }\n      this.preClickTime = 0;\n      this.preTouchTime = 0;\n      // Only prevent default when all the action is click.\n      // https://github.com/ant-design/ant-design/issues/17043\n      // https://github.com/ant-design/ant-design/issues/17291\n      if (this.isClickToShow() && (this.isClickToHide() || this.isBlurToHide()) && event && event.preventDefault) {\n        event.preventDefault();\n      }\n      if (event && event.domEvent) {\n        event.domEvent.preventDefault();\n      }\n      const nextVisible = !this.$data.sPopupVisible;\n      if (this.isClickToHide() && !nextVisible || nextVisible && this.isClickToShow()) {\n        this.setPopupVisible(!this.$data.sPopupVisible, event);\n      }\n    },\n    onPopupMouseDown() {\n      const {\n        vcTriggerContext = {}\n      } = this;\n      this.hasPopupMouseDown = true;\n      clearTimeout(this.mouseDownTimeout);\n      this.mouseDownTimeout = setTimeout(() => {\n        this.hasPopupMouseDown = false;\n      }, 0);\n      if (vcTriggerContext.onPopupMouseDown) {\n        vcTriggerContext.onPopupMouseDown(...arguments);\n      }\n    },\n    onDocumentClick(event) {\n      if (this.$props.mask && !this.$props.maskClosable) {\n        return;\n      }\n      const target = event.target;\n      const root = this.getRootDomNode();\n      const popupNode = this.getPopupDomNode();\n      if (\n      // mousedown on the target should also close popup when action is contextMenu.\n      // https://github.com/ant-design/ant-design/issues/29853\n      (!contains(root, target) || this.isContextMenuOnly()) && !contains(popupNode, target) && !this.hasPopupMouseDown) {\n        // https://github.com/vuejs/core/issues/4462\n        // vue 动画bug导致 https://github.com/vueComponent/ant-design-vue/issues/5259，\n        // 改成延时解决\n        this.delaySetPopupVisible(false, 0.1);\n      }\n    },\n    getPopupDomNode() {\n      var _a;\n      // for test\n      return ((_a = this.popupRef) === null || _a === void 0 ? void 0 : _a.getElement()) || null;\n    },\n    getRootDomNode() {\n      var _a, _b, _c, _d;\n      const {\n        getTriggerDOMNode\n      } = this.$props;\n      if (getTriggerDOMNode) {\n        const domNode = ((_b = (_a = this.triggerRef) === null || _a === void 0 ? void 0 : _a.$el) === null || _b === void 0 ? void 0 : _b.nodeName) === '#comment' ? null : findDOMNode(this.triggerRef);\n        return findDOMNode(getTriggerDOMNode(domNode));\n      }\n      try {\n        const domNode = ((_d = (_c = this.triggerRef) === null || _c === void 0 ? void 0 : _c.$el) === null || _d === void 0 ? void 0 : _d.nodeName) === '#comment' ? null : findDOMNode(this.triggerRef);\n        if (domNode) {\n          return domNode;\n        }\n      } catch (err) {\n        // Do nothing\n      }\n      return findDOMNode(this);\n    },\n    handleGetPopupClassFromAlign(align) {\n      const className = [];\n      const props = this.$props;\n      const {\n        popupPlacement,\n        builtinPlacements,\n        prefixCls,\n        alignPoint,\n        getPopupClassNameFromAlign\n      } = props;\n      if (popupPlacement && builtinPlacements) {\n        className.push(getAlignPopupClassName(builtinPlacements, prefixCls, align, alignPoint));\n      }\n      if (getPopupClassNameFromAlign) {\n        className.push(getPopupClassNameFromAlign(align));\n      }\n      return className.join(' ');\n    },\n    getPopupAlign() {\n      const props = this.$props;\n      const {\n        popupPlacement,\n        popupAlign,\n        builtinPlacements\n      } = props;\n      if (popupPlacement && builtinPlacements) {\n        return getAlignFromPlacement(builtinPlacements, popupPlacement, popupAlign);\n      }\n      return popupAlign;\n    },\n    getComponent() {\n      const mouseProps = {};\n      if (this.isMouseEnterToShow()) {\n        mouseProps.onMouseenter = this.onPopupMouseenter;\n      }\n      if (this.isMouseLeaveToHide()) {\n        mouseProps.onMouseleave = this.onPopupMouseleave;\n      }\n      mouseProps.onMousedown = this.onPopupMouseDown;\n      mouseProps[supportsPassive ? 'onTouchstartPassive' : 'onTouchstart'] = this.onPopupMouseDown;\n      const {\n        handleGetPopupClassFromAlign,\n        getRootDomNode,\n        $attrs\n      } = this;\n      const {\n        prefixCls,\n        destroyPopupOnHide,\n        popupClassName,\n        popupAnimation,\n        popupTransitionName,\n        popupStyle,\n        mask,\n        maskAnimation,\n        maskTransitionName,\n        zIndex,\n        stretch,\n        alignPoint,\n        mobile,\n        forceRender\n      } = this.$props;\n      const {\n        sPopupVisible,\n        point\n      } = this.$data;\n      const popupProps = _extends(_extends({\n        prefixCls,\n        destroyPopupOnHide,\n        visible: sPopupVisible,\n        point: alignPoint ? point : null,\n        align: this.align,\n        animation: popupAnimation,\n        getClassNameFromAlign: handleGetPopupClassFromAlign,\n        stretch,\n        getRootDomNode,\n        mask,\n        zIndex,\n        transitionName: popupTransitionName,\n        maskAnimation,\n        maskTransitionName,\n        class: popupClassName,\n        style: popupStyle,\n        onAlign: $attrs.onPopupAlign || noop\n      }, mouseProps), {\n        ref: this.setPopupRef,\n        mobile,\n        forceRender\n      });\n      return _createVNode(Popup, popupProps, {\n        default: this.$slots.popup || (() => getComponent(this, 'popup'))\n      });\n    },\n    attachParent(popupContainer) {\n      raf.cancel(this.attachId);\n      const {\n        getPopupContainer,\n        getDocument\n      } = this.$props;\n      const domNode = this.getRootDomNode();\n      let mountNode;\n      if (!getPopupContainer) {\n        mountNode = getDocument(this.getRootDomNode()).body;\n      } else if (domNode || getPopupContainer.length === 0) {\n        // Compatible for legacy getPopupContainer with domNode argument.\n        // If no need `domNode` argument, will call directly.\n        // https://codesandbox.io/s/eloquent-mclean-ss93m?file=/src/App.js\n        mountNode = getPopupContainer(domNode);\n      }\n      if (mountNode) {\n        mountNode.appendChild(popupContainer);\n      } else {\n        // Retry after frame render in case parent not ready\n        this.attachId = raf(() => {\n          this.attachParent(popupContainer);\n        });\n      }\n    },\n    getContainer() {\n      const {\n        $props: props\n      } = this;\n      const {\n        getDocument\n      } = props;\n      const popupContainer = getDocument(this.getRootDomNode()).createElement('div');\n      // Make sure default popup container will never cause scrollbar appearing\n      // https://github.com/react-component/trigger/issues/41\n      popupContainer.style.position = 'absolute';\n      popupContainer.style.top = '0';\n      popupContainer.style.left = '0';\n      popupContainer.style.width = '100%';\n      this.attachParent(popupContainer);\n      return popupContainer;\n    },\n    setPopupVisible(sPopupVisible, event) {\n      const {\n        alignPoint,\n        sPopupVisible: prevPopupVisible,\n        onPopupVisibleChange\n      } = this;\n      this.clearDelayTimer();\n      if (prevPopupVisible !== sPopupVisible) {\n        if (!hasProp(this, 'popupVisible')) {\n          this.setState({\n            sPopupVisible,\n            prevPopupVisible\n          });\n        }\n        onPopupVisibleChange && onPopupVisibleChange(sPopupVisible);\n      }\n      // Always record the point position since mouseEnterDelay will delay the show\n      if (alignPoint && event && sPopupVisible) {\n        this.setPoint(event);\n      }\n    },\n    setPoint(point) {\n      const {\n        alignPoint\n      } = this.$props;\n      if (!alignPoint || !point) return;\n      this.setState({\n        point: {\n          pageX: point.pageX,\n          pageY: point.pageY\n        }\n      });\n    },\n    handlePortalUpdate() {\n      if (this.prevPopupVisible !== this.sPopupVisible) {\n        this.afterPopupVisibleChange(this.sPopupVisible);\n      }\n    },\n    delaySetPopupVisible(visible, delayS, event) {\n      const delay = delayS * 1000;\n      this.clearDelayTimer();\n      if (delay) {\n        const point = event ? {\n          pageX: event.pageX,\n          pageY: event.pageY\n        } : null;\n        this.delayTimer = setTimeout(() => {\n          this.setPopupVisible(visible, point);\n          this.clearDelayTimer();\n        }, delay);\n      } else {\n        this.setPopupVisible(visible, event);\n      }\n    },\n    clearDelayTimer() {\n      if (this.delayTimer) {\n        clearTimeout(this.delayTimer);\n        this.delayTimer = null;\n      }\n    },\n    clearOutsideHandler() {\n      if (this.clickOutsideHandler) {\n        this.clickOutsideHandler.remove();\n        this.clickOutsideHandler = null;\n      }\n      if (this.contextmenuOutsideHandler1) {\n        this.contextmenuOutsideHandler1.remove();\n        this.contextmenuOutsideHandler1 = null;\n      }\n      if (this.contextmenuOutsideHandler2) {\n        this.contextmenuOutsideHandler2.remove();\n        this.contextmenuOutsideHandler2 = null;\n      }\n      if (this.touchOutsideHandler) {\n        this.touchOutsideHandler.remove();\n        this.touchOutsideHandler = null;\n      }\n    },\n    createTwoChains(event) {\n      let fn = () => {};\n      const events = getEvents(this);\n      if (this.childOriginEvents[event] && events[event]) {\n        return this[`fire${event}`];\n      }\n      fn = this.childOriginEvents[event] || events[event] || fn;\n      return fn;\n    },\n    isClickToShow() {\n      const {\n        action,\n        showAction\n      } = this.$props;\n      return action.indexOf('click') !== -1 || showAction.indexOf('click') !== -1;\n    },\n    isContextMenuOnly() {\n      const {\n        action\n      } = this.$props;\n      return action === 'contextmenu' || action.length === 1 && action[0] === 'contextmenu';\n    },\n    isContextmenuToShow() {\n      const {\n        action,\n        showAction\n      } = this.$props;\n      return action.indexOf('contextmenu') !== -1 || showAction.indexOf('contextmenu') !== -1;\n    },\n    isClickToHide() {\n      const {\n        action,\n        hideAction\n      } = this.$props;\n      return action.indexOf('click') !== -1 || hideAction.indexOf('click') !== -1;\n    },\n    isMouseEnterToShow() {\n      const {\n        action,\n        showAction\n      } = this.$props;\n      return action.indexOf('hover') !== -1 || showAction.indexOf('mouseenter') !== -1;\n    },\n    isMouseLeaveToHide() {\n      const {\n        action,\n        hideAction\n      } = this.$props;\n      return action.indexOf('hover') !== -1 || hideAction.indexOf('mouseleave') !== -1;\n    },\n    isFocusToShow() {\n      const {\n        action,\n        showAction\n      } = this.$props;\n      return action.indexOf('focus') !== -1 || showAction.indexOf('focus') !== -1;\n    },\n    isBlurToHide() {\n      const {\n        action,\n        hideAction\n      } = this.$props;\n      return action.indexOf('focus') !== -1 || hideAction.indexOf('blur') !== -1;\n    },\n    forcePopupAlign() {\n      var _a;\n      if (this.$data.sPopupVisible) {\n        (_a = this.popupRef) === null || _a === void 0 ? void 0 : _a.forceAlign();\n      }\n    },\n    fireEvents(type, e) {\n      if (this.childOriginEvents[type]) {\n        this.childOriginEvents[type](e);\n      }\n      const event = this.$props[type] || this.$attrs[type];\n      if (event) {\n        event(e);\n      }\n    },\n    close() {\n      this.setPopupVisible(false);\n    }\n  },\n  render() {\n    const {\n      $attrs\n    } = this;\n    const children = filterEmpty(getSlot(this));\n    const {\n      alignPoint,\n      getPopupContainer\n    } = this.$props;\n    const child = children[0];\n    this.childOriginEvents = getEvents(child);\n    const newChildProps = {\n      key: 'trigger'\n    };\n    if (this.isContextmenuToShow()) {\n      newChildProps.onContextmenu = this.onContextmenu;\n    } else {\n      newChildProps.onContextmenu = this.createTwoChains('onContextmenu');\n    }\n    if (this.isClickToHide() || this.isClickToShow()) {\n      newChildProps.onClick = this.onClick;\n      newChildProps.onMousedown = this.onMousedown;\n      newChildProps[supportsPassive ? 'onTouchstartPassive' : 'onTouchstart'] = this.onTouchstart;\n    } else {\n      newChildProps.onClick = this.createTwoChains('onClick');\n      newChildProps.onMousedown = this.createTwoChains('onMousedown');\n      newChildProps[supportsPassive ? 'onTouchstartPassive' : 'onTouchstart'] = this.createTwoChains('onTouchstart');\n    }\n    if (this.isMouseEnterToShow()) {\n      newChildProps.onMouseenter = this.onMouseenter;\n      if (alignPoint) {\n        newChildProps.onMousemove = this.onMouseMove;\n      }\n    } else {\n      newChildProps.onMouseenter = this.createTwoChains('onMouseenter');\n    }\n    if (this.isMouseLeaveToHide()) {\n      newChildProps.onMouseleave = this.onMouseleave;\n    } else {\n      newChildProps.onMouseleave = this.createTwoChains('onMouseleave');\n    }\n    if (this.isFocusToShow() || this.isBlurToHide()) {\n      newChildProps.onFocus = this.onFocus;\n      newChildProps.onBlur = this.onBlur;\n    } else {\n      newChildProps.onFocus = this.createTwoChains('onFocus');\n      newChildProps.onBlur = e => {\n        if (e && (!e.relatedTarget || !contains(e.target, e.relatedTarget))) {\n          this.createTwoChains('onBlur')(e);\n        }\n      };\n    }\n    const childrenClassName = classNames(child && child.props && child.props.class, $attrs.class);\n    if (childrenClassName) {\n      newChildProps.class = childrenClassName;\n    }\n    const trigger = cloneElement(child, _extends(_extends({}, newChildProps), {\n      ref: 'triggerRef'\n    }), true, true);\n    const portal = _createVNode(Portal, {\n      \"key\": \"portal\",\n      \"getContainer\": getPopupContainer && (() => getPopupContainer(this.getRootDomNode())),\n      \"didUpdate\": this.handlePortalUpdate,\n      \"visible\": this.$data.sPopupVisible\n    }, {\n      default: this.getComponent\n    });\n    return _createVNode(_Fragment, null, [trigger, portal]);\n  }\n});",
+      "start": 1718517099791,
+      "end": 1718517099861,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099861,
+      "end": 1718517099861,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099861,
+      "end": 1718517099862,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099862,
+      "end": 1718517099862,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-picker/hooks/useRangeViewDates.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { getValue, updateValues } from '../utils/miscUtil';\nimport { getClosingViewDate, isSameYear, isSameMonth, isSameDecade } from '../utils/dateUtil';\nimport { watchEffect, computed, ref } from 'vue';\nfunction getStartEndDistance(startDate, endDate, picker, generateConfig) {\n  const startNext = getClosingViewDate(startDate, picker, generateConfig, 1);\n  function getDistance(compareFunc) {\n    if (compareFunc(startDate, endDate)) {\n      return 'same';\n    }\n    if (compareFunc(startNext, endDate)) {\n      return 'closing';\n    }\n    return 'far';\n  }\n  switch (picker) {\n    case 'year':\n      return getDistance((start, end) => isSameDecade(generateConfig, start, end));\n    case 'quarter':\n    case 'month':\n      return getDistance((start, end) => isSameYear(generateConfig, start, end));\n    default:\n      return getDistance((start, end) => isSameMonth(generateConfig, start, end));\n  }\n}\nfunction getRangeViewDate(values, index, picker, generateConfig) {\n  const startDate = getValue(values, 0);\n  const endDate = getValue(values, 1);\n  if (index === 0) {\n    return startDate;\n  }\n  if (startDate && endDate) {\n    const distance = getStartEndDistance(startDate, endDate, picker, generateConfig);\n    switch (distance) {\n      case 'same':\n        return startDate;\n      case 'closing':\n        return startDate;\n      default:\n        return getClosingViewDate(endDate, picker, generateConfig, -1);\n    }\n  }\n  return startDate;\n}\nexport default function useRangeViewDates(_ref) {\n  let {\n    values,\n    picker,\n    defaultDates,\n    generateConfig\n  } = _ref;\n  const defaultViewDates = ref([getValue(defaultDates, 0), getValue(defaultDates, 1)]);\n  const viewDates = ref(null);\n  const startDate = computed(() => getValue(values.value, 0));\n  const endDate = computed(() => getValue(values.value, 1));\n  const getViewDate = index => {\n    // If set default view date, use it\n    if (defaultViewDates.value[index]) {\n      return defaultViewDates.value[index];\n    }\n    return getValue(viewDates.value, index) || getRangeViewDate(values.value, index, picker.value, generateConfig.value) || startDate.value || endDate.value || generateConfig.value.getNow();\n  };\n  const startViewDate = ref(null);\n  const endViewDate = ref(null);\n  watchEffect(() => {\n    startViewDate.value = getViewDate(0);\n    endViewDate.value = getViewDate(1);\n  });\n  function setViewDate(viewDate, index) {\n    if (viewDate) {\n      let newViewDates = updateValues(viewDates.value, viewDate, index);\n      // Set view date will clean up default one\n      // Should always be an array\n      defaultViewDates.value = updateValues(defaultViewDates.value, null, index) || [null, null];\n      // Reset another one when not have value\n      const anotherIndex = (index + 1) % 2;\n      if (!getValue(values.value, anotherIndex)) {\n        newViewDates = updateValues(newViewDates, viewDate, anotherIndex);\n      }\n      viewDates.value = newViewDates;\n    } else if (startDate.value || endDate.value) {\n      // Reset all when has values when `viewDate` is `null` which means from open trigger\n      viewDates.value = null;\n    }\n  }\n  return [startViewDate, endViewDate, setViewDate];\n}",
+      "start": 1718517100019,
+      "end": 1718517100053,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100053,
+      "end": 1718517100053,
+      "order": "normal"
+    }
+  ]
+}

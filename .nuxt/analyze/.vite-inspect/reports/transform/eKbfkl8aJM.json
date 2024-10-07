@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-slider/src/Slider.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport PropTypes from '../../_util/vue-types';\nimport BaseMixin from '../../_util/BaseMixin';\nimport { hasProp } from '../../_util/props-util';\nimport Track from './common/Track';\nimport createSlider from './common/createSlider';\nimport * as utils from './utils';\nimport { defineComponent } from 'vue';\nconst Slider = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'Slider',\n  mixins: [BaseMixin],\n  inheritAttrs: false,\n  props: {\n    defaultValue: Number,\n    value: Number,\n    disabled: {\n      type: Boolean,\n      default: undefined\n    },\n    autofocus: {\n      type: Boolean,\n      default: undefined\n    },\n    tabindex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),\n    reverse: {\n      type: Boolean,\n      default: undefined\n    },\n    min: Number,\n    max: Number,\n    ariaLabelForHandle: String,\n    ariaLabelledByForHandle: String,\n    ariaValueTextFormatterForHandle: String,\n    startPoint: Number\n  },\n  emits: ['beforeChange', 'afterChange', 'change'],\n  data() {\n    const defaultValue = this.defaultValue !== undefined ? this.defaultValue : this.min;\n    const value = this.value !== undefined ? this.value : defaultValue;\n    return {\n      sValue: this.trimAlignValue(value),\n      dragging: false\n    };\n  },\n  watch: {\n    value: {\n      handler(val) {\n        this.setChangeValue(val);\n      },\n      deep: true\n    },\n    min() {\n      const {\n        sValue\n      } = this;\n      this.setChangeValue(sValue);\n    },\n    max() {\n      const {\n        sValue\n      } = this;\n      this.setChangeValue(sValue);\n    }\n  },\n  methods: {\n    setChangeValue(value) {\n      const newValue = value !== undefined ? value : this.sValue;\n      const nextValue = this.trimAlignValue(newValue, this.$props);\n      if (nextValue === this.sValue) return;\n      this.setState({\n        sValue: nextValue\n      });\n      if (utils.isValueOutOfRange(newValue, this.$props)) {\n        this.$emit('change', nextValue);\n      }\n    },\n    onChange(state) {\n      const isNotControlled = !hasProp(this, 'value');\n      const nextState = state.sValue > this.max ? _extends(_extends({}, state), {\n        sValue: this.max\n      }) : state;\n      if (isNotControlled) {\n        this.setState(nextState);\n      }\n      const changedValue = nextState.sValue;\n      this.$emit('change', changedValue);\n    },\n    onStart(position) {\n      this.setState({\n        dragging: true\n      });\n      const {\n        sValue\n      } = this;\n      this.$emit('beforeChange', sValue);\n      const value = this.calcValueByPos(position);\n      this.startValue = value;\n      this.startPosition = position;\n      if (value === sValue) return;\n      this.prevMovedHandleIndex = 0;\n      this.onChange({\n        sValue: value\n      });\n    },\n    onEnd(force) {\n      const {\n        dragging\n      } = this;\n      this.removeDocumentEvents();\n      if (dragging || force) {\n        this.$emit('afterChange', this.sValue);\n      }\n      this.setState({\n        dragging: false\n      });\n    },\n    onMove(e, position) {\n      utils.pauseEvent(e);\n      const {\n        sValue\n      } = this;\n      const value = this.calcValueByPos(position);\n      if (value === sValue) return;\n      this.onChange({\n        sValue: value\n      });\n    },\n    onKeyboard(e) {\n      const {\n        reverse,\n        vertical\n      } = this.$props;\n      const valueMutator = utils.getKeyboardValueMutator(e, vertical, reverse);\n      if (valueMutator) {\n        utils.pauseEvent(e);\n        const {\n          sValue\n        } = this;\n        const mutatedValue = valueMutator(sValue, this.$props);\n        const value = this.trimAlignValue(mutatedValue);\n        if (value === sValue) return;\n        this.onChange({\n          sValue: value\n        });\n        this.$emit('afterChange', value);\n        this.onEnd();\n      }\n    },\n    getLowerBound() {\n      const minPoint = this.$props.startPoint || this.$props.min;\n      return this.$data.sValue > minPoint ? minPoint : this.$data.sValue;\n    },\n    getUpperBound() {\n      if (this.$data.sValue < this.$props.startPoint) {\n        return this.$props.startPoint;\n      }\n      return this.$data.sValue;\n    },\n    trimAlignValue(v) {\n      let nextProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n      if (v === null) {\n        return null;\n      }\n      const mergedProps = _extends(_extends({}, this.$props), nextProps);\n      const val = utils.ensureValueInRange(v, mergedProps);\n      return utils.ensureValuePrecision(val, mergedProps);\n    },\n    getTrack(_ref) {\n      let {\n        prefixCls,\n        reverse,\n        vertical,\n        included,\n        minimumTrackStyle,\n        mergedTrackStyle,\n        length,\n        offset\n      } = _ref;\n      return _createVNode(Track, {\n        \"class\": `${prefixCls}-track`,\n        \"vertical\": vertical,\n        \"included\": included,\n        \"offset\": offset,\n        \"reverse\": reverse,\n        \"length\": length,\n        \"style\": _extends(_extends({}, minimumTrackStyle), mergedTrackStyle)\n      }, null);\n    },\n    renderSlider() {\n      const {\n        prefixCls,\n        vertical,\n        included,\n        disabled,\n        minimumTrackStyle,\n        trackStyle,\n        handleStyle,\n        tabindex,\n        ariaLabelForHandle,\n        ariaLabelledByForHandle,\n        ariaValueTextFormatterForHandle,\n        min,\n        max,\n        startPoint,\n        reverse,\n        handle,\n        defaultHandle\n      } = this;\n      const handleGenerator = handle || defaultHandle;\n      const {\n        sValue,\n        dragging\n      } = this;\n      const offset = this.calcOffset(sValue);\n      const handles = handleGenerator({\n        class: `${prefixCls}-handle`,\n        prefixCls,\n        vertical,\n        offset,\n        value: sValue,\n        dragging,\n        disabled,\n        min,\n        max,\n        reverse,\n        index: 0,\n        tabindex,\n        ariaLabel: ariaLabelForHandle,\n        ariaLabelledBy: ariaLabelledByForHandle,\n        ariaValueTextFormatter: ariaValueTextFormatterForHandle,\n        style: handleStyle[0] || handleStyle,\n        ref: h => this.saveHandle(0, h),\n        onFocus: this.onFocus,\n        onBlur: this.onBlur\n      });\n      const trackOffset = startPoint !== undefined ? this.calcOffset(startPoint) : 0;\n      const mergedTrackStyle = trackStyle[0] || trackStyle;\n      return {\n        tracks: this.getTrack({\n          prefixCls,\n          reverse,\n          vertical,\n          included,\n          offset: trackOffset,\n          minimumTrackStyle,\n          mergedTrackStyle,\n          length: offset - trackOffset\n        }),\n        handles\n      };\n    }\n  }\n});\nexport default createSlider(Slider);",
+      "start": 1718517097725,
+      "end": 1718517097792,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097792,
+      "end": 1718517097792,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097792,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    }
+  ]
+}

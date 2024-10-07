@@ -1,0 +1,255 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/pages/index.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { createVNode as _createVNode, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, toDisplayString as _toDisplayString, unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-eb5885e1\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"has-background\" }\nconst _hoisted_2 = { class: \"max-width\" }\nconst _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"br\", null, null, -1))\nconst _hoisted_4 = { class: \"content-container\" }\nconst _hoisted_5 = { class: \"max-width\" }\nconst _hoisted_6 = { class: \"text-center\" }\nconst _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"br\", null, null, -1))\nconst _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"br\", null, null, -1))\n\nimport Welcome from '~/components/home/Welcome.vue';\r\nimport HotelInfo from '~/components/home/HotelInfo.vue';\r\nimport News from './news/index.vue';\r\nimport Swiper from '@/components/home/Swiper.vue'\r\nimport VideoPlayer from '~/components/VideoPlayer.vue';\r\n\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'index',\n  setup(__props) {\n\r\nconst localePath = useLocalePath()\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_a_layout_content = _resolveComponent(\"a-layout-content\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createVNode(Swiper),\n    _createVNode(_component_a_layout_content, {\n      \"data-aos\": \"fade-up\",\n      class: \"content-container\",\n      style: {background: '#F4F4F4', color:'#000'}\n    }, {\n      default: _withCtx(() => [\n        _createVNode(VideoPlayer, {\n          style: {\"margin-top\":\"30px\"},\n          video: \"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"\n        }),\n        _createElementVNode(\"div\", null, [\n          _createVNode(Welcome)\n        ])\n      ]),\n      _: 1\n    }),\n    _createVNode(_component_a_layout_content, { \"data-aos\": \"slide-up\" }, {\n      default: _withCtx(() => [\n        _createElementVNode(\"section\", _hoisted_1, [\n          _createElementVNode(\"div\", _hoisted_2, [\n            _createVNode(HotelInfo),\n            _hoisted_3\n          ])\n        ])\n      ]),\n      _: 1\n    }),\n    _createVNode(_component_a_layout_content, { \"data-aos\": \"fade-up\" }, {\n      default: _withCtx(() => [\n        _createElementVNode(\"section\", null, [\n          _createElementVNode(\"div\", _hoisted_4, [\n            _createElementVNode(\"div\", _hoisted_5, [\n              _createVNode(News, { isComp: true }),\n              _createElementVNode(\"div\", _hoisted_6, [\n                _createElementVNode(\"button\", {\n                  class: \"btn btn-2 hover-slide-up\",\n                  onClick: _cache[0] || (_cache[0] = ($event: any) => (_ctx.$router.push(_unref(localePath)('/news'))))\n                }, [\n                  _createElementVNode(\"span\", null, _toDisplayString(_ctx.$t('viewNews')), 1)\n                ]),\n                _hoisted_7,\n                _hoisted_8\n              ])\n            ])\n          ])\n        ])\n      ]),\n      _: 1\n    })\n  ]))\n}\n}\n\n})",
+      "start": 1718517093074,
+      "end": 1718517093074
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093074,
+      "end": 1718517093074,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093074,
+      "end": 1718517093074,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093074,
+      "end": 1718517093074,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093074,
+      "end": 1718517093074,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093074,
+      "end": 1718517093074,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093074,
+      "end": 1718517093074,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { createVNode as _createVNode, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, toDisplayString as _toDisplayString, unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\";\nconst _withScopeId = (n) => (_pushScopeId(\"data-v-eb5885e1\"), n = n(), _popScopeId(), n);\nconst _hoisted_1 = { class: \"has-background\" };\nconst _hoisted_2 = { class: \"max-width\" };\nconst _hoisted_3 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nconst _hoisted_4 = { class: \"content-container\" };\nconst _hoisted_5 = { class: \"max-width\" };\nconst _hoisted_6 = { class: \"text-center\" };\nconst _hoisted_7 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nconst _hoisted_8 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nimport Welcome from \"~/components/home/Welcome.vue\";\nimport HotelInfo from \"~/components/home/HotelInfo.vue\";\nimport News from \"./news/index.vue\";\nimport Swiper from \"@/components/home/Swiper.vue\";\nimport VideoPlayer from \"~/components/VideoPlayer.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  setup(__props) {\n    const localePath = useLocalePath();\n    return (_ctx, _cache) => {\n      const _component_a_layout_content = _resolveComponent(\"a-layout-content\");\n      return _openBlock(), _createElementBlock(\"div\", null, [\n        _createVNode(Swiper),\n        _createVNode(_component_a_layout_content, {\n          \"data-aos\": \"fade-up\",\n          class: \"content-container\",\n          style: { background: \"#F4F4F4\", color: \"#000\" }\n        }, {\n          default: _withCtx(() => [\n            _createVNode(VideoPlayer, {\n              style: { \"margin-top\": \"30px\" },\n              video: \"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"\n            }),\n            _createElementVNode(\"div\", null, [\n              _createVNode(Welcome)\n            ])\n          ]),\n          _: 1\n        }),\n        _createVNode(_component_a_layout_content, { \"data-aos\": \"slide-up\" }, {\n          default: _withCtx(() => [\n            _createElementVNode(\"section\", _hoisted_1, [\n              _createElementVNode(\"div\", _hoisted_2, [\n                _createVNode(HotelInfo),\n                _hoisted_3\n              ])\n            ])\n          ]),\n          _: 1\n        }),\n        _createVNode(_component_a_layout_content, { \"data-aos\": \"fade-up\" }, {\n          default: _withCtx(() => [\n            _createElementVNode(\"section\", null, [\n              _createElementVNode(\"div\", _hoisted_4, [\n                _createElementVNode(\"div\", _hoisted_5, [\n                  _createVNode(News, { isComp: true }),\n                  _createElementVNode(\"div\", _hoisted_6, [\n                    _createElementVNode(\"button\", {\n                      class: \"btn btn-2 hover-slide-up\",\n                      onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$router.push(_unref(localePath)(\"/news\")))\n                    }, [\n                      _createElementVNode(\"span\", null, _toDisplayString(_ctx.$t(\"viewNews\")), 1)\n                    ]),\n                    _hoisted_7,\n                    _hoisted_8\n                  ])\n                ])\n              ])\n            ])\n          ]),\n          _: 1\n        })\n      ]);\n    };\n  }\n});\n",
+      "start": 1718517093074,
+      "end": 1718517093399,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/pages/index.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { createVNode as _createVNode, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, toDisplayString as _toDisplayString, unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-eb5885e1\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"has-background\" }\nconst _hoisted_2 = { class: \"max-width\" }\nconst _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"br\", null, null, -1))\nconst _hoisted_4 = { class: \"content-container\" }\nconst _hoisted_5 = { class: \"max-width\" }\nconst _hoisted_6 = { class: \"text-center\" }\nconst _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"br\", null, null, -1))\nconst _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"br\", null, null, -1))\n\nimport Welcome from '~/components/home/Welcome.vue';\r\nimport HotelInfo from '~/components/home/HotelInfo.vue';\r\nimport News from './news/index.vue';\r\nimport Swiper from '@/components/home/Swiper.vue'\r\nimport VideoPlayer from '~/components/VideoPlayer.vue';\r\n\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'index',\n  setup(__props) {\n\r\nconst localePath = useLocalePath()\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_a_layout_content = _resolveComponent(\"a-layout-content\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createVNode(Swiper),\n    _createVNode(_component_a_layout_content, {\n      \"data-aos\": \"fade-up\",\n      class: \"content-container\",\n      style: {background: '#F4F4F4', color:'#000'}\n    }, {\n      default: _withCtx(() => [\n        _createVNode(VideoPlayer, {\n          style: {\"margin-top\":\"30px\"},\n          video: \"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"\n        }),\n        _createElementVNode(\"div\", null, [\n          _createVNode(Welcome)\n        ])\n      ]),\n      _: 1\n    }),\n    _createVNode(_component_a_layout_content, { \"data-aos\": \"slide-up\" }, {\n      default: _withCtx(() => [\n        _createElementVNode(\"section\", _hoisted_1, [\n          _createElementVNode(\"div\", _hoisted_2, [\n            _createVNode(HotelInfo),\n            _hoisted_3\n          ])\n        ])\n      ]),\n      _: 1\n    }),\n    _createVNode(_component_a_layout_content, { \"data-aos\": \"fade-up\" }, {\n      default: _withCtx(() => [\n        _createElementVNode(\"section\", null, [\n          _createElementVNode(\"div\", _hoisted_4, [\n            _createElementVNode(\"div\", _hoisted_5, [\n              _createVNode(News, { isComp: true }),\n              _createElementVNode(\"div\", _hoisted_6, [\n                _createElementVNode(\"button\", {\n                  class: \"btn btn-2 hover-slide-up\",\n                  onClick: _cache[0] || (_cache[0] = ($event: any) => (_ctx.$router.push(_unref(localePath)('/news'))))\n                }, [\n                  _createElementVNode(\"span\", null, _toDisplayString(_ctx.$t('viewNews')), 1)\n                ]),\n                _hoisted_7,\n                _hoisted_8\n              ])\n            ])\n          ])\n        ])\n      ]),\n      _: 1\n    })\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "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",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517093399,
+      "end": 1718517093399,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517093399,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517093400,
+      "end": 1718517093400,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517093400,
+      "end": 1718517093404,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517093404,
+      "end": 1718517093405,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517093405,
+      "end": 1718517093405,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { useLocalePath } from 'C:/Users/MSII/Desktop/pj/dansavanh/node_modules/@nuxtjs/i18n/dist/runtime/composables/index';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { createVNode as _createVNode, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, toDisplayString as _toDisplayString, unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\";\nconst _withScopeId = (n) => (_pushScopeId(\"data-v-eb5885e1\"), n = n(), _popScopeId(), n);\nconst _hoisted_1 = { class: \"has-background\" };\nconst _hoisted_2 = { class: \"max-width\" };\nconst _hoisted_3 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nconst _hoisted_4 = { class: \"content-container\" };\nconst _hoisted_5 = { class: \"max-width\" };\nconst _hoisted_6 = { class: \"text-center\" };\nconst _hoisted_7 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nconst _hoisted_8 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nimport Welcome from \"~/components/home/Welcome.vue\";\nimport HotelInfo from \"~/components/home/HotelInfo.vue\";\nimport News from \"./news/index.vue\";\nimport Swiper from \"@/components/home/Swiper.vue\";\nimport VideoPlayer from \"~/components/VideoPlayer.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  setup(__props) {\n    const localePath = useLocalePath();\n    return (_ctx, _cache) => {\n      const _component_a_layout_content = _resolveComponent(\"a-layout-content\");\n      return _openBlock(), _createElementBlock(\"div\", null, [\n        _createVNode(Swiper),\n        _createVNode(_component_a_layout_content, {\n          \"data-aos\": \"fade-up\",\n          class: \"content-container\",\n          style: { background: \"#F4F4F4\", color: \"#000\" }\n        }, {\n          default: _withCtx(() => [\n            _createVNode(VideoPlayer, {\n              style: { \"margin-top\": \"30px\" },\n              video: \"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"\n            }),\n            _createElementVNode(\"div\", null, [\n              _createVNode(Welcome)\n            ])\n          ]),\n          _: 1\n        }),\n        _createVNode(_component_a_layout_content, { \"data-aos\": \"slide-up\" }, {\n          default: _withCtx(() => [\n            _createElementVNode(\"section\", _hoisted_1, [\n              _createElementVNode(\"div\", _hoisted_2, [\n                _createVNode(HotelInfo),\n                _hoisted_3\n              ])\n            ])\n          ]),\n          _: 1\n        }),\n        _createVNode(_component_a_layout_content, { \"data-aos\": \"fade-up\" }, {\n          default: _withCtx(() => [\n            _createElementVNode(\"section\", null, [\n              _createElementVNode(\"div\", _hoisted_4, [\n                _createElementVNode(\"div\", _hoisted_5, [\n                  _createVNode(News, { isComp: true }),\n                  _createElementVNode(\"div\", _hoisted_6, [\n                    _createElementVNode(\"button\", {\n                      class: \"btn btn-2 hover-slide-up\",\n                      onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$router.push(_unref(localePath)(\"/news\")))\n                    }, [\n                      _createElementVNode(\"span\", null, _toDisplayString(_ctx.$t(\"viewNews\")), 1)\n                    ]),\n                    _hoisted_7,\n                    _hoisted_8\n                  ])\n                ])\n              ])\n            ])\n          ]),\n          _: 1\n        })\n      ]);\n    };\n  }\n});\n",
+      "start": 1718517093405,
+      "end": 1718517093410,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3U,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxG,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjG,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517093410,
+      "end": 1718517093410,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517093411,
+      "end": 1718517093411,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517093411,
+      "end": 1718517093411,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517093411,
+      "end": 1718517093411,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { LayoutContent as __nuxt_component_0 } from \"ant-design-vue/es\";\nimport { useLocalePath } from 'C:/Users/MSII/Desktop/pj/dansavanh/node_modules/@nuxtjs/i18n/dist/runtime/composables/index';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { createVNode as _createVNode, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, toDisplayString as _toDisplayString, unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\";\nconst _withScopeId = (n) => (_pushScopeId(\"data-v-eb5885e1\"), n = n(), _popScopeId(), n);\nconst _hoisted_1 = { class: \"has-background\" };\nconst _hoisted_2 = { class: \"max-width\" };\nconst _hoisted_3 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nconst _hoisted_4 = { class: \"content-container\" };\nconst _hoisted_5 = { class: \"max-width\" };\nconst _hoisted_6 = { class: \"text-center\" };\nconst _hoisted_7 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nconst _hoisted_8 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ _createElementVNode(\"br\", null, null, -1));\nimport Welcome from \"~/components/home/Welcome.vue\";\nimport HotelInfo from \"~/components/home/HotelInfo.vue\";\nimport News from \"./news/index.vue\";\nimport Swiper from \"@/components/home/Swiper.vue\";\nimport VideoPlayer from \"~/components/VideoPlayer.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  setup(__props) {\n    const localePath = useLocalePath();\n    return (_ctx, _cache) => {\n      const _component_a_layout_content = __nuxt_component_0;\n      return _openBlock(), _createElementBlock(\"div\", null, [\n        _createVNode(Swiper),\n        _createVNode(_component_a_layout_content, {\n          \"data-aos\": \"fade-up\",\n          class: \"content-container\",\n          style: { background: \"#F4F4F4\", color: \"#000\" }\n        }, {\n          default: _withCtx(() => [\n            _createVNode(VideoPlayer, {\n              style: { \"margin-top\": \"30px\" },\n              video: \"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"\n            }),\n            _createElementVNode(\"div\", null, [\n              _createVNode(Welcome)\n            ])\n          ]),\n          _: 1\n        }),\n        _createVNode(_component_a_layout_content, { \"data-aos\": \"slide-up\" }, {\n          default: _withCtx(() => [\n            _createElementVNode(\"section\", _hoisted_1, [\n              _createElementVNode(\"div\", _hoisted_2, [\n                _createVNode(HotelInfo),\n                _hoisted_3\n              ])\n            ])\n          ]),\n          _: 1\n        }),\n        _createVNode(_component_a_layout_content, { \"data-aos\": \"fade-up\" }, {\n          default: _withCtx(() => [\n            _createElementVNode(\"section\", null, [\n              _createElementVNode(\"div\", _hoisted_4, [\n                _createElementVNode(\"div\", _hoisted_5, [\n                  _createVNode(News, { isComp: true }),\n                  _createElementVNode(\"div\", _hoisted_6, [\n                    _createElementVNode(\"button\", {\n                      class: \"btn btn-2 hover-slide-up\",\n                      onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$router.push(_unref(localePath)(\"/news\")))\n                    }, [\n                      _createElementVNode(\"span\", null, _toDisplayString(_ctx.$t(\"viewNews\")), 1)\n                    ]),\n                    _hoisted_7,\n                    _hoisted_8\n                  ])\n                ])\n              ])\n            ])\n          ]),\n          _: 1\n        })\n      ]);\n    };\n  }\n});\n",
+      "start": 1718517093411,
+      "end": 1718517093412,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517093412,
+      "end": 1718517093412,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517093412,
+      "end": 1718517093412,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517093412,
+      "end": 1718517093412,
+      "order": "normal"
+    }
+  ]
+}

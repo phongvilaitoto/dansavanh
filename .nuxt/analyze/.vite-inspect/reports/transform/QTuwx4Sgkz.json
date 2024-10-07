@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/input/Password.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport classNames from '../_util/classNames';\nimport { isValidElement } from '../_util/props-util';\nimport { cloneElement } from '../_util/vnode';\nimport Input from './Input';\nimport EyeOutlined from \"@ant-design/icons-vue/es/icons/EyeOutlined\";\nimport EyeInvisibleOutlined from \"@ant-design/icons-vue/es/icons/EyeInvisibleOutlined\";\nimport inputProps from './inputProps';\nimport { computed, defineComponent, shallowRef, watchEffect } from 'vue';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport omit from '../_util/omit';\nconst ActionMap = {\n  click: 'onClick',\n  hover: 'onMouseover'\n};\nconst defaultIconRender = visible => visible ? _createVNode(EyeOutlined, null, null) : _createVNode(EyeInvisibleOutlined, null, null);\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AInputPassword',\n  inheritAttrs: false,\n  props: _extends(_extends({}, inputProps()), {\n    prefixCls: String,\n    inputPrefixCls: String,\n    action: {\n      type: String,\n      default: 'click'\n    },\n    visibilityToggle: {\n      type: Boolean,\n      default: true\n    },\n    visible: {\n      type: Boolean,\n      default: undefined\n    },\n    'onUpdate:visible': Function,\n    iconRender: Function\n  }),\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs,\n      expose,\n      emit\n    } = _ref;\n    const visible = shallowRef(false);\n    const onVisibleChange = () => {\n      const {\n        disabled\n      } = props;\n      if (disabled) {\n        return;\n      }\n      visible.value = !visible.value;\n      emit('update:visible', visible.value);\n    };\n    watchEffect(() => {\n      if (props.visible !== undefined) {\n        visible.value = !!props.visible;\n      }\n    });\n    const inputRef = shallowRef();\n    const focus = () => {\n      var _a;\n      (_a = inputRef.value) === null || _a === void 0 ? void 0 : _a.focus();\n    };\n    const blur = () => {\n      var _a;\n      (_a = inputRef.value) === null || _a === void 0 ? void 0 : _a.blur();\n    };\n    expose({\n      focus,\n      blur\n    });\n    const getIcon = prefixCls => {\n      const {\n        action,\n        iconRender = slots.iconRender || defaultIconRender\n      } = props;\n      const iconTrigger = ActionMap[action] || '';\n      const icon = iconRender(visible.value);\n      const iconProps = {\n        [iconTrigger]: onVisibleChange,\n        class: `${prefixCls}-icon`,\n        key: 'passwordIcon',\n        onMousedown: e => {\n          // Prevent focused state lost\n          // https://github.com/ant-design/ant-design/issues/15173\n          e.preventDefault();\n        },\n        onMouseup: e => {\n          // Prevent caret position change\n          // https://github.com/ant-design/ant-design/issues/23524\n          e.preventDefault();\n        }\n      };\n      return cloneElement(isValidElement(icon) ? icon : _createVNode(\"span\", null, [icon]), iconProps);\n    };\n    const {\n      prefixCls,\n      getPrefixCls\n    } = useConfigInject('input-password', props);\n    const inputPrefixCls = computed(() => getPrefixCls('input', props.inputPrefixCls));\n    const renderPassword = () => {\n      const {\n          size,\n          visibilityToggle\n        } = props,\n        restProps = __rest(props, [\"size\", \"visibilityToggle\"]);\n      const suffixIcon = visibilityToggle && getIcon(prefixCls.value);\n      const inputClassName = classNames(prefixCls.value, attrs.class, {\n        [`${prefixCls.value}-${size}`]: !!size\n      });\n      const omittedProps = _extends(_extends(_extends({}, omit(restProps, ['suffix', 'iconRender', 'action'])), attrs), {\n        type: visible.value ? 'text' : 'password',\n        class: inputClassName,\n        prefixCls: inputPrefixCls.value,\n        suffix: suffixIcon\n      });\n      if (size) {\n        omittedProps.size = size;\n      }\n      return _createVNode(Input, _objectSpread({\n        \"ref\": inputRef\n      }, omittedProps), slots);\n    };\n    return () => {\n      return renderPassword();\n    };\n  }\n});",
+      "start": 1718517097427,
+      "end": 1718517097496,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097496,
+      "end": 1718517097496,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097496,
+      "end": 1718517097496,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097496,
+      "end": 1718517097497,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097497,
+      "end": 1718517097497,
+      "order": "normal"
+    }
+  ]
+}

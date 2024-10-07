@@ -1,0 +1,245 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/pages/hotels/[id].vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport HotelReuseComp from '@/components/hotelReuseComp.vue'\r\n\r\nimport { useMainStore } from '@/stores/mainStore'\r\nimport { storeToRefs } from 'pinia'\r\nimport { onMounted, reactive, watch } from 'vue';\r\n\r\nimport { useRoute, useRouter } from 'vue-router';\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: '[id]',\n  setup(__props) {\n\r\n\r\nconst { main, selectedIdx } = storeToRefs(useMainStore())\r\n\r\n\r\nconst router = useRouter()\r\n\r\nconst route = useRoute()\r\n\r\n\r\nconst hotel = reactive({\r\n    data: {}\r\n})\r\n\r\nwatch(() => main.value.hotels, () => {\r\n\r\n    if(main.value.hotels) {\r\n        // console.log(main.value.hotels)\r\n       const hotelData = main.value.hotels.find((i: any) => i.titles[selectedIdx.value] === route.params.id)\r\n        hotel.data =hotelData\r\n    }\r\n}, {immediate: true, deep: true})\r\n\r\n\r\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createVNode(HotelReuseComp, {\n      hotel: hotel.data\n    }, null, 8, [\"hotel\"])\n  ]))\n}\n}\n\n})",
+      "start": 1718517093155,
+      "end": 1718517093155
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093155,
+      "end": 1718517093155,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093155,
+      "end": 1718517093155,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093155,
+      "end": 1718517093155,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093155,
+      "end": 1718517093155,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093155,
+      "end": 1718517093155,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093155,
+      "end": 1718517093155,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport HotelReuseComp from \"@/components/hotelReuseComp.vue\";\nimport { useMainStore } from \"@/stores/mainStore\";\nimport { storeToRefs } from \"pinia\";\nimport { reactive, watch } from \"vue\";\nimport { useRoute, useRouter } from \"vue-router\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"[id]\",\n  setup(__props) {\n    const { main, selectedIdx } = storeToRefs(useMainStore());\n    const router = useRouter();\n    const route = useRoute();\n    const hotel = reactive({\n      data: {}\n    });\n    watch(() => main.value.hotels, () => {\n      if (main.value.hotels) {\n        const hotelData = main.value.hotels.find((i) => i.titles[selectedIdx.value] === route.params.id);\n        hotel.data = hotelData;\n      }\n    }, { immediate: true, deep: true });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", null, [\n        _createVNode(HotelReuseComp, {\n          hotel: hotel.data\n        }, null, 8, [\"hotel\"])\n      ]);\n    };\n  }\n});\n",
+      "start": 1718517093155,
+      "end": 1718517093497,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/pages/hotels/[id].vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport HotelReuseComp from '@/components/hotelReuseComp.vue'\r\n\r\nimport { useMainStore } from '@/stores/mainStore'\r\nimport { storeToRefs } from 'pinia'\r\nimport { onMounted, reactive, watch } from 'vue';\r\n\r\nimport { useRoute, useRouter } from 'vue-router';\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: '[id]',\n  setup(__props) {\n\r\n\r\nconst { main, selectedIdx } = storeToRefs(useMainStore())\r\n\r\n\r\nconst router = useRouter()\r\n\r\nconst route = useRoute()\r\n\r\n\r\nconst hotel = reactive({\r\n    data: {}\r\n})\r\n\r\nwatch(() => main.value.hotels, () => {\r\n\r\n    if(main.value.hotels) {\r\n        // console.log(main.value.hotels)\r\n       const hotelData = main.value.hotels.find((i: any) => i.titles[selectedIdx.value] === route.params.id)\r\n        hotel.data =hotelData\r\n    }\r\n}, {immediate: true, deep: true})\r\n\r\n\r\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createVNode(HotelReuseComp, {\n      hotel: hotel.data\n    }, null, 8, [\"hotel\"])\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,eAAe,cAAc,aAAa,YAAY,sBAAsB,2BAA2B;AAEhH,OAAO,oBAAoB;AAE3B,SAAS,oBAAoB;AAC7B,SAAS,mBAAmB;AAC5B,SAAoB,UAAU,aAAa;AAE3C,SAAS,UAAU,iBAAiB;AAEpC,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAGjB,UAAM,EAAE,MAAM,YAAY,IAAI,YAAY,aAAa,CAAC;AAGxD,UAAM,SAAS,UAAU;AAEzB,UAAM,QAAQ,SAAS;AAGvB,UAAM,QAAQ,SAAS;AAAA,MACnB,MAAM,CAAC;AAAA,IACX,CAAC;AAED,UAAM,MAAM,KAAK,MAAM,QAAQ,MAAM;AAEjC,UAAG,KAAK,MAAM,QAAQ;AAEnB,cAAM,YAAY,KAAK,MAAM,OAAO,KAAK,CAAC,MAAW,EAAE,OAAO,YAAY,KAAK,MAAM,MAAM,OAAO,EAAE;AACnG,cAAM,OAAM;AAAA,MAChB;AAAA,IACJ,GAAG,EAAC,WAAW,MAAM,MAAM,KAAI,CAAC;AAIhC,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,oBAAoB,OAAO,MAAM;AAAA,QACrD,aAAa,gBAAgB;AAAA,UAC3B,OAAO,MAAM;AAAA,QACf,GAAG,MAAM,GAAG,CAAC,OAAO,CAAC;AAAA,MACvB,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517093498,
+      "end": 1718517093498,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517093499,
+      "end": 1718517093499,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517093500,
+      "end": 1718517093500,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517093500,
+      "end": 1718517093500,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517093501,
+      "end": 1718517093501,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517093501,
+      "end": 1718517093505,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517093508,
+      "end": 1718517093508,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517093508,
+      "end": 1718517093508,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517093510,
+      "end": 1718517093510,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517093510,
+      "end": 1718517093510,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517093510,
+      "end": 1718517093510,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517093511,
+      "end": 1718517093511,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517093511,
+      "end": 1718517093511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517093511,
+      "end": 1718517093511,
+      "order": "normal"
+    }
+  ]
+}

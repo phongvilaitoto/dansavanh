@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/input-number/src/utils/numberUtil.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { supportBigInt } from './supportUtil';\n/**\n * Format string number to readable number\n */\nexport function trimNumber(numStr) {\n  let str = numStr.trim();\n  let negative = str.startsWith('-');\n  if (negative) {\n    str = str.slice(1);\n  }\n  str = str\n  // Remove decimal 0. `1.000` => `1.`, `1.100` => `1.1`\n  .replace(/(\\.\\d*[^0])0*$/, '$1')\n  // Remove useless decimal. `1.` => `1`\n  .replace(/\\.0*$/, '')\n  // Remove integer 0. `0001` => `1`, 000.1' => `.1`\n  .replace(/^0+/, '');\n  if (str.startsWith('.')) {\n    str = `0${str}`;\n  }\n  const trimStr = str || '0';\n  const splitNumber = trimStr.split('.');\n  const integerStr = splitNumber[0] || '0';\n  const decimalStr = splitNumber[1] || '0';\n  if (integerStr === '0' && decimalStr === '0') {\n    negative = false;\n  }\n  const negativeStr = negative ? '-' : '';\n  return {\n    negative,\n    negativeStr,\n    trimStr,\n    integerStr,\n    decimalStr,\n    fullStr: `${negativeStr}${trimStr}`\n  };\n}\nexport function isE(number) {\n  const str = String(number);\n  return !Number.isNaN(Number(str)) && str.includes('e');\n}\n/**\n * [Legacy] Convert 1e-9 to 0.000000001.\n * This may lose some precision if user really want 1e-9.\n */\nexport function getNumberPrecision(number) {\n  const numStr = String(number);\n  if (isE(number)) {\n    let precision = Number(numStr.slice(numStr.indexOf('e-') + 2));\n    const decimalMatch = numStr.match(/\\.(\\d+)/);\n    if (decimalMatch === null || decimalMatch === void 0 ? void 0 : decimalMatch[1]) {\n      precision += decimalMatch[1].length;\n    }\n    return precision;\n  }\n  return numStr.includes('.') && validateNumber(numStr) ? numStr.length - numStr.indexOf('.') - 1 : 0;\n}\n/**\n * Convert number (includes scientific notation) to -xxx.yyy format\n */\nexport function num2str(number) {\n  let numStr = String(number);\n  if (isE(number)) {\n    if (number > Number.MAX_SAFE_INTEGER) {\n      return String(supportBigInt() ? BigInt(number).toString() : Number.MAX_SAFE_INTEGER);\n    }\n    if (number < Number.MIN_SAFE_INTEGER) {\n      return String(supportBigInt() ? BigInt(number).toString() : Number.MIN_SAFE_INTEGER);\n    }\n    numStr = number.toFixed(getNumberPrecision(numStr));\n  }\n  return trimNumber(numStr).fullStr;\n}\nexport function validateNumber(num) {\n  if (typeof num === 'number') {\n    return !Number.isNaN(num);\n  }\n  // Empty\n  if (!num) {\n    return false;\n  }\n  return (\n    // Normal type: 11.28\n    /^\\s*-?\\d+(\\.\\d+)?\\s*$/.test(num) ||\n    // Pre-number: 1.\n    /^\\s*-?\\d+\\.\\s*$/.test(num) ||\n    // Post-number: .1\n    /^\\s*-?\\.\\d+\\s*$/.test(num)\n  );\n}",
+      "start": 1718517098231,
+      "end": 1718517098322,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098322,
+      "end": 1718517098322,
+      "order": "normal"
+    }
+  ]
+}

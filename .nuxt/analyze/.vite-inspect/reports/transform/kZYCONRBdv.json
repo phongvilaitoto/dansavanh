@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/input-number/src/InputNumber.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport getMiniDecimal, { toFixed } from './utils/MiniDecimal';\nimport StepHandler from './StepHandler';\nimport { getNumberPrecision, num2str, validateNumber } from './utils/numberUtil';\nimport useCursor from './hooks/useCursor';\nimport useFrame from './hooks/useFrame';\nimport { watch, computed, shallowRef, defineComponent } from 'vue';\nimport KeyCode from '../../_util/KeyCode';\nimport classNames from '../../_util/classNames';\nimport { booleanType, stringType, someType, functionType } from '../../_util/type';\n/**\n * We support `stringMode` which need handle correct type when user call in onChange\n * format max or min value\n * 1. if isInvalid return null\n * 2. if precision is undefined, return decimal\n * 3. format with precision\n *    I. if max > 0, round down with precision. Example: max= 3.5, precision=0  afterFormat: 3\n *    II. if max < 0, round up with precision. Example: max= -3.5, precision=0  afterFormat: -4\n *    III. if min > 0, round up with precision. Example: min= 3.5, precision=0  afterFormat: 4\n *    IV. if min < 0, round down with precision. Example: max= -3.5, precision=0  afterFormat: -3\n */\nconst getDecimalValue = (stringMode, decimalValue) => {\n  if (stringMode || decimalValue.isEmpty()) {\n    return decimalValue.toString();\n  }\n  return decimalValue.toNumber();\n};\nconst getDecimalIfValidate = value => {\n  const decimal = getMiniDecimal(value);\n  return decimal.isInvalidate() ? null : decimal;\n};\nexport const inputNumberProps = () => ({\n  /** value will show as string */\n  stringMode: booleanType(),\n  defaultValue: someType([String, Number]),\n  value: someType([String, Number]),\n  prefixCls: stringType(),\n  min: someType([String, Number]),\n  max: someType([String, Number]),\n  step: someType([String, Number], 1),\n  tabindex: Number,\n  controls: booleanType(true),\n  readonly: booleanType(),\n  disabled: booleanType(),\n  autofocus: booleanType(),\n  keyboard: booleanType(true),\n  /** Parse display value to validate number */\n  parser: functionType(),\n  /** Transform `value` to display value show in input */\n  formatter: functionType(),\n  /** Syntactic sugar of `formatter`. Config precision of display. */\n  precision: Number,\n  /** Syntactic sugar of `formatter`. Config decimal separator of display. */\n  decimalSeparator: String,\n  onInput: functionType(),\n  onChange: functionType(),\n  onPressEnter: functionType(),\n  onStep: functionType(),\n  onBlur: functionType(),\n  onFocus: functionType()\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'InnerInputNumber',\n  inheritAttrs: false,\n  props: _extends(_extends({}, inputNumberProps()), {\n    lazy: Boolean\n  }),\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots,\n      emit,\n      expose\n    } = _ref;\n    const inputRef = shallowRef();\n    const focus = shallowRef(false);\n    const userTypingRef = shallowRef(false);\n    const compositionRef = shallowRef(false);\n    const decimalValue = shallowRef(getMiniDecimal(props.value));\n    function setUncontrolledDecimalValue(newDecimal) {\n      if (props.value === undefined) {\n        decimalValue.value = newDecimal;\n      }\n    }\n    // ====================== Parser & Formatter ======================\n    /**\n     * `precision` is used for formatter & onChange.\n     * It will auto generate by `value` & `step`.\n     * But it will not block user typing.\n     *\n     * Note: Auto generate `precision` is used for legacy logic.\n     * We should remove this since we already support high precision with BigInt.\n     *\n     * @param number  Provide which number should calculate precision\n     * @param userTyping  Change by user typing\n     */\n    const getPrecision = (numStr, userTyping) => {\n      if (userTyping) {\n        return undefined;\n      }\n      if (props.precision >= 0) {\n        return props.precision;\n      }\n      return Math.max(getNumberPrecision(numStr), getNumberPrecision(props.step));\n    };\n    // >>> Parser\n    const mergedParser = num => {\n      const numStr = String(num);\n      if (props.parser) {\n        return props.parser(numStr);\n      }\n      let parsedStr = numStr;\n      if (props.decimalSeparator) {\n        parsedStr = parsedStr.replace(props.decimalSeparator, '.');\n      }\n      // [Legacy] We still support auto convert `$ 123,456` to `123456`\n      return parsedStr.replace(/[^\\w.-]+/g, '');\n    };\n    // >>> Formatter\n    const inputValue = shallowRef('');\n    const mergedFormatter = (number, userTyping) => {\n      if (props.formatter) {\n        return props.formatter(number, {\n          userTyping,\n          input: String(inputValue.value)\n        });\n      }\n      let str = typeof number === 'number' ? num2str(number) : number;\n      // User typing will not auto format with precision directly\n      if (!userTyping) {\n        const mergedPrecision = getPrecision(str, userTyping);\n        if (validateNumber(str) && (props.decimalSeparator || mergedPrecision >= 0)) {\n          // Separator\n          const separatorStr = props.decimalSeparator || '.';\n          str = toFixed(str, separatorStr, mergedPrecision);\n        }\n      }\n      return str;\n    };\n    // ========================== InputValue ==========================\n    /**\n     * Input text value control\n     *\n     * User can not update input content directly. It update with follow rules by priority:\n     *  1. controlled `value` changed\n     *    * [SPECIAL] Typing like `1.` should not immediately convert to `1`\n     *  2. User typing with format (not precision)\n     *  3. Blur or Enter trigger revalidate\n     */\n    const initValue = (() => {\n      const initValue = props.value;\n      if (decimalValue.value.isInvalidate() && ['string', 'number'].includes(typeof initValue)) {\n        return Number.isNaN(initValue) ? '' : initValue;\n      }\n      return mergedFormatter(decimalValue.value.toString(), false);\n    })();\n    inputValue.value = initValue;\n    // Should always be string\n    function setInputValue(newValue, userTyping) {\n      inputValue.value = mergedFormatter(\n      // Invalidate number is sometime passed by external control, we should let it go\n      // Otherwise is controlled by internal interactive logic which check by userTyping\n      // You can ref 'show limited value when input is not focused' test for more info.\n      newValue.isInvalidate() ? newValue.toString(false) : newValue.toString(!userTyping), userTyping);\n    }\n    // >>> Max & Min limit\n    const maxDecimal = computed(() => getDecimalIfValidate(props.max));\n    const minDecimal = computed(() => getDecimalIfValidate(props.min));\n    const upDisabled = computed(() => {\n      if (!maxDecimal.value || !decimalValue.value || decimalValue.value.isInvalidate()) {\n        return false;\n      }\n      return maxDecimal.value.lessEquals(decimalValue.value);\n    });\n    const downDisabled = computed(() => {\n      if (!minDecimal.value || !decimalValue.value || decimalValue.value.isInvalidate()) {\n        return false;\n      }\n      return decimalValue.value.lessEquals(minDecimal.value);\n    });\n    // Cursor controller\n    const [recordCursor, restoreCursor] = useCursor(inputRef, focus);\n    // ============================= Data =============================\n    /**\n     * Find target value closet within range.\n     * e.g. [11, 28]:\n     *    3  => 11\n     *    23 => 23\n     *    99 => 28\n     */\n    const getRangeValue = target => {\n      // target > max\n      if (maxDecimal.value && !target.lessEquals(maxDecimal.value)) {\n        return maxDecimal.value;\n      }\n      // target < min\n      if (minDecimal.value && !minDecimal.value.lessEquals(target)) {\n        return minDecimal.value;\n      }\n      return null;\n    };\n    /**\n     * Check value is in [min, max] range\n     */\n    const isInRange = target => !getRangeValue(target);\n    /**\n     * Trigger `onChange` if value validated and not equals of origin.\n     * Return the value that re-align in range.\n     */\n    const triggerValueUpdate = (newValue, userTyping) => {\n      var _a;\n      let updateValue = newValue;\n      let isRangeValidate = isInRange(updateValue) || updateValue.isEmpty();\n      // Skip align value when trigger value is empty.\n      // We just trigger onChange(null)\n      // This should not block user typing\n      if (!updateValue.isEmpty() && !userTyping) {\n        // Revert value in range if needed\n        updateValue = getRangeValue(updateValue) || updateValue;\n        isRangeValidate = true;\n      }\n      if (!props.readonly && !props.disabled && isRangeValidate) {\n        const numStr = updateValue.toString();\n        const mergedPrecision = getPrecision(numStr, userTyping);\n        if (mergedPrecision >= 0) {\n          updateValue = getMiniDecimal(toFixed(numStr, '.', mergedPrecision));\n        }\n        // Trigger event\n        if (!updateValue.equals(decimalValue.value)) {\n          setUncontrolledDecimalValue(updateValue);\n          (_a = props.onChange) === null || _a === void 0 ? void 0 : _a.call(props, updateValue.isEmpty() ? null : getDecimalValue(props.stringMode, updateValue));\n          // Reformat input if value is not controlled\n          if (props.value === undefined) {\n            setInputValue(updateValue, userTyping);\n          }\n        }\n        return updateValue;\n      }\n      return decimalValue.value;\n    };\n    // ========================== User Input ==========================\n    const onNextPromise = useFrame();\n    // >>> Collect input value\n    const collectInputValue = inputStr => {\n      var _a;\n      recordCursor();\n      // Update inputValue incase input can not parse as number\n      inputValue.value = inputStr;\n      // Parse number\n      if (!compositionRef.value) {\n        const finalValue = mergedParser(inputStr);\n        const finalDecimal = getMiniDecimal(finalValue);\n        if (!finalDecimal.isNaN()) {\n          triggerValueUpdate(finalDecimal, true);\n        }\n      }\n      // Trigger onInput later to let user customize value if they want do handle something after onChange\n      (_a = props.onInput) === null || _a === void 0 ? void 0 : _a.call(props, inputStr);\n      // optimize for chinese input experience\n      // https://github.com/ant-design/ant-design/issues/8196\n      onNextPromise(() => {\n        let nextInputStr = inputStr;\n        if (!props.parser) {\n          nextInputStr = inputStr.replace(/。/g, '.');\n        }\n        if (nextInputStr !== inputStr) {\n          collectInputValue(nextInputStr);\n        }\n      });\n    };\n    // >>> Composition\n    const onCompositionStart = () => {\n      compositionRef.value = true;\n    };\n    const onCompositionEnd = () => {\n      compositionRef.value = false;\n      collectInputValue(inputRef.value.value);\n    };\n    // >>> Input\n    const onInternalInput = e => {\n      collectInputValue(e.target.value);\n    };\n    // ============================= Step =============================\n    const onInternalStep = up => {\n      var _a, _b;\n      // Ignore step since out of range\n      if (up && upDisabled.value || !up && downDisabled.value) {\n        return;\n      }\n      // Clear typing status since it may caused by up & down key.\n      // We should sync with input value.\n      userTypingRef.value = false;\n      let stepDecimal = getMiniDecimal(props.step);\n      if (!up) {\n        stepDecimal = stepDecimal.negate();\n      }\n      const target = (decimalValue.value || getMiniDecimal(0)).add(stepDecimal.toString());\n      const updatedValue = triggerValueUpdate(target, false);\n      (_a = props.onStep) === null || _a === void 0 ? void 0 : _a.call(props, getDecimalValue(props.stringMode, updatedValue), {\n        offset: props.step,\n        type: up ? 'up' : 'down'\n      });\n      (_b = inputRef.value) === null || _b === void 0 ? void 0 : _b.focus();\n    };\n    // ============================ Flush =============================\n    /**\n     * Flush current input content to trigger value change & re-formatter input if needed\n     */\n    const flushInputValue = userTyping => {\n      const parsedValue = getMiniDecimal(mergedParser(inputValue.value));\n      let formatValue = parsedValue;\n      if (!parsedValue.isNaN()) {\n        // Only validate value or empty value can be re-fill to inputValue\n        // Reassign the formatValue within ranged of trigger control\n        formatValue = triggerValueUpdate(parsedValue, userTyping);\n      } else {\n        formatValue = decimalValue.value;\n      }\n      if (props.value !== undefined) {\n        // Reset back with controlled value first\n        setInputValue(decimalValue.value, false);\n      } else if (!formatValue.isNaN()) {\n        // Reset input back since no validate value\n        setInputValue(formatValue, false);\n      }\n    };\n    const onKeyDown = event => {\n      var _a;\n      const {\n        which\n      } = event;\n      userTypingRef.value = true;\n      if (which === KeyCode.ENTER) {\n        if (!compositionRef.value) {\n          userTypingRef.value = false;\n        }\n        flushInputValue(false);\n        (_a = props.onPressEnter) === null || _a === void 0 ? void 0 : _a.call(props, event);\n      }\n      if (props.keyboard === false) {\n        return;\n      }\n      // Do step\n      if (!compositionRef.value && [KeyCode.UP, KeyCode.DOWN].includes(which)) {\n        onInternalStep(KeyCode.UP === which);\n        event.preventDefault();\n      }\n    };\n    const onKeyUp = () => {\n      userTypingRef.value = false;\n    };\n    // >>> Focus & Blur\n    const onBlur = e => {\n      flushInputValue(false);\n      focus.value = false;\n      userTypingRef.value = false;\n      emit('blur', e);\n    };\n    // ========================== Controlled ==========================\n    // Input by precision\n    watch(() => props.precision, () => {\n      if (!decimalValue.value.isInvalidate()) {\n        setInputValue(decimalValue.value, false);\n      }\n    }, {\n      flush: 'post'\n    });\n    // Input by value\n    watch(() => props.value, () => {\n      const newValue = getMiniDecimal(props.value);\n      decimalValue.value = newValue;\n      const currentParsedValue = getMiniDecimal(mergedParser(inputValue.value));\n      // When user typing from `1.2` to `1.`, we should not convert to `1` immediately.\n      // But let it go if user set `formatter`\n      if (!newValue.equals(currentParsedValue) || !userTypingRef.value || props.formatter) {\n        // Update value as effect\n        setInputValue(newValue, userTypingRef.value);\n      }\n    }, {\n      flush: 'post'\n    });\n    // ============================ Cursor ============================\n    watch(inputValue, () => {\n      if (props.formatter) {\n        restoreCursor();\n      }\n    }, {\n      flush: 'post'\n    });\n    watch(() => props.disabled, val => {\n      if (val) {\n        focus.value = false;\n      }\n    });\n    expose({\n      focus: () => {\n        var _a;\n        (_a = inputRef.value) === null || _a === void 0 ? void 0 : _a.focus();\n      },\n      blur: () => {\n        var _a;\n        (_a = inputRef.value) === null || _a === void 0 ? void 0 : _a.blur();\n      }\n    });\n    return () => {\n      const _a = _extends(_extends({}, attrs), props),\n        {\n          prefixCls = 'rc-input-number',\n          min,\n          max,\n          step = 1,\n          defaultValue,\n          value,\n          disabled,\n          readonly,\n          keyboard,\n          controls = true,\n          autofocus,\n          stringMode,\n          parser,\n          formatter,\n          precision,\n          decimalSeparator,\n          onChange,\n          onInput,\n          onPressEnter,\n          onStep,\n          lazy,\n          class: className,\n          style\n        } = _a,\n        inputProps = __rest(_a, [\"prefixCls\", \"min\", \"max\", \"step\", \"defaultValue\", \"value\", \"disabled\", \"readonly\", \"keyboard\", \"controls\", \"autofocus\", \"stringMode\", \"parser\", \"formatter\", \"precision\", \"decimalSeparator\", \"onChange\", \"onInput\", \"onPressEnter\", \"onStep\", \"lazy\", \"class\", \"style\"]);\n      const {\n        upHandler,\n        downHandler\n      } = slots;\n      const inputClassName = `${prefixCls}-input`;\n      const eventProps = {};\n      if (lazy) {\n        eventProps.onChange = onInternalInput;\n      } else {\n        eventProps.onInput = onInternalInput;\n      }\n      return _createVNode(\"div\", {\n        \"class\": classNames(prefixCls, className, {\n          [`${prefixCls}-focused`]: focus.value,\n          [`${prefixCls}-disabled`]: disabled,\n          [`${prefixCls}-readonly`]: readonly,\n          [`${prefixCls}-not-a-number`]: decimalValue.value.isNaN(),\n          [`${prefixCls}-out-of-range`]: !decimalValue.value.isInvalidate() && !isInRange(decimalValue.value)\n        }),\n        \"style\": style,\n        \"onKeydown\": onKeyDown,\n        \"onKeyup\": onKeyUp\n      }, [controls && _createVNode(StepHandler, {\n        \"prefixCls\": prefixCls,\n        \"upDisabled\": upDisabled.value,\n        \"downDisabled\": downDisabled.value,\n        \"onStep\": onInternalStep\n      }, {\n        upNode: upHandler,\n        downNode: downHandler\n      }), _createVNode(\"div\", {\n        \"class\": `${inputClassName}-wrap`\n      }, [_createVNode(\"input\", _objectSpread(_objectSpread(_objectSpread({\n        \"autofocus\": autofocus,\n        \"autocomplete\": \"off\",\n        \"role\": \"spinbutton\",\n        \"aria-valuemin\": min,\n        \"aria-valuemax\": max,\n        \"aria-valuenow\": decimalValue.value.isInvalidate() ? null : decimalValue.value.toString(),\n        \"step\": step\n      }, inputProps), {}, {\n        \"ref\": inputRef,\n        \"class\": inputClassName,\n        \"value\": inputValue.value,\n        \"disabled\": disabled,\n        \"readonly\": readonly,\n        \"onFocus\": e => {\n          focus.value = true;\n          emit('focus', e);\n        }\n      }, eventProps), {}, {\n        \"onBlur\": onBlur,\n        \"onCompositionstart\": onCompositionStart,\n        \"onCompositionend\": onCompositionEnd\n      }), null)])]);\n    };\n  }\n});",
+      "start": 1718517097428,
+      "end": 1718517097504,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097504,
+      "end": 1718517097504,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097504,
+      "end": 1718517097505,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097505,
+      "end": 1718517097505,
+      "order": "normal"
+    }
+  ]
+}

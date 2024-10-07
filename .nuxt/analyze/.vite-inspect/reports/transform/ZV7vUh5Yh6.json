@@ -1,0 +1,255 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/components/layout/LanguageSwitcher.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, createBlock as _createBlock, isRef as _isRef } from \"vue\"\n\nconst _hoisted_1 = [\"src\"]\n\nimport enImage from '../../assets/image/lang/en.png'\r\nimport thImage from '../../assets/image/lang/th.png'\r\nimport cnImage from '../../assets/image/lang/ch.png'\r\nimport { useMainStore } from '~/stores/mainStore';\r\n\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'LanguageSwitcher',\n  setup(__props) {\n\r\n\r\n\r\n\r\nconst store = useMainStore()\r\n\r\nconst {selectedIdx} = storeToRefs(store)\r\n\r\nconst { locale, setLocale } = useI18n()\r\n\r\n const switchLocalePath = useSwitchLocalePath()\r\n\r\nconst languages = ref([\r\n{\r\n  key: 'EN',\r\n  image:enImage,\r\n},\r\n{\r\n  key: 'TH',\r\n  image:thImage\r\n},\r\n{\r\n  key: 'CN',\r\n  image: cnImage\r\n\r\n}\r\n])\r\n\r\nconst selectedLanguage = ref('EN')\r\n\r\n// watch(selectedLanguage, (value) => {\r\n//   const key = value.toLowerCase()\r\n//   switch(key) {\r\n//     case 'en': {\r\n//       selectedIdx.value = 0\r\n    \r\n//       return \r\n//     }\r\n//     case 'th': {\r\n//       selectedIdx.value = 1\r\n    \r\n//       return \r\n//     }\r\n//     case 'cn': {\r\n//       selectedIdx.value = 2\r\n     \r\n//       return \r\n//     }\r\n//   }\r\n// })\r\n\r\n\r\nconst onChanged = () => {\r\n  const key = selectedLanguage.value.toLowerCase()\r\n  setLocale(key)\r\n  switch(key) {\r\n    case 'en': {\r\n      selectedIdx.value = 0\r\n      return \r\n    }\r\n    case 'th': {\r\n      selectedIdx.value = 1\r\n    \r\n      return \r\n    }\r\n    case 'cn': {\r\n      selectedIdx.value = 2\r\n     \r\n      return \r\n    }\r\n  }\r\n\r\n}\r\n\r\n\r\nconst fetchLang = () => {\r\n  switch(selectedIdx.value) {\r\n    case 0: {\r\n   //   locale.value = 'en'\r\n      selectedLanguage.value = locale.value.toUpperCase()\r\n    //  switchLocalePath( locale.value)\r\n      return \r\n    }\r\n    case 1: {\r\n     // locale.value = 'th'\r\n      selectedLanguage.value = locale.value.toUpperCase()\r\n     // switchLocalePath(locale.value)\r\n      return \r\n    }\r\n    case 2: {\r\n     // locale.value = 'cn'\r\n      selectedLanguage.value = locale.value.toUpperCase()\r\n     // switchLocalePath( locale.value)\r\n      return \r\n    }\r\n  }\r\n}\r\n\r\n fetchLang()\r\n\r\n\r\n\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_a_col = _resolveComponent(\"a-col\")!\n  const _component_a_row = _resolveComponent(\"a-row\")!\n  const _component_a_select_option = _resolveComponent(\"a-select-option\")!\n  const _component_a_select = _resolveComponent(\"a-select\")!\n\n  return (_openBlock(), _createBlock(_component_a_select, {\n    ref: \"select\",\n    value: _unref(selectedLanguage),\n    \"onUpdate:value\": _cache[0] || (_cache[0] = ($event: any) => (_isRef(selectedLanguage) ? (selectedLanguage).value = $event : null)),\n    onChange: onChanged\n  }, {\n    default: _withCtx(() => [\n      (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(languages), (i) => {\n        return (_openBlock(), _createBlock(_component_a_select_option, {\n          key: i.key,\n          value: i.key\n        }, {\n          default: _withCtx(() => [\n            _createVNode(_component_a_row, {\n              justify: \"center\",\n              gutter: 20\n            }, {\n              default: _withCtx(() => [\n                _createVNode(_component_a_col, null, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"img\", {\n                      src: i.image,\n                      style: {\"padding-right\":\"10px\"},\n                      alt: \"\"\n                    }, null, 8, _hoisted_1),\n                    _createElementVNode(\"span\", null, _toDisplayString(i.key), 1)\n                  ]),\n                  _: 2\n                }, 1024)\n              ]),\n              _: 2\n            }, 1024)\n          ]),\n          _: 2\n        }, 1032, [\"value\"]))\n      }), 128))\n    ]),\n    _: 1\n  }, 8, [\"value\"]))\n}\n}\n\n})",
+      "start": 1718517098776,
+      "end": 1718517098776
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098776,
+      "end": 1718517098776,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098776,
+      "end": 1718517098776,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098776,
+      "end": 1718517098776,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098776,
+      "end": 1718517098776,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098776,
+      "end": 1718517098776,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098776,
+      "end": 1718517098776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, createBlock as _createBlock, isRef as _isRef } from \"vue\";\nconst _hoisted_1 = [\"src\"];\nimport enImage from \"../../assets/image/lang/en.png\";\nimport thImage from \"../../assets/image/lang/th.png\";\nimport cnImage from \"../../assets/image/lang/ch.png\";\nimport { useMainStore } from \"~/stores/mainStore\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"LanguageSwitcher\",\n  setup(__props) {\n    const store = useMainStore();\n    const { selectedIdx } = storeToRefs(store);\n    const { locale, setLocale } = useI18n();\n    const switchLocalePath = useSwitchLocalePath();\n    const languages = ref([\n      {\n        key: \"EN\",\n        image: enImage\n      },\n      {\n        key: \"TH\",\n        image: thImage\n      },\n      {\n        key: \"CN\",\n        image: cnImage\n      }\n    ]);\n    const selectedLanguage = ref(\"EN\");\n    const onChanged = () => {\n      const key = selectedLanguage.value.toLowerCase();\n      setLocale(key);\n      switch (key) {\n        case \"en\": {\n          selectedIdx.value = 0;\n          return;\n        }\n        case \"th\": {\n          selectedIdx.value = 1;\n          return;\n        }\n        case \"cn\": {\n          selectedIdx.value = 2;\n          return;\n        }\n      }\n    };\n    const fetchLang = () => {\n      switch (selectedIdx.value) {\n        case 0: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n        case 1: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n        case 2: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n      }\n    };\n    fetchLang();\n    return (_ctx, _cache) => {\n      const _component_a_col = _resolveComponent(\"a-col\");\n      const _component_a_row = _resolveComponent(\"a-row\");\n      const _component_a_select_option = _resolveComponent(\"a-select-option\");\n      const _component_a_select = _resolveComponent(\"a-select\");\n      return _openBlock(), _createBlock(_component_a_select, {\n        ref: \"select\",\n        value: _unref(selectedLanguage),\n        \"onUpdate:value\": _cache[0] || (_cache[0] = ($event) => _isRef(selectedLanguage) ? selectedLanguage.value = $event : null),\n        onChange: onChanged\n      }, {\n        default: _withCtx(() => [\n          (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(languages), (i) => {\n            return _openBlock(), _createBlock(_component_a_select_option, {\n              key: i.key,\n              value: i.key\n            }, {\n              default: _withCtx(() => [\n                _createVNode(_component_a_row, {\n                  justify: \"center\",\n                  gutter: 20\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_a_col, null, {\n                      default: _withCtx(() => [\n                        _createElementVNode(\"img\", {\n                          src: i.image,\n                          style: { \"padding-right\": \"10px\" },\n                          alt: \"\"\n                        }, null, 8, _hoisted_1),\n                        _createElementVNode(\"span\", null, _toDisplayString(i.key), 1)\n                      ]),\n                      _: 2\n                    }, 1024)\n                  ]),\n                  _: 2\n                }, 1024)\n              ]),\n              _: 2\n            }, 1032, [\"value\"]);\n          }), 128))\n        ]),\n        _: 1\n      }, 8, [\"value\"]);\n    };\n  }\n});\n",
+      "start": 1718517098776,
+      "end": 1718517098854,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/components/layout/LanguageSwitcher.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, createBlock as _createBlock, isRef as _isRef } from \"vue\"\n\nconst _hoisted_1 = [\"src\"]\n\nimport enImage from '../../assets/image/lang/en.png'\r\nimport thImage from '../../assets/image/lang/th.png'\r\nimport cnImage from '../../assets/image/lang/ch.png'\r\nimport { useMainStore } from '~/stores/mainStore';\r\n\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'LanguageSwitcher',\n  setup(__props) {\n\r\n\r\n\r\n\r\nconst store = useMainStore()\r\n\r\nconst {selectedIdx} = storeToRefs(store)\r\n\r\nconst { locale, setLocale } = useI18n()\r\n\r\n const switchLocalePath = useSwitchLocalePath()\r\n\r\nconst languages = ref([\r\n{\r\n  key: 'EN',\r\n  image:enImage,\r\n},\r\n{\r\n  key: 'TH',\r\n  image:thImage\r\n},\r\n{\r\n  key: 'CN',\r\n  image: cnImage\r\n\r\n}\r\n])\r\n\r\nconst selectedLanguage = ref('EN')\r\n\r\n// watch(selectedLanguage, (value) => {\r\n//   const key = value.toLowerCase()\r\n//   switch(key) {\r\n//     case 'en': {\r\n//       selectedIdx.value = 0\r\n    \r\n//       return \r\n//     }\r\n//     case 'th': {\r\n//       selectedIdx.value = 1\r\n    \r\n//       return \r\n//     }\r\n//     case 'cn': {\r\n//       selectedIdx.value = 2\r\n     \r\n//       return \r\n//     }\r\n//   }\r\n// })\r\n\r\n\r\nconst onChanged = () => {\r\n  const key = selectedLanguage.value.toLowerCase()\r\n  setLocale(key)\r\n  switch(key) {\r\n    case 'en': {\r\n      selectedIdx.value = 0\r\n      return \r\n    }\r\n    case 'th': {\r\n      selectedIdx.value = 1\r\n    \r\n      return \r\n    }\r\n    case 'cn': {\r\n      selectedIdx.value = 2\r\n     \r\n      return \r\n    }\r\n  }\r\n\r\n}\r\n\r\n\r\nconst fetchLang = () => {\r\n  switch(selectedIdx.value) {\r\n    case 0: {\r\n   //   locale.value = 'en'\r\n      selectedLanguage.value = locale.value.toUpperCase()\r\n    //  switchLocalePath( locale.value)\r\n      return \r\n    }\r\n    case 1: {\r\n     // locale.value = 'th'\r\n      selectedLanguage.value = locale.value.toUpperCase()\r\n     // switchLocalePath(locale.value)\r\n      return \r\n    }\r\n    case 2: {\r\n     // locale.value = 'cn'\r\n      selectedLanguage.value = locale.value.toUpperCase()\r\n     // switchLocalePath( locale.value)\r\n      return \r\n    }\r\n  }\r\n}\r\n\r\n fetchLang()\r\n\r\n\r\n\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_a_col = _resolveComponent(\"a-col\")!\n  const _component_a_row = _resolveComponent(\"a-row\")!\n  const _component_a_select_option = _resolveComponent(\"a-select-option\")!\n  const _component_a_select = _resolveComponent(\"a-select\")!\n\n  return (_openBlock(), _createBlock(_component_a_select, {\n    ref: \"select\",\n    value: _unref(selectedLanguage),\n    \"onUpdate:value\": _cache[0] || (_cache[0] = ($event: any) => (_isRef(selectedLanguage) ? (selectedLanguage).value = $event : null)),\n    onChange: onChanged\n  }, {\n    default: _withCtx(() => [\n      (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(languages), (i) => {\n        return (_openBlock(), _createBlock(_component_a_select_option, {\n          key: i.key,\n          value: i.key\n        }, {\n          default: _withCtx(() => [\n            _createVNode(_component_a_row, {\n              justify: \"center\",\n              gutter: 20\n            }, {\n              default: _withCtx(() => [\n                _createVNode(_component_a_col, null, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"img\", {\n                      src: i.image,\n                      style: {\"padding-right\":\"10px\"},\n                      alt: \"\"\n                    }, null, 8, _hoisted_1),\n                    _createElementVNode(\"span\", null, _toDisplayString(i.key), 1)\n                  ]),\n                  _: 2\n                }, 1024)\n              ]),\n              _: 2\n            }, 1024)\n          ]),\n          _: 2\n        }, 1032, [\"value\"]))\n      }), 128))\n    ]),\n    _: 1\n  }, 8, [\"value\"]))\n}\n}\n\n})"
+        ],
+        "mappings": "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",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098854,
+      "end": 1718517098854,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098855,
+      "end": 1718517098855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { storeToRefs } from 'C:/Users/MSII/Desktop/pj/dansavanh/node_modules/@pinia/nuxt/dist/runtime/composables';\nimport { useI18n } from 'C:/Users/MSII/Desktop/pj/dansavanh/node_modules/vue-i18n/dist/vue-i18n.mjs';\nimport { useSwitchLocalePath } from 'C:/Users/MSII/Desktop/pj/dansavanh/node_modules/@nuxtjs/i18n/dist/runtime/composables/index';\nimport { ref } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, createBlock as _createBlock, isRef as _isRef } from \"vue\";\nconst _hoisted_1 = [\"src\"];\nimport enImage from \"../../assets/image/lang/en.png\";\nimport thImage from \"../../assets/image/lang/th.png\";\nimport cnImage from \"../../assets/image/lang/ch.png\";\nimport { useMainStore } from \"~/stores/mainStore\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"LanguageSwitcher\",\n  setup(__props) {\n    const store = useMainStore();\n    const { selectedIdx } = storeToRefs(store);\n    const { locale, setLocale } = useI18n();\n    const switchLocalePath = useSwitchLocalePath();\n    const languages = ref([\n      {\n        key: \"EN\",\n        image: enImage\n      },\n      {\n        key: \"TH\",\n        image: thImage\n      },\n      {\n        key: \"CN\",\n        image: cnImage\n      }\n    ]);\n    const selectedLanguage = ref(\"EN\");\n    const onChanged = () => {\n      const key = selectedLanguage.value.toLowerCase();\n      setLocale(key);\n      switch (key) {\n        case \"en\": {\n          selectedIdx.value = 0;\n          return;\n        }\n        case \"th\": {\n          selectedIdx.value = 1;\n          return;\n        }\n        case \"cn\": {\n          selectedIdx.value = 2;\n          return;\n        }\n      }\n    };\n    const fetchLang = () => {\n      switch (selectedIdx.value) {\n        case 0: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n        case 1: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n        case 2: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n      }\n    };\n    fetchLang();\n    return (_ctx, _cache) => {\n      const _component_a_col = _resolveComponent(\"a-col\");\n      const _component_a_row = _resolveComponent(\"a-row\");\n      const _component_a_select_option = _resolveComponent(\"a-select-option\");\n      const _component_a_select = _resolveComponent(\"a-select\");\n      return _openBlock(), _createBlock(_component_a_select, {\n        ref: \"select\",\n        value: _unref(selectedLanguage),\n        \"onUpdate:value\": _cache[0] || (_cache[0] = ($event) => _isRef(selectedLanguage) ? selectedLanguage.value = $event : null),\n        onChange: onChanged\n      }, {\n        default: _withCtx(() => [\n          (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(languages), (i) => {\n            return _openBlock(), _createBlock(_component_a_select_option, {\n              key: i.key,\n              value: i.key\n            }, {\n              default: _withCtx(() => [\n                _createVNode(_component_a_row, {\n                  justify: \"center\",\n                  gutter: 20\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_a_col, null, {\n                      default: _withCtx(() => [\n                        _createElementVNode(\"img\", {\n                          src: i.image,\n                          style: { \"padding-right\": \"10px\" },\n                          alt: \"\"\n                        }, null, 8, _hoisted_1),\n                        _createElementVNode(\"span\", null, _toDisplayString(i.key), 1)\n                      ]),\n                      _: 2\n                    }, 1024)\n                  ]),\n                  _: 2\n                }, 1024)\n              ]),\n              _: 2\n            }, 1032, [\"value\"]);\n          }), 128))\n        ]),\n        _: 1\n      }, 8, [\"value\"]);\n    };\n  }\n});\n",
+      "start": 1718517098855,
+      "end": 1718517098858,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;;;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzG,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098858,
+      "end": 1718517098859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098859,
+      "end": 1718517098859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098859,
+      "end": 1718517098859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098859,
+      "end": 1718517098859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { Col as __nuxt_component_0 } from \"ant-design-vue/es\";\nimport { Row as __nuxt_component_1 } from \"ant-design-vue/es\";\nimport { SelectOption as __nuxt_component_2 } from \"ant-design-vue/es\";\nimport { Select as __nuxt_component_3 } from \"ant-design-vue/es\";\nimport { storeToRefs } from 'C:/Users/MSII/Desktop/pj/dansavanh/node_modules/@pinia/nuxt/dist/runtime/composables';\nimport { useI18n } from 'C:/Users/MSII/Desktop/pj/dansavanh/node_modules/vue-i18n/dist/vue-i18n.mjs';\nimport { useSwitchLocalePath } from 'C:/Users/MSII/Desktop/pj/dansavanh/node_modules/@nuxtjs/i18n/dist/runtime/composables/index';\nimport { ref } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, createBlock as _createBlock, isRef as _isRef } from \"vue\";\nconst _hoisted_1 = [\"src\"];\nimport enImage from \"../../assets/image/lang/en.png\";\nimport thImage from \"../../assets/image/lang/th.png\";\nimport cnImage from \"../../assets/image/lang/ch.png\";\nimport { useMainStore } from \"~/stores/mainStore\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"LanguageSwitcher\",\n  setup(__props) {\n    const store = useMainStore();\n    const { selectedIdx } = storeToRefs(store);\n    const { locale, setLocale } = useI18n();\n    const switchLocalePath = useSwitchLocalePath();\n    const languages = ref([\n      {\n        key: \"EN\",\n        image: enImage\n      },\n      {\n        key: \"TH\",\n        image: thImage\n      },\n      {\n        key: \"CN\",\n        image: cnImage\n      }\n    ]);\n    const selectedLanguage = ref(\"EN\");\n    const onChanged = () => {\n      const key = selectedLanguage.value.toLowerCase();\n      setLocale(key);\n      switch (key) {\n        case \"en\": {\n          selectedIdx.value = 0;\n          return;\n        }\n        case \"th\": {\n          selectedIdx.value = 1;\n          return;\n        }\n        case \"cn\": {\n          selectedIdx.value = 2;\n          return;\n        }\n      }\n    };\n    const fetchLang = () => {\n      switch (selectedIdx.value) {\n        case 0: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n        case 1: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n        case 2: {\n          selectedLanguage.value = locale.value.toUpperCase();\n          return;\n        }\n      }\n    };\n    fetchLang();\n    return (_ctx, _cache) => {\n      const _component_a_col = __nuxt_component_0;\n      const _component_a_row = __nuxt_component_1;\n      const _component_a_select_option = __nuxt_component_2;\n      const _component_a_select = __nuxt_component_3;\n      return _openBlock(), _createBlock(_component_a_select, {\n        ref: \"select\",\n        value: _unref(selectedLanguage),\n        \"onUpdate:value\": _cache[0] || (_cache[0] = ($event) => _isRef(selectedLanguage) ? selectedLanguage.value = $event : null),\n        onChange: onChanged\n      }, {\n        default: _withCtx(() => [\n          (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(languages), (i) => {\n            return _openBlock(), _createBlock(_component_a_select_option, {\n              key: i.key,\n              value: i.key\n            }, {\n              default: _withCtx(() => [\n                _createVNode(_component_a_row, {\n                  justify: \"center\",\n                  gutter: 20\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_a_col, null, {\n                      default: _withCtx(() => [\n                        _createElementVNode(\"img\", {\n                          src: i.image,\n                          style: { \"padding-right\": \"10px\" },\n                          alt: \"\"\n                        }, null, 8, _hoisted_1),\n                        _createElementVNode(\"span\", null, _toDisplayString(i.key), 1)\n                      ]),\n                      _: 2\n                    }, 1024)\n                  ]),\n                  _: 2\n                }, 1024)\n              ]),\n              _: 2\n            }, 1032, [\"value\"]);\n          }), 128))\n        ]),\n        _: 1\n      }, 8, [\"value\"]);\n    };\n  }\n});\n",
+      "start": 1718517098859,
+      "end": 1718517098859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098859,
+      "end": 1718517098859,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098859,
+      "end": 1718517098859,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098859,
+      "end": 1718517098859,
+      "order": "normal"
+    }
+  ]
+}

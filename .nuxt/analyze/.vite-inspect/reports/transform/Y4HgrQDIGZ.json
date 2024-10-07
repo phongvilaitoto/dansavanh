@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-align/Align.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { nextTick, defineComponent, ref, computed, onMounted, onUpdated, watch, onUnmounted } from 'vue';\nimport { alignElement, alignPoint } from 'dom-align';\nimport addEventListener from '../vc-util/Dom/addEventListener';\nimport { cloneElement } from '../_util/vnode';\nimport isVisible from '../vc-util/Dom/isVisible';\nimport { isSamePoint, restoreFocus, monitorResize } from './util';\nimport useBuffer from './hooks/useBuffer';\nimport isEqual from 'lodash-es/isEqual';\nexport const alignProps = {\n  align: Object,\n  target: [Object, Function],\n  onAlign: Function,\n  monitorBufferTime: Number,\n  monitorWindowResize: Boolean,\n  disabled: Boolean\n};\nfunction getElement(func) {\n  if (typeof func !== 'function') return null;\n  return func();\n}\nfunction getPoint(point) {\n  if (typeof point !== 'object' || !point) return null;\n  return point;\n}\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'Align',\n  props: alignProps,\n  emits: ['align'],\n  setup(props, _ref) {\n    let {\n      expose,\n      slots\n    } = _ref;\n    const cacheRef = ref({});\n    const nodeRef = ref();\n    const [forceAlign, cancelForceAlign] = useBuffer(() => {\n      const {\n        disabled: latestDisabled,\n        target: latestTarget,\n        align: latestAlign,\n        onAlign: latestOnAlign\n      } = props;\n      if (!latestDisabled && latestTarget && nodeRef.value) {\n        const source = nodeRef.value;\n        let result;\n        const element = getElement(latestTarget);\n        const point = getPoint(latestTarget);\n        cacheRef.value.element = element;\n        cacheRef.value.point = point;\n        cacheRef.value.align = latestAlign;\n        // IE lose focus after element realign\n        // We should record activeElement and restore later\n        const {\n          activeElement\n        } = document;\n        // We only align when element is visible\n        if (element && isVisible(element)) {\n          result = alignElement(source, element, latestAlign);\n        } else if (point) {\n          result = alignPoint(source, point, latestAlign);\n        }\n        restoreFocus(activeElement, source);\n        if (latestOnAlign && result) {\n          latestOnAlign(source, result);\n        }\n        return true;\n      }\n      return false;\n    }, computed(() => props.monitorBufferTime));\n    // ===================== Effect =====================\n    // Listen for target updated\n    const resizeMonitor = ref({\n      cancel: () => {}\n    });\n    // Listen for source updated\n    const sourceResizeMonitor = ref({\n      cancel: () => {}\n    });\n    const goAlign = () => {\n      const target = props.target;\n      const element = getElement(target);\n      const point = getPoint(target);\n      if (nodeRef.value !== sourceResizeMonitor.value.element) {\n        sourceResizeMonitor.value.cancel();\n        sourceResizeMonitor.value.element = nodeRef.value;\n        sourceResizeMonitor.value.cancel = monitorResize(nodeRef.value, forceAlign);\n      }\n      if (cacheRef.value.element !== element || !isSamePoint(cacheRef.value.point, point) || !isEqual(cacheRef.value.align, props.align)) {\n        forceAlign();\n        // Add resize observer\n        if (resizeMonitor.value.element !== element) {\n          resizeMonitor.value.cancel();\n          resizeMonitor.value.element = element;\n          resizeMonitor.value.cancel = monitorResize(element, forceAlign);\n        }\n      }\n    };\n    onMounted(() => {\n      nextTick(() => {\n        goAlign();\n      });\n    });\n    onUpdated(() => {\n      nextTick(() => {\n        goAlign();\n      });\n    });\n    // Listen for disabled change\n    watch(() => props.disabled, disabled => {\n      if (!disabled) {\n        forceAlign();\n      } else {\n        cancelForceAlign();\n      }\n    }, {\n      immediate: true,\n      flush: 'post'\n    });\n    // Listen for window resize\n    const winResizeRef = ref(null);\n    watch(() => props.monitorWindowResize, monitorWindowResize => {\n      if (monitorWindowResize) {\n        if (!winResizeRef.value) {\n          winResizeRef.value = addEventListener(window, 'resize', forceAlign);\n        }\n      } else if (winResizeRef.value) {\n        winResizeRef.value.remove();\n        winResizeRef.value = null;\n      }\n    }, {\n      flush: 'post'\n    });\n    onUnmounted(() => {\n      resizeMonitor.value.cancel();\n      sourceResizeMonitor.value.cancel();\n      if (winResizeRef.value) winResizeRef.value.remove();\n      cancelForceAlign();\n    });\n    expose({\n      forceAlign: () => forceAlign(true)\n    });\n    return () => {\n      const child = slots === null || slots === void 0 ? void 0 : slots.default();\n      if (child) {\n        return cloneElement(child[0], {\n          ref: nodeRef\n        }, true, true);\n      }\n      return null;\n    };\n  }\n});",
+      "start": 1718517100266,
+      "end": 1718517100294,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100294,
+      "end": 1718517100294,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100294,
+      "end": 1718517100295,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100295,
+      "end": 1718517100295,
+      "order": "normal"
+    }
+  ]
+}

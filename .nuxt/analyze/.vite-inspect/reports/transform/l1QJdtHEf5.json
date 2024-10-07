@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-slider/src/Range.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport classNames from '../../_util/classNames';\nimport PropTypes, { withUndefined } from '../../_util/vue-types';\nimport BaseMixin from '../../_util/BaseMixin';\nimport { hasProp } from '../../_util/props-util';\nimport Track from './common/Track';\nimport createSlider from './common/createSlider';\nimport * as utils from './utils';\nimport initDefaultProps from '../../_util/props-util/initDefaultProps';\nimport { defineComponent } from 'vue';\nconst trimAlignValue = _ref => {\n  let {\n    value,\n    handle,\n    bounds,\n    props\n  } = _ref;\n  const {\n    allowCross,\n    pushable\n  } = props;\n  const thershold = Number(pushable);\n  const valInRange = utils.ensureValueInRange(value, props);\n  let valNotConflict = valInRange;\n  if (!allowCross && handle != null && bounds !== undefined) {\n    if (handle > 0 && valInRange <= bounds[handle - 1] + thershold) {\n      valNotConflict = bounds[handle - 1] + thershold;\n    }\n    if (handle < bounds.length - 1 && valInRange >= bounds[handle + 1] - thershold) {\n      valNotConflict = bounds[handle + 1] - thershold;\n    }\n  }\n  return utils.ensureValuePrecision(valNotConflict, props);\n};\nconst rangeProps = {\n  defaultValue: PropTypes.arrayOf(PropTypes.number),\n  value: PropTypes.arrayOf(PropTypes.number),\n  count: Number,\n  pushable: withUndefined(PropTypes.oneOfType([PropTypes.looseBool, PropTypes.number])),\n  allowCross: {\n    type: Boolean,\n    default: undefined\n  },\n  disabled: {\n    type: Boolean,\n    default: undefined\n  },\n  reverse: {\n    type: Boolean,\n    default: undefined\n  },\n  tabindex: PropTypes.arrayOf(PropTypes.number),\n  prefixCls: String,\n  min: Number,\n  max: Number,\n  autofocus: {\n    type: Boolean,\n    default: undefined\n  },\n  ariaLabelGroupForHandles: Array,\n  ariaLabelledByGroupForHandles: Array,\n  ariaValueTextFormatterGroupForHandles: Array,\n  draggableTrack: {\n    type: Boolean,\n    default: undefined\n  }\n};\nconst Range = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'Range',\n  mixins: [BaseMixin],\n  inheritAttrs: false,\n  props: initDefaultProps(rangeProps, {\n    count: 1,\n    allowCross: true,\n    pushable: false,\n    tabindex: [],\n    draggableTrack: false,\n    ariaLabelGroupForHandles: [],\n    ariaLabelledByGroupForHandles: [],\n    ariaValueTextFormatterGroupForHandles: []\n  }),\n  emits: ['beforeChange', 'afterChange', 'change'],\n  displayName: 'Range',\n  data() {\n    const {\n      count,\n      min,\n      max\n    } = this;\n    const initialValue = Array(...Array(count + 1)).map(() => min);\n    const defaultValue = hasProp(this, 'defaultValue') ? this.defaultValue : initialValue;\n    let {\n      value\n    } = this;\n    if (value === undefined) {\n      value = defaultValue;\n    }\n    const bounds = value.map((v, i) => trimAlignValue({\n      value: v,\n      handle: i,\n      props: this.$props\n    }));\n    const recent = bounds[0] === max ? 0 : bounds.length - 1;\n    return {\n      sHandle: null,\n      recent,\n      bounds\n    };\n  },\n  watch: {\n    value: {\n      handler(val) {\n        const {\n          bounds\n        } = this;\n        this.setChangeValue(val || bounds);\n      },\n      deep: true\n    },\n    min() {\n      const {\n        value\n      } = this;\n      this.setChangeValue(value || this.bounds);\n    },\n    max() {\n      const {\n        value\n      } = this;\n      this.setChangeValue(value || this.bounds);\n    }\n  },\n  methods: {\n    setChangeValue(value) {\n      const {\n        bounds\n      } = this;\n      let nextBounds = value.map((v, i) => trimAlignValue({\n        value: v,\n        handle: i,\n        bounds,\n        props: this.$props\n      }));\n      if (bounds.length === nextBounds.length) {\n        if (nextBounds.every((v, i) => v === bounds[i])) {\n          return null;\n        }\n      } else {\n        nextBounds = value.map((v, i) => trimAlignValue({\n          value: v,\n          handle: i,\n          props: this.$props\n        }));\n      }\n      this.setState({\n        bounds: nextBounds\n      });\n      if (value.some(v => utils.isValueOutOfRange(v, this.$props))) {\n        const newValues = value.map(v => {\n          return utils.ensureValueInRange(v, this.$props);\n        });\n        this.$emit('change', newValues);\n      }\n    },\n    onChange(state) {\n      const isNotControlled = !hasProp(this, 'value');\n      if (isNotControlled) {\n        this.setState(state);\n      } else {\n        const controlledState = {};\n        ['sHandle', 'recent'].forEach(item => {\n          if (state[item] !== undefined) {\n            controlledState[item] = state[item];\n          }\n        });\n        if (Object.keys(controlledState).length) {\n          this.setState(controlledState);\n        }\n      }\n      const data = _extends(_extends({}, this.$data), state);\n      const changedValue = data.bounds;\n      this.$emit('change', changedValue);\n    },\n    positionGetValue(position) {\n      const bounds = this.getValue();\n      const value = this.calcValueByPos(position);\n      const closestBound = this.getClosestBound(value);\n      const index = this.getBoundNeedMoving(value, closestBound);\n      const prevValue = bounds[index];\n      if (value === prevValue) return null;\n      const nextBounds = [...bounds];\n      nextBounds[index] = value;\n      return nextBounds;\n    },\n    onStart(position) {\n      const {\n        bounds\n      } = this;\n      this.$emit('beforeChange', bounds);\n      const value = this.calcValueByPos(position);\n      this.startValue = value;\n      this.startPosition = position;\n      const closestBound = this.getClosestBound(value);\n      this.prevMovedHandleIndex = this.getBoundNeedMoving(value, closestBound);\n      this.setState({\n        sHandle: this.prevMovedHandleIndex,\n        recent: this.prevMovedHandleIndex\n      });\n      const prevValue = bounds[this.prevMovedHandleIndex];\n      if (value === prevValue) return;\n      const nextBounds = [...bounds];\n      nextBounds[this.prevMovedHandleIndex] = value;\n      this.onChange({\n        bounds: nextBounds\n      });\n    },\n    onEnd(force) {\n      const {\n        sHandle\n      } = this;\n      this.removeDocumentEvents();\n      if (!sHandle) {\n        this.dragTrack = false;\n      }\n      if (sHandle !== null || force) {\n        this.$emit('afterChange', this.bounds);\n      }\n      this.setState({\n        sHandle: null\n      });\n    },\n    onMove(e, position, dragTrack, startBounds) {\n      utils.pauseEvent(e);\n      const {\n        $data: state,\n        $props: props\n      } = this;\n      const maxValue = props.max || 100;\n      const minValue = props.min || 0;\n      if (dragTrack) {\n        let pos = props.vertical ? -position : position;\n        pos = props.reverse ? -pos : pos;\n        const max = maxValue - Math.max(...startBounds);\n        const min = minValue - Math.min(...startBounds);\n        const ratio = Math.min(Math.max(pos / (this.getSliderLength() / 100), min), max);\n        const nextBounds = startBounds.map(v => Math.floor(Math.max(Math.min(v + ratio, maxValue), minValue)));\n        if (state.bounds.map((c, i) => c === nextBounds[i]).some(c => !c)) {\n          this.onChange({\n            bounds: nextBounds\n          });\n        }\n        return;\n      }\n      const {\n        bounds,\n        sHandle\n      } = this;\n      const value = this.calcValueByPos(position);\n      const oldValue = bounds[sHandle];\n      if (value === oldValue) return;\n      this.moveTo(value);\n    },\n    onKeyboard(e) {\n      const {\n        reverse,\n        vertical\n      } = this.$props;\n      const valueMutator = utils.getKeyboardValueMutator(e, vertical, reverse);\n      if (valueMutator) {\n        utils.pauseEvent(e);\n        const {\n          bounds,\n          sHandle\n        } = this;\n        const oldValue = bounds[sHandle === null ? this.recent : sHandle];\n        const mutatedValue = valueMutator(oldValue, this.$props);\n        const value = trimAlignValue({\n          value: mutatedValue,\n          handle: sHandle,\n          bounds,\n          props: this.$props\n        });\n        if (value === oldValue) return;\n        const isFromKeyboardEvent = true;\n        this.moveTo(value, isFromKeyboardEvent);\n      }\n    },\n    getClosestBound(value) {\n      const {\n        bounds\n      } = this;\n      let closestBound = 0;\n      for (let i = 1; i < bounds.length - 1; i += 1) {\n        if (value >= bounds[i]) {\n          closestBound = i;\n        }\n      }\n      if (Math.abs(bounds[closestBound + 1] - value) < Math.abs(bounds[closestBound] - value)) {\n        closestBound += 1;\n      }\n      return closestBound;\n    },\n    getBoundNeedMoving(value, closestBound) {\n      const {\n        bounds,\n        recent\n      } = this;\n      let boundNeedMoving = closestBound;\n      const isAtTheSamePoint = bounds[closestBound + 1] === bounds[closestBound];\n      if (isAtTheSamePoint && bounds[recent] === bounds[closestBound]) {\n        boundNeedMoving = recent;\n      }\n      if (isAtTheSamePoint && value !== bounds[closestBound + 1]) {\n        boundNeedMoving = value < bounds[closestBound + 1] ? closestBound : closestBound + 1;\n      }\n      return boundNeedMoving;\n    },\n    getLowerBound() {\n      return this.bounds[0];\n    },\n    getUpperBound() {\n      const {\n        bounds\n      } = this;\n      return bounds[bounds.length - 1];\n    },\n    /**\n     * Returns an array of possible slider points, taking into account both\n     * `marks` and `step`. The result is cached.\n     */\n    getPoints() {\n      const {\n        marks,\n        step,\n        min,\n        max\n      } = this;\n      const cache = this.internalPointsCache;\n      if (!cache || cache.marks !== marks || cache.step !== step) {\n        const pointsObject = _extends({}, marks);\n        if (step !== null) {\n          for (let point = min; point <= max; point += step) {\n            pointsObject[point] = point;\n          }\n        }\n        const points = Object.keys(pointsObject).map(parseFloat);\n        points.sort((a, b) => a - b);\n        this.internalPointsCache = {\n          marks,\n          step,\n          points\n        };\n      }\n      return this.internalPointsCache.points;\n    },\n    moveTo(value, isFromKeyboardEvent) {\n      const nextBounds = [...this.bounds];\n      const {\n        sHandle,\n        recent\n      } = this;\n      const handle = sHandle === null ? recent : sHandle;\n      nextBounds[handle] = value;\n      let nextHandle = handle;\n      if (this.$props.pushable !== false) {\n        this.pushSurroundingHandles(nextBounds, nextHandle);\n      } else if (this.$props.allowCross) {\n        nextBounds.sort((a, b) => a - b);\n        nextHandle = nextBounds.indexOf(value);\n      }\n      this.onChange({\n        recent: nextHandle,\n        sHandle: nextHandle,\n        bounds: nextBounds\n      });\n      if (isFromKeyboardEvent) {\n        // known problem: because setState is async,\n        // so trigger focus will invoke handler's onEnd and another handler's onStart too early,\n        // cause onBeforeChange and onAfterChange receive wrong value.\n        // here use setState callback to hack，but not elegant\n        this.$emit('afterChange', nextBounds);\n        this.setState({}, () => {\n          this.handlesRefs[nextHandle].focus();\n        });\n        this.onEnd();\n      }\n    },\n    pushSurroundingHandles(bounds, handle) {\n      const value = bounds[handle];\n      const {\n        pushable\n      } = this;\n      const threshold = Number(pushable);\n      let direction = 0;\n      if (bounds[handle + 1] - value < threshold) {\n        direction = +1; // push to right\n      }\n      if (value - bounds[handle - 1] < threshold) {\n        direction = -1; // push to left\n      }\n      if (direction === 0) {\n        return;\n      }\n      const nextHandle = handle + direction;\n      const diffToNext = direction * (bounds[nextHandle] - value);\n      if (!this.pushHandle(bounds, nextHandle, direction, threshold - diffToNext)) {\n        // revert to original value if pushing is impossible\n        bounds[handle] = bounds[nextHandle] - direction * threshold;\n      }\n    },\n    pushHandle(bounds, handle, direction, amount) {\n      const originalValue = bounds[handle];\n      let currentValue = bounds[handle];\n      while (direction * (currentValue - originalValue) < amount) {\n        if (!this.pushHandleOnePoint(bounds, handle, direction)) {\n          // can't push handle enough to create the needed `amount` gap, so we\n          // revert its position to the original value\n          bounds[handle] = originalValue;\n          return false;\n        }\n        currentValue = bounds[handle];\n      }\n      // the handle was pushed enough to create the needed `amount` gap\n      return true;\n    },\n    pushHandleOnePoint(bounds, handle, direction) {\n      const points = this.getPoints();\n      const pointIndex = points.indexOf(bounds[handle]);\n      const nextPointIndex = pointIndex + direction;\n      if (nextPointIndex >= points.length || nextPointIndex < 0) {\n        // reached the minimum or maximum available point, can't push anymore\n        return false;\n      }\n      const nextHandle = handle + direction;\n      const nextValue = points[nextPointIndex];\n      const {\n        pushable\n      } = this;\n      const threshold = Number(pushable);\n      const diffToNext = direction * (bounds[nextHandle] - nextValue);\n      if (!this.pushHandle(bounds, nextHandle, direction, threshold - diffToNext)) {\n        // couldn't push next handle, so we won't push this one either\n        return false;\n      }\n      // push the handle\n      bounds[handle] = nextValue;\n      return true;\n    },\n    trimAlignValue(value) {\n      const {\n        sHandle,\n        bounds\n      } = this;\n      return trimAlignValue({\n        value,\n        handle: sHandle,\n        bounds,\n        props: this.$props\n      });\n    },\n    ensureValueNotConflict(handle, val, _ref2) {\n      let {\n        allowCross,\n        pushable: thershold\n      } = _ref2;\n      const state = this.$data || {};\n      const {\n        bounds\n      } = state;\n      handle = handle === undefined ? state.sHandle : handle;\n      thershold = Number(thershold);\n      /* eslint-disable eqeqeq */\n      if (!allowCross && handle != null && bounds !== undefined) {\n        if (handle > 0 && val <= bounds[handle - 1] + thershold) {\n          return bounds[handle - 1] + thershold;\n        }\n        if (handle < bounds.length - 1 && val >= bounds[handle + 1] - thershold) {\n          return bounds[handle + 1] - thershold;\n        }\n      }\n      /* eslint-enable eqeqeq */\n      return val;\n    },\n    getTrack(_ref3) {\n      let {\n        bounds,\n        prefixCls,\n        reverse,\n        vertical,\n        included,\n        offsets,\n        trackStyle\n      } = _ref3;\n      return bounds.slice(0, -1).map((_, index) => {\n        const i = index + 1;\n        const trackClassName = classNames({\n          [`${prefixCls}-track`]: true,\n          [`${prefixCls}-track-${i}`]: true\n        });\n        return _createVNode(Track, {\n          \"class\": trackClassName,\n          \"vertical\": vertical,\n          \"reverse\": reverse,\n          \"included\": included,\n          \"offset\": offsets[i - 1],\n          \"length\": offsets[i] - offsets[i - 1],\n          \"style\": trackStyle[index],\n          \"key\": i\n        }, null);\n      });\n    },\n    renderSlider() {\n      const {\n        sHandle,\n        bounds,\n        prefixCls,\n        vertical,\n        included,\n        disabled,\n        min,\n        max,\n        reverse,\n        handle,\n        defaultHandle,\n        trackStyle,\n        handleStyle,\n        tabindex,\n        ariaLabelGroupForHandles,\n        ariaLabelledByGroupForHandles,\n        ariaValueTextFormatterGroupForHandles\n      } = this;\n      const handleGenerator = handle || defaultHandle;\n      const offsets = bounds.map(v => this.calcOffset(v));\n      const handleClassName = `${prefixCls}-handle`;\n      const handles = bounds.map((v, i) => {\n        let mergedTabIndex = tabindex[i] || 0;\n        if (disabled || tabindex[i] === null) {\n          mergedTabIndex = null;\n        }\n        const dragging = sHandle === i;\n        return handleGenerator({\n          class: classNames({\n            [handleClassName]: true,\n            [`${handleClassName}-${i + 1}`]: true,\n            [`${handleClassName}-dragging`]: dragging\n          }),\n          prefixCls,\n          vertical,\n          dragging,\n          offset: offsets[i],\n          value: v,\n          index: i,\n          tabindex: mergedTabIndex,\n          min,\n          max,\n          reverse,\n          disabled,\n          style: handleStyle[i],\n          ref: h => this.saveHandle(i, h),\n          onFocus: this.onFocus,\n          onBlur: this.onBlur,\n          ariaLabel: ariaLabelGroupForHandles[i],\n          ariaLabelledBy: ariaLabelledByGroupForHandles[i],\n          ariaValueTextFormatter: ariaValueTextFormatterGroupForHandles[i]\n        });\n      });\n      return {\n        tracks: this.getTrack({\n          bounds,\n          prefixCls,\n          reverse,\n          vertical,\n          included,\n          offsets,\n          trackStyle\n        }),\n        handles\n      };\n    }\n  }\n});\nexport default createSlider(Range);",
+      "start": 1718517097725,
+      "end": 1718517097793,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097793,
+      "end": 1718517097793,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097793,
+      "end": 1718517097794,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097794,
+      "end": 1718517097794,
+      "order": "normal"
+    }
+  ]
+}

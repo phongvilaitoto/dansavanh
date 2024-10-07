@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/typography/style/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { genComponentStyleHook } from '../../theme/internal';\nimport { getCopiableStyles, getEditableStyles, getEllipsisStyles, getLinkStyles, getResetStyles, getTitleStyles } from './mixins';\nimport { operationUnit } from '../../style';\nconst genTypographyStyle = token => {\n  const {\n    componentCls,\n    sizeMarginHeadingVerticalStart\n  } = token;\n  return {\n    [componentCls]: _extends(_extends(_extends(_extends(_extends(_extends(_extends(_extends(_extends({\n      color: token.colorText,\n      wordBreak: 'break-word',\n      lineHeight: token.lineHeight,\n      [`&${componentCls}-secondary`]: {\n        color: token.colorTextDescription\n      },\n      [`&${componentCls}-success`]: {\n        color: token.colorSuccess\n      },\n      [`&${componentCls}-warning`]: {\n        color: token.colorWarning\n      },\n      [`&${componentCls}-danger`]: {\n        color: token.colorError,\n        'a&:active, a&:focus': {\n          color: token.colorErrorActive\n        },\n        'a&:hover': {\n          color: token.colorErrorHover\n        }\n      },\n      [`&${componentCls}-disabled`]: {\n        color: token.colorTextDisabled,\n        cursor: 'not-allowed',\n        userSelect: 'none'\n      },\n      [`\n        div&,\n        p\n      `]: {\n        marginBottom: '1em'\n      }\n    }, getTitleStyles(token)), {\n      [`\n      & + h1${componentCls},\n      & + h2${componentCls},\n      & + h3${componentCls},\n      & + h4${componentCls},\n      & + h5${componentCls}\n      `]: {\n        marginTop: sizeMarginHeadingVerticalStart\n      },\n      [`\n      div,\n      ul,\n      li,\n      p,\n      h1,\n      h2,\n      h3,\n      h4,\n      h5`]: {\n        [`\n        + h1,\n        + h2,\n        + h3,\n        + h4,\n        + h5\n        `]: {\n          marginTop: sizeMarginHeadingVerticalStart\n        }\n      }\n    }), getResetStyles()), getLinkStyles(token)), {\n      // Operation\n      [`\n        ${componentCls}-expand,\n        ${componentCls}-edit,\n        ${componentCls}-copy\n      `]: _extends(_extends({}, operationUnit(token)), {\n        marginInlineStart: token.marginXXS\n      })\n    }), getEditableStyles(token)), getCopiableStyles(token)), getEllipsisStyles()), {\n      '&-rtl': {\n        direction: 'rtl'\n      }\n    })\n  };\n};\n// ============================== Export ==============================\nexport default genComponentStyleHook('Typography', token => [genTypographyStyle(token)], {\n  sizeMarginHeadingVerticalStart: '1.2em',\n  sizeMarginHeadingVerticalEnd: '0.5em'\n});",
+      "start": 1718517098616,
+      "end": 1718517098663,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098663,
+      "end": 1718517098663,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098663,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098664,
+      "end": 1718517098664,
+      "order": "normal"
+    }
+  ]
+}

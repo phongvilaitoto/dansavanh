@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-select/Selector/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\n/**\n * Cursor rule:\n * 1. Only `showSearch` enabled\n * 2. Only `open` is `true`\n * 3. When typing, set `open` to `true` which hit rule of 2\n *\n * Accessibility:\n * - https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html\n */\nimport KeyCode from '../../_util/KeyCode';\nimport MultipleSelector from './MultipleSelector';\nimport SingleSelector from './SingleSelector';\nimport { isValidateOpenKey } from '../utils/keyUtil';\nimport useLock from '../hooks/useLock';\nimport { defineComponent } from 'vue';\nimport createRef from '../../_util/createRef';\nimport PropTypes from '../../_util/vue-types';\nconst Selector = defineComponent({\n  name: 'Selector',\n  inheritAttrs: false,\n  props: {\n    id: String,\n    prefixCls: String,\n    showSearch: {\n      type: Boolean,\n      default: undefined\n    },\n    open: {\n      type: Boolean,\n      default: undefined\n    },\n    /** Display in the Selector value, it's not same as `value` prop */\n    values: PropTypes.array,\n    multiple: {\n      type: Boolean,\n      default: undefined\n    },\n    mode: String,\n    searchValue: String,\n    activeValue: String,\n    inputElement: PropTypes.any,\n    autofocus: {\n      type: Boolean,\n      default: undefined\n    },\n    activeDescendantId: String,\n    tabindex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),\n    disabled: {\n      type: Boolean,\n      default: undefined\n    },\n    placeholder: PropTypes.any,\n    removeIcon: PropTypes.any,\n    // Tags\n    maxTagCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),\n    maxTagTextLength: Number,\n    maxTagPlaceholder: PropTypes.any,\n    tagRender: Function,\n    optionLabelRender: Function,\n    /** Check if `tokenSeparators` contains `\\n` or `\\r\\n` */\n    tokenWithEnter: {\n      type: Boolean,\n      default: undefined\n    },\n    // Motion\n    choiceTransitionName: String,\n    onToggleOpen: {\n      type: Function\n    },\n    /** `onSearch` returns go next step boolean to check if need do toggle open */\n    onSearch: Function,\n    onSearchSubmit: Function,\n    onRemove: Function,\n    onInputKeyDown: {\n      type: Function\n    },\n    /**\n     * @private get real dom for trigger align.\n     * This may be removed after React provides replacement of `findDOMNode`\n     */\n    domRef: Function\n  },\n  setup(props, _ref) {\n    let {\n      expose\n    } = _ref;\n    const inputRef = createRef();\n    let compositionStatus = false;\n    // ====================== Input ======================\n    const [getInputMouseDown, setInputMouseDown] = useLock(0);\n    const onInternalInputKeyDown = event => {\n      const {\n        which\n      } = event;\n      if (which === KeyCode.UP || which === KeyCode.DOWN) {\n        event.preventDefault();\n      }\n      if (props.onInputKeyDown) {\n        props.onInputKeyDown(event);\n      }\n      if (which === KeyCode.ENTER && props.mode === 'tags' && !compositionStatus && !props.open) {\n        // When menu isn't open, OptionList won't trigger a value change\n        // So when enter is pressed, the tag's input value should be emitted here to let selector know\n        props.onSearchSubmit(event.target.value);\n      }\n      if (isValidateOpenKey(which)) {\n        props.onToggleOpen(true);\n      }\n    };\n    /**\n     * We can not use `findDOMNode` sine it will get warning,\n     * have to use timer to check if is input element.\n     */\n    const onInternalInputMouseDown = () => {\n      setInputMouseDown(true);\n    };\n    // When paste come, ignore next onChange\n    let pastedText = null;\n    const triggerOnSearch = value => {\n      if (props.onSearch(value, true, compositionStatus) !== false) {\n        props.onToggleOpen(true);\n      }\n    };\n    const onInputCompositionStart = () => {\n      compositionStatus = true;\n    };\n    const onInputCompositionEnd = e => {\n      compositionStatus = false;\n      // Trigger search again to support `tokenSeparators` with typewriting\n      if (props.mode !== 'combobox') {\n        triggerOnSearch(e.target.value);\n      }\n    };\n    const onInputChange = event => {\n      let {\n        target: {\n          value\n        }\n      } = event;\n      // Pasted text should replace back to origin content\n      if (props.tokenWithEnter && pastedText && /[\\r\\n]/.test(pastedText)) {\n        // CRLF will be treated as a single space for input element\n        const replacedText = pastedText.replace(/[\\r\\n]+$/, '').replace(/\\r\\n/g, ' ').replace(/[\\r\\n]/g, ' ');\n        value = value.replace(replacedText, pastedText);\n      }\n      pastedText = null;\n      triggerOnSearch(value);\n    };\n    const onInputPaste = e => {\n      const {\n        clipboardData\n      } = e;\n      const value = clipboardData.getData('text');\n      pastedText = value;\n    };\n    const onClick = _ref2 => {\n      let {\n        target\n      } = _ref2;\n      if (target !== inputRef.current) {\n        // Should focus input if click the selector\n        const isIE = document.body.style.msTouchAction !== undefined;\n        if (isIE) {\n          setTimeout(() => {\n            inputRef.current.focus();\n          });\n        } else {\n          inputRef.current.focus();\n        }\n      }\n    };\n    const onMousedown = event => {\n      const inputMouseDown = getInputMouseDown();\n      if (event.target !== inputRef.current && !inputMouseDown) {\n        event.preventDefault();\n      }\n      if (props.mode !== 'combobox' && (!props.showSearch || !inputMouseDown) || !props.open) {\n        if (props.open) {\n          props.onSearch('', true, false);\n        }\n        props.onToggleOpen();\n      }\n    };\n    expose({\n      focus: () => {\n        inputRef.current.focus();\n      },\n      blur: () => {\n        inputRef.current.blur();\n      }\n    });\n    return () => {\n      const {\n        prefixCls,\n        domRef,\n        mode\n      } = props;\n      const sharedProps = {\n        inputRef,\n        onInputKeyDown: onInternalInputKeyDown,\n        onInputMouseDown: onInternalInputMouseDown,\n        onInputChange,\n        onInputPaste,\n        onInputCompositionStart,\n        onInputCompositionEnd\n      };\n      const selectNode = mode === 'multiple' || mode === 'tags' ? _createVNode(MultipleSelector, _objectSpread(_objectSpread({}, props), sharedProps), null) : _createVNode(SingleSelector, _objectSpread(_objectSpread({}, props), sharedProps), null);\n      return _createVNode(\"div\", {\n        \"ref\": domRef,\n        \"class\": `${prefixCls}-selector`,\n        \"onClick\": onClick,\n        \"onMousedown\": onMousedown\n      }, [selectNode]);\n    };\n  }\n});\nexport default Selector;",
+      "start": 1718517099433,
+      "end": 1718517099463,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099463,
+      "end": 1718517099463,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099463,
+      "end": 1718517099464,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099464,
+      "end": 1718517099464,
+      "order": "normal"
+    }
+  ]
+}

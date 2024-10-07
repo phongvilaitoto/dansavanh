@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/carousel/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { ref, computed, watchEffect, defineComponent } from 'vue';\nimport PropTypes from '../_util/vue-types';\nimport warning from '../_util/warning';\nimport classNames from '../_util/classNames';\nimport SlickCarousel from '../vc-slick';\nimport { withInstall, booleanType, functionType, stringType } from '../_util/type';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\n// CSSINJS\nimport useStyle from './style';\n// Carousel\nexport const carouselProps = () => ({\n  effect: stringType(),\n  dots: booleanType(true),\n  vertical: booleanType(),\n  autoplay: booleanType(),\n  easing: String,\n  beforeChange: functionType(),\n  afterChange: functionType(),\n  // style: PropTypes.React.CSSProperties,\n  prefixCls: String,\n  accessibility: booleanType(),\n  nextArrow: PropTypes.any,\n  prevArrow: PropTypes.any,\n  pauseOnHover: booleanType(),\n  // className: String,\n  adaptiveHeight: booleanType(),\n  arrows: booleanType(false),\n  autoplaySpeed: Number,\n  centerMode: booleanType(),\n  centerPadding: String,\n  cssEase: String,\n  dotsClass: String,\n  draggable: booleanType(false),\n  fade: booleanType(),\n  focusOnSelect: booleanType(),\n  infinite: booleanType(),\n  initialSlide: Number,\n  lazyLoad: stringType(),\n  rtl: booleanType(),\n  slide: String,\n  slidesToShow: Number,\n  slidesToScroll: Number,\n  speed: Number,\n  swipe: booleanType(),\n  swipeToSlide: booleanType(),\n  swipeEvent: functionType(),\n  touchMove: booleanType(),\n  touchThreshold: Number,\n  variableWidth: booleanType(),\n  useCSS: booleanType(),\n  slickGoTo: Number,\n  responsive: Array,\n  dotPosition: stringType(),\n  verticalSwiping: booleanType(false)\n});\nconst Carousel = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ACarousel',\n  inheritAttrs: false,\n  props: carouselProps(),\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs,\n      expose\n    } = _ref;\n    const slickRef = ref();\n    const goTo = function (slide) {\n      let dontAnimate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;\n      var _a;\n      (_a = slickRef.value) === null || _a === void 0 ? void 0 : _a.slickGoTo(slide, dontAnimate);\n    };\n    expose({\n      goTo,\n      autoplay: palyType => {\n        var _a, _b;\n        (_b = (_a = slickRef.value) === null || _a === void 0 ? void 0 : _a.innerSlider) === null || _b === void 0 ? void 0 : _b.handleAutoPlay(palyType);\n      },\n      prev: () => {\n        var _a;\n        (_a = slickRef.value) === null || _a === void 0 ? void 0 : _a.slickPrev();\n      },\n      next: () => {\n        var _a;\n        (_a = slickRef.value) === null || _a === void 0 ? void 0 : _a.slickNext();\n      },\n      innerSlider: computed(() => {\n        var _a;\n        return (_a = slickRef.value) === null || _a === void 0 ? void 0 : _a.innerSlider;\n      })\n    });\n    watchEffect(() => {\n      warning(props.vertical === undefined, 'Carousel', '`vertical` is deprecated, please use `dotPosition` instead.');\n    });\n    const {\n      prefixCls,\n      direction\n    } = useConfigInject('carousel', props);\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const dotPosition = computed(() => {\n      if (props.dotPosition) return props.dotPosition;\n      if (props.vertical !== undefined) return props.vertical ? 'right' : 'bottom';\n      return 'bottom';\n    });\n    const vertical = computed(() => dotPosition.value === 'left' || dotPosition.value === 'right');\n    const dsClass = computed(() => {\n      const dotsClass = 'slick-dots';\n      return classNames({\n        [dotsClass]: true,\n        [`${dotsClass}-${dotPosition.value}`]: true,\n        [`${props.dotsClass}`]: !!props.dotsClass\n      });\n    });\n    return () => {\n      const {\n        dots,\n        arrows,\n        draggable,\n        effect\n      } = props;\n      const {\n          class: cls,\n          style\n        } = attrs,\n        restAttrs = __rest(attrs, [\"class\", \"style\"]);\n      const fade = effect === 'fade' ? true : props.fade;\n      const className = classNames(prefixCls.value, {\n        [`${prefixCls.value}-rtl`]: direction.value === 'rtl',\n        [`${prefixCls.value}-vertical`]: vertical.value,\n        [`${cls}`]: !!cls\n      }, hashId.value);\n      return wrapSSR(_createVNode(\"div\", {\n        \"class\": className,\n        \"style\": style\n      }, [_createVNode(SlickCarousel, _objectSpread(_objectSpread(_objectSpread({\n        \"ref\": slickRef\n      }, props), restAttrs), {}, {\n        \"dots\": !!dots,\n        \"dotsClass\": dsClass.value,\n        \"arrows\": arrows,\n        \"draggable\": draggable,\n        \"fade\": fade,\n        \"vertical\": vertical.value\n      }), slots)]));\n    };\n  }\n});\nexport default withInstall(Carousel);",
+      "start": 1718517096386,
+      "end": 1718517096416,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096416,
+      "end": 1718517096416,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096417,
+      "end": 1718517096417,
+      "order": "normal"
+    }
+  ]
+}

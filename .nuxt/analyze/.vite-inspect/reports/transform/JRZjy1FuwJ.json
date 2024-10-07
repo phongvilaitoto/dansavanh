@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-select/OptionList.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { resolveDirective as _resolveDirective, Fragment as _Fragment, createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport TransBtn from './TransBtn';\nimport KeyCode from '../_util/KeyCode';\nimport classNames from '../_util/classNames';\nimport pickAttrs from '../_util/pickAttrs';\nimport { isValidElement } from '../_util/props-util';\nimport createRef from '../_util/createRef';\nimport { computed, defineComponent, nextTick, reactive, toRaw, watch } from 'vue';\nimport List from '../vc-virtual-list';\nimport useMemo from '../_util/hooks/useMemo';\nimport { isPlatformMac } from './utils/platformUtil';\nimport omit from '../_util/omit';\nimport useBaseProps from './hooks/useBaseProps';\nimport useSelectProps from './SelectContext';\nfunction isTitleType(content) {\n  return typeof content === 'string' || typeof content === 'number';\n}\n/**\n * Using virtual list of option display.\n * Will fallback to dom if use customize render.\n */\nconst OptionList = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'OptionList',\n  inheritAttrs: false,\n  setup(_, _ref) {\n    let {\n      expose,\n      slots\n    } = _ref;\n    const baseProps = useBaseProps();\n    const props = useSelectProps();\n    const itemPrefixCls = computed(() => `${baseProps.prefixCls}-item`);\n    const memoFlattenOptions = useMemo(() => props.flattenOptions, [() => baseProps.open, () => props.flattenOptions], next => next[0]);\n    // =========================== List ===========================\n    const listRef = createRef();\n    const onListMouseDown = event => {\n      event.preventDefault();\n    };\n    const scrollIntoView = args => {\n      if (listRef.current) {\n        listRef.current.scrollTo(typeof args === 'number' ? {\n          index: args\n        } : args);\n      }\n    };\n    // ========================== Active ==========================\n    const getEnabledActiveIndex = function (index) {\n      let offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;\n      const len = memoFlattenOptions.value.length;\n      for (let i = 0; i < len; i += 1) {\n        const current = (index + i * offset + len) % len;\n        const {\n          group,\n          data\n        } = memoFlattenOptions.value[current];\n        if (!group && !data.disabled) {\n          return current;\n        }\n      }\n      return -1;\n    };\n    const state = reactive({\n      activeIndex: getEnabledActiveIndex(0)\n    });\n    const setActive = function (index) {\n      let fromKeyboard = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;\n      state.activeIndex = index;\n      const info = {\n        source: fromKeyboard ? 'keyboard' : 'mouse'\n      };\n      // Trigger active event\n      const flattenItem = memoFlattenOptions.value[index];\n      if (!flattenItem) {\n        props.onActiveValue(null, -1, info);\n        return;\n      }\n      props.onActiveValue(flattenItem.value, index, info);\n    };\n    // Auto active first item when list length or searchValue changed\n    watch([() => memoFlattenOptions.value.length, () => baseProps.searchValue], () => {\n      setActive(props.defaultActiveFirstOption !== false ? getEnabledActiveIndex(0) : -1);\n    }, {\n      immediate: true\n    });\n    // https://github.com/ant-design/ant-design/issues/34975\n    const isSelected = value => props.rawValues.has(value) && baseProps.mode !== 'combobox';\n    // Auto scroll to item position in single mode\n    watch([() => baseProps.open, () => baseProps.searchValue], () => {\n      if (!baseProps.multiple && baseProps.open && props.rawValues.size === 1) {\n        const value = Array.from(props.rawValues)[0];\n        const index = toRaw(memoFlattenOptions.value).findIndex(_ref2 => {\n          let {\n            data\n          } = _ref2;\n          return data[props.fieldNames.value] === value;\n        });\n        if (index !== -1) {\n          setActive(index);\n          nextTick(() => {\n            scrollIntoView(index);\n          });\n        }\n      }\n      // Force trigger scrollbar visible when open\n      if (baseProps.open) {\n        nextTick(() => {\n          var _a;\n          (_a = listRef.current) === null || _a === void 0 ? void 0 : _a.scrollTo(undefined);\n        });\n      }\n    }, {\n      immediate: true,\n      flush: 'post'\n    });\n    // ========================== Values ==========================\n    const onSelectValue = value => {\n      if (value !== undefined) {\n        props.onSelect(value, {\n          selected: !props.rawValues.has(value)\n        });\n      }\n      // Single mode should always close by select\n      if (!baseProps.multiple) {\n        baseProps.toggleOpen(false);\n      }\n    };\n    const getLabel = item => typeof item.label === 'function' ? item.label() : item.label;\n    function renderItem(index) {\n      const item = memoFlattenOptions.value[index];\n      if (!item) return null;\n      const itemData = item.data || {};\n      const {\n        value\n      } = itemData;\n      const {\n        group\n      } = item;\n      const attrs = pickAttrs(itemData, true);\n      const mergedLabel = getLabel(item);\n      return item ? _createVNode(\"div\", _objectSpread(_objectSpread({\n        \"aria-label\": typeof mergedLabel === 'string' && !group ? mergedLabel : null\n      }, attrs), {}, {\n        \"key\": index,\n        \"role\": group ? 'presentation' : 'option',\n        \"id\": `${baseProps.id}_list_${index}`,\n        \"aria-selected\": isSelected(value)\n      }), [value]) : null;\n    }\n    const onKeydown = event => {\n      const {\n        which,\n        ctrlKey\n      } = event;\n      switch (which) {\n        // >>> Arrow keys & ctrl + n/p on Mac\n        case KeyCode.N:\n        case KeyCode.P:\n        case KeyCode.UP:\n        case KeyCode.DOWN:\n          {\n            let offset = 0;\n            if (which === KeyCode.UP) {\n              offset = -1;\n            } else if (which === KeyCode.DOWN) {\n              offset = 1;\n            } else if (isPlatformMac() && ctrlKey) {\n              if (which === KeyCode.N) {\n                offset = 1;\n              } else if (which === KeyCode.P) {\n                offset = -1;\n              }\n            }\n            if (offset !== 0) {\n              const nextActiveIndex = getEnabledActiveIndex(state.activeIndex + offset, offset);\n              scrollIntoView(nextActiveIndex);\n              setActive(nextActiveIndex, true);\n            }\n            break;\n          }\n        // >>> Select\n        case KeyCode.ENTER:\n          {\n            // value\n            const item = memoFlattenOptions.value[state.activeIndex];\n            if (item && !item.data.disabled) {\n              onSelectValue(item.value);\n            } else {\n              onSelectValue(undefined);\n            }\n            if (baseProps.open) {\n              event.preventDefault();\n            }\n            break;\n          }\n        // >>> Close\n        case KeyCode.ESC:\n          {\n            baseProps.toggleOpen(false);\n            if (baseProps.open) {\n              event.stopPropagation();\n            }\n          }\n      }\n    };\n    const onKeyup = () => {};\n    const scrollTo = index => {\n      scrollIntoView(index);\n    };\n    expose({\n      onKeydown,\n      onKeyup,\n      scrollTo\n    });\n    return () => {\n      // const {\n      //   renderItem,\n      //   listRef,\n      //   onListMouseDown,\n      //   itemPrefixCls,\n      //   setActive,\n      //   onSelectValue,\n      //   memoFlattenOptions,\n      //   $slots,\n      // } = this as any;\n      const {\n        id,\n        notFoundContent,\n        onPopupScroll\n      } = baseProps;\n      const {\n        menuItemSelectedIcon,\n        fieldNames,\n        virtual,\n        listHeight,\n        listItemHeight\n      } = props;\n      const renderOption = slots.option;\n      const {\n        activeIndex\n      } = state;\n      const omitFieldNameList = Object.keys(fieldNames).map(key => fieldNames[key]);\n      // ========================== Render ==========================\n      if (memoFlattenOptions.value.length === 0) {\n        return _createVNode(\"div\", {\n          \"role\": \"listbox\",\n          \"id\": `${id}_list`,\n          \"class\": `${itemPrefixCls.value}-empty`,\n          \"onMousedown\": onListMouseDown\n        }, [notFoundContent]);\n      }\n      return _createVNode(_Fragment, null, [_createVNode(\"div\", {\n        \"role\": \"listbox\",\n        \"id\": `${id}_list`,\n        \"style\": {\n          height: 0,\n          width: 0,\n          overflow: 'hidden'\n        }\n      }, [renderItem(activeIndex - 1), renderItem(activeIndex), renderItem(activeIndex + 1)]), _createVNode(List, {\n        \"itemKey\": \"key\",\n        \"ref\": listRef,\n        \"data\": memoFlattenOptions.value,\n        \"height\": listHeight,\n        \"itemHeight\": listItemHeight,\n        \"fullHeight\": false,\n        \"onMousedown\": onListMouseDown,\n        \"onScroll\": onPopupScroll,\n        \"virtual\": virtual\n      }, {\n        default: (item, itemIndex) => {\n          var _a;\n          const {\n            group,\n            groupOption,\n            data,\n            value\n          } = item;\n          const {\n            key\n          } = data;\n          const label = typeof item.label === 'function' ? item.label() : item.label;\n          // Group\n          if (group) {\n            const groupTitle = (_a = data.title) !== null && _a !== void 0 ? _a : isTitleType(label) && label;\n            return _createVNode(\"div\", {\n              \"class\": classNames(itemPrefixCls.value, `${itemPrefixCls.value}-group`),\n              \"title\": groupTitle\n            }, [renderOption ? renderOption(data) : label !== undefined ? label : key]);\n          }\n          const {\n              disabled,\n              title,\n              children,\n              style,\n              class: cls,\n              className\n            } = data,\n            otherProps = __rest(data, [\"disabled\", \"title\", \"children\", \"style\", \"class\", \"className\"]);\n          const passedProps = omit(otherProps, omitFieldNameList);\n          // Option\n          const selected = isSelected(value);\n          const optionPrefixCls = `${itemPrefixCls.value}-option`;\n          const optionClassName = classNames(itemPrefixCls.value, optionPrefixCls, cls, className, {\n            [`${optionPrefixCls}-grouped`]: groupOption,\n            [`${optionPrefixCls}-active`]: activeIndex === itemIndex && !disabled,\n            [`${optionPrefixCls}-disabled`]: disabled,\n            [`${optionPrefixCls}-selected`]: selected\n          });\n          const mergedLabel = getLabel(item);\n          const iconVisible = !menuItemSelectedIcon || typeof menuItemSelectedIcon === 'function' || selected;\n          // https://github.com/ant-design/ant-design/issues/34145\n          const content = typeof mergedLabel === 'number' ? mergedLabel : mergedLabel || value;\n          // https://github.com/ant-design/ant-design/issues/26717\n          let optionTitle = isTitleType(content) ? content.toString() : undefined;\n          if (title !== undefined) {\n            optionTitle = title;\n          }\n          return _createVNode(\"div\", _objectSpread(_objectSpread({}, passedProps), {}, {\n            \"aria-selected\": selected,\n            \"class\": optionClassName,\n            \"title\": optionTitle,\n            \"onMousemove\": e => {\n              if (otherProps.onMousemove) {\n                otherProps.onMousemove(e);\n              }\n              if (activeIndex === itemIndex || disabled) {\n                return;\n              }\n              setActive(itemIndex);\n            },\n            \"onClick\": e => {\n              if (!disabled) {\n                onSelectValue(value);\n              }\n              if (otherProps.onClick) {\n                otherProps.onClick(e);\n              }\n            },\n            \"style\": style\n          }), [_createVNode(\"div\", {\n            \"class\": `${optionPrefixCls}-content`\n          }, [renderOption ? renderOption(data) : content]), isValidElement(menuItemSelectedIcon) || selected, iconVisible && _createVNode(TransBtn, {\n            \"class\": `${itemPrefixCls.value}-option-state`,\n            \"customizeIcon\": menuItemSelectedIcon,\n            \"customizeIconProps\": {\n              isSelected: selected\n            }\n          }, {\n            default: () => [selected ? '✓' : null]\n          })]);\n        }\n      })]);\n    };\n  }\n});\nexport default OptionList;",
+      "start": 1718517099466,
+      "end": 1718517099499,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099499,
+      "end": 1718517099499,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099499,
+      "end": 1718517099500,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099500,
+      "end": 1718517099500,
+      "order": "normal"
+    }
+  ]
+}

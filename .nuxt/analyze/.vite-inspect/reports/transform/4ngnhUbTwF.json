@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/avatar/style/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { genComponentStyleHook, mergeToken } from '../../theme/internal';\nimport { resetComponent } from '../../style';\nconst genBaseStyle = token => {\n  const {\n    antCls,\n    componentCls,\n    iconCls,\n    avatarBg,\n    avatarColor,\n    containerSize,\n    containerSizeLG,\n    containerSizeSM,\n    textFontSize,\n    textFontSizeLG,\n    textFontSizeSM,\n    borderRadius,\n    borderRadiusLG,\n    borderRadiusSM,\n    lineWidth,\n    lineType\n  } = token;\n  // Avatar size style\n  const avatarSizeStyle = (size, fontSize, radius) => ({\n    width: size,\n    height: size,\n    lineHeight: `${size - lineWidth * 2}px`,\n    borderRadius: '50%',\n    [`&${componentCls}-square`]: {\n      borderRadius: radius\n    },\n    [`${componentCls}-string`]: {\n      position: 'absolute',\n      left: {\n        _skip_check_: true,\n        value: '50%'\n      },\n      transformOrigin: '0 center'\n    },\n    [`&${componentCls}-icon`]: {\n      fontSize,\n      [`> ${iconCls}`]: {\n        margin: 0\n      }\n    }\n  });\n  return {\n    [componentCls]: _extends(_extends(_extends(_extends({}, resetComponent(token)), {\n      position: 'relative',\n      display: 'inline-block',\n      overflow: 'hidden',\n      color: avatarColor,\n      whiteSpace: 'nowrap',\n      textAlign: 'center',\n      verticalAlign: 'middle',\n      background: avatarBg,\n      border: `${lineWidth}px ${lineType} transparent`,\n      [`&-image`]: {\n        background: 'transparent'\n      },\n      [`${antCls}-image-img`]: {\n        display: 'block'\n      }\n    }), avatarSizeStyle(containerSize, textFontSize, borderRadius)), {\n      [`&-lg`]: _extends({}, avatarSizeStyle(containerSizeLG, textFontSizeLG, borderRadiusLG)),\n      [`&-sm`]: _extends({}, avatarSizeStyle(containerSizeSM, textFontSizeSM, borderRadiusSM)),\n      '> img': {\n        display: 'block',\n        width: '100%',\n        height: '100%',\n        objectFit: 'cover'\n      }\n    })\n  };\n};\nconst genGroupStyle = token => {\n  const {\n    componentCls,\n    groupBorderColor,\n    groupOverlapping,\n    groupSpace\n  } = token;\n  return {\n    [`${componentCls}-group`]: {\n      display: 'inline-flex',\n      [`${componentCls}`]: {\n        borderColor: groupBorderColor\n      },\n      [`> *:not(:first-child)`]: {\n        marginInlineStart: groupOverlapping\n      }\n    },\n    [`${componentCls}-group-popover`]: {\n      [`${componentCls} + ${componentCls}`]: {\n        marginInlineStart: groupSpace\n      }\n    }\n  };\n};\nexport default genComponentStyleHook('Avatar', token => {\n  const {\n    colorTextLightSolid,\n    colorTextPlaceholder\n  } = token;\n  const avatarToken = mergeToken(token, {\n    avatarBg: colorTextPlaceholder,\n    avatarColor: colorTextLightSolid\n  });\n  return [genBaseStyle(avatarToken), genGroupStyle(avatarToken)];\n}, token => {\n  const {\n    controlHeight,\n    controlHeightLG,\n    controlHeightSM,\n    fontSize,\n    fontSizeLG,\n    fontSizeXL,\n    fontSizeHeading3,\n    marginXS,\n    marginXXS,\n    colorBorderBg\n  } = token;\n  return {\n    containerSize: controlHeight,\n    containerSizeLG: controlHeightLG,\n    containerSizeSM: controlHeightSM,\n    textFontSize: Math.round((fontSizeLG + fontSizeXL) / 2),\n    textFontSizeLG: fontSizeHeading3,\n    textFontSizeSM: fontSize,\n    groupSpace: marginXXS,\n    groupOverlapping: -marginXS,\n    groupBorderColor: colorBorderBg\n  };\n});",
+      "start": 1718517098096,
+      "end": 1718517098148,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098148,
+      "end": 1718517098148,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098148,
+      "end": 1718517098149,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098149,
+      "end": 1718517098149,
+      "order": "normal"
+    }
+  ]
+}

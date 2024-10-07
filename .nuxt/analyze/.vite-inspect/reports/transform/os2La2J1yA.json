@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/_util/copy-to-clipboard/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import deselectCurrent from './toggle-selection';\nconst clipboardToIE11Formatting = {\n  'text/plain': 'Text',\n  'text/html': 'Url',\n  default: 'Text'\n};\nconst defaultMessage = 'Copy to clipboard: #{key}, Enter';\nfunction format(message) {\n  const copyKey = (/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl') + '+C';\n  return message.replace(/#{\\s*key\\s*}/g, copyKey);\n}\nfunction copy(text, options) {\n  let message,\n    reselectPrevious,\n    range,\n    selection,\n    mark,\n    success = false;\n  if (!options) {\n    options = {};\n  }\n  const debug = options.debug || false;\n  try {\n    reselectPrevious = deselectCurrent();\n    range = document.createRange();\n    selection = document.getSelection();\n    mark = document.createElement('span');\n    mark.textContent = text;\n    // reset user styles for span element\n    mark.style.all = 'unset';\n    // prevents scrolling to the end of the page\n    mark.style.position = 'fixed';\n    mark.style.top = 0;\n    mark.style.clip = 'rect(0, 0, 0, 0)';\n    // used to preserve spaces and line breaks\n    mark.style.whiteSpace = 'pre';\n    // do not inherit user-select (it may be `none`)\n    mark.style.webkitUserSelect = 'text';\n    mark.style.MozUserSelect = 'text';\n    mark.style.msUserSelect = 'text';\n    mark.style.userSelect = 'text';\n    mark.addEventListener('copy', function (e) {\n      e.stopPropagation();\n      if (options.format) {\n        e.preventDefault();\n        if (typeof e.clipboardData === 'undefined') {\n          // IE 11\n          debug && console.warn('unable to use e.clipboardData');\n          debug && console.warn('trying IE specific stuff');\n          window.clipboardData.clearData();\n          const format = clipboardToIE11Formatting[options.format] || clipboardToIE11Formatting['default'];\n          window.clipboardData.setData(format, text);\n        } else {\n          // all other browsers\n          e.clipboardData.clearData();\n          e.clipboardData.setData(options.format, text);\n        }\n      }\n      if (options.onCopy) {\n        e.preventDefault();\n        options.onCopy(e.clipboardData);\n      }\n    });\n    document.body.appendChild(mark);\n    range.selectNodeContents(mark);\n    selection.addRange(range);\n    const successful = document.execCommand('copy');\n    if (!successful) {\n      throw new Error('copy command was unsuccessful');\n    }\n    success = true;\n  } catch (err) {\n    debug && console.error('unable to copy using execCommand: ', err);\n    debug && console.warn('trying IE specific stuff');\n    try {\n      window.clipboardData.setData(options.format || 'text', text);\n      options.onCopy && options.onCopy(window.clipboardData);\n      success = true;\n    } catch (err) {\n      debug && console.error('unable to copy using clipboardData: ', err);\n      debug && console.error('falling back to prompt');\n      message = format('message' in options ? options.message : defaultMessage);\n      window.prompt(message, text);\n    }\n  } finally {\n    if (selection) {\n      if (typeof selection.removeRange == 'function') {\n        selection.removeRange(range);\n      } else {\n        selection.removeAllRanges();\n      }\n    }\n    if (mark) {\n      document.body.removeChild(mark);\n    }\n    reselectPrevious();\n  }\n  return success;\n}\nexport default copy;",
+      "start": 1718517098613,
+      "end": 1718517098661,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098661,
+      "end": 1718517098662,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098662,
+      "end": 1718517098662,
+      "order": "normal"
+    }
+  ]
+}

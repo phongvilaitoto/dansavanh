@@ -1,0 +1,238 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/app.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\r\n<!-- <div>\r\n  <a-extract-style> -->\r\n  <NuxtLayout>\r\n      <NuxtPage  />\r\n    </NuxtLayout>\r\n    <client-only>\r\n      <nuxt-facebook-chat :options=\"options\" />\r\n    </client-only>\r\n  <!-- </a-extract-style>\r\n\r\n</div> -->\r\n</template>\r\n<script setup lang=\"ts\">\r\n\r\n\r\nimport { NuxtFacebookChatOptions } from 'nuxt-facebook-chat';\r\n\r\n// Define your chat options\r\nconst options: NuxtFacebookChatOptions = {\r\n  pageId: \"1782751151960317\",  // Your Facebook Page ID\r\n  locale: \"th_TH\",            // Set the locale for the chat\r\n  themeColor: \"#E04040\",      // Customize the chat theme color\r\n};\r\n\r\nimport { useMainStore } from '@/stores/mainStore'\r\nimport { storeToRefs } from 'pinia'\r\n\r\nconst config = useRuntimeConfig()\r\n\r\nconst object = reactive({})\r\n\r\nconst {main} = storeToRefs(useMainStore())\r\n\r\n// const route = useRoute()\r\n// const router = useRouter()\r\n\r\nconst { data }: any = await useFetch(config.public.apiBase + '/getDMain')\r\nObject.assign(main.value, data.value.dMain)\r\n\r\n// if(route.path === '/') router.push('/en')\r\n\r\n\r\n</script>\r\n<style lang=\"scss\">\r\n@import url('~/assets/css/fonts.css');\r\n@import url('~/assets/css/all.css');\r\n\r\n\r\n// @font-face {\r\n//     font-family: \"Playfair Display\";\r\n//     src: url('~/assets/fonts/PlayfairDisplay-Regular.ttf');\r\n// }\r\n\r\n// @font-face {\r\n//     font-family: \"Playfair Display\";\r\n//     src: url('~/assets/fonts/PlayfairDisplay-Bold.ttf');\r\n//      font-weight: bold;\r\n// }\r\n\r\n\r\n\r\nh1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {\r\n  font-family:\"Playfair Display\", sans-serif;\r\n}\r\n\r\np, span {\r\n  font-family:\"Source Sans Pro\", sans-serif;\r\n}\r\n\r\n.text-center {\r\n  text-align: center;\r\n}\r\n\r\n.global-margin-top {\r\n  margin-top: 180px;\r\n}\r\n/* Custom, iPhone Retina */ \r\n.eiei {\r\n  @media only screen and (min-width : 320px) {\r\n        \r\n      }\r\n    \r\n    \r\n        /* Small Devices, Tablets */\r\n    @media only screen and (min-width : 768px) {\r\n    \r\n    }\r\n\r\n}\r\n\r\n\r\n.is-mobile {\r\n  @media only screen and (min-width :1068px) {\r\n    display: none  !important;\r\n  }\r\n}\r\n\r\n.is-desktop {\r\n  @media only screen and (max-width : 1067px) {\r\n    display: none !important;\r\n  }\r\n}\r\n\r\n// .is-mobile {\r\n//   @media only screen and (min-width : 768px) {\r\n//     display: none  !important;\r\n//   }\r\n// }\r\n\r\n// .is-desktop {\r\n//   @media only screen and (max-width : 767px) {\r\n//     display: none !important;\r\n//   }\r\n// }\r\n\r\n.headerTitle {\r\n  // font-size: 42px;\r\n // font-family: var(--font-family);\r\n font-family: \"Playfair Display\", sans-serif;\r\n  font-weight: 700;\r\n  line-height: 1em;\r\n\r\n  color: black;\r\n  font-size: 45px;\r\n\r\n  // @media only screen and (max-width : 767px) {\r\n  //   font-size: 45px;\r\n  // }\r\n\r\n  // @media only screen and (min-width : 768px) {\r\n    \r\n  //   font-size: 82px;\r\n  // }\r\n\r\n\r\n\r\n}\r\n\r\n  \r\n  \r\n\r\nbody, html {\r\n  -webkit-font-smoothing: antialiased;\r\n    background-color: #f4f4f4;\r\n    color: #111118;\r\n    //font-family: source sans pro,helvetica neue,Helvetica,Arial,sans-serif;\r\n    font-size: 16px;\r\n    line-height: 1.5;\r\n  // font-family:\"Playfair Display\", sans-serif !important;\r\n\r\n   \r\n}\r\n\r\na {\r\n  font-size: .9rem;\r\n}\r\n\r\nh2 {\r\n // font-family: playfair display,helvetica neue,Helvetica,Arial,sans-serif;\r\n    font-weight: 400;\r\n    line-height: 1.1;\r\n    text-transform: uppercase;\r\n    margin-top: 24px;\r\n    margin-bottom: 12px;\r\n    font-size: 32px;\r\n}\r\nh1 {\r\n  line-height: 1.1;\r\n  font-weight: 700;\r\n}\r\n\r\n.max-width {\r\n   max-width: 1180px !important;\r\n \r\n   margin: 0 auto 0 auto;\r\n\r\n\r\nh3 {\r\n  font-weight: 400;\r\n    line-height: 1.1;\r\n    font-size: 24px;\r\n\r\n}\r\n\r\n\r\n      // @media only screen and (min-width :1068px) {\r\n      //   display: none  !important;\r\n      // }\r\n\r\n\r\n\r\n      @media only screen and (max-width : 1067px) {\r\n        padding: 0px;\r\n      }\r\n    \r\n\r\n}\r\n\r\n\r\n.text-white  {\r\ncolor: white;\r\n}\r\n\r\n\r\n.text-shadow {\r\n  //text-shadow: 1px 1px #000;\r\n  backdrop-filter: blur(3px);\r\n}\r\n\r\n\r\n// h2 {\r\n//   font-size: 33px;\r\n// }\r\n// .t1 {\r\n\r\n//   h1 {\r\n\r\n//     font-size: 86px;\r\n//     color: white;\r\n//     font-weight: 700;\r\n  \r\n\r\n//   }\r\n// }\r\n\r\n.headerT1 {\r\n//  font-family: \"Playfair Display\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\r\n     font-size: 86px;\r\n    // font-weight: 900;\r\n    line-height: 1em;\r\n    color: #fff !important;\r\n\r\n    color: white;\r\n\r\n    font-weight: 700;\r\n    line-height: 1em;\r\n}\r\n\r\n.headerT2 {\r\n // font-family: \"Playfair Display\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n    letter-spacing: 7px;\r\n    font-weight: 300;\r\n    margin: 14px 0 7px 0;\r\n    color: white;\r\n}\r\n\r\n.text-black {\r\n  color: black;\r\n}\r\n\r\n.text-uppercase {\r\n  text-transform: uppercase;\r\n}\r\n\r\n.line-hover {\r\n font-family: 'Source Sans Pro', sans-serif;;\r\n\r\n  display: inline-block;\r\n  color: white;\r\n  text-decoration: none;\r\n  \r\n  &:after {\r\n    content: '';\r\n    display: block;\r\n    width: 100%;\r\n    height: 1px;\r\n    background-color: #6fb586;\r\n    transition: transform .45s cubic-bezier(.835,-.005,.06,1);\r\n    transform: scaleX(0);\r\n  \r\n  }\r\n  &:after {\r\n    transform-origin: left;\r\n  }\r\n  \r\n  &:hover:after {\r\n    transform-origin: left;\r\n    transform: scaleX(1);\r\n  }\r\n}\r\n\r\n\r\n\r\n.cursor {\r\n  cursor: pointer;\r\n}\r\n\r\n.text-bold {\r\n  font-weight: 700;\r\n}\r\n.bg-white {\r\n  background: white;\r\n  color: black;\r\n}\r\n\r\n.text-thin {\r\n    font-weight: 300 !important;\r\n    line-height: 1.4em !important;\r\n    color: #323232;\r\n}\r\n\r\n.view-button {\r\n  text-transform: uppercase;\r\n  border-radius: 0;\r\n  font-family:\"Source Sans Pro\", sans-serif;\r\n  font-size: 12px !important;\r\n  height: 40px;\r\n  min-width: 120px;\r\n  //background-color: white !important;\r\n}\r\n\r\n\r\n.input {\r\n  width: 100%;\r\n  background-color: #fdfdfd;\r\n    border: 1px solid rgba(17,17,24,.2)!important;\r\n    border-radius: 0;\r\n    color: #111118;\r\n    font-size: 15px;\r\n    height: inherit;\r\n    margin-bottom: 24px;\r\n    line-height: 1.5;\r\n    padding: 16px 24px;\r\n}\r\n\r\n\r\n.btn-primary {\r\n  background-image: none;\r\n    background-color: transparent;\r\n    font-weight: 700;\r\n    text-align: center;\r\n    text-transform: uppercase;\r\n    font-weight: 400;\r\n    padding: 8px 24px;\r\n    font-size: 12px;\r\n    line-height: 1.5;\r\n    border-radius: 0;\r\n    border: 1px #6fb586 solid;\r\n    color: #6fb586!important;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    -webkit-transform: translateZ(0);\r\n    transform: translateZ(0);\r\n    box-shadow: 0 0 1px transparent;\r\n    -webkit-backface-visibility: hidden;\r\n    backface-visibility: hidden;\r\n    -moz-osx-font-smoothing: grayscale;\r\n    position: relative;\r\n    -webkit-transition-property: color;\r\n    transition-property: color;\r\n    -webkit-transition-duration: .3s;\r\n    transition-duration: .3s;\r\n}\r\n\r\n\r\n.ant-btn-default:not(:disabled):hover {\r\n    color: #6fb586;\r\n    border-color: #6fb586;\r\n}\r\n\r\n:where(.css-dev-only-do-not-override-1b6tocy).ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {\r\n    border-color: #6fb586;\r\n    border-inline-end-width: undefinedpx!important;\r\n}\r\n\r\n:where(.css-dev-only-do-not-override-1b6tocy).ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {\r\n    border-color: #6fb586;\r\n    border-inline-end-width: undefinedpx!important;\r\n}\r\n\r\n.room-cover {\r\n  background-size: cover;\r\n}\r\n</style>\r\n\r\n\r\n\r\n<style>\r\n* {\r\n  box-sizing: border-box;\r\n  margin: 0; padding: 0;\r\n}\r\n\r\n\r\nbutton:active, button:hover, button:focus {\r\n  outline: 0!important;\r\n  outline-offset: 0;\r\n}\r\nbutton::before,\r\nbutton::after {\r\n  position: absolute;\r\n  content: \"\";\r\n}\r\n\r\n.btn-holder {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: center;\r\n  max-width: 1000px;\r\n  margin: 10px auto 35px;\r\n}\r\n.btn {\r\n\r\n  position: relative;\r\n  display: inline-block;\r\n  width: auto; height: auto;\r\n  background-color: transparent;\r\n  border: none;\r\n  cursor: pointer;\r\n \r\n  min-width: 150px;\r\n\r\n\r\n  height: 40px;\r\n  min-width: 120px;\r\n}\r\n  .btn span {         \r\n    position: relative;\r\n    display: inline-block;\r\n    font-weight: bold;\r\n    text-transform: uppercase;\r\n    top: 0; left: 0;\r\n    width: 100%;\r\n    padding: 10px 20px;\r\n    transition: 0.3s;\r\n    font-weight: 400;\r\n    height: 40px;\r\n\r\n        line-height: 1.5;\r\n        font-family:\"Source Sans Pro\", sans-serif !important;\r\n  font-size: 12px !important;\r\n  letter-spacing: 3px !important;\r\n  }\r\n\r\n/*--- btn-1 ---*/\r\n.btn-1::before {\r\n  background-color: rgb(28, 31, 30);\r\n  transition: 0.3s ease-out;\r\n}\r\n.btn-1 span {\r\n  color: rgb(255,255,255);\r\n  border: 1px solid rgb(28, 31, 30);\r\n  transition: 0.2s 0.1s;\r\n}\r\n.btn-1 span:hover {\r\n  color: rgb(28, 31, 30);\r\n  transition: 0.2s 0.1s;\r\n}\r\n\r\n/* 1.hover-filled-slide-down */\r\n.btn.hover-filled-slide-down::before {\r\n  bottom: 0; left: 0; right: 0; \r\n  height: 100%; width: 100%;\r\n}\r\n.btn.hover-filled-slide-down:hover::before {\r\n  height: 0%;\r\n}\r\n\r\n/* 2.hover-filled-slide-up */\r\n.btn.hover-filled-slide-up::before {\r\n  top: 0; left: 0; right: 0;\r\n  height: 100%; width: 100%;\r\n}\r\n.btn.hover-filled-slide-up:hover::before {\r\n  height: 0%;\r\n}\r\n\r\n/* 3.hover-filled-slide-left */\r\n.btn.hover-filled-slide-left::before {\r\n  top: 0; bottom: 0; left: 0;\r\n  height: 100%; width: 100%;\r\n}\r\n.btn.hover-filled-slide-left:hover::before {\r\n  width: 0%;\r\n}\r\n\r\n/* 4. hover-filled-slide-right */\r\n.btn.hover-filled-slide-right::before {\r\n  top:0; bottom: 0; right: 0;\r\n  height: 100%; width: 100%;\r\n}\r\n.btn.hover-filled-slide-right:hover::before {\r\n  width: 0%;\r\n}\r\n\r\n/* 5. hover-filled-opacity */\r\n.btn.hover-filled-opacity::before {\r\n  top:0; bottom: 0; right: 0;\r\n  height: 100%; width: 100%;\r\n  opacity: 1;\r\n}\r\n.btn.hover-filled-opacity:hover::before {\r\n  opacity: 0;\r\n}\r\n\r\n/*--- btn-2 ---*/\r\n.btn-2::before {\r\n  background-color: rgb(28, 31, 30);\r\n  transition: 0.3s ease-out;\r\n}\r\n.btn-2 span {\r\n  color: rgb(28, 31, 30);\r\n  border: 1px solid rgb(28, 31, 30);\r\n  transition: 0.2s;\r\n}  \r\n.btn-2 span:hover {\r\n  color: rgb(255,255,255);\r\n  transition: 0.2s 0.1s;\r\n}\r\n\r\n/* 6. hover-slide-down */\r\n.btn.hover-slide-down::before {\r\n  top: 0; left: 0; right: 0; \r\n  height: 0%; width: 100%;\r\n}\r\n.btn.hover-slide-down:hover::before {\r\n  height: 100%;\r\n}\r\n\r\n/* 7. hover-slide-up */\r\n.btn.hover-slide-up::before {\r\n  bottom: 0; left: 0; right: 0; \r\n  height: 0%; width: 100%;\r\n}\r\n.btn.hover-slide-up:hover::before {\r\n  height: 100%;\r\n}\r\n\r\n/* 8. hover-slide-left */\r\n.btn.hover-slide-left::before {\r\n  top: 0; bottom: 0; right: 0; \r\n  height: 100%; width: 0%;\r\n}\r\n.btn.hover-slide-left:hover::before {\r\n  width: 100%;\r\n}\r\n\r\n/* 9. hover-slide-right */\r\n.btn.hover-slide-right::before {\r\n  top: 0; bottom: 0; left: 0; \r\n  height: 100%; width: 0%;\r\n}\r\n.btn.hover-slide-right:hover::before {\r\n  width: 100%;\r\n}\r\n\r\n/* 10. hover-opacity */\r\n.btn.hover-opacity::before {\r\n  top:0; bottom: 0; right: 0;\r\n  height: 100%; width: 100%;\r\n  opacity: 0;\r\n}\r\n.btn.hover-opacity:hover::before {\r\n  opacity: 1;\r\n}\r\n\r\n/*--- btn-3 ---*/\r\n.btn-3 {\r\n  padding: 5px;\r\n}\r\n.btn-3 span {\r\n  color: rgb(255, 255, 255);\r\n  background-color: rgb(54, 56, 55);\r\n}\r\n.btn-3::before,\r\n.btn-3::after {\r\n  background: transparent;\r\n  z-index: 2;\r\n}\r\n\r\n/* 11. hover-border-1 */\r\n.btn.hover-border-1::before,\r\n.btn.hover-border-1::after {\r\n  width: 10%; height: 25%;\r\n  transition: 0.35s;\r\n}\r\n.btn.hover-border-1::before {\r\n  top: 0; left: 0;\r\n  border-left: 1px solid rgb(28, 31, 30);\r\n  border-top: 1px solid rgb(28, 31, 30);\r\n}\r\n.btn.hover-border-1::after {\r\n  bottom: 0; right: 0;\r\n  border-right: 1px solid rgb(28, 31, 30);\r\n  border-bottom: 1px solid rgb(28, 31, 30);\r\n}\r\n.btn.hover-border-1:hover::before,\r\n.btn.hover-border-1:hover::after {\r\n  width: 99%;\r\n  height: 98%;\r\n}\r\n\r\n/* 12. hover-border-2 */\r\n.btn.hover-border-2::before,\r\n.btn.hover-border-2::after {\r\n  width: 10%; height: 25%;\r\n  transition: 0.35s;\r\n}\r\n.btn.hover-border-2::before {\r\n  bottom: 0; left: 0;\r\n  border-left: 1px solid rgb(28, 31, 30);\r\n  border-bottom: 1px solid rgb(28, 31, 30);\r\n}\r\n.btn.hover-border-2::after {\r\n  top: 0; right: 0;\r\n  border-right: 1px solid rgb(28, 31, 30);\r\n  border-top: 1px solid rgb(28, 31, 30);\r\n}\r\n.btn.hover-border-2:hover::before,\r\n.btn.hover-border-2:hover::after {\r\n  width: 99%;\r\n  height: 99%;\r\n}\r\n\r\n/* 13. hover-border-3 */\r\n.btn.hover-border-3::before,\r\n.btn.hover-border-3::after {\r\n  width: 0%; height: 0%;\r\n  opacity: 0;\r\n  transition: width 0.2s 0.15s linear, height 0.15s linear, opacity 0s 0.35s;\r\n}\r\n.btn.hover-border-3::before {\r\n  top: 0; right: 0;\r\n  border-top: 1px solid rgb(28, 31, 30);\r\n  border-left: 1px solid rgb(28, 31, 30);\r\n}\r\n.btn.hover-border-3::after {\r\n  bottom: 0; left: 0;\r\n  border-bottom: 1px solid rgb(28, 31, 30);\r\n  border-right: 1px solid rgb(28, 31, 30);\r\n}\r\n.btn.hover-border-3:hover::before,\r\n.btn.hover-border-3:hover::after {\r\n  width: 100%; height: 99%;\r\n  opacity: 1;\r\n  transition: width 0.2s linear, height 0.15s 0.2s linear, opacity 0s;   \r\n}\r\n\r\n/* 14. hover-border-4 */\r\n.btn.hover-border-4::before,\r\n.btn.hover-border-4::after {\r\n  width: 0%; height: 0%;\r\n  opacity: 0;\r\n  transition: width 0.2s linear, height 0.15s 0.2s ease-out, opacity 0s 0.35s;\r\n}\r\n.btn.hover-border-4::before {\r\n  bottom: 0; left: -1px;\r\n  border-top: 1px solid rgb(28, 31, 30);\r\n  border-left: 1px solid rgb(28, 31, 30);\r\n}\r\n.btn.hover-border-4::after {\r\n  top: 0; right: 0;\r\n  border-bottom: 1px solid rgb(28, 31, 30);\r\n  border-right: 1px solid rgb(28, 31, 30);\r\n}\r\n.btn.hover-border-4:hover::before,\r\n.btn.hover-border-4:hover::after {\r\n  width: 100%; height: 99%;\r\n  opacity: 1;\r\n  transition: width 0.2s 0.15s ease-out, height 0.15s ease-in, opacity 0s;   \r\n}\r\n\r\n/* 15. hover-border-5 */\r\n.btn.hover-border-5::before,\r\n.btn.hover-border-5::after {\r\n  width: 0%; height: 0%;\r\n  opacity: 0;\r\n}\r\n.btn.hover-border-5::before {\r\n  top: 0; right: 0;\r\n  border-top: 1px solid rgb(28, 31, 30);\r\n  border-left: 1px solid rgb(28, 31, 30);\r\n  transition: width 0.2s 0.5s ease-out, height 0.15s 0.35s linear, opacity 0s 0.7s;\r\n}\r\n.btn.hover-border-5::after {\r\n  bottom: 0; left: 0px;\r\n  border-bottom: 1px solid rgb(28, 31, 30);\r\n  border-right: 1px solid rgb(28, 31, 30);\r\n  transition: width 0.2s 0.15s linear, height 0.15s ease-in, opacity 0s 0.35s;\r\n}\r\n.btn.hover-border-5:hover::before,\r\n.btn.hover-border-5:hover::after {\r\n  width: 100%; height: 96%;\r\n  opacity: 1;\r\n}\r\n.btn.hover-border-5:hover::before {\r\n  transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s;   /* 1,2 */\r\n}\r\n.btn.hover-border-5:hover::after {\r\n  transition: width 0.2s 0.35s linear, height 0.15s 0.5s ease-out, opacity 0s 0.3s; \r\n} \r\n\r\n/*--- btn-4 ---*/\r\n.btn-4 span {\r\n  color: rgb(28, 31, 30);\r\n  background-color: rgb(245,245,245);\r\n}\r\n.btn-4 span:hover {\r\n  color: rgb(54, 56, 55);\r\n}\r\n.btn-4::before,\r\n.btn-4::after {\r\n  width: 15%; height: 2px;\r\n  background-color: rgb(54, 56, 55);\r\n  z-index: 2;\r\n}\r\n\r\n/* 16. hover-border-6 */\r\n.btn.hover-border-6::before,\r\n.btn.hover-border-6::after {\r\n  top: 0;\r\n  transition: width 0.2s 0.35s ease-out;\r\n}\r\n.btn.hover-border-6::before {\r\n  right: 50%;\r\n}\r\n.btn.hover-border-6::after {\r\n  left: 50%;\r\n}\r\n.btn.hover-border-6:hover::before,\r\n.btn.hover-border-6:hover::after {\r\n  width: 50%;\r\n  transition: width 0.2s ease-in;   \r\n}\r\n\r\n.btn.hover-border-6 span::before,\r\n.btn.hover-border-6 span::after {\r\n  width: 0%; height: 0%;\r\n  background: transparent;\r\n  opacity: 0;\r\n  z-index: 2;\r\n  transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;\r\n}\r\n.btn.hover-border-6 span::before {\r\n  top: 0; left: 0;\r\n  border-left: 2px solid rgb(54, 56, 55);\r\n  border-bottom: 2px solid rgb(54, 56, 55);\r\n}\r\n.btn.hover-border-6 span::after {\r\n  top: 0; right: 0;\r\n  border-right: 2px solid rgb(54, 56, 55);\r\n  border-bottom: 2px solid rgb(54, 56, 55);\r\n}\r\n.btn.hover-border-6 span:hover::before,\r\n.btn.hover-border-6 span:hover::after {\r\n  width: 50%; height: 96%;\r\n  opacity: 1;\r\n  transition: height 0.2s 0.2s ease-in, width 0.2s 0.4s linear, opacity 0s 0.2s;   \r\n}\r\n\r\n/* 17. hover-border-7 */\r\n.btn.hover-border-7::before,\r\n.btn.hover-border-7::after {\r\n  bottom: 0;\r\n  transition: width 0.2s 0.35s ease-out;\r\n}\r\n.btn.hover-border-7::before {\r\n  right: 50%;\r\n}\r\n.btn.hover-border-7::after {\r\n  left: 50%;\r\n}\r\n.btn.hover-border-7:hover::before,\r\n.btn.hover-border-7:hover::after {\r\n  width: 50%;\r\n  transition: width 0.2s ease-in;   \r\n}\r\n\r\n.btn.hover-border-7 span::before,\r\n.btn.hover-border-7 span::after {\r\n  width: 0%; height: 0%;\r\n  background: transparent;\r\n  opacity: 0;\r\n  z-index: 2;\r\n  transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;\r\n}\r\n.btn.hover-border-7 span::before {\r\n  bottom: 0; left: 0;\r\n  border-left: 2px solid rgb(54, 56, 55);\r\n  border-top: 2px solid rgb(54, 56, 55);\r\n}\r\n.btn.hover-border-7 span::after {\r\n  bottom: 0; right: 0;\r\n  border-right: 2px solid rgb(54, 56, 55);\r\n  border-top: 2px solid rgb(54, 56, 55);\r\n}\r\n.btn.hover-border-7 span:hover::before,\r\n.btn.hover-border-7 span:hover::after {\r\n  width: 50%; height: 96%;\r\n  opacity: 1;\r\n  transition: height 0.2s 0.2s ease-in, width 0.2s 0.4s linear, opacity 0s 0.2s;   \r\n}\r\n\r\n/* 18. hover-border-8 */\r\n.btn.hover-border-8::before,\r\n.btn.hover-border-8::after {\r\n  bottom: 0;\r\n  width: 15%;\r\n  transition: width 0.2s 0.35s ease-out;\r\n}\r\n.btn.hover-border-8::before {\r\n  right: 50%;\r\n}\r\n.btn.hover-border-8::after {\r\n  left: 50%;\r\n}\r\n.btn.hover-border-8:hover::before {\r\n  width: 50%;\r\n  transition: width 0.2s ease-in;   \r\n}\r\n.btn.hover-border-8:hover::after {\r\n  width: 50%;\r\n  transition: width 0.1s ease-in;   \r\n}\r\n\r\n.btn.hover-border-8 span::before,\r\n.btn.hover-border-8 span::after {\r\n  width: 0%; height: 0%;\r\n  bottom: 0;\r\n  background: transparent;\r\n  opacity: 0;\r\n  z-index: 2;\r\n}\r\n.btn.hover-border-8 span::before {\r\n  left: 0%;\r\n  border-left: 2px solid rgb(54, 56, 55);\r\n  transition: height 0.25s ease-in, opacity 0s 0.35s;   \r\n}\r\n.btn.hover-border-8 span:hover::before {\r\n  height: 96%;\r\n  opacity: 1;\r\n  transition: height 0.25s 0.2s ease-out, opacity 0s 0.2s;   \r\n}\r\n.btn.hover-border-8 span::after {\r\n  right: 0%;\r\n  border-right: 2px solid rgb(54, 56, 55);\r\n  border-top: 2px solid rgb(54, 56, 55);\r\n  transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;   \r\n}\r\n.btn.hover-border-8 span:hover::after {\r\n  width: 99%; height: 96%;\r\n  opacity: 1;\r\n  transition: height 0.15s 0.1s linear, width 0.2s 0.25s linear, opacity 0s 0.1s;   \r\n}\r\n\r\n/* 19. hover-border-9 */\r\n.btn.hover-border-9::before,\r\n.btn.hover-border-9::after {\r\n  bottom: 0;\r\n  width: 15%;\r\n  transition: width 0.2s 0.35s ease-out;\r\n}\r\n.btn.hover-border-9::before {\r\n  right: 50%;\r\n}\r\n.btn.hover-border-9::after {\r\n  left: 50%;\r\n}\r\n.btn.hover-border-9:hover::before {\r\n  width: 50%;\r\n  transition: width 0.1s ease-in;   \r\n}\r\n.btn.hover-border-9:hover::after {\r\n  width: 50%;\r\n  transition: width 0.2s ease-in;   \r\n}\r\n\r\n.btn.hover-border-9 span::before,\r\n.btn.hover-border-9 span::after {\r\n  width: 0%; height: 0%;\r\n  bottom: 0;\r\n  background: transparent;\r\n  opacity: 0;\r\n  z-index: 2;\r\n}\r\n.btn.hover-border-9 span::after {\r\n  right: 0%;\r\n  border-right: 2px solid rgb(54, 56, 55);\r\n  transition: height 0.25s ease-in, opacity 0s 0.35s;   \r\n}\r\n.btn.hover-border-9 span:hover::after {\r\n  height: 96%;\r\n  opacity: 1;\r\n  transition: height 0.25s 0.2s ease-out, opacity 0s 0.2s;   \r\n}\r\n.btn.hover-border-9 span::before {\r\n  left: 0%;\r\n  border-left: 2px solid rgb(54, 56, 55);\r\n  border-top: 2px solid rgb(54, 56, 55);\r\n  transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;   \r\n}\r\n.btn.hover-border-9 span:hover::before {\r\n  width: 98.5%; height: 96%;\r\n  opacity: 1;\r\n  transition: height 0.15s 0.1s linear, width 0.2s 0.25s linear, opacity 0s 0.1s;   \r\n}\r\n\r\n/* 20. hover-border-10 */\r\n.btn.hover-border-10::before,\r\n.btn.hover-border-10::after {\r\n  left: 0%;\r\n  height: 30%;\r\n  width: 2px;\r\n  transition: height 0.2s 0.35s ease-out;\r\n}\r\n.btn.hover-border-10::before {\r\n  top: 50%;\r\n}\r\n.btn.hover-border-10::after {\r\n  bottom: 50%;\r\n}\r\n.btn.hover-border-10:hover::before {\r\n  height: 50%;\r\n  transition: height 0.2s ease-in;   \r\n}\r\n.btn.hover-border-10:hover::after {\r\n  height: 50%;\r\n  transition: height 0.1s ease-in;   \r\n}\r\n\r\n.btn.hover-border-10 span::before,\r\n.btn.hover-border-10 span::after {\r\n  width: 0%; height: 0%;\r\n  background: transparent;\r\n  opacity: 0;\r\n  z-index: 2;\r\n}\r\n.btn.hover-border-10 span::after {\r\n  bottom: 0; left: 0%;\r\n  border-bottom: 2px solid rgb(54, 56, 55);\r\n  transition: width 0.25s ease-in, opacity 0s 0.35s;   \r\n}\r\n.btn.hover-border-10 span:hover::after {\r\n  width: 100%;\r\n  opacity: 1;\r\n  transition: width 0.25s 0.2s ease-out, opacity 0s 0.2s;   \r\n}\r\n.btn.hover-border-10 span::before {\r\n  top: 0%; left: 0%;\r\n  border-top: 2px solid rgb(54, 56, 55);\r\n  border-right: 2px solid rgb(54, 56, 55);\r\n  transition: height 0.15s ease-in, width 0.2s 0.15s linear, opacity 0s 0.35s;   \r\n}\r\n.btn.hover-border-10 span:hover::before {\r\n  width: 98.5%; height: 96%;\r\n  opacity: 1;\r\n  transition: width 0.2s 0.1s linear, height 0.15s 0.3s ease-out, opacity 0s 0.1s;   \r\n}\r\n\r\n/*--- btn-5 ---*/\r\n.btn-5 span {\r\n  color: rgb(28, 31, 30);\r\n  border: 2px solid rgb(249, 211, 27);\r\n  transition: 0.2s;\r\n}\r\n.btn-5 span:hover {\r\n  background-color: rgb(245,245,245);\r\n}\r\n\r\n/* 21. hover-border-11 */\r\n.btn.hover-border-11::before,\r\n.btn.hover-border-11::after {\r\n  width: 100%; height: 2px;\r\n  background-color: rgb(54, 56, 55);\r\n  z-index: 2;\r\n  transition: 0.35s; \r\n}\r\n.btn.hover-border-11::before {\r\n  top: 0; right: 0;\r\n}\r\n.btn.hover-border-11::after {\r\n  bottom: 0; left: 0;\r\n}\r\n.btn.hover-border-11:hover::before,\r\n.btn.hover-border-11:hover::after {\r\n  width: 0%;\r\n  transition: 0.2s 0.2s ease-out; \r\n}\r\n\r\n.btn.hover-border-11 span::before,\r\n.btn.hover-border-11 span::after {\r\n  width: 2px; height: 100%;\r\n  background-color: rgb(54, 56, 55);\r\n  z-index: 2;\r\n  transition: 0.25s; \r\n}\r\n.btn.hover-border-11 span::before {\r\n  bottom: 0; right: -2px;\r\n}\r\n.btn.hover-border-11 span::after {\r\n  top: 0; left: -2px;\r\n}\r\n.btn.hover-border-11 span:hover::before,\r\n.btn.hover-border-11 span:hover::after {\r\n  height: 0%;\r\n}\r\n</style>",
+      "start": 1718517092606,
+      "end": 1718517092658,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517092658,
+      "end": 1718517092658,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"C:/Users/MSII/Desktop/pj/dansavanh/app.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"C:/Users/MSII/Desktop/pj/dansavanh/app.vue?vue&type=script&setup=true&lang.ts\";\nimport \"C:/Users/MSII/Desktop/pj/dansavanh/app.vue?vue&type=style&index=0&lang.scss\";\nimport \"C:/Users/MSII/Desktop/pj/dansavanh/app.vue?vue&type=style&index=1&lang.css\";\nexport default _sfc_main;\n",
+      "start": 1718517092658,
+      "end": 1718517092728,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517092731,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517092736,
+      "end": 1718517092736,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517092737,
+      "end": 1718517092737,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517092738,
+      "end": 1718517092739,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517092739,
+      "end": 1718517092739,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517092743,
+      "end": 1718517092745,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517092746,
+      "end": 1718517092746,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517092749,
+      "end": 1718517092750,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517092750,
+      "end": 1718517092750,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517092750,
+      "end": 1718517092750,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517092751,
+      "end": 1718517092751,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517092751,
+      "end": 1718517092751,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517092751,
+      "end": 1718517092752,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517092752,
+      "end": 1718517092752,
+      "order": "normal"
+    }
+  ]
+}

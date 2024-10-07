@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-tour/Tour.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { Fragment as _Fragment, createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { ref, computed, watch, watchEffect, defineComponent, toRefs, shallowRef } from 'vue';\nimport Trigger, { triggerProps } from '../vc-trigger';\nimport classNames from '../_util/classNames';\nimport useMergedState from '../_util/hooks/useMergedState';\nimport useTarget from './hooks/useTarget';\nimport TourStep from './TourStep';\nimport Mask from './Mask';\nimport { getPlacements } from './placements';\nimport { initDefaultProps } from '../_util/props-util';\nimport { someType, stringType, arrayType, objectType, functionType, booleanType } from '../_util/type';\nimport Portal from '../_util/PortalWrapper';\nconst CENTER_PLACEHOLDER = {\n  left: '50%',\n  top: '50%',\n  width: '1px',\n  height: '1px'\n};\nexport const tourProps = () => {\n  const {\n    builtinPlacements,\n    popupAlign\n  } = triggerProps();\n  return {\n    builtinPlacements,\n    popupAlign,\n    steps: arrayType(),\n    open: booleanType(),\n    defaultCurrent: {\n      type: Number\n    },\n    current: {\n      type: Number\n    },\n    onChange: functionType(),\n    onClose: functionType(),\n    onFinish: functionType(),\n    mask: someType([Boolean, Object], true),\n    arrow: someType([Boolean, Object], true),\n    rootClassName: {\n      type: String\n    },\n    placement: stringType('bottom'),\n    prefixCls: {\n      type: String,\n      default: 'rc-tour'\n    },\n    renderPanel: functionType(),\n    gap: objectType(),\n    animated: someType([Boolean, Object]),\n    scrollIntoViewOptions: someType([Boolean, Object], true),\n    zIndex: {\n      type: Number,\n      default: 1001\n    }\n  };\n};\nconst Tour = defineComponent({\n  name: 'Tour',\n  inheritAttrs: false,\n  props: initDefaultProps(tourProps(), {}),\n  setup(props) {\n    const {\n      defaultCurrent,\n      placement,\n      mask,\n      scrollIntoViewOptions,\n      open,\n      gap,\n      arrow\n    } = toRefs(props);\n    const triggerRef = ref();\n    const [mergedCurrent, setMergedCurrent] = useMergedState(0, {\n      value: computed(() => props.current),\n      defaultValue: defaultCurrent.value\n    });\n    const [mergedOpen, setMergedOpen] = useMergedState(undefined, {\n      value: computed(() => props.open),\n      postState: origin => mergedCurrent.value < 0 || mergedCurrent.value >= props.steps.length ? false : origin !== null && origin !== void 0 ? origin : true\n    });\n    const openRef = shallowRef(mergedOpen.value);\n    watchEffect(() => {\n      if (mergedOpen.value && !openRef.value) {\n        setMergedCurrent(0);\n      }\n      openRef.value = mergedOpen.value;\n    });\n    const curStep = computed(() => props.steps[mergedCurrent.value] || {});\n    const mergedPlacement = computed(() => {\n      var _a;\n      return (_a = curStep.value.placement) !== null && _a !== void 0 ? _a : placement.value;\n    });\n    const mergedMask = computed(() => {\n      var _a;\n      return mergedOpen.value && ((_a = curStep.value.mask) !== null && _a !== void 0 ? _a : mask.value);\n    });\n    const mergedScrollIntoViewOptions = computed(() => {\n      var _a;\n      return (_a = curStep.value.scrollIntoViewOptions) !== null && _a !== void 0 ? _a : scrollIntoViewOptions.value;\n    });\n    const [posInfo, targetElement] = useTarget(computed(() => curStep.value.target), open, gap, mergedScrollIntoViewOptions);\n    // ========================= arrow =========================\n    const mergedArrow = computed(() => targetElement.value ? typeof curStep.value.arrow === 'undefined' ? arrow.value : curStep.value.arrow : false);\n    const arrowPointAtCenter = computed(() => typeof mergedArrow.value === 'object' ? mergedArrow.value.pointAtCenter : false);\n    watch(arrowPointAtCenter, () => {\n      var _a;\n      (_a = triggerRef.value) === null || _a === void 0 ? void 0 : _a.forcePopupAlign();\n    });\n    watch(mergedCurrent, () => {\n      var _a;\n      (_a = triggerRef.value) === null || _a === void 0 ? void 0 : _a.forcePopupAlign();\n    });\n    // ========================= Change =========================\n    const onInternalChange = nextCurrent => {\n      var _a;\n      setMergedCurrent(nextCurrent);\n      (_a = props.onChange) === null || _a === void 0 ? void 0 : _a.call(props, nextCurrent);\n    };\n    return () => {\n      var _a;\n      const {\n          prefixCls,\n          steps,\n          onClose,\n          onFinish,\n          rootClassName,\n          renderPanel,\n          animated,\n          zIndex\n        } = props,\n        restProps = __rest(props, [\"prefixCls\", \"steps\", \"onClose\", \"onFinish\", \"rootClassName\", \"renderPanel\", \"animated\", \"zIndex\"]);\n      // ========================= Render =========================\n      // Skip if not init yet\n      if (targetElement.value === undefined) {\n        return null;\n      }\n      const handleClose = () => {\n        setMergedOpen(false);\n        onClose === null || onClose === void 0 ? void 0 : onClose(mergedCurrent.value);\n      };\n      const mergedShowMask = typeof mergedMask.value === 'boolean' ? mergedMask.value : !!mergedMask.value;\n      const mergedMaskStyle = typeof mergedMask.value === 'boolean' ? undefined : mergedMask.value;\n      // when targetElement is not exist, use body as triggerDOMNode\n      const getTriggerDOMNode = () => {\n        return targetElement.value || document.body;\n      };\n      const getPopupElement = () => _createVNode(TourStep, _objectSpread({\n        \"arrow\": mergedArrow.value,\n        \"key\": \"content\",\n        \"prefixCls\": prefixCls,\n        \"total\": steps.length,\n        \"renderPanel\": renderPanel,\n        \"onPrev\": () => {\n          onInternalChange(mergedCurrent.value - 1);\n        },\n        \"onNext\": () => {\n          onInternalChange(mergedCurrent.value + 1);\n        },\n        \"onClose\": handleClose,\n        \"current\": mergedCurrent.value,\n        \"onFinish\": () => {\n          handleClose();\n          onFinish === null || onFinish === void 0 ? void 0 : onFinish();\n        }\n      }, curStep.value), null);\n      const posInfoStyle = computed(() => {\n        const info = posInfo.value || CENTER_PLACEHOLDER;\n        // 如果info[key] 是number，添加 px\n        const style = {};\n        Object.keys(info).forEach(key => {\n          if (typeof info[key] === 'number') {\n            style[key] = `${info[key]}px`;\n          } else {\n            style[key] = info[key];\n          }\n        });\n        return style;\n      });\n      return mergedOpen.value ? _createVNode(_Fragment, null, [_createVNode(Mask, {\n        \"zIndex\": zIndex,\n        \"prefixCls\": prefixCls,\n        \"pos\": posInfo.value,\n        \"showMask\": mergedShowMask,\n        \"style\": mergedMaskStyle === null || mergedMaskStyle === void 0 ? void 0 : mergedMaskStyle.style,\n        \"fill\": mergedMaskStyle === null || mergedMaskStyle === void 0 ? void 0 : mergedMaskStyle.color,\n        \"open\": mergedOpen.value,\n        \"animated\": animated,\n        \"rootClassName\": rootClassName\n      }, null), _createVNode(Trigger, _objectSpread(_objectSpread({}, restProps), {}, {\n        \"builtinPlacements\": !curStep.value.target ? undefined : (_a = restProps.builtinPlacements) !== null && _a !== void 0 ? _a : getPlacements(arrowPointAtCenter.value),\n        \"ref\": triggerRef,\n        \"popupStyle\": !curStep.value.target ? _extends(_extends({}, curStep.value.style), {\n          position: 'fixed',\n          left: CENTER_PLACEHOLDER.left,\n          top: CENTER_PLACEHOLDER.top,\n          transform: 'translate(-50%, -50%)'\n        }) : curStep.value.style,\n        \"popupPlacement\": mergedPlacement.value,\n        \"popupVisible\": mergedOpen.value,\n        \"popupClassName\": classNames(rootClassName, curStep.value.className),\n        \"prefixCls\": prefixCls,\n        \"popup\": getPopupElement,\n        \"forceRender\": false,\n        \"destroyPopupOnHide\": true,\n        \"zIndex\": zIndex,\n        \"mask\": false,\n        \"getTriggerDOMNode\": getTriggerDOMNode\n      }), {\n        default: () => [_createVNode(Portal, {\n          \"visible\": mergedOpen.value,\n          \"autoLock\": true\n        }, {\n          default: () => [_createVNode(\"div\", {\n            \"class\": classNames(rootClassName, `${prefixCls}-target-placeholder`),\n            \"style\": _extends(_extends({}, posInfoStyle.value), {\n              position: 'fixed',\n              pointerEvents: 'none'\n            })\n          }, null)]\n        })]\n      })]) : null;\n    };\n  }\n});\nexport default Tour;",
+      "start": 1718517098626,
+      "end": 1718517098678,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098678,
+      "end": 1718517098678,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098679,
+      "end": 1718517098679,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098679,
+      "end": 1718517098679,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098679,
+      "end": 1718517098679,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098679,
+      "end": 1718517098679,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098679,
+      "end": 1718517098679,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098679,
+      "end": 1718517098679,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098679,
+      "end": 1718517098679,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098679,
+      "end": 1718517098679,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098679,
+      "end": 1718517098682,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098682,
+      "end": 1718517098682,
+      "order": "normal"
+    }
+  ]
+}

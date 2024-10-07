@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/input-number/src/StepHandler.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport isMobile from '../../vc-util/isMobile';\nimport { onBeforeUnmount, ref, defineComponent } from 'vue';\nimport classNames from '../../_util/classNames';\nimport { functionType } from '../../_util/type';\n/**\n * When click and hold on a button - the speed of auto changing the value.\n */\nconst STEP_INTERVAL = 200;\n/**\n * When click and hold on a button - the delay before auto changing the value.\n */\nconst STEP_DELAY = 600;\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'StepHandler',\n  inheritAttrs: false,\n  props: {\n    prefixCls: String,\n    upDisabled: Boolean,\n    downDisabled: Boolean,\n    onStep: functionType()\n  },\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      slots,\n      emit\n    } = _ref;\n    const stepTimeoutRef = ref();\n    // We will interval update step when hold mouse down\n    const onStepMouseDown = (e, up) => {\n      e.preventDefault();\n      emit('step', up);\n      // Loop step for interval\n      function loopStep() {\n        emit('step', up);\n        stepTimeoutRef.value = setTimeout(loopStep, STEP_INTERVAL);\n      }\n      // First time press will wait some time to trigger loop step update\n      stepTimeoutRef.value = setTimeout(loopStep, STEP_DELAY);\n    };\n    const onStopStep = () => {\n      clearTimeout(stepTimeoutRef.value);\n    };\n    onBeforeUnmount(() => {\n      onStopStep();\n    });\n    return () => {\n      if (isMobile()) {\n        return null;\n      }\n      const {\n        prefixCls,\n        upDisabled,\n        downDisabled\n      } = props;\n      const handlerClassName = `${prefixCls}-handler`;\n      const upClassName = classNames(handlerClassName, `${handlerClassName}-up`, {\n        [`${handlerClassName}-up-disabled`]: upDisabled\n      });\n      const downClassName = classNames(handlerClassName, `${handlerClassName}-down`, {\n        [`${handlerClassName}-down-disabled`]: downDisabled\n      });\n      const sharedHandlerProps = {\n        unselectable: 'on',\n        role: 'button',\n        onMouseup: onStopStep,\n        onMouseleave: onStopStep\n      };\n      const {\n        upNode,\n        downNode\n      } = slots;\n      return _createVNode(\"div\", {\n        \"class\": `${handlerClassName}-wrap`\n      }, [_createVNode(\"span\", _objectSpread(_objectSpread({}, sharedHandlerProps), {}, {\n        \"onMousedown\": e => {\n          onStepMouseDown(e, true);\n        },\n        \"aria-label\": \"Increase Value\",\n        \"aria-disabled\": upDisabled,\n        \"class\": upClassName\n      }), [(upNode === null || upNode === void 0 ? void 0 : upNode()) || _createVNode(\"span\", {\n        \"unselectable\": \"on\",\n        \"class\": `${prefixCls}-handler-up-inner`\n      }, null)]), _createVNode(\"span\", _objectSpread(_objectSpread({}, sharedHandlerProps), {}, {\n        \"onMousedown\": e => {\n          onStepMouseDown(e, false);\n        },\n        \"aria-label\": \"Decrease Value\",\n        \"aria-disabled\": downDisabled,\n        \"class\": downClassName\n      }), [(downNode === null || downNode === void 0 ? void 0 : downNode()) || _createVNode(\"span\", {\n        \"unselectable\": \"on\",\n        \"class\": `${prefixCls}-handler-down-inner`\n      }, null)])]);\n    };\n  }\n});",
+      "start": 1718517098230,
+      "end": 1718517098320,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098320,
+      "end": 1718517098320,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098320,
+      "end": 1718517098321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098321,
+      "end": 1718517098321,
+      "order": "normal"
+    }
+  ]
+}

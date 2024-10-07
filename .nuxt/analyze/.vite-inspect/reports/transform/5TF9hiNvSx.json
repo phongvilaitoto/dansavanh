@@ -1,0 +1,238 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/components/layout/Drawer.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\r\n    <div>\r\n\r\n        <a-drawer :width=\"320\" title=\"\" :placement=\"'right'\" :visible=\"visible\" @close=\"$emit('onClose')\">\r\n\r\n            <LanguageSwitcher style=\"position: absolute; top: 8px; right: 10px\"/>\r\n            <NuxtLink\r\n            :to=\"localePath('/')\"\r\n             @close=\"emit('onClose')\">\r\n          \r\n                <p class=\"line-hover\">{{ $t('home') }}</p>\r\n               \r\n            </NuxtLink>\r\n            <br>\r\n\r\n            <NuxtLink  :to=\"localePath('/casino')\" @close=\"emit('onClose')\">\r\n             \r\n                <p class=\"line-hover \">{{ $t('casino') }}</p>\r\n              \r\n            </NuxtLink>\r\n\r\n<br>\r\n\r\n<NuxtLink\r\n:to=\"localePath('/hotels')\"\r\n @close=\"emit('onClose')\">\r\n            <p class=\"line-hover\">{{ $t('hotels') }}</p>\r\n            </NuxtLink>\r\n            <div style=\"border-left: 1px solid white; padding: 10px; margin: 10px 0 10px;\">\r\n                <NuxtLink\r\n                :to=\"localePath('/hotels/numngum')\"\r\n                 @close=\"emit('onClose')\">\r\n\r\n                    <p class=\"line-hover small-text\">{{$t('hotelTab1')}}</p>\r\n            \r\n                </NuxtLink>\r\n                <br>\r\n                <NuxtLink\r\n                :to=\"localePath('/hotels/golf')\"\r\n                 @close=\"emit('onClose')\">\r\n                    <p class=\"line-hover  small-text\">{{$t('hotelTab2')}}</p>\r\n                </NuxtLink>\r\n                <br>\r\n                <NuxtLink \r\n                :to=\"localePath('/hotels/vientaine-hotel')\"\r\n               @close=\"emit('onClose')\">\r\n                    <p class=\"line-hover  small-text\">{{$t('hotelTab3')}}</p>\r\n                </NuxtLink>\r\n            </div>\r\n\r\n\r\n            <NuxtLink \r\n            :to=\"localePath('/experience')\"\r\n           @close=\"emit('onClose')\">\r\n                <p class=\"line-hover\">{{ $t('experience') }}</p>\r\n            </NuxtLink>\r\n\r\n            <br>\r\n\r\n            <NuxtLink \r\n            \r\n            :to=\"localePath('/events')\"\r\n            @close=\"emit('onClose')\">\r\n                <p class=\"line-hover\">{{ $t('events') }}</p>\r\n            </NuxtLink>\r\n\r\n            <br>\r\n\r\n            <NuxtLink \r\n            :to=\"localePath('/offer')\"\r\n             @close=\"emit('onClose')\">\r\n                <p class=\"line-hover\">{{ $t('offer') }}</p>\r\n            </NuxtLink>\r\n\r\n            <br>\r\n\r\n            \r\n\r\n            <p class=\"line-hover\">{{ $t('more') }}</p>\r\n            <div style=\"border-left: 1px solid white; padding: 10px; margin: 10px 0 10px;\">\r\n                <NuxtLink\r\n                :to=\"localePath('/more/career')\"\r\n               @close=\"emit('onClose')\">\r\n                    <p class=\"line-hover  small-text\">{{$t('careerTitle')}}</p>\r\n                </NuxtLink>\r\n                <br>\r\n                <NuxtLink\r\n                :to=\"localePath('/gallery')\"\r\n                @close=\"emit('onClose')\">\r\n                    <p class=\"line-hover  small-text\">{{$t('gallery')}}</p>\r\n                </NuxtLink>\r\n                <br>\r\n                <NuxtLink\r\n                :to=\"localePath('/news')\"\r\n                 @close=\"emit('onClose')\">\r\n                    <p class=\"line-hover  small-text\">{{ $t('newsTitle') }}</p>\r\n                </NuxtLink>\r\n                \r\n                </div>\r\n\r\n                <NuxtLink \r\n                :to=\"localePath('/contact')\"\r\n               @close=\"emit('onClose')\">\r\n                <p class=\"line-hover\">{{ $t('contact') }}</p>\r\n            </NuxtLink>\r\n\r\n\r\n       \r\n            <h3 class=\"text-white\" style=\"margin-top: 40px\">ABOUT DANSAVANH</h3>\r\n            <p class=\"text-white\">Either you look for a luxurious experience or a remarkable on the go experience, Dansavanh Resort is the place to visit and spend the time at. We offer quality services.</p>\r\n\r\n            <p class=\"text-white\">VIP hotline : +856-20-58276666</p>\r\n            <p class=\"text-white\">Tour hotline: +856-20-52241111</p>\r\n            <p class=\"text-white\">Thai hotline: +66-92193-7777</p>\r\n\r\n\r\n            <p class=\"text-white\">info@dansavanh.com</p>\r\n\r\n\r\n        </a-drawer>\r\n    </div>\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\nimport LanguageSwitcher from '@/components/layout/LanguageSwitcher.vue'\r\n\r\n\r\nconst language = ref('')\r\n\r\nconst emit = defineEmits(['onClose'])\r\n\r\nconst { visible } = defineProps(['visible'])\r\n\r\nconst localePath = useLocalePath()\r\n\r\n\r\n\r\nconst onLanguageChanged = () => {\r\n\r\n}\r\n\r\n</script>\r\n\r\n<style scoped lang=\"scss\">\r\n.small-text {\r\n    font-size: 12px;\r\n}\r\n</style>",
+      "start": 1718517097883,
+      "end": 1718517098064,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098064,
+      "end": 1718517098064,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098064,
+      "end": 1718517098064,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098064,
+      "end": 1718517098064,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098064,
+      "end": 1718517098067,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098067,
+      "end": 1718517098067,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098067,
+      "end": 1718517098067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098067,
+      "end": 1718517098067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098067,
+      "end": 1718517098067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098067,
+      "end": 1718517098067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"C:/Users/MSII/Desktop/pj/dansavanh/components/layout/Drawer.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"C:/Users/MSII/Desktop/pj/dansavanh/components/layout/Drawer.vue?vue&type=script&setup=true&lang.ts\";\nimport \"C:/Users/MSII/Desktop/pj/dansavanh/components/layout/Drawer.vue?vue&type=style&index=0&scoped=4e2b0271&lang.scss\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-4e2b0271\"]]);\n",
+      "start": 1718517098067,
+      "end": 1718517098120,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098120,
+      "end": 1718517098120,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098120,
+      "end": 1718517098121,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098121,
+      "end": 1718517098121,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098121,
+      "end": 1718517098121,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098121,
+      "end": 1718517098121,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098121,
+      "end": 1718517098121,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098121,
+      "end": 1718517098121,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098121,
+      "end": 1718517098121,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098121,
+      "end": 1718517098121,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098121,
+      "end": 1718517098121,
+      "order": "normal"
+    }
+  ]
+}

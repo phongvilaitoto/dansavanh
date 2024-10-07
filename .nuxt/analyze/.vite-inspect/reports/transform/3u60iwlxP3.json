@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-picker/hooks/usePickerInput.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { onBeforeUnmount, onMounted, watch, shallowRef, computed } from 'vue';\nimport KeyCode from '../../_util/KeyCode';\nimport { addGlobalMousedownEvent, getTargetFromEvent } from '../utils/uiUtil';\nimport raf from '../../_util/raf';\nexport default function usePickerInput(_ref) {\n  let {\n    open,\n    value,\n    isClickOutside,\n    triggerOpen,\n    forwardKeydown,\n    onKeydown,\n    blurToCancel,\n    onSubmit,\n    onCancel,\n    onFocus,\n    onBlur\n  } = _ref;\n  const typing = shallowRef(false);\n  const focused = shallowRef(false);\n  /**\n   * We will prevent blur to handle open event when user click outside,\n   * since this will repeat trigger `onOpenChange` event.\n   */\n  const preventBlurRef = shallowRef(false);\n  const valueChangedRef = shallowRef(false);\n  const preventDefaultRef = shallowRef(false);\n  const inputProps = computed(() => ({\n    onMousedown: () => {\n      typing.value = true;\n      triggerOpen(true);\n    },\n    onKeydown: e => {\n      const preventDefault = () => {\n        preventDefaultRef.value = true;\n      };\n      onKeydown(e, preventDefault);\n      if (preventDefaultRef.value) return;\n      switch (e.which) {\n        case KeyCode.ENTER:\n          {\n            if (!open.value) {\n              triggerOpen(true);\n            } else if (onSubmit() !== false) {\n              typing.value = true;\n            }\n            e.preventDefault();\n            return;\n          }\n        case KeyCode.TAB:\n          {\n            if (typing.value && open.value && !e.shiftKey) {\n              typing.value = false;\n              e.preventDefault();\n            } else if (!typing.value && open.value) {\n              if (!forwardKeydown(e) && e.shiftKey) {\n                typing.value = true;\n                e.preventDefault();\n              }\n            }\n            return;\n          }\n        case KeyCode.ESC:\n          {\n            typing.value = true;\n            onCancel();\n            return;\n          }\n      }\n      if (!open.value && ![KeyCode.SHIFT].includes(e.which)) {\n        triggerOpen(true);\n      } else if (!typing.value) {\n        // Let popup panel handle keyboard\n        forwardKeydown(e);\n      }\n    },\n    onFocus: e => {\n      typing.value = true;\n      focused.value = true;\n      if (onFocus) {\n        onFocus(e);\n      }\n    },\n    onBlur: e => {\n      if (preventBlurRef.value || !isClickOutside(document.activeElement)) {\n        preventBlurRef.value = false;\n        return;\n      }\n      if (blurToCancel.value) {\n        setTimeout(() => {\n          let {\n            activeElement\n          } = document;\n          while (activeElement && activeElement.shadowRoot) {\n            activeElement = activeElement.shadowRoot.activeElement;\n          }\n          if (isClickOutside(activeElement)) {\n            onCancel();\n          }\n        }, 0);\n      } else if (open.value) {\n        triggerOpen(false);\n        if (valueChangedRef.value) {\n          onSubmit();\n        }\n      }\n      focused.value = false;\n      if (onBlur) {\n        onBlur(e);\n      }\n    }\n  }));\n  // check if value changed\n  watch(open, () => {\n    valueChangedRef.value = false;\n  });\n  watch(value, () => {\n    valueChangedRef.value = true;\n  });\n  const globalMousedownEvent = shallowRef();\n  // Global click handler\n  onMounted(() => {\n    globalMousedownEvent.value = addGlobalMousedownEvent(e => {\n      const target = getTargetFromEvent(e);\n      if (open.value) {\n        const clickedOutside = isClickOutside(target);\n        if (!clickedOutside) {\n          preventBlurRef.value = true;\n          // Always set back in case `onBlur` prevented by user\n          raf(() => {\n            preventBlurRef.value = false;\n          });\n        } else if (!focused.value || clickedOutside) {\n          triggerOpen(false);\n        }\n      }\n    });\n  });\n  onBeforeUnmount(() => {\n    globalMousedownEvent.value && globalMousedownEvent.value();\n  });\n  return [inputProps, {\n    focused,\n    typing\n  }];\n}",
+      "start": 1718517099956,
+      "end": 1718517100006,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100006,
+      "end": 1718517100006,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100006,
+      "end": 1718517100006,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100006,
+      "end": 1718517100006,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100006,
+      "end": 1718517100006,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100006,
+      "end": 1718517100006,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100006,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100007,
+      "end": 1718517100007,
+      "order": "normal"
+    }
+  ]
+}

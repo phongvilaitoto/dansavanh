@@ -1,0 +1,238 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/components/gallery.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "\r\n<template>\r\n\r\n<div class=\"masonry\">\r\n  <div class=\"item\" v-for=\"i in galleries\" :key=\"i\">\r\n\r\n    <img\r\n    style=\"width: 100%\"\r\n     :src=\"i\">\r\n  </div>\r\n \r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n</template>\r\n\r\n<script lang=\"ts\" setup>\r\nconst {galleries} = defineProps(['galleries'])\r\n\r\n</script>\r\n\r\n\r\n<style lang=\"scss\" scoped>\r\nbody {\r\n  font-family: sans-serif;\r\n   margin: 0;\r\n   background: #f2f2f2;\r\n}\r\n\r\nh1 {\r\n  text-align: center;\r\n  margin-top: 50px;\r\n}\r\n\r\np {\r\n  text-align: center;\r\n  margin-bottom:60px;\r\n}\r\n\r\nh4{\r\n  text-align:center; \r\n  line-height:80px;\r\n  font-weight:normal;\r\n\r\n}\r\n\r\n.masonry { /* Masonry container */\r\n    -webkit-column-count: 3;\r\n  -moz-column-count:3;\r\n  column-count: 3;\r\n  -webkit-column-gap: 1em;\r\n  -moz-column-gap: 1em;\r\n  column-gap: 1em;\r\n   margin: 1.5em;\r\n    padding: 0;\r\n    -moz-column-gap: 1.5em;\r\n    -webkit-column-gap: 1.5em;\r\n    column-gap: 1.5em;\r\n    font-size: .85em;\r\n}\r\n.item {\r\n    display: inline-block;\r\n    background: #fff;\r\n  \r\n    margin: 0 0 1.5em;\r\n    width: 100%;\r\n\t-webkit-transition:1s ease all;\r\n    box-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n    box-shadow: 2px 2px 4px 0 #ccc;\r\n}\r\n.item img{max-width:100%;}\r\n\r\n@media only screen and (max-width: 320px) {\r\n    .masonry {\r\n        -moz-column-count: 1;\r\n        -webkit-column-count: 1;\r\n        column-count: 1;\r\n    }\r\n}\r\n\r\n@media only screen and (min-width: 321px) and (max-width: 768px){\r\n    .masonry {\r\n        -moz-column-count: 2;\r\n        -webkit-column-count: 2;\r\n        column-count: 2;\r\n    }\r\n}\r\n@media only screen and (min-width: 769px) and (max-width: 1200px){\r\n    .masonry {\r\n        -moz-column-count: 3;\r\n        -webkit-column-count: 3;\r\n        column-count: 3;\r\n    }\r\n}\r\n@media only screen and (min-width: 1201px) {\r\n    .masonry {\r\n        -moz-column-count: 3;\r\n        -webkit-column-count: 3;\r\n        column-count: 3;\r\n    }\r\n}\r\n</style>",
+      "start": 1718517093528,
+      "end": 1718517093676,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517093676,
+      "end": 1718517093676,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"C:/Users/MSII/Desktop/pj/dansavanh/components/gallery.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"C:/Users/MSII/Desktop/pj/dansavanh/components/gallery.vue?vue&type=script&setup=true&lang.ts\";\nimport \"C:/Users/MSII/Desktop/pj/dansavanh/components/gallery.vue?vue&type=style&index=0&scoped=08a4346c&lang.scss\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-08a4346c\"]]);\n",
+      "start": 1718517093676,
+      "end": 1718517093904,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517093904,
+      "end": 1718517093904,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093904,
+      "end": 1718517093904,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517093904,
+      "end": 1718517093904,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517093904,
+      "end": 1718517093904,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517093910,
+      "end": 1718517093910,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517093911,
+      "end": 1718517093911,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517093911,
+      "end": 1718517093911,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517093911,
+      "end": 1718517093911,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517093911,
+      "end": 1718517093911,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517093911,
+      "end": 1718517093911,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517093911,
+      "end": 1718517093911,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517093911,
+      "end": 1718517093911,
+      "order": "normal"
+    }
+  ]
+}

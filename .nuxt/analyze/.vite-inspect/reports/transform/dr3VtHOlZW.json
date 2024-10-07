@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/form/FormItemInput.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode, Fragment as _Fragment } from \"vue\";\nimport Col from '../grid/Col';\nimport { useProvideForm, useInjectForm, useProvideFormItemPrefix } from './context';\nimport ErrorList from './ErrorList';\nimport classNames from '../_util/classNames';\nimport { computed, defineComponent } from 'vue';\nimport { filterEmpty } from '../_util/props-util';\nconst FormItemInput = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  slots: Object,\n  inheritAttrs: false,\n  props: ['prefixCls', 'errors', 'hasFeedback', 'onDomErrorVisibleChange', 'wrapperCol', 'help', 'extra', 'status', 'marginBottom', 'onErrorVisibleChanged'],\n  setup(props, _ref) {\n    let {\n      slots\n    } = _ref;\n    const formContext = useInjectForm();\n    const {\n      wrapperCol: contextWrapperCol\n    } = formContext;\n    // Pass to sub FormItem should not with col info\n    const subFormContext = _extends({}, formContext);\n    delete subFormContext.labelCol;\n    delete subFormContext.wrapperCol;\n    useProvideForm(subFormContext);\n    useProvideFormItemPrefix({\n      prefixCls: computed(() => props.prefixCls),\n      status: computed(() => props.status)\n    });\n    return () => {\n      var _a, _b, _c;\n      const {\n        prefixCls,\n        wrapperCol,\n        marginBottom,\n        onErrorVisibleChanged,\n        help = (_a = slots.help) === null || _a === void 0 ? void 0 : _a.call(slots),\n        errors = filterEmpty((_b = slots.errors) === null || _b === void 0 ? void 0 : _b.call(slots)),\n        // hasFeedback,\n        // status,\n        extra = (_c = slots.extra) === null || _c === void 0 ? void 0 : _c.call(slots)\n      } = props;\n      const baseClassName = `${prefixCls}-item`;\n      const mergedWrapperCol = wrapperCol || (contextWrapperCol === null || contextWrapperCol === void 0 ? void 0 : contextWrapperCol.value) || {};\n      const className = classNames(`${baseClassName}-control`, mergedWrapperCol.class);\n      // Should provides additional icon if `hasFeedback`\n      // const IconNode = status && iconMap[status];\n      return _createVNode(Col, _objectSpread(_objectSpread({}, mergedWrapperCol), {}, {\n        \"class\": className\n      }), {\n        default: () => {\n          var _a;\n          return _createVNode(_Fragment, null, [_createVNode(\"div\", {\n            \"class\": `${baseClassName}-control-input`\n          }, [_createVNode(\"div\", {\n            \"class\": `${baseClassName}-control-input-content`\n          }, [(_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots)])]), marginBottom !== null || errors.length ? _createVNode(\"div\", {\n            \"style\": {\n              display: 'flex',\n              flexWrap: 'nowrap'\n            }\n          }, [_createVNode(ErrorList, {\n            \"errors\": errors,\n            \"help\": help,\n            \"class\": `${baseClassName}-explain-connected`,\n            \"onErrorVisibleChanged\": onErrorVisibleChanged\n          }, null), !!marginBottom && _createVNode(\"div\", {\n            \"style\": {\n              width: 0,\n              height: `${marginBottom}px`\n            }\n          }, null)]) : null, extra ? _createVNode(\"div\", {\n            \"class\": `${baseClassName}-extra`\n          }, [extra]) : null]);\n        }\n      });\n    };\n  }\n});\nexport default FormItemInput;",
+      "start": 1718517098360,
+      "end": 1718517098400,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098400,
+      "end": 1718517098400,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098400,
+      "end": 1718517098400,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098400,
+      "end": 1718517098400,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098400,
+      "end": 1718517098400,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098400,
+      "end": 1718517098400,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098400,
+      "end": 1718517098400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098400,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098401,
+      "end": 1718517098401,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098401,
+      "end": 1718517098402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098402,
+      "end": 1718517098402,
+      "order": "normal"
+    }
+  ]
+}

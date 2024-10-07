@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/tabs/src/hooks/useOffsets.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { ref, watchEffect } from 'vue';\nconst DEFAULT_SIZE = {\n  width: 0,\n  height: 0,\n  left: 0,\n  top: 0\n};\nexport default function useOffsets(tabs, tabSizes) {\n  const offsetMap = ref(new Map());\n  watchEffect(() => {\n    var _a, _b;\n    const map = new Map();\n    const tabsValue = tabs.value;\n    const lastOffset = tabSizes.value.get((_a = tabsValue[0]) === null || _a === void 0 ? void 0 : _a.key) || DEFAULT_SIZE;\n    const rightOffset = lastOffset.left + lastOffset.width;\n    for (let i = 0; i < tabsValue.length; i += 1) {\n      const {\n        key\n      } = tabsValue[i];\n      let data = tabSizes.value.get(key);\n      // Reuse last one when not exist yet\n      if (!data) {\n        data = tabSizes.value.get((_b = tabsValue[i - 1]) === null || _b === void 0 ? void 0 : _b.key) || DEFAULT_SIZE;\n      }\n      const entity = map.get(key) || _extends({}, data);\n      // Right\n      entity.right = rightOffset - entity.left - entity.width;\n      // Update entity\n      map.set(key, entity);\n    }\n    offsetMap.value = new Map(map);\n  });\n  return offsetMap;\n}",
+      "start": 1718517099908,
+      "end": 1718517099948,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099948,
+      "end": 1718517099948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099948,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099949,
+      "end": 1718517099949,
+      "order": "normal"
+    }
+  ]
+}

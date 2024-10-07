@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/button/button.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { computed, defineComponent, onBeforeUnmount, onMounted, onUpdated, shallowRef, Text, watch, watchEffect } from 'vue';\nimport Wave from '../_util/wave';\nimport buttonProps from './buttonTypes';\nimport { flattenChildren, initDefaultProps } from '../_util/props-util';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport { useInjectDisabled } from '../config-provider/DisabledContext';\nimport devWarning from '../vc-util/devWarning';\nimport LoadingIcon from './LoadingIcon';\nimport useStyle from './style';\nimport { GroupSizeContext } from './button-group';\nimport { useCompactItemContext } from '../space/Compact';\nconst rxTwoCNChar = /^[\\u4e00-\\u9fa5]{2}$/;\nconst isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);\nfunction isUnBorderedButtonType(type) {\n  return type === 'text' || type === 'link';\n}\nexport { buttonProps };\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AButton',\n  inheritAttrs: false,\n  __ANT_BUTTON: true,\n  props: initDefaultProps(buttonProps(), {\n    type: 'default'\n  }),\n  slots: Object,\n  // emits: ['click', 'mousedown'],\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs,\n      emit,\n      expose\n    } = _ref;\n    const {\n      prefixCls,\n      autoInsertSpaceInButton,\n      direction,\n      size\n    } = useConfigInject('btn', props);\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const groupSizeContext = GroupSizeContext.useInject();\n    const disabledContext = useInjectDisabled();\n    const mergedDisabled = computed(() => {\n      var _a;\n      return (_a = props.disabled) !== null && _a !== void 0 ? _a : disabledContext.value;\n    });\n    const buttonNodeRef = shallowRef(null);\n    const delayTimeoutRef = shallowRef(undefined);\n    let isNeedInserted = false;\n    const innerLoading = shallowRef(false);\n    const hasTwoCNChar = shallowRef(false);\n    const autoInsertSpace = computed(() => autoInsertSpaceInButton.value !== false);\n    const {\n      compactSize,\n      compactItemClassnames\n    } = useCompactItemContext(prefixCls, direction);\n    // =============== Update Loading ===============\n    const loadingOrDelay = computed(() => typeof props.loading === 'object' && props.loading.delay ? props.loading.delay || true : !!props.loading);\n    watch(loadingOrDelay, val => {\n      clearTimeout(delayTimeoutRef.value);\n      if (typeof loadingOrDelay.value === 'number') {\n        delayTimeoutRef.value = setTimeout(() => {\n          innerLoading.value = val;\n        }, loadingOrDelay.value);\n      } else {\n        innerLoading.value = val;\n      }\n    }, {\n      immediate: true\n    });\n    const classes = computed(() => {\n      const {\n        type,\n        shape = 'default',\n        ghost,\n        block,\n        danger\n      } = props;\n      const pre = prefixCls.value;\n      const sizeClassNameMap = {\n        large: 'lg',\n        small: 'sm',\n        middle: undefined\n      };\n      const sizeFullname = compactSize.value || (groupSizeContext === null || groupSizeContext === void 0 ? void 0 : groupSizeContext.size) || size.value;\n      const sizeCls = sizeFullname ? sizeClassNameMap[sizeFullname] || '' : '';\n      return [compactItemClassnames.value, {\n        [hashId.value]: true,\n        [`${pre}`]: true,\n        [`${pre}-${shape}`]: shape !== 'default' && shape,\n        [`${pre}-${type}`]: type,\n        [`${pre}-${sizeCls}`]: sizeCls,\n        [`${pre}-loading`]: innerLoading.value,\n        [`${pre}-background-ghost`]: ghost && !isUnBorderedButtonType(type),\n        [`${pre}-two-chinese-chars`]: hasTwoCNChar.value && autoInsertSpace.value,\n        [`${pre}-block`]: block,\n        [`${pre}-dangerous`]: !!danger,\n        [`${pre}-rtl`]: direction.value === 'rtl'\n      }];\n    });\n    const fixTwoCNChar = () => {\n      // Fix for HOC usage like <FormatMessage />\n      const node = buttonNodeRef.value;\n      if (!node || autoInsertSpaceInButton.value === false) {\n        return;\n      }\n      const buttonText = node.textContent;\n      if (isNeedInserted && isTwoCNChar(buttonText)) {\n        if (!hasTwoCNChar.value) {\n          hasTwoCNChar.value = true;\n        }\n      } else if (hasTwoCNChar.value) {\n        hasTwoCNChar.value = false;\n      }\n    };\n    const handleClick = event => {\n      // https://github.com/ant-design/ant-design/issues/30207\n      if (innerLoading.value || mergedDisabled.value) {\n        event.preventDefault();\n        return;\n      }\n      emit('click', event);\n    };\n    const handleMousedown = event => {\n      emit('mousedown', event);\n    };\n    const insertSpace = (child, needInserted) => {\n      const SPACE = needInserted ? ' ' : '';\n      if (child.type === Text) {\n        let text = child.children.trim();\n        if (isTwoCNChar(text)) {\n          text = text.split('').join(SPACE);\n        }\n        return _createVNode(\"span\", null, [text]);\n      }\n      return child;\n    };\n    watchEffect(() => {\n      devWarning(!(props.ghost && isUnBorderedButtonType(props.type)), 'Button', \"`link` or `text` button can't be a `ghost` button.\");\n    });\n    onMounted(fixTwoCNChar);\n    onUpdated(fixTwoCNChar);\n    onBeforeUnmount(() => {\n      delayTimeoutRef.value && clearTimeout(delayTimeoutRef.value);\n    });\n    const focus = () => {\n      var _a;\n      (_a = buttonNodeRef.value) === null || _a === void 0 ? void 0 : _a.focus();\n    };\n    const blur = () => {\n      var _a;\n      (_a = buttonNodeRef.value) === null || _a === void 0 ? void 0 : _a.blur();\n    };\n    expose({\n      focus,\n      blur\n    });\n    return () => {\n      var _a, _b;\n      const {\n        icon = (_a = slots.icon) === null || _a === void 0 ? void 0 : _a.call(slots)\n      } = props;\n      const children = flattenChildren((_b = slots.default) === null || _b === void 0 ? void 0 : _b.call(slots));\n      isNeedInserted = children.length === 1 && !icon && !isUnBorderedButtonType(props.type);\n      const {\n        type,\n        htmlType,\n        href,\n        title,\n        target\n      } = props;\n      const iconType = innerLoading.value ? 'loading' : icon;\n      const buttonProps = _extends(_extends({}, attrs), {\n        title,\n        disabled: mergedDisabled.value,\n        class: [classes.value, attrs.class, {\n          [`${prefixCls.value}-icon-only`]: children.length === 0 && !!iconType\n        }],\n        onClick: handleClick,\n        onMousedown: handleMousedown\n      });\n      // https://github.com/vueComponent/ant-design-vue/issues/4930\n      if (!mergedDisabled.value) {\n        delete buttonProps.disabled;\n      }\n      const iconNode = icon && !innerLoading.value ? icon : _createVNode(LoadingIcon, {\n        \"existIcon\": !!icon,\n        \"prefixCls\": prefixCls.value,\n        \"loading\": !!innerLoading.value\n      }, null);\n      const kids = children.map(child => insertSpace(child, isNeedInserted && autoInsertSpace.value));\n      if (href !== undefined) {\n        return wrapSSR(_createVNode(\"a\", _objectSpread(_objectSpread({}, buttonProps), {}, {\n          \"href\": href,\n          \"target\": target,\n          \"ref\": buttonNodeRef\n        }), [iconNode, kids]));\n      }\n      let buttonNode = _createVNode(\"button\", _objectSpread(_objectSpread({}, buttonProps), {}, {\n        \"ref\": buttonNodeRef,\n        \"type\": htmlType\n      }), [iconNode, kids]);\n      if (!isUnBorderedButtonType(type)) {\n        const _buttonNode = function () {\n          return buttonNode;\n        }();\n        buttonNode = _createVNode(Wave, {\n          \"ref\": \"wave\",\n          \"disabled\": !!innerLoading.value\n        }, {\n          default: () => [_buttonNode]\n        });\n      }\n      return wrapSSR(buttonNode);\n    };\n  }\n});",
+      "start": 1718517097289,
+      "end": 1718517097333,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097333,
+      "end": 1718517097333,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097333,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097334,
+      "end": 1718517097334,
+      "order": "normal"
+    }
+  ]
+}

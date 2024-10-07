@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/progress/Circle.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { Fragment as _Fragment, resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nimport { computed, defineComponent } from 'vue';\nimport { Circle as VCCircle } from '../vc-progress';\nimport { getPercentage, getSize, getStrokeColor } from './utils';\nimport { progressProps } from './props';\nimport { initDefaultProps } from '../_util/props-util';\nimport Tooltip from '../tooltip';\nimport { anyType } from '../_util/type';\nexport const circleProps = () => _extends(_extends({}, progressProps()), {\n  strokeColor: anyType()\n});\nconst CIRCLE_MIN_STROKE_WIDTH = 3;\nconst getMinPercent = width => CIRCLE_MIN_STROKE_WIDTH / width * 100;\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ProgressCircle',\n  inheritAttrs: false,\n  props: initDefaultProps(circleProps(), {\n    trailColor: null\n  }),\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs\n    } = _ref;\n    const originWidth = computed(() => {\n      var _a;\n      return (_a = props.width) !== null && _a !== void 0 ? _a : 120;\n    });\n    const mergedSize = computed(() => {\n      var _a;\n      return (_a = props.size) !== null && _a !== void 0 ? _a : [originWidth.value, originWidth.value];\n    });\n    const sizeRef = computed(() => getSize(mergedSize.value, 'circle'));\n    const gapDeg = computed(() => {\n      // Support gapDeg = 0 when type = 'dashboard'\n      if (props.gapDegree || props.gapDegree === 0) {\n        return props.gapDegree;\n      }\n      if (props.type === 'dashboard') {\n        return 75;\n      }\n      return undefined;\n    });\n    const circleStyle = computed(() => {\n      return {\n        width: `${sizeRef.value.width}px`,\n        height: `${sizeRef.value.height}px`,\n        fontSize: `${sizeRef.value.width * 0.15 + 6}px`\n      };\n    });\n    const circleWidth = computed(() => {\n      var _a;\n      return (_a = props.strokeWidth) !== null && _a !== void 0 ? _a : Math.max(getMinPercent(sizeRef.value.width), 6);\n    });\n    const gapPos = computed(() => props.gapPosition || props.type === 'dashboard' && 'bottom' || undefined);\n    // using className to style stroke color\n    const percent = computed(() => getPercentage(props));\n    const isGradient = computed(() => Object.prototype.toString.call(props.strokeColor) === '[object Object]');\n    const strokeColor = computed(() => getStrokeColor({\n      success: props.success,\n      strokeColor: props.strokeColor\n    }));\n    const wrapperClassName = computed(() => ({\n      [`${props.prefixCls}-inner`]: true,\n      [`${props.prefixCls}-circle-gradient`]: isGradient.value\n    }));\n    return () => {\n      var _a;\n      const circleContent = _createVNode(VCCircle, {\n        \"percent\": percent.value,\n        \"strokeWidth\": circleWidth.value,\n        \"trailWidth\": circleWidth.value,\n        \"strokeColor\": strokeColor.value,\n        \"strokeLinecap\": props.strokeLinecap,\n        \"trailColor\": props.trailColor,\n        \"prefixCls\": props.prefixCls,\n        \"gapDegree\": gapDeg.value,\n        \"gapPosition\": gapPos.value\n      }, null);\n      return _createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"class\": [wrapperClassName.value, attrs.class],\n        \"style\": [attrs.style, circleStyle.value]\n      }), [sizeRef.value.width <= 20 ? _createVNode(Tooltip, null, {\n        default: () => [_createVNode(\"span\", null, [circleContent])],\n        title: slots.default\n      }) : _createVNode(_Fragment, null, [circleContent, (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots)])]);\n    };\n  }\n});",
+      "start": 1718517098442,
+      "end": 1718517098491,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098491,
+      "end": 1718517098491,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098491,
+      "end": 1718517098492,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098492,
+      "end": 1718517098492,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098492,
+      "end": 1718517098492,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098492,
+      "end": 1718517098492,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098492,
+      "end": 1718517098492,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098492,
+      "end": 1718517098492,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098492,
+      "end": 1718517098492,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098492,
+      "end": 1718517098492,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098492,
+      "end": 1718517098492,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-table/FixedHolder/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport ColGroup from '../ColGroup';\nimport { computed, defineComponent, nextTick, onBeforeUnmount, onMounted, ref, toRef, watchEffect } from 'vue';\nimport { useInjectTable } from '../context/TableContext';\nimport classNames from '../../_util/classNames';\nimport addEventListenerWrap from '../../vc-util/Dom/addEventListener';\nfunction useColumnWidth(colWidthsRef, columCountRef) {\n  return computed(() => {\n    const cloneColumns = [];\n    const colWidths = colWidthsRef.value;\n    const columCount = columCountRef.value;\n    for (let i = 0; i < columCount; i += 1) {\n      const val = colWidths[i];\n      if (val !== undefined) {\n        cloneColumns[i] = val;\n      } else {\n        return null;\n      }\n    }\n    return cloneColumns;\n  });\n}\nexport default defineComponent({\n  name: 'FixedHolder',\n  inheritAttrs: false,\n  props: ['columns', 'flattenColumns', 'stickyOffsets', 'customHeaderRow', 'noData', 'maxContentScroll', 'colWidths', 'columCount', 'direction', 'fixHeader', 'stickyTopOffset', 'stickyBottomOffset', 'stickyClassName'],\n  emits: ['scroll'],\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots,\n      emit\n    } = _ref;\n    const tableContext = useInjectTable();\n    const combinationScrollBarSize = computed(() => tableContext.isSticky && !props.fixHeader ? 0 : tableContext.scrollbarSize);\n    const scrollRef = ref();\n    const onWheel = e => {\n      const {\n        currentTarget,\n        deltaX\n      } = e;\n      if (deltaX) {\n        emit('scroll', {\n          currentTarget,\n          scrollLeft: currentTarget.scrollLeft + deltaX\n        });\n        e.preventDefault();\n      }\n    };\n    const wheelEvent = ref();\n    onMounted(() => {\n      nextTick(() => {\n        wheelEvent.value = addEventListenerWrap(scrollRef.value, 'wheel', onWheel);\n      });\n    });\n    onBeforeUnmount(() => {\n      var _a;\n      (_a = wheelEvent.value) === null || _a === void 0 ? void 0 : _a.remove();\n    });\n    // Check if all flattenColumns has width\n    const allFlattenColumnsWithWidth = computed(() => props.flattenColumns.every(column => column.width && column.width !== 0 && column.width !== '0px'));\n    const columnsWithScrollbar = ref([]);\n    const flattenColumnsWithScrollbar = ref([]);\n    watchEffect(() => {\n      // Add scrollbar column\n      const lastColumn = props.flattenColumns[props.flattenColumns.length - 1];\n      const ScrollBarColumn = {\n        fixed: lastColumn ? lastColumn.fixed : null,\n        scrollbar: true,\n        customHeaderCell: () => ({\n          class: `${tableContext.prefixCls}-cell-scrollbar`\n        })\n      };\n      columnsWithScrollbar.value = combinationScrollBarSize.value ? [...props.columns, ScrollBarColumn] : props.columns;\n      flattenColumnsWithScrollbar.value = combinationScrollBarSize.value ? [...props.flattenColumns, ScrollBarColumn] : props.flattenColumns;\n    });\n    // Calculate the sticky offsets\n    const headerStickyOffsets = computed(() => {\n      const {\n        stickyOffsets,\n        direction\n      } = props;\n      const {\n        right,\n        left\n      } = stickyOffsets;\n      return _extends(_extends({}, stickyOffsets), {\n        left: direction === 'rtl' ? [...left.map(width => width + combinationScrollBarSize.value), 0] : left,\n        right: direction === 'rtl' ? right : [...right.map(width => width + combinationScrollBarSize.value), 0],\n        isSticky: tableContext.isSticky\n      });\n    });\n    const mergedColumnWidth = useColumnWidth(toRef(props, 'colWidths'), toRef(props, 'columCount'));\n    return () => {\n      var _a;\n      const {\n        noData,\n        columCount,\n        stickyTopOffset,\n        stickyBottomOffset,\n        stickyClassName,\n        maxContentScroll\n      } = props;\n      const {\n        isSticky\n      } = tableContext;\n      return _createVNode(\"div\", {\n        \"style\": _extends({\n          overflow: 'hidden'\n        }, isSticky ? {\n          top: `${stickyTopOffset}px`,\n          bottom: `${stickyBottomOffset}px`\n        } : {}),\n        \"ref\": scrollRef,\n        \"class\": classNames(attrs.class, {\n          [stickyClassName]: !!stickyClassName\n        })\n      }, [_createVNode(\"table\", {\n        \"style\": {\n          tableLayout: 'fixed',\n          visibility: noData || mergedColumnWidth.value ? null : 'hidden'\n        }\n      }, [(!noData || !maxContentScroll || allFlattenColumnsWithWidth.value) && _createVNode(ColGroup, {\n        \"colWidths\": mergedColumnWidth.value ? [...mergedColumnWidth.value, combinationScrollBarSize.value] : [],\n        \"columCount\": columCount + 1,\n        \"columns\": flattenColumnsWithScrollbar.value\n      }, null), (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots, _extends(_extends({}, props), {\n        stickyOffsets: headerStickyOffsets.value,\n        columns: columnsWithScrollbar.value,\n        flattenColumns: flattenColumnsWithScrollbar.value\n      }))])]);\n    };\n  }\n});",
+      "start": 1718517099397,
+      "end": 1718517099428,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099428,
+      "end": 1718517099428,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099428,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099429,
+      "end": 1718517099429,
+      "order": "normal"
+    }
+  ]
+}

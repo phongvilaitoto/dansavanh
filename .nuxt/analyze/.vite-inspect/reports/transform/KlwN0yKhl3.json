@@ -1,0 +1,236 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/slider/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { computed, ref, defineComponent } from 'vue';\nimport VcSlider from '../vc-slider/src/Slider';\nimport VcRange from '../vc-slider/src/Range';\nimport VcHandle from '../vc-slider/src/Handle';\nimport { stringType, booleanType, someType, objectType, withInstall, functionType } from '../_util/type';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport SliderTooltip from './SliderTooltip';\nimport classNames from '../_util/classNames';\nimport { useInjectFormItemContext } from '../form/FormItemContext';\n// CSSINJS\nimport useStyle from './style';\nimport devWarning from '../vc-util/devWarning';\nconst defaultTipFormatter = value => typeof value === 'number' ? value.toString() : '';\nexport const sliderProps = () => ({\n  id: String,\n  prefixCls: String,\n  tooltipPrefixCls: String,\n  range: someType([Boolean, Object]),\n  reverse: booleanType(),\n  min: Number,\n  max: Number,\n  step: someType([Object, Number]),\n  marks: objectType(),\n  dots: booleanType(),\n  value: someType([Array, Number]),\n  defaultValue: someType([Array, Number]),\n  included: booleanType(),\n  disabled: booleanType(),\n  vertical: booleanType(),\n  tipFormatter: someType([Function, Object], () => defaultTipFormatter),\n  tooltipOpen: booleanType(),\n  /** @deprecated `tooltipVisible` is deprecated. Please use `tooltipOpen` instead. */\n  tooltipVisible: booleanType(),\n  tooltipPlacement: stringType(),\n  getTooltipPopupContainer: functionType(),\n  autofocus: booleanType(),\n  handleStyle: someType([Array, Object]),\n  trackStyle: someType([Array, Object]),\n  onChange: functionType(),\n  onAfterChange: functionType(),\n  onFocus: functionType(),\n  onBlur: functionType(),\n  'onUpdate:value': functionType()\n});\nconst Slider = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ASlider',\n  inheritAttrs: false,\n  props: sliderProps(),\n  // emits: ['update:value', 'change', 'afterChange', 'blur'],\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots,\n      emit,\n      expose\n    } = _ref;\n    // Warning for deprecated usage\n    if (process.env.NODE_ENV !== 'production') {\n      [['tooltipVisible', 'tooltipOpen']].forEach(_ref2 => {\n        let [deprecatedName, newName] = _ref2;\n        devWarning(props.tooltipVisible === undefined, 'Slider', `\\`${deprecatedName}\\` is deprecated, please use \\`${newName}\\` instead.`);\n      });\n    }\n    const {\n      prefixCls,\n      rootPrefixCls,\n      direction,\n      getPopupContainer,\n      configProvider\n    } = useConfigInject('slider', props);\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const formItemContext = useInjectFormItemContext();\n    const sliderRef = ref();\n    const visibles = ref({});\n    const toggleTooltipOpen = (index, visible) => {\n      visibles.value[index] = visible;\n    };\n    const tooltipPlacement = computed(() => {\n      if (props.tooltipPlacement) {\n        return props.tooltipPlacement;\n      }\n      if (!props.vertical) {\n        return 'top';\n      }\n      return direction.value === 'rtl' ? 'left' : 'right';\n    });\n    const focus = () => {\n      var _a;\n      (_a = sliderRef.value) === null || _a === void 0 ? void 0 : _a.focus();\n    };\n    const blur = () => {\n      var _a;\n      (_a = sliderRef.value) === null || _a === void 0 ? void 0 : _a.blur();\n    };\n    const handleChange = val => {\n      emit('update:value', val);\n      emit('change', val);\n      formItemContext.onFieldChange();\n    };\n    const handleBlur = e => {\n      emit('blur', e);\n    };\n    expose({\n      focus,\n      blur\n    });\n    const handleWithTooltip = _a => {\n      var {\n          tooltipPrefixCls\n        } = _a,\n        _b = _a.info,\n        {\n          value,\n          dragging,\n          index\n        } = _b,\n        restProps = __rest(_b, [\"value\", \"dragging\", \"index\"]);\n      const {\n        tipFormatter,\n        tooltipOpen = props.tooltipVisible,\n        getTooltipPopupContainer\n      } = props;\n      const isTipFormatter = tipFormatter ? visibles.value[index] || dragging : false;\n      const open = tooltipOpen || tooltipOpen === undefined && isTipFormatter;\n      return _createVNode(SliderTooltip, {\n        \"prefixCls\": tooltipPrefixCls,\n        \"title\": tipFormatter ? tipFormatter(value) : '',\n        \"open\": open,\n        \"placement\": tooltipPlacement.value,\n        \"transitionName\": `${rootPrefixCls.value}-zoom-down`,\n        \"key\": index,\n        \"overlayClassName\": `${prefixCls.value}-tooltip`,\n        \"getPopupContainer\": getTooltipPopupContainer || (getPopupContainer === null || getPopupContainer === void 0 ? void 0 : getPopupContainer.value)\n      }, {\n        default: () => [_createVNode(VcHandle, _objectSpread(_objectSpread({}, restProps), {}, {\n          \"value\": value,\n          \"onMouseenter\": () => toggleTooltipOpen(index, true),\n          \"onMouseleave\": () => toggleTooltipOpen(index, false)\n        }), null)]\n      });\n    };\n    return () => {\n      const {\n          tooltipPrefixCls: customizeTooltipPrefixCls,\n          range,\n          id = formItemContext.id.value\n        } = props,\n        restProps = __rest(props, [\"tooltipPrefixCls\", \"range\", \"id\"]);\n      const tooltipPrefixCls = configProvider.getPrefixCls('tooltip', customizeTooltipPrefixCls);\n      const cls = classNames(attrs.class, {\n        [`${prefixCls.value}-rtl`]: direction.value === 'rtl'\n      }, hashId.value);\n      // make reverse default on rtl direction\n      if (direction.value === 'rtl' && !restProps.vertical) {\n        restProps.reverse = !restProps.reverse;\n      }\n      // extrack draggableTrack from range={{ ... }}\n      let draggableTrack;\n      if (typeof range === 'object') {\n        draggableTrack = range.draggableTrack;\n      }\n      if (range) {\n        return wrapSSR(_createVNode(VcRange, _objectSpread(_objectSpread(_objectSpread({}, attrs), restProps), {}, {\n          \"step\": restProps.step,\n          \"draggableTrack\": draggableTrack,\n          \"class\": cls,\n          \"ref\": sliderRef,\n          \"handle\": info => handleWithTooltip({\n            tooltipPrefixCls,\n            prefixCls: prefixCls.value,\n            info\n          }),\n          \"prefixCls\": prefixCls.value,\n          \"onChange\": handleChange,\n          \"onBlur\": handleBlur\n        }), {\n          mark: slots.mark\n        }));\n      }\n      return wrapSSR(_createVNode(VcSlider, _objectSpread(_objectSpread(_objectSpread({}, attrs), restProps), {}, {\n        \"id\": id,\n        \"step\": restProps.step,\n        \"class\": cls,\n        \"ref\": sliderRef,\n        \"handle\": info => handleWithTooltip({\n          tooltipPrefixCls,\n          prefixCls: prefixCls.value,\n          info\n        }),\n        \"prefixCls\": prefixCls.value,\n        \"onChange\": handleChange,\n        \"onBlur\": handleBlur\n      }), {\n        mark: slots.mark\n      }));\n    };\n  }\n});\nexport default withInstall(Slider);",
+      "start": 1718517096478,
+      "end": 1718517096549,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096549,
+      "end": 1718517096549,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nvar __rest = function(s, e) {\n  var t = {};\n  for (var p in s)\n    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)\n      t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\")\n    for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n      if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))\n        t[p[i]] = s[p[i]];\n    }\n  return t;\n};\nimport { computed, ref, defineComponent } from \"vue\";\nimport VcSlider from \"../vc-slider/src/Slider\";\nimport VcRange from \"../vc-slider/src/Range\";\nimport VcHandle from \"../vc-slider/src/Handle\";\nimport { stringType, booleanType, someType, objectType, withInstall, functionType } from \"../_util/type\";\nimport useConfigInject from \"../config-provider/hooks/useConfigInject\";\nimport SliderTooltip from \"./SliderTooltip\";\nimport classNames from \"../_util/classNames\";\nimport { useInjectFormItemContext } from \"../form/FormItemContext\";\nimport useStyle from \"./style\";\nimport devWarning from \"../vc-util/devWarning\";\nconst defaultTipFormatter = (value) => typeof value === \"number\" ? value.toString() : \"\";\nexport const sliderProps = () => ({\n  id: String,\n  prefixCls: String,\n  tooltipPrefixCls: String,\n  range: someType([Boolean, Object]),\n  reverse: booleanType(),\n  min: Number,\n  max: Number,\n  step: someType([Object, Number]),\n  marks: objectType(),\n  dots: booleanType(),\n  value: someType([Array, Number]),\n  defaultValue: someType([Array, Number]),\n  included: booleanType(),\n  disabled: booleanType(),\n  vertical: booleanType(),\n  tipFormatter: someType([Function, Object], () => defaultTipFormatter),\n  tooltipOpen: booleanType(),\n  /** @deprecated `tooltipVisible` is deprecated. Please use `tooltipOpen` instead. */\n  tooltipVisible: booleanType(),\n  tooltipPlacement: stringType(),\n  getTooltipPopupContainer: functionType(),\n  autofocus: booleanType(),\n  handleStyle: someType([Array, Object]),\n  trackStyle: someType([Array, Object]),\n  onChange: functionType(),\n  onAfterChange: functionType(),\n  onFocus: functionType(),\n  onBlur: functionType(),\n  \"onUpdate:value\": functionType()\n});\nconst Slider = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: \"ASlider\",\n  inheritAttrs: false,\n  props: sliderProps(),\n  // emits: ['update:value', 'change', 'afterChange', 'blur'],\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots,\n      emit,\n      expose\n    } = _ref;\n    if (false) {\n      [[\"tooltipVisible\", \"tooltipOpen\"]].forEach((_ref2) => {\n        let [deprecatedName, newName] = _ref2;\n        devWarning(props.tooltipVisible === void 0, \"Slider\", `\\`${deprecatedName}\\` is deprecated, please use \\`${newName}\\` instead.`);\n      });\n    }\n    const {\n      prefixCls,\n      rootPrefixCls,\n      direction,\n      getPopupContainer,\n      configProvider\n    } = useConfigInject(\"slider\", props);\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const formItemContext = useInjectFormItemContext();\n    const sliderRef = ref();\n    const visibles = ref({});\n    const toggleTooltipOpen = (index, visible) => {\n      visibles.value[index] = visible;\n    };\n    const tooltipPlacement = computed(() => {\n      if (props.tooltipPlacement) {\n        return props.tooltipPlacement;\n      }\n      if (!props.vertical) {\n        return \"top\";\n      }\n      return direction.value === \"rtl\" ? \"left\" : \"right\";\n    });\n    const focus = () => {\n      var _a;\n      (_a = sliderRef.value) === null || _a === void 0 ? void 0 : _a.focus();\n    };\n    const blur = () => {\n      var _a;\n      (_a = sliderRef.value) === null || _a === void 0 ? void 0 : _a.blur();\n    };\n    const handleChange = (val) => {\n      emit(\"update:value\", val);\n      emit(\"change\", val);\n      formItemContext.onFieldChange();\n    };\n    const handleBlur = (e) => {\n      emit(\"blur\", e);\n    };\n    expose({\n      focus,\n      blur\n    });\n    const handleWithTooltip = (_a) => {\n      var {\n        tooltipPrefixCls\n      } = _a, _b = _a.info, {\n        value,\n        dragging,\n        index\n      } = _b, restProps = __rest(_b, [\"value\", \"dragging\", \"index\"]);\n      const {\n        tipFormatter,\n        tooltipOpen = props.tooltipVisible,\n        getTooltipPopupContainer\n      } = props;\n      const isTipFormatter = tipFormatter ? visibles.value[index] || dragging : false;\n      const open = tooltipOpen || tooltipOpen === void 0 && isTipFormatter;\n      return _createVNode(SliderTooltip, {\n        \"prefixCls\": tooltipPrefixCls,\n        \"title\": tipFormatter ? tipFormatter(value) : \"\",\n        \"open\": open,\n        \"placement\": tooltipPlacement.value,\n        \"transitionName\": `${rootPrefixCls.value}-zoom-down`,\n        \"key\": index,\n        \"overlayClassName\": `${prefixCls.value}-tooltip`,\n        \"getPopupContainer\": getTooltipPopupContainer || (getPopupContainer === null || getPopupContainer === void 0 ? void 0 : getPopupContainer.value)\n      }, {\n        default: () => [_createVNode(VcHandle, _objectSpread(_objectSpread({}, restProps), {}, {\n          \"value\": value,\n          \"onMouseenter\": () => toggleTooltipOpen(index, true),\n          \"onMouseleave\": () => toggleTooltipOpen(index, false)\n        }), null)]\n      });\n    };\n    return () => {\n      const {\n        tooltipPrefixCls: customizeTooltipPrefixCls,\n        range,\n        id = formItemContext.id.value\n      } = props, restProps = __rest(props, [\"tooltipPrefixCls\", \"range\", \"id\"]);\n      const tooltipPrefixCls = configProvider.getPrefixCls(\"tooltip\", customizeTooltipPrefixCls);\n      const cls = classNames(attrs.class, {\n        [`${prefixCls.value}-rtl`]: direction.value === \"rtl\"\n      }, hashId.value);\n      if (direction.value === \"rtl\" && !restProps.vertical) {\n        restProps.reverse = !restProps.reverse;\n      }\n      let draggableTrack;\n      if (typeof range === \"object\") {\n        draggableTrack = range.draggableTrack;\n      }\n      if (range) {\n        return wrapSSR(_createVNode(VcRange, _objectSpread(_objectSpread(_objectSpread({}, attrs), restProps), {}, {\n          \"step\": restProps.step,\n          \"draggableTrack\": draggableTrack,\n          \"class\": cls,\n          \"ref\": sliderRef,\n          \"handle\": (info) => handleWithTooltip({\n            tooltipPrefixCls,\n            prefixCls: prefixCls.value,\n            info\n          }),\n          \"prefixCls\": prefixCls.value,\n          \"onChange\": handleChange,\n          \"onBlur\": handleBlur\n        }), {\n          mark: slots.mark\n        }));\n      }\n      return wrapSSR(_createVNode(VcSlider, _objectSpread(_objectSpread(_objectSpread({}, attrs), restProps), {}, {\n        \"id\": id,\n        \"step\": restProps.step,\n        \"class\": cls,\n        \"ref\": sliderRef,\n        \"handle\": (info) => handleWithTooltip({\n          tooltipPrefixCls,\n          prefixCls: prefixCls.value,\n          info\n        }),\n        \"prefixCls\": prefixCls.value,\n        \"onChange\": handleChange,\n        \"onBlur\": handleBlur\n      }), {\n        mark: slots.mark\n      }));\n    };\n  }\n});\nexport default withInstall(Slider);\n",
+      "start": 1718517096549,
+      "end": 1718517096637,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096637,
+      "end": 1718517096637,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096637,
+      "end": 1718517096637,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096637,
+      "end": 1718517096637,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096637,
+      "end": 1718517096637,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096637,
+      "end": 1718517096638,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096638,
+      "end": 1718517096638,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096638,
+      "end": 1718517096638,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096638,
+      "end": 1718517096638,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096638,
+      "end": 1718517096638,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096638,
+      "end": 1718517096638,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096638,
+      "end": 1718517096638,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096638,
+      "end": 1718517096639,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096639,
+      "end": 1718517096639,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096639,
+      "end": 1718517096639,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096639,
+      "end": 1718517096639,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096639,
+      "end": 1718517096639,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096639,
+      "end": 1718517096639,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096639,
+      "end": 1718517096639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096639,
+      "end": 1718517096639,
+      "order": "normal"
+    }
+  ]
+}
