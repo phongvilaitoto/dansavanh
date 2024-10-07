@@ -15,27 +15,27 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "devDependencies": {
+  "dependencies": {
     "@ant-design-vue/nuxt": "^1.4.1",
+    "@ant-design/icons-vue": "^7.0.1",
     "@nuxtjs/i18n": "^8.1.1",
+    "@pinia/nuxt": "^0.5.1",
     "@stefanobartoletti/nuxt-social-share": "^1.0.0",
-    "@vercel/node": "^3.2.18",
+    "ant-design-vue": "^4.1.1",
     "nuxt": "^3.9.3",
     "nuxt-aos": "^1.2.4",
     "nuxt-facebook-chat": "^1.0.5",
-    "sass": "^1.70.0",
-    "vue": "^3.4.14",
-    "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "@ant-design/icons-vue": "^7.0.1",
-    "@pinia/nuxt": "^0.5.1",
-    "@vercel/kv": "^3.0.0",
-    "ant-design-vue": "^4.1.1",
-    "nitropack": "^2.8.1",
     "pinia": "^2.1.7",
     "plyr": "^3.7.8",
+    "sass": "^1.70.0",
     "swiper": "^11.0.6",
+    "vue": "^3.4.14",
+    "vue-router": "^4.2.5",
     "vue3-google-map": "^0.20.0"
+  },
+  "devDependencies": {
+    "@vercel/kv": "^3.0.0",
+    "@vercel/node": "^3.2.18",
+    "nitropack": "^2.8.1"
   }
 }

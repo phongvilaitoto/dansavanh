@@ -4,8 +4,6 @@ export default defineI18nLocale(async (locale) => {
 
   const config = useRuntimeConfig()
 
-
-
   const { data }: any = await useFetch(config.public.apiBase + '/getDLang')
 
   const object = data.value.dLang
