@@ -18,7 +18,11 @@ export default defineNuxtConfig({
 
 
   nitro: {
-    preset: 'vercel-edge'
+    preset: 'vercel',
+    prerender: {
+      crawlLinks: true,  // Ensures links are pre-rendered
+      routes: ['/sitemap.xml']  // Pre-render any specific static routes you need
+    }
   },
 
   // nitro: {
@@ -65,23 +69,21 @@ export default defineNuxtConfig({
     "@stefanobartoletti/nuxt-social-share",
   ],
 
-
-  
   i18n: {
-    // locales: [
-    //   {
-    //     code: "en",
-    //     file: { path: "en.ts", cache: false },
-    //   },
-    //   {
-    //     code: "th",
-    //     file: { path: "th.ts", cache: false },
-    //   },
-    //   {
-    //     code: "cn",
-    //     file: { path: "cn.ts", cache: false },
-    //   },
-    // ],
+    locales: [
+      {
+        code: "en",
+        file: { path: "en.ts", cache: false },
+      },
+      {
+        code: "th",
+        file: { path: "th.ts", cache: false },
+      },
+      {
+        code: "cn",
+        file: { path: "cn.ts", cache: false },
+      },
+    ],
     lazy: true,
     langDir: "lang",
     defaultLocale: "en",
