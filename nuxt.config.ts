@@ -17,7 +17,7 @@ export default defineNuxtConfig({
 
 
 
-  
+
   nitro: {
     preset: 'vercel',
     prerender: {
@@ -26,6 +26,9 @@ export default defineNuxtConfig({
     }
   },
 
+
+
+  
   // nitro: {
   //   preset: 'vercel-edge',
   //   prerender: {
