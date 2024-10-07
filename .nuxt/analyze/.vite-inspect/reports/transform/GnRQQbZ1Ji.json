@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-dialog/Dialog.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nimport { defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue';\nimport contains from '../vc-util/Dom/contains';\nimport classNames from '../_util/classNames';\nimport KeyCode from '../_util/KeyCode';\nimport omit from '../_util/omit';\nimport pickAttrs from '../_util/pickAttrs';\nimport { initDefaultProps } from '../_util/props-util';\nimport Content from './Content';\nimport dialogPropTypes from './IDialogPropTypes';\nimport Mask from './Mask';\nimport { getMotionName, getUUID } from './util';\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'VcDialog',\n  inheritAttrs: false,\n  props: initDefaultProps(_extends(_extends({}, dialogPropTypes()), {\n    getOpenCount: Function,\n    scrollLocker: Object\n  }), {\n    mask: true,\n    visible: false,\n    keyboard: true,\n    closable: true,\n    maskClosable: true,\n    destroyOnClose: false,\n    prefixCls: 'rc-dialog',\n    getOpenCount: () => null,\n    focusTriggerAfterClose: true\n  }),\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots\n    } = _ref;\n    const lastOutSideActiveElementRef = shallowRef();\n    const wrapperRef = shallowRef();\n    const contentRef = shallowRef();\n    const animatedVisible = shallowRef(props.visible);\n    const ariaIdRef = shallowRef(`vcDialogTitle${getUUID()}`);\n    // ========================= Events =========================\n    const onDialogVisibleChanged = newVisible => {\n      var _a, _b;\n      if (newVisible) {\n        // Try to focus\n        if (!contains(wrapperRef.value, document.activeElement)) {\n          lastOutSideActiveElementRef.value = document.activeElement;\n          (_a = contentRef.value) === null || _a === void 0 ? void 0 : _a.focus();\n        }\n      } else {\n        const preAnimatedVisible = animatedVisible.value;\n        // Clean up scroll bar & focus back\n        animatedVisible.value = false;\n        if (props.mask && lastOutSideActiveElementRef.value && props.focusTriggerAfterClose) {\n          try {\n            lastOutSideActiveElementRef.value.focus({\n              preventScroll: true\n            });\n          } catch (e) {\n            // Do nothing\n          }\n          lastOutSideActiveElementRef.value = null;\n        }\n        // Trigger afterClose only when change visible from true to false\n        if (preAnimatedVisible) {\n          (_b = props.afterClose) === null || _b === void 0 ? void 0 : _b.call(props);\n        }\n      }\n    };\n    const onInternalClose = e => {\n      var _a;\n      (_a = props.onClose) === null || _a === void 0 ? void 0 : _a.call(props, e);\n    };\n    // >>> Content\n    const contentClickRef = shallowRef(false);\n    const contentTimeoutRef = shallowRef();\n    // We need record content click incase content popup out of dialog\n    const onContentMouseDown = () => {\n      clearTimeout(contentTimeoutRef.value);\n      contentClickRef.value = true;\n    };\n    const onContentMouseUp = () => {\n      contentTimeoutRef.value = setTimeout(() => {\n        contentClickRef.value = false;\n      });\n    };\n    const onWrapperClick = e => {\n      if (!props.maskClosable) return null;\n      if (contentClickRef.value) {\n        contentClickRef.value = false;\n      } else if (wrapperRef.value === e.target) {\n        onInternalClose(e);\n      }\n    };\n    const onWrapperKeyDown = e => {\n      if (props.keyboard && e.keyCode === KeyCode.ESC) {\n        e.stopPropagation();\n        onInternalClose(e);\n        return;\n      }\n      // keep focus inside dialog\n      if (props.visible) {\n        if (e.keyCode === KeyCode.TAB) {\n          contentRef.value.changeActive(!e.shiftKey);\n        }\n      }\n    };\n    watch(() => props.visible, () => {\n      if (props.visible) {\n        animatedVisible.value = true;\n      }\n    }, {\n      flush: 'post'\n    });\n    onBeforeUnmount(() => {\n      var _a;\n      clearTimeout(contentTimeoutRef.value);\n      (_a = props.scrollLocker) === null || _a === void 0 ? void 0 : _a.unLock();\n    });\n    watchEffect(() => {\n      var _a, _b;\n      (_a = props.scrollLocker) === null || _a === void 0 ? void 0 : _a.unLock();\n      if (animatedVisible.value) {\n        (_b = props.scrollLocker) === null || _b === void 0 ? void 0 : _b.lock();\n      }\n    });\n    return () => {\n      const {\n        prefixCls,\n        mask,\n        visible,\n        maskTransitionName,\n        maskAnimation,\n        zIndex,\n        wrapClassName,\n        rootClassName,\n        wrapStyle,\n        closable,\n        maskProps,\n        maskStyle,\n        transitionName,\n        animation,\n        wrapProps,\n        title = slots.title\n      } = props;\n      const {\n        style,\n        class: className\n      } = attrs;\n      return _createVNode(\"div\", _objectSpread({\n        \"class\": [`${prefixCls}-root`, rootClassName]\n      }, pickAttrs(props, {\n        data: true\n      })), [_createVNode(Mask, {\n        \"prefixCls\": prefixCls,\n        \"visible\": mask && visible,\n        \"motionName\": getMotionName(prefixCls, maskTransitionName, maskAnimation),\n        \"style\": _extends({\n          zIndex\n        }, maskStyle),\n        \"maskProps\": maskProps\n      }, null), _createVNode(\"div\", _objectSpread({\n        \"tabIndex\": -1,\n        \"onKeydown\": onWrapperKeyDown,\n        \"class\": classNames(`${prefixCls}-wrap`, wrapClassName),\n        \"ref\": wrapperRef,\n        \"onClick\": onWrapperClick,\n        \"role\": \"dialog\",\n        \"aria-labelledby\": title ? ariaIdRef.value : null,\n        \"style\": _extends(_extends({\n          zIndex\n        }, wrapStyle), {\n          display: !animatedVisible.value ? 'none' : null\n        })\n      }, wrapProps), [_createVNode(Content, _objectSpread(_objectSpread({}, omit(props, ['scrollLocker'])), {}, {\n        \"style\": style,\n        \"class\": className,\n        \"onMousedown\": onContentMouseDown,\n        \"onMouseup\": onContentMouseUp,\n        \"ref\": contentRef,\n        \"closable\": closable,\n        \"ariaId\": ariaIdRef.value,\n        \"prefixCls\": prefixCls,\n        \"visible\": visible,\n        \"onClose\": onInternalClose,\n        \"onVisibleChanged\": onDialogVisibleChanged,\n        \"motionName\": getMotionName(prefixCls, transitionName, animation)\n      }), slots)])]);\n    };\n  }\n});",
+      "start": 1718517099857,
+      "end": 1718517099892,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099892,
+      "end": 1718517099892,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099892,
+      "end": 1718517099892,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099892,
+      "end": 1718517099892,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099892,
+      "end": 1718517099892,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099892,
+      "end": 1718517099892,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099892,
+      "end": 1718517099892,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099892,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099893,
+      "end": 1718517099893,
+      "order": "normal"
+    }
+  ]
+}

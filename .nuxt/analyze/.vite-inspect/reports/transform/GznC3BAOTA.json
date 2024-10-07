@@ -1,0 +1,236 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/message/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport Notification from '../vc-notification';\nimport LoadingOutlined from \"@ant-design/icons-vue/es/icons/LoadingOutlined\";\nimport ExclamationCircleFilled from \"@ant-design/icons-vue/es/icons/ExclamationCircleFilled\";\nimport CloseCircleFilled from \"@ant-design/icons-vue/es/icons/CloseCircleFilled\";\nimport CheckCircleFilled from \"@ant-design/icons-vue/es/icons/CheckCircleFilled\";\nimport InfoCircleFilled from \"@ant-design/icons-vue/es/icons/InfoCircleFilled\";\nimport classNames from '../_util/classNames';\nimport useStyle from './style';\nimport useMessage from './useMessage';\nlet defaultDuration = 3;\nlet defaultTop;\nlet messageInstance;\nlet key = 1;\nlet localPrefixCls = '';\nlet transitionName = 'move-up';\nlet hasTransitionName = false;\nlet getContainer = () => document.body;\nlet maxCount;\nlet rtl = false;\nexport function getKeyThenIncreaseKey() {\n  return key++;\n}\nfunction setMessageConfig(options) {\n  if (options.top !== undefined) {\n    defaultTop = options.top;\n    messageInstance = null; // delete messageInstance for new defaultTop\n  }\n  if (options.duration !== undefined) {\n    defaultDuration = options.duration;\n  }\n  if (options.prefixCls !== undefined) {\n    localPrefixCls = options.prefixCls;\n  }\n  if (options.getContainer !== undefined) {\n    getContainer = options.getContainer;\n    messageInstance = null; // delete messageInstance for new getContainer\n  }\n  if (options.transitionName !== undefined) {\n    transitionName = options.transitionName;\n    messageInstance = null; // delete messageInstance for new transitionName\n    hasTransitionName = true;\n  }\n  if (options.maxCount !== undefined) {\n    maxCount = options.maxCount;\n    messageInstance = null;\n  }\n  if (options.rtl !== undefined) {\n    rtl = options.rtl;\n  }\n}\nfunction getMessageInstance(args, callback) {\n  if (messageInstance) {\n    callback(messageInstance);\n    return;\n  }\n  Notification.newInstance({\n    appContext: args.appContext,\n    prefixCls: args.prefixCls || localPrefixCls,\n    rootPrefixCls: args.rootPrefixCls,\n    transitionName,\n    hasTransitionName,\n    style: {\n      top: defaultTop\n    },\n    getContainer: getContainer || args.getPopupContainer,\n    maxCount,\n    name: 'message',\n    useStyle\n  }, instance => {\n    if (messageInstance) {\n      callback(messageInstance);\n      return;\n    }\n    messageInstance = instance;\n    callback(instance);\n  });\n}\nconst typeToIcon = {\n  info: InfoCircleFilled,\n  success: CheckCircleFilled,\n  error: CloseCircleFilled,\n  warning: ExclamationCircleFilled,\n  loading: LoadingOutlined\n};\nexport const typeList = Object.keys(typeToIcon);\nfunction notice(args) {\n  const duration = args.duration !== undefined ? args.duration : defaultDuration;\n  const target = args.key || getKeyThenIncreaseKey();\n  const closePromise = new Promise(resolve => {\n    const callback = () => {\n      if (typeof args.onClose === 'function') {\n        args.onClose();\n      }\n      return resolve(true);\n    };\n    getMessageInstance(args, instance => {\n      instance.notice({\n        key: target,\n        duration,\n        style: args.style || {},\n        class: args.class,\n        content: _ref => {\n          let {\n            prefixCls\n          } = _ref;\n          const Icon = typeToIcon[args.type];\n          const iconNode = Icon ? _createVNode(Icon, null, null) : '';\n          const messageClass = classNames(`${prefixCls}-custom-content`, {\n            [`${prefixCls}-${args.type}`]: args.type,\n            [`${prefixCls}-rtl`]: rtl === true\n          });\n          return _createVNode(\"div\", {\n            \"class\": messageClass\n          }, [typeof args.icon === 'function' ? args.icon() : args.icon || iconNode, _createVNode(\"span\", null, [typeof args.content === 'function' ? args.content() : args.content])]);\n        },\n        onClose: callback,\n        onClick: args.onClick\n      });\n    });\n  });\n  const result = () => {\n    if (messageInstance) {\n      messageInstance.removeNotice(target);\n    }\n  };\n  result.then = (filled, rejected) => closePromise.then(filled, rejected);\n  result.promise = closePromise;\n  return result;\n}\nfunction isArgsProps(content) {\n  return Object.prototype.toString.call(content) === '[object Object]' && !!content.content;\n}\nconst api = {\n  open: notice,\n  config: setMessageConfig,\n  destroy(messageKey) {\n    if (messageInstance) {\n      if (messageKey) {\n        const {\n          removeNotice\n        } = messageInstance;\n        removeNotice(messageKey);\n      } else {\n        const {\n          destroy\n        } = messageInstance;\n        destroy();\n        messageInstance = null;\n      }\n    }\n  }\n};\nexport function attachTypeApi(originalApi, type) {\n  originalApi[type] = (content, duration, onClose) => {\n    if (isArgsProps(content)) {\n      return originalApi.open(_extends(_extends({}, content), {\n        type\n      }));\n    }\n    if (typeof duration === 'function') {\n      onClose = duration;\n      duration = undefined;\n    }\n    return originalApi.open({\n      content,\n      duration,\n      type,\n      onClose\n    });\n  };\n}\ntypeList.forEach(type => attachTypeApi(api, type));\napi.warn = api.warning;\napi.useMessage = useMessage;\n/** @private test Only function. Not work on production */\nexport const getInstance = () => process.env.NODE_ENV === 'test' ? messageInstance : null;\nexport default api;",
+      "start": 1718517096417,
+      "end": 1718517096479,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096479,
+      "end": 1718517096479,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096482,
+      "end": 1718517096482,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport Notification from \"../vc-notification\";\nimport LoadingOutlined from \"@ant-design/icons-vue/es/icons/LoadingOutlined\";\nimport ExclamationCircleFilled from \"@ant-design/icons-vue/es/icons/ExclamationCircleFilled\";\nimport CloseCircleFilled from \"@ant-design/icons-vue/es/icons/CloseCircleFilled\";\nimport CheckCircleFilled from \"@ant-design/icons-vue/es/icons/CheckCircleFilled\";\nimport InfoCircleFilled from \"@ant-design/icons-vue/es/icons/InfoCircleFilled\";\nimport classNames from \"../_util/classNames\";\nimport useStyle from \"./style\";\nimport useMessage from \"./useMessage\";\nlet defaultDuration = 3;\nlet defaultTop;\nlet messageInstance;\nlet key = 1;\nlet localPrefixCls = \"\";\nlet transitionName = \"move-up\";\nlet hasTransitionName = false;\nlet getContainer = () => document.body;\nlet maxCount;\nlet rtl = false;\nexport function getKeyThenIncreaseKey() {\n  return key++;\n}\nfunction setMessageConfig(options) {\n  if (options.top !== void 0) {\n    defaultTop = options.top;\n    messageInstance = null;\n  }\n  if (options.duration !== void 0) {\n    defaultDuration = options.duration;\n  }\n  if (options.prefixCls !== void 0) {\n    localPrefixCls = options.prefixCls;\n  }\n  if (options.getContainer !== void 0) {\n    getContainer = options.getContainer;\n    messageInstance = null;\n  }\n  if (options.transitionName !== void 0) {\n    transitionName = options.transitionName;\n    messageInstance = null;\n    hasTransitionName = true;\n  }\n  if (options.maxCount !== void 0) {\n    maxCount = options.maxCount;\n    messageInstance = null;\n  }\n  if (options.rtl !== void 0) {\n    rtl = options.rtl;\n  }\n}\nfunction getMessageInstance(args, callback) {\n  if (messageInstance) {\n    callback(messageInstance);\n    return;\n  }\n  Notification.newInstance({\n    appContext: args.appContext,\n    prefixCls: args.prefixCls || localPrefixCls,\n    rootPrefixCls: args.rootPrefixCls,\n    transitionName,\n    hasTransitionName,\n    style: {\n      top: defaultTop\n    },\n    getContainer: getContainer || args.getPopupContainer,\n    maxCount,\n    name: \"message\",\n    useStyle\n  }, (instance) => {\n    if (messageInstance) {\n      callback(messageInstance);\n      return;\n    }\n    messageInstance = instance;\n    callback(instance);\n  });\n}\nconst typeToIcon = {\n  info: InfoCircleFilled,\n  success: CheckCircleFilled,\n  error: CloseCircleFilled,\n  warning: ExclamationCircleFilled,\n  loading: LoadingOutlined\n};\nexport const typeList = Object.keys(typeToIcon);\nfunction notice(args) {\n  const duration = args.duration !== void 0 ? args.duration : defaultDuration;\n  const target = args.key || getKeyThenIncreaseKey();\n  const closePromise = new Promise((resolve) => {\n    const callback = () => {\n      if (typeof args.onClose === \"function\") {\n        args.onClose();\n      }\n      return resolve(true);\n    };\n    getMessageInstance(args, (instance) => {\n      instance.notice({\n        key: target,\n        duration,\n        style: args.style || {},\n        class: args.class,\n        content: (_ref) => {\n          let {\n            prefixCls\n          } = _ref;\n          const Icon = typeToIcon[args.type];\n          const iconNode = Icon ? _createVNode(Icon, null, null) : \"\";\n          const messageClass = classNames(`${prefixCls}-custom-content`, {\n            [`${prefixCls}-${args.type}`]: args.type,\n            [`${prefixCls}-rtl`]: rtl === true\n          });\n          return _createVNode(\"div\", {\n            \"class\": messageClass\n          }, [typeof args.icon === \"function\" ? args.icon() : args.icon || iconNode, _createVNode(\"span\", null, [typeof args.content === \"function\" ? args.content() : args.content])]);\n        },\n        onClose: callback,\n        onClick: args.onClick\n      });\n    });\n  });\n  const result = () => {\n    if (messageInstance) {\n      messageInstance.removeNotice(target);\n    }\n  };\n  result.then = (filled, rejected) => closePromise.then(filled, rejected);\n  result.promise = closePromise;\n  return result;\n}\nfunction isArgsProps(content) {\n  return Object.prototype.toString.call(content) === \"[object Object]\" && !!content.content;\n}\nconst api = {\n  open: notice,\n  config: setMessageConfig,\n  destroy(messageKey) {\n    if (messageInstance) {\n      if (messageKey) {\n        const {\n          removeNotice\n        } = messageInstance;\n        removeNotice(messageKey);\n      } else {\n        const {\n          destroy\n        } = messageInstance;\n        destroy();\n        messageInstance = null;\n      }\n    }\n  }\n};\nexport function attachTypeApi(originalApi, type) {\n  originalApi[type] = (content, duration, onClose) => {\n    if (isArgsProps(content)) {\n      return originalApi.open(_extends(_extends({}, content), {\n        type\n      }));\n    }\n    if (typeof duration === \"function\") {\n      onClose = duration;\n      duration = void 0;\n    }\n    return originalApi.open({\n      content,\n      duration,\n      type,\n      onClose\n    });\n  };\n}\ntypeList.forEach((type) => attachTypeApi(api, type));\napi.warn = api.warning;\napi.useMessage = useMessage;\nexport const getInstance = () => false ? messageInstance : null;\nexport default api;\n",
+      "start": 1718517096482,
+      "end": 1718517096541,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096541,
+      "end": 1718517096541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096541,
+      "end": 1718517096541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096541,
+      "end": 1718517096541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096541,
+      "end": 1718517096541,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096542,
+      "end": 1718517096543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096543,
+      "end": 1718517096543,
+      "order": "normal"
+    }
+  ]
+}

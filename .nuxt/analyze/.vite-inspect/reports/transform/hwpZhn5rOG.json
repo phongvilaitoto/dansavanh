@@ -1,0 +1,247 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/pages/hotels/[id].vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\r\n\r\n    <div>\r\n    <!-- {{ route.params.id }}\r\n    {{ main.hotels[0].detail.titles[selectedIdx] }}\r\n    {{ hotel }} -->\r\n        <HotelReuseComp :hotel=\"hotel.data\" />\r\n    </div>\r\n\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\n\r\nimport HotelReuseComp from '@/components/hotelReuseComp.vue'\r\n\r\nimport { useMainStore } from '@/stores/mainStore'\r\nimport { storeToRefs } from 'pinia'\r\nimport { onMounted, reactive, watch } from 'vue';\r\n\r\nconst { main, selectedIdx } = storeToRefs(useMainStore())\r\n\r\n\r\nimport { useRoute, useRouter } from 'vue-router';\r\nconst router = useRouter()\r\n\r\nconst route = useRoute()\r\n\r\n\r\nconst hotel = reactive({\r\n    data: {}\r\n})\r\n\r\nwatch(() => main.value.hotels, () => {\r\n\r\n    if(main.value.hotels) {\r\n        // console.log(main.value.hotels)\r\n       const hotelData = main.value.hotels.find((i: any) => i.titles[selectedIdx.value] === route.params.id)\r\n        hotel.data =hotelData\r\n    }\r\n}, {immediate: true, deep: true})\r\n\r\n\r\n</script>",
+      "start": 1718517092354,
+      "end": 1718517092522,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517092523,
+      "end": 1718517092523,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"C:/Users/MSII/Desktop/pj/dansavanh/pages/hotels/[id].vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"C:/Users/MSII/Desktop/pj/dansavanh/pages/hotels/[id].vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1718517092523,
+      "end": 1718517092728,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517092731,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517092736,
+      "end": 1718517092736,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517092737,
+      "end": 1718517092737,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517092738,
+      "end": 1718517092739,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517092739,
+      "end": 1718517092739,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517092743,
+      "end": 1718517092745,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517092746,
+      "end": 1718517092746,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "export { default } from \"C:/Users/MSII/Desktop/pj/dansavanh/pages/hotels/[id].vue?macro=true&vue&type=script&setup=true&lang.ts\"",
+      "start": 1718517092749,
+      "end": 1718517092750,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517092750,
+      "end": 1718517092750,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517092750,
+      "end": 1718517092750,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517092750,
+      "end": 1718517092751,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517092751,
+      "end": 1718517092751,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517092751,
+      "end": 1718517092752,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517092752,
+      "end": 1718517092752,
+      "order": "normal"
+    }
+  ]
+}

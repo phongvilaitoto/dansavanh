@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/badge/SingleNumber.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { computed, defineComponent, onUnmounted, reactive, ref, watch } from 'vue';\nimport classNames from '../_util/classNames';\nfunction UnitNumber(_ref) {\n  let {\n    prefixCls,\n    value,\n    current,\n    offset = 0\n  } = _ref;\n  let style;\n  if (offset) {\n    style = {\n      position: 'absolute',\n      top: `${offset}00%`,\n      left: 0\n    };\n  }\n  return _createVNode(\"p\", {\n    \"style\": style,\n    \"class\": classNames(`${prefixCls}-only-unit`, {\n      current\n    })\n  }, [value]);\n}\nfunction getOffset(start, end, unit) {\n  let index = start;\n  let offset = 0;\n  while ((index + 10) % 10 !== end) {\n    index += unit;\n    offset += unit;\n  }\n  return offset;\n}\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'SingleNumber',\n  props: {\n    prefixCls: String,\n    value: String,\n    count: Number\n  },\n  setup(props) {\n    const originValue = computed(() => Number(props.value));\n    const originCount = computed(() => Math.abs(props.count));\n    const state = reactive({\n      prevValue: originValue.value,\n      prevCount: originCount.value\n    });\n    // ============================= Events =============================\n    const onTransitionEnd = () => {\n      state.prevValue = originValue.value;\n      state.prevCount = originCount.value;\n    };\n    const timeout = ref();\n    // Fallback if transition event not support\n    watch(originValue, () => {\n      clearTimeout(timeout.value);\n      timeout.value = setTimeout(() => {\n        onTransitionEnd();\n      }, 1000);\n    }, {\n      flush: 'post'\n    });\n    onUnmounted(() => {\n      clearTimeout(timeout.value);\n    });\n    return () => {\n      let unitNodes;\n      let offsetStyle = {};\n      const value = originValue.value;\n      if (state.prevValue === value || Number.isNaN(value) || Number.isNaN(state.prevValue)) {\n        // Nothing to change\n        unitNodes = [UnitNumber(_extends(_extends({}, props), {\n          current: true\n        }))];\n        offsetStyle = {\n          transition: 'none'\n        };\n      } else {\n        unitNodes = [];\n        // Fill basic number units\n        const end = value + 10;\n        const unitNumberList = [];\n        for (let index = value; index <= end; index += 1) {\n          unitNumberList.push(index);\n        }\n        // Fill with number unit nodes\n        const prevIndex = unitNumberList.findIndex(n => n % 10 === state.prevValue);\n        unitNodes = unitNumberList.map((n, index) => {\n          const singleUnit = n % 10;\n          return UnitNumber(_extends(_extends({}, props), {\n            value: singleUnit,\n            offset: index - prevIndex,\n            current: index === prevIndex\n          }));\n        });\n        // Calculate container offset value\n        const unit = state.prevCount < originCount.value ? 1 : -1;\n        offsetStyle = {\n          transform: `translateY(${-getOffset(state.prevValue, value, unit)}00%)`\n        };\n      }\n      return _createVNode(\"span\", {\n        \"class\": `${props.prefixCls}-only`,\n        \"style\": offsetStyle,\n        \"onTransitionend\": () => onTransitionEnd()\n      }, [unitNodes]);\n    };\n  }\n});",
+      "start": 1718517098782,
+      "end": 1718517098842,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098842,
+      "end": 1718517098842,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098842,
+      "end": 1718517098843,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098843,
+      "end": 1718517098843,
+      "order": "normal"
+    }
+  ]
+}

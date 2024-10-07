@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-tour/Mask.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { resolveDirective as _resolveDirective, Fragment as _Fragment, createVNode as _createVNode } from \"vue\";\nimport { defineComponent } from 'vue';\nimport classNames from '../_util/classNames';\nimport useId from '../_util/hooks/useId';\nimport Portal from '../_util/PortalWrapper';\nimport { someType, objectType, booleanType } from '../_util/type';\nconst COVER_PROPS = {\n  fill: 'transparent',\n  'pointer-events': 'auto'\n};\nconst Mask = defineComponent({\n  name: 'TourMask',\n  props: {\n    prefixCls: {\n      type: String\n    },\n    pos: objectType(),\n    rootClassName: {\n      type: String\n    },\n    showMask: booleanType(),\n    fill: {\n      type: String,\n      default: 'rgba(0,0,0,0.5)'\n    },\n    open: booleanType(),\n    animated: someType([Boolean, Object]),\n    zIndex: {\n      type: Number\n    }\n  },\n  setup(props, _ref) {\n    let {\n      attrs\n    } = _ref;\n    const id = useId();\n    return () => {\n      const {\n        prefixCls,\n        open,\n        rootClassName,\n        pos,\n        showMask,\n        fill,\n        animated,\n        zIndex\n      } = props;\n      const maskId = `${prefixCls}-mask-${id}`;\n      const mergedAnimated = typeof animated === 'object' ? animated === null || animated === void 0 ? void 0 : animated.placeholder : animated;\n      return _createVNode(Portal, {\n        \"visible\": open,\n        \"autoLock\": true\n      }, {\n        default: () => open && _createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n          \"class\": classNames(`${prefixCls}-mask`, rootClassName, attrs.class),\n          \"style\": [{\n            position: 'fixed',\n            left: 0,\n            right: 0,\n            top: 0,\n            bottom: 0,\n            zIndex,\n            pointerEvents: 'none'\n          }, attrs.style]\n        }), [showMask ? _createVNode(\"svg\", {\n          \"style\": {\n            width: '100%',\n            height: '100%'\n          }\n        }, [_createVNode(\"defs\", null, [_createVNode(\"mask\", {\n          \"id\": maskId\n        }, [_createVNode(\"rect\", {\n          \"x\": \"0\",\n          \"y\": \"0\",\n          \"width\": \"100vw\",\n          \"height\": \"100vh\",\n          \"fill\": \"white\"\n        }, null), pos && _createVNode(\"rect\", {\n          \"x\": pos.left,\n          \"y\": pos.top,\n          \"rx\": pos.radius,\n          \"width\": pos.width,\n          \"height\": pos.height,\n          \"fill\": \"black\",\n          \"class\": mergedAnimated ? `${prefixCls}-placeholder-animated` : ''\n        }, null)])]), _createVNode(\"rect\", {\n          \"x\": \"0\",\n          \"y\": \"0\",\n          \"width\": \"100%\",\n          \"height\": \"100%\",\n          \"fill\": fill,\n          \"mask\": `url(#${maskId})`\n        }, null), pos && _createVNode(_Fragment, null, [_createVNode(\"rect\", _objectSpread(_objectSpread({}, COVER_PROPS), {}, {\n          \"x\": \"0\",\n          \"y\": \"0\",\n          \"width\": \"100%\",\n          \"height\": pos.top\n        }), null), _createVNode(\"rect\", _objectSpread(_objectSpread({}, COVER_PROPS), {}, {\n          \"x\": \"0\",\n          \"y\": \"0\",\n          \"width\": pos.left,\n          \"height\": \"100%\"\n        }), null), _createVNode(\"rect\", _objectSpread(_objectSpread({}, COVER_PROPS), {}, {\n          \"x\": \"0\",\n          \"y\": pos.top + pos.height,\n          \"width\": \"100%\",\n          \"height\": `calc(100vh - ${pos.top + pos.height}px)`\n        }), null), _createVNode(\"rect\", _objectSpread(_objectSpread({}, COVER_PROPS), {}, {\n          \"x\": pos.left + pos.width,\n          \"y\": \"0\",\n          \"width\": `calc(100vw - ${pos.left + pos.width}px)`,\n          \"height\": \"100%\"\n        }), null)])]) : null])\n      });\n    };\n  }\n});\nexport default Mask;",
+      "start": 1718517099501,
+      "end": 1718517099547,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099547,
+      "end": 1718517099547,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099547,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099548,
+      "end": 1718517099548,
+      "order": "normal"
+    }
+  ]
+}

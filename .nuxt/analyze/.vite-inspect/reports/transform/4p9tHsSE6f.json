@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/anchor/style/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { genComponentStyleHook, mergeToken } from '../../theme/internal';\nimport { resetComponent, textEllipsis } from '../../style';\n// ============================== Shared ==============================\nconst genSharedAnchorStyle = token => {\n  const {\n    componentCls,\n    holderOffsetBlock,\n    motionDurationSlow,\n    lineWidthBold,\n    colorPrimary,\n    lineType,\n    colorSplit\n  } = token;\n  return {\n    [`${componentCls}-wrapper`]: {\n      marginBlockStart: -holderOffsetBlock,\n      paddingBlockStart: holderOffsetBlock,\n      // delete overflow: auto\n      // overflow: 'auto',\n      backgroundColor: 'transparent',\n      [componentCls]: _extends(_extends({}, resetComponent(token)), {\n        position: 'relative',\n        paddingInlineStart: lineWidthBold,\n        [`${componentCls}-link`]: {\n          paddingBlock: token.anchorPaddingBlock,\n          paddingInline: `${token.anchorPaddingInline}px 0`,\n          '&-title': _extends(_extends({}, textEllipsis), {\n            position: 'relative',\n            display: 'block',\n            marginBlockEnd: token.anchorTitleBlock,\n            color: token.colorText,\n            transition: `all ${token.motionDurationSlow}`,\n            '&:only-child': {\n              marginBlockEnd: 0\n            }\n          }),\n          [`&-active > ${componentCls}-link-title`]: {\n            color: token.colorPrimary\n          },\n          // link link\n          [`${componentCls}-link`]: {\n            paddingBlock: token.anchorPaddingBlockSecondary\n          }\n        }\n      }),\n      [`&:not(${componentCls}-wrapper-horizontal)`]: {\n        [componentCls]: {\n          '&::before': {\n            position: 'absolute',\n            left: {\n              _skip_check_: true,\n              value: 0\n            },\n            top: 0,\n            height: '100%',\n            borderInlineStart: `${lineWidthBold}px ${lineType} ${colorSplit}`,\n            content: '\" \"'\n          },\n          [`${componentCls}-ink`]: {\n            position: 'absolute',\n            left: {\n              _skip_check_: true,\n              value: 0\n            },\n            display: 'none',\n            transform: 'translateY(-50%)',\n            transition: `top ${motionDurationSlow} ease-in-out`,\n            width: lineWidthBold,\n            backgroundColor: colorPrimary,\n            [`&${componentCls}-ink-visible`]: {\n              display: 'inline-block'\n            }\n          }\n        }\n      },\n      [`${componentCls}-fixed ${componentCls}-ink ${componentCls}-ink`]: {\n        display: 'none'\n      }\n    }\n  };\n};\nconst genSharedAnchorHorizontalStyle = token => {\n  const {\n    componentCls,\n    motionDurationSlow,\n    lineWidthBold,\n    colorPrimary\n  } = token;\n  return {\n    [`${componentCls}-wrapper-horizontal`]: {\n      position: 'relative',\n      '&::before': {\n        position: 'absolute',\n        left: {\n          _skip_check_: true,\n          value: 0\n        },\n        right: {\n          _skip_check_: true,\n          value: 0\n        },\n        bottom: 0,\n        borderBottom: `1px ${token.lineType} ${token.colorSplit}`,\n        content: '\" \"'\n      },\n      [componentCls]: {\n        overflowX: 'scroll',\n        position: 'relative',\n        display: 'flex',\n        scrollbarWidth: 'none' /* Firefox */,\n        '&::-webkit-scrollbar': {\n          display: 'none' /* Safari and Chrome */\n        },\n        [`${componentCls}-link:first-of-type`]: {\n          paddingInline: 0\n        },\n        [`${componentCls}-ink`]: {\n          position: 'absolute',\n          bottom: 0,\n          transition: `left ${motionDurationSlow} ease-in-out, width ${motionDurationSlow} ease-in-out`,\n          height: lineWidthBold,\n          backgroundColor: colorPrimary\n        }\n      }\n    }\n  };\n};\n// ============================== Export ==============================\nexport default genComponentStyleHook('Anchor', token => {\n  const {\n    fontSize,\n    fontSizeLG,\n    padding,\n    paddingXXS\n  } = token;\n  const anchorToken = mergeToken(token, {\n    holderOffsetBlock: paddingXXS,\n    anchorPaddingBlock: paddingXXS,\n    anchorPaddingBlockSecondary: paddingXXS / 2,\n    anchorPaddingInline: padding,\n    anchorTitleBlock: fontSize / 14 * 3,\n    anchorBallSize: fontSizeLG / 2\n  });\n  return [genSharedAnchorStyle(anchorToken), genSharedAnchorHorizontalStyle(anchorToken)];\n});",
+      "start": 1718517098086,
+      "end": 1718517098143,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098143,
+      "end": 1718517098143,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098144,
+      "end": 1718517098144,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/list/Item.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport PropTypes from '../_util/vue-types';\nimport classNames from '../_util/classNames';\nimport { isStringElement, isEmptyElement, flattenChildren } from '../_util/props-util';\nimport { Col } from '../grid';\nimport { cloneElement } from '../_util/vnode';\nimport { defineComponent, inject, ref } from 'vue';\nimport ItemMeta from './ItemMeta';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport { ListContextKey } from './contextKey';\nexport const listItemProps = () => ({\n  prefixCls: String,\n  extra: PropTypes.any,\n  actions: PropTypes.array,\n  grid: Object,\n  colStyle: {\n    type: Object,\n    default: undefined\n  }\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AListItem',\n  inheritAttrs: false,\n  Meta: ItemMeta,\n  props: listItemProps(),\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs\n    } = _ref;\n    const {\n      itemLayout,\n      grid\n    } = inject(ListContextKey, {\n      grid: ref(),\n      itemLayout: ref()\n    });\n    const {\n      prefixCls\n    } = useConfigInject('list', props);\n    const isItemContainsTextNodeAndNotSingular = () => {\n      var _a;\n      const children = ((_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots)) || [];\n      let result;\n      children.forEach(element => {\n        if (isStringElement(element) && !isEmptyElement(element)) {\n          result = true;\n        }\n      });\n      return result && children.length > 1;\n    };\n    const isFlexMode = () => {\n      var _a, _b;\n      const extra = (_a = props.extra) !== null && _a !== void 0 ? _a : (_b = slots.extra) === null || _b === void 0 ? void 0 : _b.call(slots);\n      if (itemLayout.value === 'vertical') {\n        return !!extra;\n      }\n      return !isItemContainsTextNodeAndNotSingular();\n    };\n    return () => {\n      var _a, _b, _c, _d, _e;\n      const {\n          class: className\n        } = attrs,\n        restAttrs = __rest(attrs, [\"class\"]);\n      const pre = prefixCls.value;\n      const extra = (_a = props.extra) !== null && _a !== void 0 ? _a : (_b = slots.extra) === null || _b === void 0 ? void 0 : _b.call(slots);\n      const children = (_c = slots.default) === null || _c === void 0 ? void 0 : _c.call(slots);\n      let actions = (_d = props.actions) !== null && _d !== void 0 ? _d : flattenChildren((_e = slots.actions) === null || _e === void 0 ? void 0 : _e.call(slots));\n      actions = actions && !Array.isArray(actions) ? [actions] : actions;\n      const actionsContent = actions && actions.length > 0 && _createVNode(\"ul\", {\n        \"class\": `${pre}-item-action`,\n        \"key\": \"actions\"\n      }, [actions.map((action, i) => _createVNode(\"li\", {\n        \"key\": `${pre}-item-action-${i}`\n      }, [action, i !== actions.length - 1 && _createVNode(\"em\", {\n        \"class\": `${pre}-item-action-split`\n      }, null)]))]);\n      const Element = grid.value ? 'div' : 'li';\n      const itemChildren = _createVNode(Element, _objectSpread(_objectSpread({}, restAttrs), {}, {\n        \"class\": classNames(`${pre}-item`, {\n          [`${pre}-item-no-flex`]: !isFlexMode()\n        }, className)\n      }), {\n        default: () => [itemLayout.value === 'vertical' && extra ? [_createVNode(\"div\", {\n          \"class\": `${pre}-item-main`,\n          \"key\": \"content\"\n        }, [children, actionsContent]), _createVNode(\"div\", {\n          \"class\": `${pre}-item-extra`,\n          \"key\": \"extra\"\n        }, [extra])] : [children, actionsContent, cloneElement(extra, {\n          key: 'extra'\n        })]]\n      });\n      return grid.value ? _createVNode(Col, {\n        \"flex\": 1,\n        \"style\": props.colStyle\n      }, {\n        default: () => [itemChildren]\n      }) : itemChildren;\n    };\n  }\n});",
+      "start": 1718517097436,
+      "end": 1718517097511,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097511,
+      "end": 1718517097511,
+      "order": "normal"
+    }
+  ]
+}

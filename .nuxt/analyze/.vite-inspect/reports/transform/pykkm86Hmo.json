@@ -1,0 +1,233 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/assets/image/lang/ch.png",
+  "transforms": [
+    {
+      "name": "vite:asset",
+      "result": "export default \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAHiSURBVHja1Ja/jtNAEMZ/Y2/icBdxXAMSEu/A1dBR0NJQ8CS8AQ0tb4CQgEegPgQFOh7ixJUX4vgSx96ZoUgOO3+KRDgFX7Or0Wg+f7PzeVfcnUMi4cA4OIEAARgAvY5r10AZgOGvl69Gkm4Xk9w3fJTg9f4MDz9+OA3AsSTC4OmThaQE3Bp9w+eRmy+hie2I8us3gOMABFNFkjlW5PTPIvOLAO7YVMjfC/Sd4YuK4nOGuyMiABv7v6pP7mKmACEAeK1YPuPoWU52FgkPUiaf+ngFDjCD+Q/Fproo1vrSbUPuvR4eF7kBwDRi4ynlzxkyUMrvKTZabbrPFb9Jd2qPh7BK4DGiRYFeTJmdC8nAsVKaUes72eOK6Xm2G0GaYhpXCTzPsXEBgOZN8unrktHbAddvAKrdCESwqmoItI74eILlkw0bjt4Zltdg+5hL8NhSYLGmurrCxuPN7Mv951+LAh1kLQWxBlUw68bDGtEqaStQiB0SRMWlbh1yXWPu+MIc/wzTiC0dslBQR0TArfWPwJdr21KyttLKaeJijvmaD0gTMF/z57pPt8W37E1xaylwU0iE5OhON2fgjreMVmuMXC/ntus7QYAT4BFwr+Piv4HL2xstu21Xh4jAXP77V8WfAQAixA0rudAk0AAAAABJRU5ErkJggg==\"",
+      "start": 1718517099542,
+      "end": 1718517099581
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099581,
+      "end": 1718517099581,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099581,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099582,
+      "end": 1718517099582,
+      "order": "normal"
+    }
+  ]
+}

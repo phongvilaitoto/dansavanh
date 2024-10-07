@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/menu/src/MenuItem.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { flattenChildren, isValidElement } from '../../_util/props-util';\nimport PropTypes from '../../_util/vue-types';\nimport { computed, defineComponent, getCurrentInstance, onBeforeUnmount, shallowRef, watch } from 'vue';\nimport { useInjectKeyPath, useMeasure } from './hooks/useKeyPath';\nimport { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext';\nimport { cloneElement } from '../../_util/vnode';\nimport Tooltip from '../../tooltip';\nimport KeyCode from '../../_util/KeyCode';\nimport useDirectionStyle from './hooks/useDirectionStyle';\nimport Overflow from '../../vc-overflow';\nimport devWarning from '../../vc-util/devWarning';\nimport { objectType } from '../../_util/type';\nlet indexGuid = 0;\nexport const menuItemProps = () => ({\n  id: String,\n  role: String,\n  disabled: Boolean,\n  danger: Boolean,\n  title: {\n    type: [String, Boolean],\n    default: undefined\n  },\n  icon: PropTypes.any,\n  onMouseenter: Function,\n  onMouseleave: Function,\n  onClick: Function,\n  onKeydown: Function,\n  onFocus: Function,\n  // Internal user prop\n  originItemValue: objectType()\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AMenuItem',\n  inheritAttrs: false,\n  props: menuItemProps(),\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      slots,\n      emit,\n      attrs\n    } = _ref;\n    const instance = getCurrentInstance();\n    const isMeasure = useMeasure();\n    const key = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key;\n    devWarning(typeof instance.vnode.key !== 'symbol', 'MenuItem', `MenuItem \\`:key=\"${String(key)}\"\\` not support Symbol type`);\n    const eventKey = `menu_item_${++indexGuid}_$$_${key}`;\n    const {\n      parentEventKeys,\n      parentKeys\n    } = useInjectKeyPath();\n    const {\n      prefixCls,\n      activeKeys,\n      disabled,\n      changeActiveKeys,\n      rtl,\n      inlineCollapsed,\n      siderCollapsed,\n      onItemClick,\n      selectedKeys,\n      registerMenuInfo,\n      unRegisterMenuInfo\n    } = useInjectMenu();\n    const firstLevel = useInjectFirstLevel();\n    const isActive = shallowRef(false);\n    const keysPath = computed(() => {\n      return [...parentKeys.value, key];\n    });\n    // const keysPath = computed(() => [...parentEventKeys.value, eventKey]);\n    const menuInfo = {\n      eventKey,\n      key,\n      parentEventKeys,\n      parentKeys,\n      isLeaf: true\n    };\n    registerMenuInfo(eventKey, menuInfo);\n    onBeforeUnmount(() => {\n      unRegisterMenuInfo(eventKey);\n    });\n    watch(activeKeys, () => {\n      isActive.value = !!activeKeys.value.find(val => val === key);\n    }, {\n      immediate: true\n    });\n    const mergedDisabled = computed(() => disabled.value || props.disabled);\n    const selected = computed(() => selectedKeys.value.includes(key));\n    const classNames = computed(() => {\n      const itemCls = `${prefixCls.value}-item`;\n      return {\n        [`${itemCls}`]: true,\n        [`${itemCls}-danger`]: props.danger,\n        [`${itemCls}-active`]: isActive.value,\n        [`${itemCls}-selected`]: selected.value,\n        [`${itemCls}-disabled`]: mergedDisabled.value\n      };\n    });\n    const getEventInfo = e => {\n      return {\n        key,\n        eventKey,\n        keyPath: keysPath.value,\n        eventKeyPath: [...parentEventKeys.value, eventKey],\n        domEvent: e,\n        item: _extends(_extends({}, props), attrs)\n      };\n    };\n    // ============================ Events ============================\n    const onInternalClick = e => {\n      if (mergedDisabled.value) {\n        return;\n      }\n      const info = getEventInfo(e);\n      emit('click', e);\n      onItemClick(info);\n    };\n    const onMouseEnter = event => {\n      if (!mergedDisabled.value) {\n        changeActiveKeys(keysPath.value);\n        emit('mouseenter', event);\n      }\n    };\n    const onMouseLeave = event => {\n      if (!mergedDisabled.value) {\n        changeActiveKeys([]);\n        emit('mouseleave', event);\n      }\n    };\n    const onInternalKeyDown = e => {\n      emit('keydown', e);\n      if (e.which === KeyCode.ENTER) {\n        const info = getEventInfo(e);\n        // Legacy. Key will also trigger click event\n        emit('click', e);\n        onItemClick(info);\n      }\n    };\n    /**\n     * Used for accessibility. Helper will focus element without key board.\n     * We should manually trigger an active\n     */\n    const onInternalFocus = e => {\n      changeActiveKeys(keysPath.value);\n      emit('focus', e);\n    };\n    const renderItemChildren = (icon, children) => {\n      const wrapNode = _createVNode(\"span\", {\n        \"class\": `${prefixCls.value}-title-content`\n      }, [children]);\n      // inline-collapsed.md demo 依赖 span 来隐藏文字,有 icon 属性，则内部包裹一个 span\n      // ref: https://github.com/ant-design/ant-design/pull/23456\n      if (!icon || isValidElement(children) && children.type === 'span') {\n        if (children && inlineCollapsed.value && firstLevel && typeof children === 'string') {\n          return _createVNode(\"div\", {\n            \"class\": `${prefixCls.value}-inline-collapsed-noicon`\n          }, [children.charAt(0)]);\n        }\n      }\n      return wrapNode;\n    };\n    // ========================== DirectionStyle ==========================\n    const directionStyle = useDirectionStyle(computed(() => keysPath.value.length));\n    return () => {\n      var _a, _b, _c, _d, _e;\n      if (isMeasure) return null;\n      const title = (_a = props.title) !== null && _a !== void 0 ? _a : (_b = slots.title) === null || _b === void 0 ? void 0 : _b.call(slots);\n      const children = flattenChildren((_c = slots.default) === null || _c === void 0 ? void 0 : _c.call(slots));\n      const childrenLength = children.length;\n      let tooltipTitle = title;\n      if (typeof title === 'undefined') {\n        tooltipTitle = firstLevel && childrenLength ? children : '';\n      } else if (title === false) {\n        tooltipTitle = '';\n      }\n      const tooltipProps = {\n        title: tooltipTitle\n      };\n      if (!siderCollapsed.value && !inlineCollapsed.value) {\n        tooltipProps.title = null;\n        // Reset `visible` to fix control mode tooltip display not correct\n        // ref: https://github.com/ant-design/ant-design/issues/16742\n        tooltipProps.open = false;\n      }\n      // ============================ Render ============================\n      const optionRoleProps = {};\n      if (props.role === 'option') {\n        optionRoleProps['aria-selected'] = selected.value;\n      }\n      const icon = (_d = props.icon) !== null && _d !== void 0 ? _d : (_e = slots.icon) === null || _e === void 0 ? void 0 : _e.call(slots, props);\n      return _createVNode(Tooltip, _objectSpread(_objectSpread({}, tooltipProps), {}, {\n        \"placement\": rtl.value ? 'left' : 'right',\n        \"overlayClassName\": `${prefixCls.value}-inline-collapsed-tooltip`\n      }), {\n        default: () => [_createVNode(Overflow.Item, _objectSpread(_objectSpread(_objectSpread({\n          \"component\": \"li\"\n        }, attrs), {}, {\n          \"id\": props.id,\n          \"style\": _extends(_extends({}, attrs.style || {}), directionStyle.value),\n          \"class\": [classNames.value, {\n            [`${attrs.class}`]: !!attrs.class,\n            [`${prefixCls.value}-item-only-child`]: (icon ? childrenLength + 1 : childrenLength) === 1\n          }],\n          \"role\": props.role || 'menuitem',\n          \"tabindex\": props.disabled ? null : -1,\n          \"data-menu-id\": key,\n          \"aria-disabled\": props.disabled\n        }, optionRoleProps), {}, {\n          \"onMouseenter\": onMouseEnter,\n          \"onMouseleave\": onMouseLeave,\n          \"onClick\": onInternalClick,\n          \"onKeydown\": onInternalKeyDown,\n          \"onFocus\": onInternalFocus,\n          \"title\": typeof title === 'string' ? title : undefined\n        }), {\n          default: () => [cloneElement(typeof icon === 'function' ? icon(props.originItemValue) : icon, {\n            class: `${prefixCls.value}-item-icon`\n          }, false), renderItemChildren(icon, children)]\n        })]\n      });\n    };\n  }\n});",
+      "start": 1718517097440,
+      "end": 1718517097514,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097514,
+      "end": 1718517097514,
+      "order": "normal"
+    }
+  ]
+}

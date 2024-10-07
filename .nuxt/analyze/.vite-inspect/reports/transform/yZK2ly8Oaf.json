@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/form/utils/valueUtil.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { toArray } from './typeUtil';\nimport get from '../../vc-util/get';\nimport set from '../../vc-util/set';\n/**\n * Convert name to internal supported format.\n * This function should keep since we still thinking if need support like `a.b.c` format.\n * 'a' => ['a']\n * 123 => [123]\n * ['a', 123] => ['a', 123]\n */\nexport function getNamePath(path) {\n  return toArray(path);\n}\nexport function getValue(store, namePath) {\n  const value = get(store, namePath);\n  return value;\n}\nexport function setValue(store, namePath, value) {\n  let removeIfUndefined = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;\n  const newStore = set(store, namePath, value, removeIfUndefined);\n  return newStore;\n}\nexport function containsNamePath(namePathList, namePath) {\n  return namePathList && namePathList.some(path => matchNamePath(path, namePath));\n}\nfunction isObject(obj) {\n  return typeof obj === 'object' && obj !== null && Object.getPrototypeOf(obj) === Object.prototype;\n}\n/**\n * Copy values into store and return a new values object\n * ({ a: 1, b: { c: 2 } }, { a: 4, b: { d: 5 } }) => { a: 4, b: { c: 2, d: 5 } }\n */\nfunction internalSetValues(store, values) {\n  const newStore = Array.isArray(store) ? [...store] : _extends({}, store);\n  if (!values) {\n    return newStore;\n  }\n  Object.keys(values).forEach(key => {\n    const prevValue = newStore[key];\n    const value = values[key];\n    // If both are object (but target is not array), we use recursion to set deep value\n    const recursive = isObject(prevValue) && isObject(value);\n    newStore[key] = recursive ? internalSetValues(prevValue, value || {}) : value;\n  });\n  return newStore;\n}\nexport function setValues(store) {\n  for (var _len = arguments.length, restValues = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {\n    restValues[_key - 1] = arguments[_key];\n  }\n  return restValues.reduce((current, newStore) => internalSetValues(current, newStore), store);\n}\nexport function cloneByNamePathList(store, namePathList) {\n  let newStore = {};\n  namePathList.forEach(namePath => {\n    const value = getValue(store, namePath);\n    newStore = setValue(newStore, namePath, value);\n  });\n  return newStore;\n}\nexport function matchNamePath(namePath, changedNamePath) {\n  if (!namePath || !changedNamePath || namePath.length !== changedNamePath.length) {\n    return false;\n  }\n  return namePath.every((nameUnit, i) => changedNamePath[i] === nameUnit);\n}",
+      "start": 1718517098318,
+      "end": 1718517098365,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098365,
+      "end": 1718517098365,
+      "order": "normal"
+    }
+  ]
+}

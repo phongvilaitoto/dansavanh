@@ -1,0 +1,236 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-tree-select/hooks/useDataEntities.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { convertDataToEntities } from '../../vc-tree/utils/treeUtil';\nimport { isNil } from '../utils/valueUtil';\nimport { shallowRef, watchEffect } from 'vue';\nimport { warning } from '../../vc-util/warning';\nexport default ((treeData, fieldNames) => {\n  const valueEntities = shallowRef(new Map());\n  const keyEntities = shallowRef({});\n  watchEffect(() => {\n    const fieldNamesValue = fieldNames.value;\n    const collection = convertDataToEntities(treeData.value, {\n      fieldNames: fieldNamesValue,\n      initWrapper: wrapper => _extends(_extends({}, wrapper), {\n        valueEntities: new Map()\n      }),\n      processEntity: (entity, wrapper) => {\n        const val = entity.node[fieldNamesValue.value];\n        // Check if exist same value\n        if (process.env.NODE_ENV !== 'production') {\n          const key = entity.node.key;\n          warning(!isNil(val), 'TreeNode `value` is invalidate: undefined');\n          warning(!wrapper.valueEntities.has(val), `Same \\`value\\` exist in the tree: ${val}`);\n          warning(!key || String(key) === String(val), `\\`key\\` or \\`value\\` with TreeNode must be the same or you can remove one of them. key: ${key}, value: ${val}.`);\n        }\n        wrapper.valueEntities.set(val, entity);\n      }\n    });\n    valueEntities.value = collection.valueEntities;\n    keyEntities.value = collection.keyEntities;\n  });\n  return {\n    valueEntities,\n    keyEntities\n  };\n});",
+      "start": 1718517099463,
+      "end": 1718517099495,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099495,
+      "end": 1718517099495,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { convertDataToEntities } from \"../../vc-tree/utils/treeUtil\";\nimport { isNil } from \"../utils/valueUtil\";\nimport { shallowRef, watchEffect } from \"vue\";\nimport { warning } from \"../../vc-util/warning\";\nexport default (treeData, fieldNames) => {\n  const valueEntities = shallowRef(/* @__PURE__ */ new Map());\n  const keyEntities = shallowRef({});\n  watchEffect(() => {\n    const fieldNamesValue = fieldNames.value;\n    const collection = convertDataToEntities(treeData.value, {\n      fieldNames: fieldNamesValue,\n      initWrapper: (wrapper) => _extends(_extends({}, wrapper), {\n        valueEntities: /* @__PURE__ */ new Map()\n      }),\n      processEntity: (entity, wrapper) => {\n        const val = entity.node[fieldNamesValue.value];\n        if (false) {\n          const key = entity.node.key;\n          warning(!isNil(val), \"TreeNode `value` is invalidate: undefined\");\n          warning(!wrapper.valueEntities.has(val), `Same \\`value\\` exist in the tree: ${val}`);\n          warning(!key || String(key) === String(val), `\\`key\\` or \\`value\\` with TreeNode must be the same or you can remove one of them. key: ${key}, value: ${val}.`);\n        }\n        wrapper.valueEntities.set(val, entity);\n      }\n    });\n    valueEntities.value = collection.valueEntities;\n    keyEntities.value = collection.keyEntities;\n  });\n  return {\n    valueEntities,\n    keyEntities\n  };\n};\n",
+      "start": 1718517099495,
+      "end": 1718517099530,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099530,
+      "end": 1718517099530,
+      "order": "normal"
+    }
+  ]
+}

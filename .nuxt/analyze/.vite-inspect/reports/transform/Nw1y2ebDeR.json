@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-picker/panels/DecadePanel/DecadeBody.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { DECADE_DISTANCE_COUNT, DECADE_UNIT_DIFF } from '.';\nimport PanelBody from '../PanelBody';\nimport useMergeProps from '../../hooks/useMergeProps';\nexport const DECADE_COL_COUNT = 3;\nconst DECADE_ROW_COUNT = 4;\nfunction DecadeBody(_props) {\n  const props = useMergeProps(_props);\n  const DECADE_UNIT_DIFF_DES = DECADE_UNIT_DIFF - 1;\n  const {\n    prefixCls,\n    viewDate,\n    generateConfig\n  } = props;\n  const cellPrefixCls = `${prefixCls}-cell`;\n  const yearNumber = generateConfig.getYear(viewDate);\n  const decadeYearNumber = Math.floor(yearNumber / DECADE_UNIT_DIFF) * DECADE_UNIT_DIFF;\n  const startDecadeYear = Math.floor(yearNumber / DECADE_DISTANCE_COUNT) * DECADE_DISTANCE_COUNT;\n  const endDecadeYear = startDecadeYear + DECADE_DISTANCE_COUNT - 1;\n  const baseDecadeYear = generateConfig.setYear(viewDate, startDecadeYear - Math.ceil((DECADE_COL_COUNT * DECADE_ROW_COUNT * DECADE_UNIT_DIFF - DECADE_DISTANCE_COUNT) / 2));\n  const getCellClassName = date => {\n    const startDecadeNumber = generateConfig.getYear(date);\n    const endDecadeNumber = startDecadeNumber + DECADE_UNIT_DIFF_DES;\n    return {\n      [`${cellPrefixCls}-in-view`]: startDecadeYear <= startDecadeNumber && endDecadeNumber <= endDecadeYear,\n      [`${cellPrefixCls}-selected`]: startDecadeNumber === decadeYearNumber\n    };\n  };\n  return _createVNode(PanelBody, _objectSpread(_objectSpread({}, props), {}, {\n    \"rowNum\": DECADE_ROW_COUNT,\n    \"colNum\": DECADE_COL_COUNT,\n    \"baseDate\": baseDecadeYear,\n    \"getCellText\": date => {\n      const startDecadeNumber = generateConfig.getYear(date);\n      return `${startDecadeNumber}-${startDecadeNumber + DECADE_UNIT_DIFF_DES}`;\n    },\n    \"getCellClassName\": getCellClassName,\n    \"getCellDate\": (date, offset) => generateConfig.addYear(date, offset * DECADE_UNIT_DIFF)\n  }), null);\n}\nDecadeBody.displayName = 'DecadeBody';\nDecadeBody.inheritAttrs = false;\nexport default DecadeBody;",
+      "start": 1718517100202,
+      "end": 1718517100238,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100238,
+      "end": 1718517100238,
+      "order": "normal"
+    }
+  ]
+}

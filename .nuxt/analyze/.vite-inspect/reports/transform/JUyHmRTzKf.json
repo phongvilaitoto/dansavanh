@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/stylis/src/Middleware.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {MS, MOZ, WEBKIT, RULESET, KEYFRAMES, DECLARATION} from './Enum.js'\nimport {match, charat, substr, strlen, sizeof, replace, combine, filter, assign} from './Utility.js'\nimport {copy, lift, tokenize} from './Tokenizer.js'\nimport {serialize} from './Serializer.js'\nimport {prefix} from './Prefixer.js'\n\n/**\n * @param {function[]} collection\n * @return {function}\n */\nexport function middleware (collection) {\n\tvar length = sizeof(collection)\n\n\treturn function (element, index, children, callback) {\n\t\tvar output = ''\n\n\t\tfor (var i = 0; i < length; i++)\n\t\t\toutput += collection[i](element, index, children, callback) || ''\n\n\t\treturn output\n\t}\n}\n\n/**\n * @param {function} callback\n * @return {function}\n */\nexport function rulesheet (callback) {\n\treturn function (element) {\n\t\tif (!element.root)\n\t\t\tif (element = element.return)\n\t\t\t\tcallback(element)\n\t}\n}\n\n/**\n * @param {object} element\n * @param {number} index\n * @param {object[]} children\n * @param {function} callback\n */\nexport function prefixer (element, index, children, callback) {\n\tif (element.length > -1)\n\t\tif (!element.return)\n\t\t\tswitch (element.type) {\n\t\t\t\tcase DECLARATION: element.return = prefix(element.value, element.length, children)\n\t\t\t\t\treturn\n\t\t\t\tcase KEYFRAMES:\n\t\t\t\t\treturn serialize([copy(element, {value: replace(element.value, '@', '@' + WEBKIT)})], callback)\n\t\t\t\tcase RULESET:\n\t\t\t\t\tif (element.length)\n\t\t\t\t\t\treturn combine(children = element.props, function (value) {\n\t\t\t\t\t\t\tswitch (match(value, callback = /(::plac\\w+|:read-\\w+)/)) {\n\t\t\t\t\t\t\t\t// :read-(only|write)\n\t\t\t\t\t\t\t\tcase ':read-only': case ':read-write':\n\t\t\t\t\t\t\t\t\tlift(copy(element, {props: [replace(value, /:(read-\\w+)/, ':' + MOZ + '$1')]}))\n\t\t\t\t\t\t\t\t\tlift(copy(element, {props: [value]}))\n\t\t\t\t\t\t\t\t\tassign(element, {props: filter(children, callback)})\n\t\t\t\t\t\t\t\t\tbreak\n\t\t\t\t\t\t\t\t// :placeholder\n\t\t\t\t\t\t\t\tcase '::placeholder':\n\t\t\t\t\t\t\t\t\tlift(copy(element, {props: [replace(value, /:(plac\\w+)/, ':' + WEBKIT + 'input-$1')]}))\n\t\t\t\t\t\t\t\t\tlift(copy(element, {props: [replace(value, /:(plac\\w+)/, ':' + MOZ + '$1')]}))\n\t\t\t\t\t\t\t\t\tlift(copy(element, {props: [replace(value, /:(plac\\w+)/, MS + 'input-$1')]}))\n\t\t\t\t\t\t\t\t\tlift(copy(element, {props: [value]}))\n\t\t\t\t\t\t\t\t\tassign(element, {props: filter(children, callback)})\n\t\t\t\t\t\t\t\t\tbreak\n\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\treturn ''\n\t\t\t\t\t\t})\n\t\t\t}\n}\n\n/**\n * @param {object} element\n * @param {number} index\n * @param {object[]} children\n */\nexport function namespace (element) {\n\tswitch (element.type) {\n\t\tcase RULESET:\n\t\t\telement.props = element.props.map(function (value) {\n\t\t\t\treturn combine(tokenize(value), function (value, index, children) {\n\t\t\t\t\tswitch (charat(value, 0)) {\n\t\t\t\t\t\t// \\f\n\t\t\t\t\t\tcase 12:\n\t\t\t\t\t\t\treturn substr(value, 1, strlen(value))\n\t\t\t\t\t\t// \\0 ( + > ~\n\t\t\t\t\t\tcase 0: case 40: case 43: case 62: case 126:\n\t\t\t\t\t\t\treturn value\n\t\t\t\t\t\t// :\n\t\t\t\t\t\tcase 58:\n\t\t\t\t\t\t\tif (children[++index] === 'global')\n\t\t\t\t\t\t\t\tchildren[index] = '', children[++index] = '\\f' + substr(children[index], index = 1, -1)\n\t\t\t\t\t\t// \\s\n\t\t\t\t\t\tcase 32:\n\t\t\t\t\t\t\treturn index === 1 ? '' : value\n\t\t\t\t\t\tdefault:\n\t\t\t\t\t\t\tswitch (index) {\n\t\t\t\t\t\t\t\tcase 0: element = value\n\t\t\t\t\t\t\t\t\treturn sizeof(children) > 1 ? '' : value\n\t\t\t\t\t\t\t\tcase index = sizeof(children) - 1: case 2:\n\t\t\t\t\t\t\t\t\treturn index === 2 ? value + element + element : value + element\n\t\t\t\t\t\t\t\tdefault:\n\t\t\t\t\t\t\t\t\treturn value\n\t\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t})\n\t\t\t})\n\t}\n}\n",
+      "start": 1718517098666,
+      "end": 1718517098735,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098735,
+      "end": 1718517098735,
+      "order": "normal"
+    }
+  ]
+}

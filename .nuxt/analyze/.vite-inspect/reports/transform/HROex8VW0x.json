@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-steps/Step.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport PropTypes, { withUndefined } from '../_util/vue-types';\nimport { defineComponent } from 'vue';\nimport classNames from '../_util/classNames';\nimport { booleanType, stringType, functionType } from '../_util/type';\nimport omit from '../_util/omit';\nfunction isString(str) {\n  return typeof str === 'string';\n}\nfunction noop() {}\nexport const VcStepProps = () => ({\n  prefixCls: String,\n  itemWidth: String,\n  active: {\n    type: Boolean,\n    default: undefined\n  },\n  disabled: {\n    type: Boolean,\n    default: undefined\n  },\n  status: stringType(),\n  iconPrefix: String,\n  icon: PropTypes.any,\n  adjustMarginRight: String,\n  stepNumber: Number,\n  stepIndex: Number,\n  description: PropTypes.any,\n  title: PropTypes.any,\n  subTitle: PropTypes.any,\n  progressDot: withUndefined(PropTypes.oneOfType([PropTypes.looseBool, PropTypes.func])),\n  tailContent: PropTypes.any,\n  icons: PropTypes.shape({\n    finish: PropTypes.any,\n    error: PropTypes.any\n  }).loose,\n  onClick: functionType(),\n  onStepClick: functionType(),\n  stepIcon: functionType(),\n  itemRender: functionType(),\n  __legacy: booleanType()\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'Step',\n  inheritAttrs: false,\n  props: VcStepProps(),\n  setup(props, _ref) {\n    let {\n      slots,\n      emit,\n      attrs\n    } = _ref;\n    const onItemClick = e => {\n      emit('click', e);\n      emit('stepClick', props.stepIndex);\n    };\n    // if (props.__legacy !== false) {\n    //   warning(\n    //     false,\n    //     'Steps',\n    //     'Step is deprecated, and not support inline type. Please use `items` directly. ',\n    //   );\n    // }\n    const renderIconNode = _ref2 => {\n      let {\n        icon,\n        title,\n        description\n      } = _ref2;\n      const {\n        prefixCls,\n        stepNumber,\n        status,\n        iconPrefix,\n        icons,\n        progressDot = slots.progressDot,\n        stepIcon = slots.stepIcon\n      } = props;\n      let iconNode;\n      const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {\n        [`${iconPrefix}icon-${icon}`]: icon && isString(icon),\n        [`${iconPrefix}icon-check`]: !icon && status === 'finish' && (icons && !icons.finish || !icons),\n        [`${iconPrefix}icon-cross`]: !icon && status === 'error' && (icons && !icons.error || !icons)\n      });\n      const iconDot = _createVNode(\"span\", {\n        \"class\": `${prefixCls}-icon-dot`\n      }, null);\n      // `progressDot` enjoy the highest priority\n      if (progressDot) {\n        if (typeof progressDot === 'function') {\n          iconNode = _createVNode(\"span\", {\n            \"class\": `${prefixCls}-icon`\n          }, [progressDot({\n            iconDot,\n            index: stepNumber - 1,\n            status,\n            title,\n            description,\n            prefixCls\n          })]);\n        } else {\n          iconNode = _createVNode(\"span\", {\n            \"class\": `${prefixCls}-icon`\n          }, [iconDot]);\n        }\n      } else if (icon && !isString(icon)) {\n        iconNode = _createVNode(\"span\", {\n          \"class\": `${prefixCls}-icon`\n        }, [icon]);\n      } else if (icons && icons.finish && status === 'finish') {\n        iconNode = _createVNode(\"span\", {\n          \"class\": `${prefixCls}-icon`\n        }, [icons.finish]);\n      } else if (icons && icons.error && status === 'error') {\n        iconNode = _createVNode(\"span\", {\n          \"class\": `${prefixCls}-icon`\n        }, [icons.error]);\n      } else if (icon || status === 'finish' || status === 'error') {\n        iconNode = _createVNode(\"span\", {\n          \"class\": iconClassName\n        }, null);\n      } else {\n        iconNode = _createVNode(\"span\", {\n          \"class\": `${prefixCls}-icon`\n        }, [stepNumber]);\n      }\n      if (stepIcon) {\n        iconNode = stepIcon({\n          index: stepNumber - 1,\n          status,\n          title,\n          description,\n          node: iconNode\n        });\n      }\n      return iconNode;\n    };\n    return () => {\n      var _a, _b, _c, _d;\n      const {\n        prefixCls,\n        itemWidth,\n        active,\n        status = 'wait',\n        tailContent,\n        adjustMarginRight,\n        disabled,\n        title = (_a = slots.title) === null || _a === void 0 ? void 0 : _a.call(slots),\n        description = (_b = slots.description) === null || _b === void 0 ? void 0 : _b.call(slots),\n        subTitle = (_c = slots.subTitle) === null || _c === void 0 ? void 0 : _c.call(slots),\n        icon = (_d = slots.icon) === null || _d === void 0 ? void 0 : _d.call(slots),\n        onClick,\n        onStepClick\n      } = props;\n      const mergedStatus = status || 'wait';\n      const classString = classNames(`${prefixCls}-item`, `${prefixCls}-item-${mergedStatus}`, {\n        [`${prefixCls}-item-custom`]: icon,\n        [`${prefixCls}-item-active`]: active,\n        [`${prefixCls}-item-disabled`]: disabled === true\n      });\n      const stepItemStyle = {};\n      if (itemWidth) {\n        stepItemStyle.width = itemWidth;\n      }\n      if (adjustMarginRight) {\n        stepItemStyle.marginRight = adjustMarginRight;\n      }\n      const accessibilityProps = {\n        onClick: onClick || noop\n      };\n      if (onStepClick && !disabled) {\n        accessibilityProps.role = 'button';\n        accessibilityProps.tabindex = 0;\n        accessibilityProps.onClick = onItemClick;\n      }\n      const stepNode = _createVNode(\"div\", _objectSpread(_objectSpread({}, omit(attrs, ['__legacy'])), {}, {\n        \"class\": [classString, attrs.class],\n        \"style\": [attrs.style, stepItemStyle]\n      }), [_createVNode(\"div\", _objectSpread(_objectSpread({}, accessibilityProps), {}, {\n        \"class\": `${prefixCls}-item-container`\n      }), [_createVNode(\"div\", {\n        \"class\": `${prefixCls}-item-tail`\n      }, [tailContent]), _createVNode(\"div\", {\n        \"class\": `${prefixCls}-item-icon`\n      }, [renderIconNode({\n        icon,\n        title,\n        description\n      })]), _createVNode(\"div\", {\n        \"class\": `${prefixCls}-item-content`\n      }, [_createVNode(\"div\", {\n        \"class\": `${prefixCls}-item-title`\n      }, [title, subTitle && _createVNode(\"div\", {\n        \"title\": typeof subTitle === 'string' ? subTitle : undefined,\n        \"class\": `${prefixCls}-item-subtitle`\n      }, [subTitle])]), description && _createVNode(\"div\", {\n        \"class\": `${prefixCls}-item-description`\n      }, [description])])])]);\n      if (props.itemRender) {\n        return props.itemRender(stepNode);\n      }\n      return stepNode;\n    };\n  }\n});",
+      "start": 1718517097678,
+      "end": 1718517097728,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097728,
+      "end": 1718517097728,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097728,
+      "end": 1718517097729,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097729,
+      "end": 1718517097729,
+      "order": "normal"
+    }
+  ]
+}

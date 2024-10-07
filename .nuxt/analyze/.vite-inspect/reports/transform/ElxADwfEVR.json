@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/menu/src/PopupTrigger.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nimport Trigger from '../../vc-trigger';\nimport { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue';\nimport { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext';\nimport { placements, placementsRtl } from './placements';\nimport raf from '../../_util/raf';\nimport classNames from '../../_util/classNames';\nimport { getTransitionProps } from '../../_util/transition';\nconst popupPlacementMap = {\n  horizontal: 'bottomLeft',\n  vertical: 'rightTop',\n  'vertical-left': 'rightTop',\n  'vertical-right': 'leftTop'\n};\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'PopupTrigger',\n  inheritAttrs: false,\n  props: {\n    prefixCls: String,\n    mode: String,\n    visible: Boolean,\n    // popup: React.ReactNode;\n    popupClassName: String,\n    popupOffset: Array,\n    disabled: Boolean,\n    onVisibleChange: Function\n  },\n  slots: Object,\n  emits: ['visibleChange'],\n  setup(props, _ref) {\n    let {\n      slots,\n      emit\n    } = _ref;\n    const innerVisible = shallowRef(false);\n    const {\n      getPopupContainer,\n      rtl,\n      subMenuOpenDelay,\n      subMenuCloseDelay,\n      builtinPlacements,\n      triggerSubMenuAction,\n      forceSubMenuRender,\n      motion,\n      defaultMotions,\n      rootClassName\n    } = useInjectMenu();\n    const forceRender = useInjectForceRender();\n    const placement = computed(() => rtl.value ? _extends(_extends({}, placementsRtl), builtinPlacements.value) : _extends(_extends({}, placements), builtinPlacements.value));\n    const popupPlacement = computed(() => popupPlacementMap[props.mode]);\n    const visibleRef = shallowRef();\n    watch(() => props.visible, visible => {\n      raf.cancel(visibleRef.value);\n      visibleRef.value = raf(() => {\n        innerVisible.value = visible;\n      });\n    }, {\n      immediate: true\n    });\n    onBeforeUnmount(() => {\n      raf.cancel(visibleRef.value);\n    });\n    const onVisibleChange = visible => {\n      emit('visibleChange', visible);\n    };\n    const mergedMotion = computed(() => {\n      var _a, _b;\n      const m = motion.value || ((_a = defaultMotions.value) === null || _a === void 0 ? void 0 : _a[props.mode]) || ((_b = defaultMotions.value) === null || _b === void 0 ? void 0 : _b.other);\n      const res = typeof m === 'function' ? m() : m;\n      return res ? getTransitionProps(res.name, {\n        css: true\n      }) : undefined;\n    });\n    return () => {\n      const {\n        prefixCls,\n        popupClassName,\n        mode,\n        popupOffset,\n        disabled\n      } = props;\n      return _createVNode(Trigger, {\n        \"prefixCls\": prefixCls,\n        \"popupClassName\": classNames(`${prefixCls}-popup`, {\n          [`${prefixCls}-rtl`]: rtl.value\n        }, popupClassName, rootClassName.value),\n        \"stretch\": mode === 'horizontal' ? 'minWidth' : null,\n        \"getPopupContainer\": getPopupContainer.value,\n        \"builtinPlacements\": placement.value,\n        \"popupPlacement\": popupPlacement.value,\n        \"popupVisible\": innerVisible.value,\n        \"popupAlign\": popupOffset && {\n          offset: popupOffset\n        },\n        \"action\": disabled ? [] : [triggerSubMenuAction.value],\n        \"mouseEnterDelay\": subMenuOpenDelay.value,\n        \"mouseLeaveDelay\": subMenuCloseDelay.value,\n        \"onPopupVisibleChange\": onVisibleChange,\n        \"forceRender\": forceRender || forceSubMenuRender.value,\n        \"popupAnimation\": mergedMotion.value\n      }, {\n        popup: slots.popup,\n        default: slots.default\n      });\n    };\n  }\n});",
+      "start": 1718517098316,
+      "end": 1718517098362,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098362,
+      "end": 1718517098362,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098362,
+      "end": 1718517098363,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    }
+  ]
+}

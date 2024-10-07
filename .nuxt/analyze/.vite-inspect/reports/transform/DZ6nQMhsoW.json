@@ -1,0 +1,246 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/components/WellnessChild.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, createBlock as _createBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-54bbf43f\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"mb-20 mt-20\" }\nconst _hoisted_2 = { class: \"mb-20 mt-20\" }\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'WellnessChild',\n  props: ['items'],\n  setup(__props) {\n\r\n\r\nconst isOdd = (idx: number) => /^-?\\d*[13579]$/.test(idx.toString())\r\nconst isEven = (idx: number) => /^-?\\d*[02468]$/.test(idx.toString())\r\n\r\nconst { items } = __props\r\n\r\n// const facilities = ref([\r\n//     {\r\n//         title: 'Cruise the fabled Mekong River',\r\n//         description: 'The mighty Mekong River starts its journey in the Tibetan Plateau and passes through Laos on its way to the South China Sea. Explore its bends and banks on one of Amantaka’s private boats, cruising to Pak Ou Caves or finding the perfect spot for a riverside picnic upstream. As the sun sets over forested mountains, enjoy cocktails and canapés while witnessing the town’s evening rituals from the water.',\r\n//         images: ['https://www.aman.com/sites/default/files/styles/media_text_side_by_side_x_wide/public/2021-03/Amantaka%2C%20Laos%20-%20Luang%20Prabang%2C%20Mekong%20River%20Sunset.jpg?itok=RXZ_LECg']\r\n//     },\r\n//     {\r\n//         title: 'Family Adventure',\r\n//         description: 'Multi-generational activities abound in Luang Prabang, whether hiking to a waterfall for a swim in turquoise limestone pools, enjoying a cooking class on Amantaka’s organic farm or connecting with the gentle giants of the local elephant sanctuary.',\r\n//         images: ['https://www.aman.com/sites/default/files/styles/media_text_side_by_side_x_wide/public/2021-02/Amantaka_Experiences-Overview_5.jpg?itok=oq24p9Of']\r\n//     }\r\n// ])\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_dynamic_swiper = _resolveComponent(\"dynamic-swiper\")!\n  const _component_a_col = _resolveComponent(\"a-col\")!\n  const _component_a_row = _resolveComponent(\"a-row\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createElementVNode(\"div\", null, [\n      (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.items, (i, idx) => {\n        return (_openBlock(), _createBlock(_component_a_row, {\n          justify: \"center\",\n          style: {\"margin-bottom\":\"20px\"},\n          \"data-aos\": \"fade-up\",\n          key: idx,\n          gutter: 52\n        }, {\n          default: _withCtx(() => [\n            (isOdd(idx))\n              ? (_openBlock(), _createBlock(_component_a_col, {\n                  key: 0,\n                  xs: 24,\n                  sm: 24,\n                  md: 14,\n                  lg: 14\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_dynamic_swiper, {\n                      images: i.images\n                    }, null, 8, [\"images\"])\n                  ]),\n                  _: 2\n                }, 1024))\n              : _createCommentVNode(\"\", true),\n            _createVNode(_component_a_col, {\n              xs: 0,\n              sm: 0,\n              md: 8,\n              lg: 8\n            }, {\n              default: _withCtx(() => [\n                _createElementVNode(\"h3\", _hoisted_1, _toDisplayString(i.title), 1),\n                _createElementVNode(\"p\", null, _toDisplayString(i.description), 1)\n              ]),\n              _: 2\n            }, 1024),\n            (isEven(idx))\n              ? (_openBlock(), _createBlock(_component_a_col, {\n                  key: 1,\n                  xs: 24,\n                  sm: 24,\n                  md: 14,\n                  lg: 14\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_dynamic_swiper, {\n                      images: i.images\n                    }, null, 8, [\"images\"])\n                  ]),\n                  _: 2\n                }, 1024))\n              : _createCommentVNode(\"\", true),\n            _createVNode(_component_a_col, {\n              xs: 24,\n              sm: 24,\n              md: 0,\n              lg: 0\n            }, {\n              default: _withCtx(() => [\n                _createElementVNode(\"h3\", _hoisted_2, _toDisplayString(i.title), 1),\n                _createElementVNode(\"p\", null, _toDisplayString(i.description), 1)\n              ]),\n              _: 2\n            }, 1024)\n          ]),\n          _: 2\n        }, 1024))\n      }), 128))\n    ])\n  ]))\n}\n}\n\n})",
+      "start": 1718517098774,
+      "end": 1718517098774
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098774,
+      "end": 1718517098774,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098774,
+      "end": 1718517098774,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098774,
+      "end": 1718517098774,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098774,
+      "end": 1718517098774,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098774,
+      "end": 1718517098774,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098774,
+      "end": 1718517098774,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, createBlock as _createBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\";\nconst _withScopeId = (n) => (_pushScopeId(\"data-v-54bbf43f\"), n = n(), _popScopeId(), n);\nconst _hoisted_1 = { class: \"mb-20 mt-20\" };\nconst _hoisted_2 = { class: \"mb-20 mt-20\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"WellnessChild\",\n  props: [\"items\"],\n  setup(__props) {\n    const isOdd = (idx) => /^-?\\d*[13579]$/.test(idx.toString());\n    const isEven = (idx) => /^-?\\d*[02468]$/.test(idx.toString());\n    const { items } = __props;\n    return (_ctx, _cache) => {\n      const _component_dynamic_swiper = _resolveComponent(\"dynamic-swiper\");\n      const _component_a_col = _resolveComponent(\"a-col\");\n      const _component_a_row = _resolveComponent(\"a-row\");\n      return _openBlock(), _createElementBlock(\"div\", null, [\n        _createElementVNode(\"div\", null, [\n          (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.items, (i, idx) => {\n            return _openBlock(), _createBlock(_component_a_row, {\n              justify: \"center\",\n              style: { \"margin-bottom\": \"20px\" },\n              \"data-aos\": \"fade-up\",\n              key: idx,\n              gutter: 52\n            }, {\n              default: _withCtx(() => [\n                isOdd(idx) ? (_openBlock(), _createBlock(_component_a_col, {\n                  key: 0,\n                  xs: 24,\n                  sm: 24,\n                  md: 14,\n                  lg: 14\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_dynamic_swiper, {\n                      images: i.images\n                    }, null, 8, [\"images\"])\n                  ]),\n                  _: 2\n                }, 1024)) : _createCommentVNode(\"\", true),\n                _createVNode(_component_a_col, {\n                  xs: 0,\n                  sm: 0,\n                  md: 8,\n                  lg: 8\n                }, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"h3\", _hoisted_1, _toDisplayString(i.title), 1),\n                    _createElementVNode(\"p\", null, _toDisplayString(i.description), 1)\n                  ]),\n                  _: 2\n                }, 1024),\n                isEven(idx) ? (_openBlock(), _createBlock(_component_a_col, {\n                  key: 1,\n                  xs: 24,\n                  sm: 24,\n                  md: 14,\n                  lg: 14\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_dynamic_swiper, {\n                      images: i.images\n                    }, null, 8, [\"images\"])\n                  ]),\n                  _: 2\n                }, 1024)) : _createCommentVNode(\"\", true),\n                _createVNode(_component_a_col, {\n                  xs: 24,\n                  sm: 24,\n                  md: 0,\n                  lg: 0\n                }, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"h3\", _hoisted_2, _toDisplayString(i.title), 1),\n                    _createElementVNode(\"p\", null, _toDisplayString(i.description), 1)\n                  ]),\n                  _: 2\n                }, 1024)\n              ]),\n              _: 2\n            }, 1024);\n          }), 128))\n        ])\n      ]);\n    };\n  }\n});\n",
+      "start": 1718517098774,
+      "end": 1718517098820,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/components/WellnessChild.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, createBlock as _createBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-54bbf43f\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"mb-20 mt-20\" }\nconst _hoisted_2 = { class: \"mb-20 mt-20\" }\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'WellnessChild',\n  props: ['items'],\n  setup(__props) {\n\r\n\r\nconst isOdd = (idx: number) => /^-?\\d*[13579]$/.test(idx.toString())\r\nconst isEven = (idx: number) => /^-?\\d*[02468]$/.test(idx.toString())\r\n\r\nconst { items } = __props\r\n\r\n// const facilities = ref([\r\n//     {\r\n//         title: 'Cruise the fabled Mekong River',\r\n//         description: 'The mighty Mekong River starts its journey in the Tibetan Plateau and passes through Laos on its way to the South China Sea. Explore its bends and banks on one of Amantaka’s private boats, cruising to Pak Ou Caves or finding the perfect spot for a riverside picnic upstream. As the sun sets over forested mountains, enjoy cocktails and canapés while witnessing the town’s evening rituals from the water.',\r\n//         images: ['https://www.aman.com/sites/default/files/styles/media_text_side_by_side_x_wide/public/2021-03/Amantaka%2C%20Laos%20-%20Luang%20Prabang%2C%20Mekong%20River%20Sunset.jpg?itok=RXZ_LECg']\r\n//     },\r\n//     {\r\n//         title: 'Family Adventure',\r\n//         description: 'Multi-generational activities abound in Luang Prabang, whether hiking to a waterfall for a swim in turquoise limestone pools, enjoying a cooking class on Amantaka’s organic farm or connecting with the gentle giants of the local elephant sanctuary.',\r\n//         images: ['https://www.aman.com/sites/default/files/styles/media_text_side_by_side_x_wide/public/2021-02/Amantaka_Experiences-Overview_5.jpg?itok=oq24p9Of']\r\n//     }\r\n// ])\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_dynamic_swiper = _resolveComponent(\"dynamic-swiper\")!\n  const _component_a_col = _resolveComponent(\"a-col\")!\n  const _component_a_row = _resolveComponent(\"a-row\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createElementVNode(\"div\", null, [\n      (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.items, (i, idx) => {\n        return (_openBlock(), _createBlock(_component_a_row, {\n          justify: \"center\",\n          style: {\"margin-bottom\":\"20px\"},\n          \"data-aos\": \"fade-up\",\n          key: idx,\n          gutter: 52\n        }, {\n          default: _withCtx(() => [\n            (isOdd(idx))\n              ? (_openBlock(), _createBlock(_component_a_col, {\n                  key: 0,\n                  xs: 24,\n                  sm: 24,\n                  md: 14,\n                  lg: 14\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_dynamic_swiper, {\n                      images: i.images\n                    }, null, 8, [\"images\"])\n                  ]),\n                  _: 2\n                }, 1024))\n              : _createCommentVNode(\"\", true),\n            _createVNode(_component_a_col, {\n              xs: 0,\n              sm: 0,\n              md: 8,\n              lg: 8\n            }, {\n              default: _withCtx(() => [\n                _createElementVNode(\"h3\", _hoisted_1, _toDisplayString(i.title), 1),\n                _createElementVNode(\"p\", null, _toDisplayString(i.description), 1)\n              ]),\n              _: 2\n            }, 1024),\n            (isEven(idx))\n              ? (_openBlock(), _createBlock(_component_a_col, {\n                  key: 1,\n                  xs: 24,\n                  sm: 24,\n                  md: 14,\n                  lg: 14\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_dynamic_swiper, {\n                      images: i.images\n                    }, null, 8, [\"images\"])\n                  ]),\n                  _: 2\n                }, 1024))\n              : _createCommentVNode(\"\", true),\n            _createVNode(_component_a_col, {\n              xs: 24,\n              sm: 24,\n              md: 0,\n              lg: 0\n            }, {\n              default: _withCtx(() => [\n                _createElementVNode(\"h3\", _hoisted_2, _toDisplayString(i.title), 1),\n                _createElementVNode(\"p\", null, _toDisplayString(i.description), 1)\n              ]),\n              _: 2\n            }, 1024)\n          ]),\n          _: 2\n        }, 1024))\n      }), 128))\n    ])\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "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",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098820,
+      "end": 1718517098820,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098820,
+      "end": 1718517098822,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098822,
+      "end": 1718517098822,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098822,
+      "end": 1718517098822,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098822,
+      "end": 1718517098822,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098822,
+      "end": 1718517098822,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/MSII/Desktop/pj/dansavanh/components/dynamic-swiper.vue\";\nimport { Col as __nuxt_component_1 } from \"ant-design-vue/es\";\nimport { Row as __nuxt_component_2 } from \"ant-design-vue/es\";\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, createBlock as _createBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\";\nconst _withScopeId = (n) => (_pushScopeId(\"data-v-54bbf43f\"), n = n(), _popScopeId(), n);\nconst _hoisted_1 = { class: \"mb-20 mt-20\" };\nconst _hoisted_2 = { class: \"mb-20 mt-20\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"WellnessChild\",\n  props: [\"items\"],\n  setup(__props) {\n    const isOdd = (idx) => /^-?\\d*[13579]$/.test(idx.toString());\n    const isEven = (idx) => /^-?\\d*[02468]$/.test(idx.toString());\n    const { items } = __props;\n    return (_ctx, _cache) => {\n      const _component_dynamic_swiper = __nuxt_component_0;\n      const _component_a_col = __nuxt_component_1;\n      const _component_a_row = __nuxt_component_2;\n      return _openBlock(), _createElementBlock(\"div\", null, [\n        _createElementVNode(\"div\", null, [\n          (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.items, (i, idx) => {\n            return _openBlock(), _createBlock(_component_a_row, {\n              justify: \"center\",\n              style: { \"margin-bottom\": \"20px\" },\n              \"data-aos\": \"fade-up\",\n              key: idx,\n              gutter: 52\n            }, {\n              default: _withCtx(() => [\n                isOdd(idx) ? (_openBlock(), _createBlock(_component_a_col, {\n                  key: 0,\n                  xs: 24,\n                  sm: 24,\n                  md: 14,\n                  lg: 14\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_dynamic_swiper, {\n                      images: i.images\n                    }, null, 8, [\"images\"])\n                  ]),\n                  _: 2\n                }, 1024)) : _createCommentVNode(\"\", true),\n                _createVNode(_component_a_col, {\n                  xs: 0,\n                  sm: 0,\n                  md: 8,\n                  lg: 8\n                }, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"h3\", _hoisted_1, _toDisplayString(i.title), 1),\n                    _createElementVNode(\"p\", null, _toDisplayString(i.description), 1)\n                  ]),\n                  _: 2\n                }, 1024),\n                isEven(idx) ? (_openBlock(), _createBlock(_component_a_col, {\n                  key: 1,\n                  xs: 24,\n                  sm: 24,\n                  md: 14,\n                  lg: 14\n                }, {\n                  default: _withCtx(() => [\n                    _createVNode(_component_dynamic_swiper, {\n                      images: i.images\n                    }, null, 8, [\"images\"])\n                  ]),\n                  _: 2\n                }, 1024)) : _createCommentVNode(\"\", true),\n                _createVNode(_component_a_col, {\n                  xs: 24,\n                  sm: 24,\n                  md: 0,\n                  lg: 0\n                }, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"h3\", _hoisted_2, _toDisplayString(i.title), 1),\n                    _createElementVNode(\"p\", null, _toDisplayString(i.description), 1)\n                  ]),\n                  _: 2\n                }, 1024)\n              ]),\n              _: 2\n            }, 1024);\n          }), 128))\n        ])\n      ]);\n    };\n  }\n});\n",
+      "start": 1718517098822,
+      "end": 1718517098822,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098822,
+      "end": 1718517098822,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098822,
+      "end": 1718517098822,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098822,
+      "end": 1718517098822,
+      "order": "normal"
+    }
+  ]
+}

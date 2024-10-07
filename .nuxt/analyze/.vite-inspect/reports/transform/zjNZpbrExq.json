@@ -1,0 +1,247 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/pages/near-by/index.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\r\n   \r\n     <div class=\"max-width\" style=\"padding: 0 10px 0 10px; min-height: 80vh; margin-top: 150px\" >\r\n        <Wellness  :room=\"room\"/>\r\n     </div>\r\n\r\n     \r\n       <!-- <edw :room=\"room2\"/> -->\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\nimport { reactive, ref } from 'vue';\r\n\r\n\r\n\r\n\r\n\r\nconst isLoading = ref(true)\r\n\r\n\r\nconst room = reactive({\r\n    title: 'Near By Title',\r\n    description: 'A place of quiet contemplation pervaded by the spiritual tranquility of the town itself, Amantaka’s spa offers guests an exceptional personalised experience. The spa menu draws on Lao healing traditions, incorporating local herbs and traditional Buddhist rituals.',\r\n    images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/9e99bfdb-6d77-4ee9-85fd-83221ee7abb1.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/84faa7d0-02cf-4108-a575-d7c8b08ebea7.jpg', ],\r\n    subImages: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/e7463c82-ed23-42e4-ac86-a120c93b8453.jpg', 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/9e99bfdb-6d77-4ee9-85fd-83221ee7abb1.jpg','https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg',],\r\n    items: [\r\n        {\r\n            title: 'Embark on a holistic journey',\r\n            description: 'Our Signature Wellness Journeys are designed to meet individual needs while incorporating local wellness traditions and healing techniques. Each includes a massage and a personalised bath with local herbs. The Samun Pai incorporates herbal poultices, while the Anamai Hang Kai includes a detoxifying scrub and a mineral wrap.'\r\n        },\r\n        {\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        {\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        \r\n    ],\r\n    subItems: [\r\n        {\r\n            images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/09997ce6-c88a-425a-bda0-7fe8fbbe0478.jpg'],\r\n            title: 'Embark on a holistic journey',\r\n            description: 'Our Signature Wellness Journeys are designed to meet individual needs while incorporating local wellness traditions and healing techniques. Each includes a massage and a personalised bath with local herbs. The Samun Pai incorporates herbal poultices, while the Anamai Hang Kai includes a detoxifying scrub and a mineral wrap.'\r\n        },\r\n        {\r\n            images: ['https://storage.googleapis.com/dsv-bucket/imgs/imgs/b6669da7-deca-42ce-8544-9da884893378.jpg'],\r\n            title: 'Generations of wisdom',\r\n            description:'Passed down through the generations, Lao massage is a rhythmic, oil-free treatment performed over loose, comfortable clothing. A series of gentle stretches opens the body to enhance mobility, while deep pressure-point stimulation eases tension, leaving a whole body sense of relaxation and fulfillment.'\r\n        },\r\n        \r\n    ]\r\n})\r\n\r\n//const { data }: any = await useFetch(config.API_BASE_URL + '/get-edws?type=Wellness')\r\n\r\n\r\n //const room2 = reactive(data.value.edws[1])\r\n\r\n// const { data }: any = await useFetch(config.API_BASE_URL + '/get-room/' + route.params.id)\r\n// const { data: roomsData }: any = await useFetch(config.API_BASE_URL + '/get-rooms')\r\n// const room = ref<any>(data.value.room)\r\n// const rooms = ref<any>(roomsData.value.rooms)\r\nisLoading.value = false\r\n\r\n\r\n\r\n\r\n</script>\r\n\r\n<style scoped lang=\"scss\">\r\n.other-room-card {\r\n    position: absolute;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n}\r\n</style>\r\n",
+      "start": 1718517092489,
+      "end": 1718517092580,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517092581,
+      "end": 1718517092581,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"C:/Users/MSII/Desktop/pj/dansavanh/pages/near-by/index.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"C:/Users/MSII/Desktop/pj/dansavanh/pages/near-by/index.vue?vue&type=script&setup=true&lang.ts\";\nimport \"C:/Users/MSII/Desktop/pj/dansavanh/pages/near-by/index.vue?vue&type=style&index=0&scoped=a20ac1cd&lang.scss\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-a20ac1cd\"]]);\n",
+      "start": 1718517092581,
+      "end": 1718517092728,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517092729,
+      "end": 1718517092729,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517092730,
+      "end": 1718517092730,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517092731,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517092734,
+      "end": 1718517092734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517092736,
+      "end": 1718517092736,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517092737,
+      "end": 1718517092737,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517092738,
+      "end": 1718517092738,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517092738,
+      "end": 1718517092739,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517092739,
+      "end": 1718517092739,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517092743,
+      "end": 1718517092745,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517092746,
+      "end": 1718517092746,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "export { default } from \"C:/Users/MSII/Desktop/pj/dansavanh/pages/near-by/index.vue?macro=true&vue&type=script&setup=true&lang.ts\"",
+      "start": 1718517092749,
+      "end": 1718517092750,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517092750,
+      "end": 1718517092750,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517092750,
+      "end": 1718517092750,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517092751,
+      "end": 1718517092751,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517092751,
+      "end": 1718517092751,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517092751,
+      "end": 1718517092752,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517092752,
+      "end": 1718517092752,
+      "order": "normal"
+    }
+  ]
+}

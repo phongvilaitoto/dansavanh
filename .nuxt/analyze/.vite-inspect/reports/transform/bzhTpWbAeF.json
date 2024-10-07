@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/config-provider/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { watch, computed, reactive, defineComponent, watchEffect } from 'vue';\nimport defaultRenderEmpty from './renderEmpty';\nimport LocaleProvider, { ANT_MARK } from '../locale-provider';\nimport LocaleReceiver from '../locale-provider/LocaleReceiver';\nimport message from '../message';\nimport notification from '../notification';\nimport { registerTheme } from './cssVariables';\nimport defaultLocale from '../locale/en_US';\nimport useStyle from './style';\nimport useTheme from './hooks/useTheme';\nimport defaultSeedToken from '../theme/themes/seed';\nimport { useConfigContextProvider, useConfigContextInject, configProviderProps, useProvideGlobalForm, defaultIconPrefixCls } from './context';\nimport { useProviderSize } from './SizeContext';\nimport { useProviderDisabled } from './DisabledContext';\nimport { createTheme } from '../_util/cssinjs';\nimport { DesignTokenProvider } from '../theme/internal';\nexport const defaultPrefixCls = 'ant';\nexport { defaultIconPrefixCls };\nfunction getGlobalPrefixCls() {\n  return globalConfigForApi.prefixCls || defaultPrefixCls;\n}\nfunction getGlobalIconPrefixCls() {\n  return globalConfigForApi.iconPrefixCls || defaultIconPrefixCls;\n}\nconst globalConfigBySet = reactive({}); // 权重最大\nexport const globalConfigForApi = reactive({});\nexport const configConsumerProps = ['getTargetContainer', 'getPopupContainer', 'rootPrefixCls', 'getPrefixCls', 'renderEmpty', 'csp', 'autoInsertSpaceInButton', 'locale', 'pageHeader'];\nwatchEffect(() => {\n  _extends(globalConfigForApi, globalConfigBySet);\n  globalConfigForApi.prefixCls = getGlobalPrefixCls();\n  globalConfigForApi.iconPrefixCls = getGlobalIconPrefixCls();\n  globalConfigForApi.getPrefixCls = (suffixCls, customizePrefixCls) => {\n    if (customizePrefixCls) return customizePrefixCls;\n    return suffixCls ? `${globalConfigForApi.prefixCls}-${suffixCls}` : globalConfigForApi.prefixCls;\n  };\n  globalConfigForApi.getRootPrefixCls = () => {\n    // If Global prefixCls provided, use this\n    if (globalConfigForApi.prefixCls) {\n      return globalConfigForApi.prefixCls;\n    }\n    // Fallback to default prefixCls\n    return getGlobalPrefixCls();\n  };\n});\nlet stopWatchEffect;\nconst setGlobalConfig = params => {\n  if (stopWatchEffect) {\n    stopWatchEffect();\n  }\n  stopWatchEffect = watchEffect(() => {\n    _extends(globalConfigBySet, reactive(params));\n    _extends(globalConfigForApi, reactive(params));\n  });\n  if (params.theme) {\n    registerTheme(getGlobalPrefixCls(), params.theme);\n  }\n};\nexport const globalConfig = () => ({\n  getPrefixCls: (suffixCls, customizePrefixCls) => {\n    if (customizePrefixCls) return customizePrefixCls;\n    return suffixCls ? `${getGlobalPrefixCls()}-${suffixCls}` : getGlobalPrefixCls();\n  },\n  getIconPrefixCls: getGlobalIconPrefixCls,\n  getRootPrefixCls: () => {\n    // If Global prefixCls provided, use this\n    if (globalConfigForApi.prefixCls) {\n      return globalConfigForApi.prefixCls;\n    }\n    // Fallback to default prefixCls\n    return getGlobalPrefixCls();\n  }\n});\nconst ConfigProvider = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AConfigProvider',\n  inheritAttrs: false,\n  props: configProviderProps(),\n  setup(props, _ref) {\n    let {\n      slots\n    } = _ref;\n    const parentContext = useConfigContextInject();\n    const getPrefixCls = (suffixCls, customizePrefixCls) => {\n      const {\n        prefixCls = 'ant'\n      } = props;\n      if (customizePrefixCls) return customizePrefixCls;\n      const mergedPrefixCls = prefixCls || parentContext.getPrefixCls('');\n      return suffixCls ? `${mergedPrefixCls}-${suffixCls}` : mergedPrefixCls;\n    };\n    const iconPrefixCls = computed(() => props.iconPrefixCls || parentContext.iconPrefixCls.value || defaultIconPrefixCls);\n    const shouldWrapSSR = computed(() => iconPrefixCls.value !== parentContext.iconPrefixCls.value);\n    const csp = computed(() => {\n      var _a;\n      return props.csp || ((_a = parentContext.csp) === null || _a === void 0 ? void 0 : _a.value);\n    });\n    const wrapSSR = useStyle(iconPrefixCls);\n    const mergedTheme = useTheme(computed(() => props.theme), computed(() => {\n      var _a;\n      return (_a = parentContext.theme) === null || _a === void 0 ? void 0 : _a.value;\n    }));\n    const renderEmptyComponent = name => {\n      const renderEmpty = props.renderEmpty || slots.renderEmpty || parentContext.renderEmpty || defaultRenderEmpty;\n      return renderEmpty(name);\n    };\n    const autoInsertSpaceInButton = computed(() => {\n      var _a, _b;\n      return (_a = props.autoInsertSpaceInButton) !== null && _a !== void 0 ? _a : (_b = parentContext.autoInsertSpaceInButton) === null || _b === void 0 ? void 0 : _b.value;\n    });\n    const locale = computed(() => {\n      var _a;\n      return props.locale || ((_a = parentContext.locale) === null || _a === void 0 ? void 0 : _a.value);\n    });\n    watch(locale, () => {\n      globalConfigBySet.locale = locale.value;\n    }, {\n      immediate: true\n    });\n    const direction = computed(() => {\n      var _a;\n      return props.direction || ((_a = parentContext.direction) === null || _a === void 0 ? void 0 : _a.value);\n    });\n    const space = computed(() => {\n      var _a, _b;\n      return (_a = props.space) !== null && _a !== void 0 ? _a : (_b = parentContext.space) === null || _b === void 0 ? void 0 : _b.value;\n    });\n    const virtual = computed(() => {\n      var _a, _b;\n      return (_a = props.virtual) !== null && _a !== void 0 ? _a : (_b = parentContext.virtual) === null || _b === void 0 ? void 0 : _b.value;\n    });\n    const dropdownMatchSelectWidth = computed(() => {\n      var _a, _b;\n      return (_a = props.dropdownMatchSelectWidth) !== null && _a !== void 0 ? _a : (_b = parentContext.dropdownMatchSelectWidth) === null || _b === void 0 ? void 0 : _b.value;\n    });\n    const getTargetContainer = computed(() => {\n      var _a;\n      return props.getTargetContainer !== undefined ? props.getTargetContainer : (_a = parentContext.getTargetContainer) === null || _a === void 0 ? void 0 : _a.value;\n    });\n    const getPopupContainer = computed(() => {\n      var _a;\n      return props.getPopupContainer !== undefined ? props.getPopupContainer : (_a = parentContext.getPopupContainer) === null || _a === void 0 ? void 0 : _a.value;\n    });\n    const pageHeader = computed(() => {\n      var _a;\n      return props.pageHeader !== undefined ? props.pageHeader : (_a = parentContext.pageHeader) === null || _a === void 0 ? void 0 : _a.value;\n    });\n    const input = computed(() => {\n      var _a;\n      return props.input !== undefined ? props.input : (_a = parentContext.input) === null || _a === void 0 ? void 0 : _a.value;\n    });\n    const pagination = computed(() => {\n      var _a;\n      return props.pagination !== undefined ? props.pagination : (_a = parentContext.pagination) === null || _a === void 0 ? void 0 : _a.value;\n    });\n    const form = computed(() => {\n      var _a;\n      return props.form !== undefined ? props.form : (_a = parentContext.form) === null || _a === void 0 ? void 0 : _a.value;\n    });\n    const select = computed(() => {\n      var _a;\n      return props.select !== undefined ? props.select : (_a = parentContext.select) === null || _a === void 0 ? void 0 : _a.value;\n    });\n    const componentSize = computed(() => props.componentSize);\n    const componentDisabled = computed(() => props.componentDisabled);\n    const wave = computed(() => {\n      var _a, _b;\n      return (_a = props.wave) !== null && _a !== void 0 ? _a : (_b = parentContext.wave) === null || _b === void 0 ? void 0 : _b.value;\n    });\n    const configProvider = {\n      csp,\n      autoInsertSpaceInButton,\n      locale,\n      direction,\n      space,\n      virtual,\n      dropdownMatchSelectWidth,\n      getPrefixCls,\n      iconPrefixCls,\n      theme: computed(() => {\n        var _a, _b;\n        return (_a = mergedTheme.value) !== null && _a !== void 0 ? _a : (_b = parentContext.theme) === null || _b === void 0 ? void 0 : _b.value;\n      }),\n      renderEmpty: renderEmptyComponent,\n      getTargetContainer,\n      getPopupContainer,\n      pageHeader,\n      input,\n      pagination,\n      form,\n      select,\n      componentSize,\n      componentDisabled,\n      transformCellText: computed(() => props.transformCellText),\n      wave\n    };\n    // ================================ Dynamic theme ================================\n    const memoTheme = computed(() => {\n      const _a = mergedTheme.value || {},\n        {\n          algorithm,\n          token\n        } = _a,\n        rest = __rest(_a, [\"algorithm\", \"token\"]);\n      const themeObj = algorithm && (!Array.isArray(algorithm) || algorithm.length > 0) ? createTheme(algorithm) : undefined;\n      return _extends(_extends({}, rest), {\n        theme: themeObj,\n        token: _extends(_extends({}, defaultSeedToken), token)\n      });\n    });\n    const validateMessagesRef = computed(() => {\n      var _a, _b;\n      // Additional Form provider\n      let validateMessages = {};\n      if (locale.value) {\n        validateMessages = ((_a = locale.value.Form) === null || _a === void 0 ? void 0 : _a.defaultValidateMessages) || ((_b = defaultLocale.Form) === null || _b === void 0 ? void 0 : _b.defaultValidateMessages) || {};\n      }\n      if (props.form && props.form.validateMessages) {\n        validateMessages = _extends(_extends({}, validateMessages), props.form.validateMessages);\n      }\n      return validateMessages;\n    });\n    useConfigContextProvider(configProvider);\n    useProvideGlobalForm({\n      validateMessages: validateMessagesRef\n    });\n    useProviderSize(componentSize);\n    useProviderDisabled(componentDisabled);\n    const renderProvider = legacyLocale => {\n      var _a, _b;\n      let childNode = shouldWrapSSR.value ? wrapSSR((_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots)) : (_b = slots.default) === null || _b === void 0 ? void 0 : _b.call(slots);\n      if (props.theme) {\n        const _childNode = function () {\n          return childNode;\n        }();\n        childNode = _createVNode(DesignTokenProvider, {\n          \"value\": memoTheme.value\n        }, {\n          default: () => [_childNode]\n        });\n      }\n      return _createVNode(LocaleProvider, {\n        \"locale\": locale.value || legacyLocale,\n        \"ANT_MARK__\": ANT_MARK\n      }, {\n        default: () => [childNode]\n      });\n    };\n    watchEffect(() => {\n      if (direction.value) {\n        message.config({\n          rtl: direction.value === 'rtl'\n        });\n        notification.config({\n          rtl: direction.value === 'rtl'\n        });\n      }\n    });\n    return () => _createVNode(LocaleReceiver, {\n      \"children\": (_, __, legacyLocale) => renderProvider(legacyLocale)\n    }, null);\n  }\n});\nConfigProvider.config = setGlobalConfig;\nConfigProvider.install = function (app) {\n  app.component(ConfigProvider.name, ConfigProvider);\n};\nexport default ConfigProvider;",
+      "start": 1718517096391,
+      "end": 1718517096419,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096419,
+      "end": 1718517096420,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096420,
+      "end": 1718517096420,
+      "order": "normal"
+    }
+  ]
+}

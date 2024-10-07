@@ -1,0 +1,246 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/translate.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "const trans = {\r\n  //Navbar\r\n  home: [\"Home\", \"หน้าหลัก\", \"主页\"],\r\n  casino: [\"Casino\", \"คาสิโน\", \"娱乐厅\"],\r\n  hotels: [\"Hotels\", \"โรงแรม\", \"酒店\"],\r\n  hotelTab1: [\"DANSAVANH RESORT & CASINO\", 'แดนสวรรค์ รีสอร์ทและคาสิโน', '天堂度假村及赌场'],\r\n  hotelTab2: [\"DANSAVANH GOLF & COUNTRY CLUB\", 'แดนสวรรค์ กอล์ฟ แอนด์ คันทรี่ คลับ', '丹萨万高尔夫乡村俱乐部'],\r\n  hotelTab3: [\"DANSAVANH VIENTIANE HOTEL\", 'แดนสวรรค์ โรงแรมเวียงจันทน์', '万象天堂酒店'],\r\n  experience: [\"Experience\", \"ประสบการณ์\", \"活动\"],\r\n  events: [\"Events\", \"เหตุการณ์ที่เกิดขึ้น\", \"活动\"],\r\n  offer: [\"Offer\", \"แพคเกจ\", \"优惠\"],\r\n  more: [\"More\", \"อื่นๆ\", \"更多\"],\r\n  contact: [\"Contact\", \"ติดต่อเรา\", \"联系\"],\r\n\r\n  //Hotel\r\n  ourHotels: ['OUR HOTELS', 'โรงแรมของเรา', '我们的酒店'],\r\n  stepInTheWorld: ['STEP IN THE WORLD OF DANSAVANH', 'ขั้นตอนในโลกของ DANSAVANH', '步入丹萨旺的世界'],\r\n\r\n  // Utils \r\n  discoverMore: ['DISCOVER MORE', 'ค้นพบเพิ่มเติม', '发现更多'],\r\n  viewNews: ['VIEW MORE NEWS', 'ดูข่าวทั้งหมด', '查看所有新聞'],\r\n  viewHotelButton: ['VIEW HOTEL', 'เยี่ยมชมโรงแรม', '预览酒店'],\r\n  viewHotelsButton: ['VIEW HOTELS', 'เยี่ยมชมโรงแรม', '预览酒店'],\r\n  facilities: ['FACILITIES', 'สิ่งอำนวยความสะดวก', '设施'],\r\n\r\n  //Casino Page\r\n  ourResortsCasino: [\r\n    \"OUR RESORTS CASINO\",\r\n    \"แหล่งบังเทิงของรีสอร์ท\",\r\n    \"度假区娱乐厅\",\r\n  ],\r\n  aMagicPlace: [\r\n    \"A MAGIC PLACE\",\r\n    \"เป็นสถานที่มหัศจรรย์แห่งหนึ่ง\",\r\n    \"一个神奇的地方\",\r\n  ],\r\n  casinoTitle1: [\"BLACKJACK 21\", \"แบล็คแจ๊ค 21 แต้ม\", \"21点\"],\r\n  casinoCaption1: [\r\n    \"The aim of Blackjack is to dealt a hand that has a value greater than that of the Dealer without exceeding 21. Blackjack is a game of chance and skill which player may improve their chance by betting strategies.\",\r\n    \"แบล็คแจ็ค ต้องการผู้ชนะทีมีดแต้มสูงสุด แต่ต้องไม้เกิน 21 แต้ม ต้องใช้ฝีมือ และทักษะ เพื่อจะเป็นผู้ชนะ\",\r\n    \"玩家的的目的就是争取把手上的点数胜过庄家既不超过21点。这游戏需要的是机会与技术的结合才能提高胜算\",\r\n  ],\r\n  casinoTitle2: [\"ROULETTE\", \"รูเล็ต\", \"轮盘\"],\r\n  casinoCaption2: [\r\n    \"The game is about guessing what number and sector the ball will land in a spinning wheel of 36 numbers. If you have that sharp instinct or lady luck shines on you, this game gives you the fastest returns.\",\r\n    \"รูเล็ต 36 ตัวเลขที่จะให้ลูกวิ่งเป็นตัวกำหนดว่าคุณจะทายถูกหรือไม่ หากคุณคือเซียนทายจะได้ผลตอบแทนเร็วที่สุดจากเกมส์ รูเล็ต\",\r\n    \"在36 个号码轮盘中猜测球会停落在那个数字或区域。若你是财星高照或是有特别准确的直觉，这游戏能让你最快得到最高回报。\",\r\n  ],\r\n  casinoTitle3: [\"BACCARAT\", \"บาคาร่า\", \"百家乐\"],\r\n  casinoCaption3: [\r\n    \"We provide both commissioned and non-commissioned baccarat. The simplicity of the game and thrill make it the most popular game worldwide. Just bet and wait for the outcome, Yeah!\",\r\n    \"บาคาร่า เป็นเกมส์ที่มันและสุดเร้าใจ เล่นง่าย ได้รับความนิยมเป็นอย่างมากมาก เพียงแค่ลงเดิมพันแล้วรอผลตอบแทนแค่นั้นเอง\",\r\n    \"我们提供佣金式与无佣金式百家乐游戏。这游戏既简单又刺激全球广受欢迎。 您只需下个注等待结果便可。\",\r\n  ],\r\n  casinoTitle4: [\"DRAGON TIGER\", \"ดราก้อน ไทเกอร์\", \"龙虎斗\"],\r\n  casinoCaption4: [\r\n    \"Considered as one of the most favourite games in the region. Bet on TIGER or DRAGON, whichever you think that will win. Nevertheless, try TIE that gives the highest return.\",\r\n    \"ดราก้อน ไทเกอร์ เป็นเกมส์อีกเกมส์หนึ่งที่ได้รับความนิยม เพียงแค่เดิมพัน ดราก้อน หรือ ไทเกอร์ หากเดิมพันเสมอก่อจะได้ผลตอบแทนที่มากกว่า จึงเป็นที่นิยมของคนในพื้นที่\",\r\n    \"在这区域算是被受欢迎的游戏之一。凭感觉下注“龙“或•”虎” 便可。当然和局的赔率甚高，之所以成了当地人的喜爱。\",\r\n  ],\r\n  casinoTitle5: [\"SLOTS\", \"เครื่องเล่นสล็อต\", \"游戏机\"],\r\n  casinoCaption5: [\r\n    \"We offer both new and traditional gaming machines with progressive win and massive jackpots in addition to Duo Fu Duo Cai and Fa Fa Fa. Our casino also consists of popular electronic Roulette and multiple live Baccarat games on electronic betting stations that unlock a whole new level of gaming excitement.\",\r\n    \"เครื่องเล่นสล็อต เป็นเครื่องเล่นที่มีความทันสมัย หลากหลาย สวยงาม และยังมีรางวัลมากมาย จึงเป็นที่นิยมมากในสมัยนี้\",\r\n    \"我们拥有新型传统累进式电子游戏机附加和丰厚巨奖。当然少不了时尚最受欢迎的“多福多财”及“发发发”电子游戏机。我们也有电子轮盘设备及多画面百家乐电子投注站，开启另一高潮迭起的游戏体验。\",\r\n  ],\r\n\r\n  // Experience Page\r\n  dActivities: [`DANSAVANH'S ACTIVITIES`, \"กิจกรรม DANSAVANH\", \"丹萨旺活动\"],\r\n  sportAndActivities: [\"SPORTS & ACTIVITIES\", \"กิจกรรมกีฬา\", \"乐趣无穷\"],\r\n  tonsOfActivities: ['TONS OF ACTIVITIES', 'ตันกิจกรรม', '体验篇'],\r\n  fromSport: ['FROM SPORTS TO SIGHTSEEING, WE HAVE IT ALL', 'จากกีฬาเพื่อเที่ยวชมสถานที่เรามีทุกสิ่ง','體育觀光，擁有一切'],\r\n\r\n  // Event Page\r\n  eventTitle: [\"EVENTS\", \"กิจกรรม\", \"活動\"],\r\n  eventComing: [\"COMING EVENTS\", \"กิจกรรมมา\", \"活動預告\"],\r\n  eventPast: [\"PAST EVENTS\", \"กิจกรรมที่ผ่านมา\", \"过去的事件\"],\r\n  eventGallery: [\"GALLERY\", \"อัลบั้มรูป\", \"像廊\"],\r\n\r\n  // Offer Page\r\n  offerTitle: [\"OUR OFFERS\", \"ข้อเสนอของเรา\", \"优惠套餐\"],\r\n  offerSubTitle: [\r\n    \"Interested in some activities? Have a look at ours packages.\",\r\n    \"ความสนใจในกิจกรรมบางอย่าง? มีลักษณะที่แพคเกจออก\",\r\n    \"千载难逢！不可错过！\",\r\n  ],\r\n\r\n  // News Page\r\n  newsTitle: ['DANSAVANH NEWS', 'ข่าว', '丹萨旺新聞'],\r\n\r\n  // Career Page\r\n  careerTitle: ['CAREER', 'แดนสะหวันกับอาชีพ', '事業与前程'],\r\n  careerSubTitle: ['WORK AT DANSAVANH', 'แดนสะหวัน', '与丹萨旺创造'],\r\n  dCareer: ['DANSAVANH CAREER', 'แดนสะหวันกับอาชีพ', '老挝职业首选'],\r\n  bestPlacesToWork: ['ONE OF THE BEST PLACES TO WORK IN LAOS', 'หนึ่งในสถานที่ที่ดีที่สุดในการทำงานในลาว', '老挝职业首选老挝职业首选'],\r\n  availableJobs: ['AVAILABLE JOBS', 'ตำแหน่งงานที่ว่าง', '职位'],\r\n\r\n  // Contact Page\r\n  contactTitle: ['CONTACT', 'ติดต่อเรา', '联系质询'],\r\n  contactSubTitle: ['Get in touch for a booking or a greeting', 'ติดต่อหรือสอบถามข้อมูลเพิ่มเติ่ม', '联系预订或问候'],\r\n  clickOnMarker: ['CLICK ON MARKER FOR NAVIGATION', 'คลิกลูกศร เพื่อนำทาง', '导航指引'],\r\n  dLocation: ['DANSAVANH LOCATION', 'คลิกลูกศร เพื่อนำทาง', '丹萨旺所在处'],\r\n  gettingHere: ['GETTING HERE', 'การเดินทางมาที่นี่', '到达这里'],\r\n\r\n  contactList1: ['Wattay Airport – Look out for Dansavanh Meet & Greet counter at the arrival hall.', '', ''],\r\n  contactList2: ['Lao-Thai immigration at Tanahleng - Daily departure at 7:30 am, 13:30 pm and 19:00 pm', '', ''],\r\n  contactList3: ['ansavanh Vientiane Hotel – Daily departure starting from 6:30 am till 12:30 am at 2 hours interval', '', ''],\r\n  contactList4: ['A private limousine can be arranged via VIP hotline', '', ''],\r\n\r\n  shuttleBus: ['SHUTTLE BUS', 'บริการรถประจำทาง', '线路车'],\r\n  tel: ['TELEPHONE', 'โทรศัพท', '电话'],\r\n  telInfo: ['For instant info', 'สามารถติดต่อหรือสอบถามข้อมูลกับเราผ่านทางโทรศัพท์ได้ที่', '及时询问'],\r\n  tel1: ['Dansavanh Vientiane Hotel', 'โรงแรมเวียงจันทน์', '丹萨旺万象酒店'],\r\n  tel2: ['Dansavanh Resort & Casino', 'น้ำงึมรีสอร์ทแอนด์คาสิโน', '丹萨旺旅游度区酒店'],\r\n  tel3: ['Dansavanh Thai Office', 'แดนสะหวัน หนองคายออฟฟิศ', '泰国办事处'],\r\n  email: ['E-MAIL', 'ผ่านทาง EMAIL', '电子邮件'],\r\n  emailInfo: ['If you are on the go and wish to enquire.', 'สามารถติดต่อหรือสอบถามข้อมูลกับเราผ่านทาง Email', '随时询问'],\r\n  contactForm: ['CONTACT FORM', 'แบบฟอร์มเพื่ อติดต่อและสอบถามข้อมูล', '联系表格'],\r\n  contactFormCaption: ['You can still contact us, right here - right now. Use this contact form to send an e-mail. Usually we respond in 1 business day.', 'ทุกคำถามที่ท่านถามมาเราจะตอบกลับทันทีภายในเวลา1วันทำการ', '我们会在一天内回复您的邮件。'],\r\n  formName: ['Name', 'ชื่อ', '名字'],\r\n  formPhone: ['Phone', 'เบอร์โทรศัพท', '电话'],\r\n  formEmail: ['Email', 'อีเมล', '邮件地址'],\r\n  formMessage: ['Message', 'ข้อความ', '信息'],\r\n  formSubmit: ['SUBMIT', 'ส่งข้อความ', '提交'],\r\n  newsLetter: ['NEWSLETTER', 'ข่าวสาร', '简讯海报'],\r\n  newsLetterCaption: ['Subscribe to our newsletter and get instant updates to our news and offers.', 'ท่านสามารถสมัครสมาชิกเพื่อรับข้อมูลข่าวสารและกิจกรรมอื่นๆเกี่ยวกับบริษัทรวมไปถึงสิทธิพิเศษอื่นๆ', '预先得到最新资讯与促销！'],\r\n  newsLetterEmail: ['Your E-mail address', 'ที่อยู่อีเมล์ของคุณ', '确定'],\r\n  newsLetterSubmit: ['Go', 'คลิก', '确定'],\r\n\r\n\r\n  // Gallery Page\r\n  gallery: ['GALLERY','แกลเลอรี่', '画廊']\r\n\r\n  // New Keys Only here\r\n\r\n\r\n};\r\n\r\nexport default trans",
+      "start": 1718517093915,
+      "end": 1718517093976,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093976,
+      "end": 1718517093976,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093976,
+      "end": 1718517093976,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093976,
+      "end": 1718517093976,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093976,
+      "end": 1718517093976,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093976,
+      "end": 1718517093976,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093976,
+      "end": 1718517093976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "const trans = {\n  //Navbar\n  home: [\"Home\", \"หน้าหลัก\", \"主页\"],\n  casino: [\"Casino\", \"คาสิโน\", \"娱乐厅\"],\n  hotels: [\"Hotels\", \"โรงแรม\", \"酒店\"],\n  hotelTab1: [\"DANSAVANH RESORT & CASINO\", \"แดนสวรรค์ รีสอร์ทและคาสิโน\", \"天堂度假村及赌场\"],\n  hotelTab2: [\"DANSAVANH GOLF & COUNTRY CLUB\", \"แดนสวรรค์ กอล์ฟ แอนด์ คันทรี่ คลับ\", \"丹萨万高尔夫乡村俱乐部\"],\n  hotelTab3: [\"DANSAVANH VIENTIANE HOTEL\", \"แดนสวรรค์ โรงแรมเวียงจันทน์\", \"万象天堂酒店\"],\n  experience: [\"Experience\", \"ประสบการณ์\", \"活动\"],\n  events: [\"Events\", \"เหตุการณ์ที่เกิดขึ้น\", \"活动\"],\n  offer: [\"Offer\", \"แพคเกจ\", \"优惠\"],\n  more: [\"More\", \"อื่นๆ\", \"更多\"],\n  contact: [\"Contact\", \"ติดต่อเรา\", \"联系\"],\n  //Hotel\n  ourHotels: [\"OUR HOTELS\", \"โรงแรมของเรา\", \"我们的酒店\"],\n  stepInTheWorld: [\"STEP IN THE WORLD OF DANSAVANH\", \"ขั้นตอนในโลกของ DANSAVANH\", \"步入丹萨旺的世界\"],\n  // Utils \n  discoverMore: [\"DISCOVER MORE\", \"ค้นพบเพิ่มเติม\", \"发现更多\"],\n  viewNews: [\"VIEW MORE NEWS\", \"ดูข่าวทั้งหมด\", \"查看所有新聞\"],\n  viewHotelButton: [\"VIEW HOTEL\", \"เยี่ยมชมโรงแรม\", \"预览酒店\"],\n  viewHotelsButton: [\"VIEW HOTELS\", \"เยี่ยมชมโรงแรม\", \"预览酒店\"],\n  facilities: [\"FACILITIES\", \"สิ่งอำนวยความสะดวก\", \"设施\"],\n  //Casino Page\n  ourResortsCasino: [\n    \"OUR RESORTS CASINO\",\n    \"แหล่งบังเทิงของรีสอร์ท\",\n    \"度假区娱乐厅\"\n  ],\n  aMagicPlace: [\n    \"A MAGIC PLACE\",\n    \"เป็นสถานที่มหัศจรรย์แห่งหนึ่ง\",\n    \"一个神奇的地方\"\n  ],\n  casinoTitle1: [\"BLACKJACK 21\", \"แบล็คแจ๊ค 21 แต้ม\", \"21点\"],\n  casinoCaption1: [\n    \"The aim of Blackjack is to dealt a hand that has a value greater than that of the Dealer without exceeding 21. Blackjack is a game of chance and skill which player may improve their chance by betting strategies.\",\n    \"แบล็คแจ็ค ต้องการผู้ชนะทีมีดแต้มสูงสุด แต่ต้องไม้เกิน 21 แต้ม ต้องใช้ฝีมือ และทักษะ เพื่อจะเป็นผู้ชนะ\",\n    \"玩家的的目的就是争取把手上的点数胜过庄家既不超过21点。这游戏需要的是机会与技术的结合才能提高胜算\"\n  ],\n  casinoTitle2: [\"ROULETTE\", \"รูเล็ต\", \"轮盘\"],\n  casinoCaption2: [\n    \"The game is about guessing what number and sector the ball will land in a spinning wheel of 36 numbers. If you have that sharp instinct or lady luck shines on you, this game gives you the fastest returns.\",\n    \"รูเล็ต 36 ตัวเลขที่จะให้ลูกวิ่งเป็นตัวกำหนดว่าคุณจะทายถูกหรือไม่ หากคุณคือเซียนทายจะได้ผลตอบแทนเร็วที่สุดจากเกมส์ รูเล็ต\",\n    \"在36 个号码轮盘中猜测球会停落在那个数字或区域。若你是财星高照或是有特别准确的直觉，这游戏能让你最快得到最高回报。\"\n  ],\n  casinoTitle3: [\"BACCARAT\", \"บาคาร่า\", \"百家乐\"],\n  casinoCaption3: [\n    \"We provide both commissioned and non-commissioned baccarat. The simplicity of the game and thrill make it the most popular game worldwide. Just bet and wait for the outcome, Yeah!\",\n    \"บาคาร่า เป็นเกมส์ที่มันและสุดเร้าใจ เล่นง่าย ได้รับความนิยมเป็นอย่างมากมาก เพียงแค่ลงเดิมพันแล้วรอผลตอบแทนแค่นั้นเอง\",\n    \"我们提供佣金式与无佣金式百家乐游戏。这游戏既简单又刺激全球广受欢迎。 您只需下个注等待结果便可。\"\n  ],\n  casinoTitle4: [\"DRAGON TIGER\", \"ดราก้อน ไทเกอร์\", \"龙虎斗\"],\n  casinoCaption4: [\n    \"Considered as one of the most favourite games in the region. Bet on TIGER or DRAGON, whichever you think that will win. Nevertheless, try TIE that gives the highest return.\",\n    \"ดราก้อน ไทเกอร์ เป็นเกมส์อีกเกมส์หนึ่งที่ได้รับความนิยม เพียงแค่เดิมพัน ดราก้อน หรือ ไทเกอร์ หากเดิมพันเสมอก่อจะได้ผลตอบแทนที่มากกว่า จึงเป็นที่นิยมของคนในพื้นที่\",\n    \"在这区域算是被受欢迎的游戏之一。凭感觉下注“龙“或•”虎” 便可。当然和局的赔率甚高，之所以成了当地人的喜爱。\"\n  ],\n  casinoTitle5: [\"SLOTS\", \"เครื่องเล่นสล็อต\", \"游戏机\"],\n  casinoCaption5: [\n    \"We offer both new and traditional gaming machines with progressive win and massive jackpots in addition to Duo Fu Duo Cai and Fa Fa Fa. Our casino also consists of popular electronic Roulette and multiple live Baccarat games on electronic betting stations that unlock a whole new level of gaming excitement.\",\n    \"เครื่องเล่นสล็อต เป็นเครื่องเล่นที่มีความทันสมัย หลากหลาย สวยงาม และยังมีรางวัลมากมาย จึงเป็นที่นิยมมากในสมัยนี้\",\n    \"我们拥有新型传统累进式电子游戏机附加和丰厚巨奖。当然少不了时尚最受欢迎的“多福多财”及“发发发”电子游戏机。我们也有电子轮盘设备及多画面百家乐电子投注站，开启另一高潮迭起的游戏体验。\"\n  ],\n  // Experience Page\n  dActivities: [`DANSAVANH'S ACTIVITIES`, \"กิจกรรม DANSAVANH\", \"丹萨旺活动\"],\n  sportAndActivities: [\"SPORTS & ACTIVITIES\", \"กิจกรรมกีฬา\", \"乐趣无穷\"],\n  tonsOfActivities: [\"TONS OF ACTIVITIES\", \"ตันกิจกรรม\", \"体验篇\"],\n  fromSport: [\"FROM SPORTS TO SIGHTSEEING, WE HAVE IT ALL\", \"จากกีฬาเพื่อเที่ยวชมสถานที่เรามีทุกสิ่ง\", \"體育觀光，擁有一切\"],\n  // Event Page\n  eventTitle: [\"EVENTS\", \"กิจกรรม\", \"活動\"],\n  eventComing: [\"COMING EVENTS\", \"กิจกรรมมา\", \"活動預告\"],\n  eventPast: [\"PAST EVENTS\", \"กิจกรรมที่ผ่านมา\", \"过去的事件\"],\n  eventGallery: [\"GALLERY\", \"อัลบั้มรูป\", \"像廊\"],\n  // Offer Page\n  offerTitle: [\"OUR OFFERS\", \"ข้อเสนอของเรา\", \"优惠套餐\"],\n  offerSubTitle: [\n    \"Interested in some activities? Have a look at ours packages.\",\n    \"ความสนใจในกิจกรรมบางอย่าง? มีลักษณะที่แพคเกจออก\",\n    \"千载难逢！不可错过！\"\n  ],\n  // News Page\n  newsTitle: [\"DANSAVANH NEWS\", \"ข่าว\", \"丹萨旺新聞\"],\n  // Career Page\n  careerTitle: [\"CAREER\", \"แดนสะหวันกับอาชีพ\", \"事業与前程\"],\n  careerSubTitle: [\"WORK AT DANSAVANH\", \"แดนสะหวัน\", \"与丹萨旺创造\"],\n  dCareer: [\"DANSAVANH CAREER\", \"แดนสะหวันกับอาชีพ\", \"老挝职业首选\"],\n  bestPlacesToWork: [\"ONE OF THE BEST PLACES TO WORK IN LAOS\", \"หนึ่งในสถานที่ที่ดีที่สุดในการทำงานในลาว\", \"老挝职业首选老挝职业首选\"],\n  availableJobs: [\"AVAILABLE JOBS\", \"ตำแหน่งงานที่ว่าง\", \"职位\"],\n  // Contact Page\n  contactTitle: [\"CONTACT\", \"ติดต่อเรา\", \"联系质询\"],\n  contactSubTitle: [\"Get in touch for a booking or a greeting\", \"ติดต่อหรือสอบถามข้อมูลเพิ่มเติ่ม\", \"联系预订或问候\"],\n  clickOnMarker: [\"CLICK ON MARKER FOR NAVIGATION\", \"คลิกลูกศร เพื่อนำทาง\", \"导航指引\"],\n  dLocation: [\"DANSAVANH LOCATION\", \"คลิกลูกศร เพื่อนำทาง\", \"丹萨旺所在处\"],\n  gettingHere: [\"GETTING HERE\", \"การเดินทางมาที่นี่\", \"到达这里\"],\n  contactList1: [\"Wattay Airport – Look out for Dansavanh Meet & Greet counter at the arrival hall.\", \"\", \"\"],\n  contactList2: [\"Lao-Thai immigration at Tanahleng - Daily departure at 7:30 am, 13:30 pm and 19:00 pm\", \"\", \"\"],\n  contactList3: [\"ansavanh Vientiane Hotel – Daily departure starting from 6:30 am till 12:30 am at 2 hours interval\", \"\", \"\"],\n  contactList4: [\"A private limousine can be arranged via VIP hotline\", \"\", \"\"],\n  shuttleBus: [\"SHUTTLE BUS\", \"บริการรถประจำทาง\", \"线路车\"],\n  tel: [\"TELEPHONE\", \"โทรศัพท\", \"电话\"],\n  telInfo: [\"For instant info\", \"สามารถติดต่อหรือสอบถามข้อมูลกับเราผ่านทางโทรศัพท์ได้ที่\", \"及时询问\"],\n  tel1: [\"Dansavanh Vientiane Hotel\", \"โรงแรมเวียงจันทน์\", \"丹萨旺万象酒店\"],\n  tel2: [\"Dansavanh Resort & Casino\", \"น้ำงึมรีสอร์ทแอนด์คาสิโน\", \"丹萨旺旅游度区酒店\"],\n  tel3: [\"Dansavanh Thai Office\", \"แดนสะหวัน หนองคายออฟฟิศ\", \"泰国办事处\"],\n  email: [\"E-MAIL\", \"ผ่านทาง EMAIL\", \"电子邮件\"],\n  emailInfo: [\"If you are on the go and wish to enquire.\", \"สามารถติดต่อหรือสอบถามข้อมูลกับเราผ่านทาง Email\", \"随时询问\"],\n  contactForm: [\"CONTACT FORM\", \"แบบฟอร์มเพื่ อติดต่อและสอบถามข้อมูล\", \"联系表格\"],\n  contactFormCaption: [\"You can still contact us, right here - right now. Use this contact form to send an e-mail. Usually we respond in 1 business day.\", \"ทุกคำถามที่ท่านถามมาเราจะตอบกลับทันทีภายในเวลา1วันทำการ\", \"我们会在一天内回复您的邮件。\"],\n  formName: [\"Name\", \"ชื่อ\", \"名字\"],\n  formPhone: [\"Phone\", \"เบอร์โทรศัพท\", \"电话\"],\n  formEmail: [\"Email\", \"อีเมล\", \"邮件地址\"],\n  formMessage: [\"Message\", \"ข้อความ\", \"信息\"],\n  formSubmit: [\"SUBMIT\", \"ส่งข้อความ\", \"提交\"],\n  newsLetter: [\"NEWSLETTER\", \"ข่าวสาร\", \"简讯海报\"],\n  newsLetterCaption: [\"Subscribe to our newsletter and get instant updates to our news and offers.\", \"ท่านสามารถสมัครสมาชิกเพื่อรับข้อมูลข่าวสารและกิจกรรมอื่นๆเกี่ยวกับบริษัทรวมไปถึงสิทธิพิเศษอื่นๆ\", \"预先得到最新资讯与促销！\"],\n  newsLetterEmail: [\"Your E-mail address\", \"ที่อยู่อีเมล์ของคุณ\", \"确定\"],\n  newsLetterSubmit: [\"Go\", \"คลิก\", \"确定\"],\n  // Gallery Page\n  gallery: [\"GALLERY\", \"แกลเลอรี่\", \"画廊\"]\n  // New Keys Only here\n};\nexport default trans;\n",
+      "start": 1718517093976,
+      "end": 1718517094063,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/translate.ts"
+        ],
+        "sourcesContent": [
+          "const trans = {\r\n  //Navbar\r\n  home: [\"Home\", \"หน้าหลัก\", \"主页\"],\r\n  casino: [\"Casino\", \"คาสิโน\", \"娱乐厅\"],\r\n  hotels: [\"Hotels\", \"โรงแรม\", \"酒店\"],\r\n  hotelTab1: [\"DANSAVANH RESORT & CASINO\", 'แดนสวรรค์ รีสอร์ทและคาสิโน', '天堂度假村及赌场'],\r\n  hotelTab2: [\"DANSAVANH GOLF & COUNTRY CLUB\", 'แดนสวรรค์ กอล์ฟ แอนด์ คันทรี่ คลับ', '丹萨万高尔夫乡村俱乐部'],\r\n  hotelTab3: [\"DANSAVANH VIENTIANE HOTEL\", 'แดนสวรรค์ โรงแรมเวียงจันทน์', '万象天堂酒店'],\r\n  experience: [\"Experience\", \"ประสบการณ์\", \"活动\"],\r\n  events: [\"Events\", \"เหตุการณ์ที่เกิดขึ้น\", \"活动\"],\r\n  offer: [\"Offer\", \"แพคเกจ\", \"优惠\"],\r\n  more: [\"More\", \"อื่นๆ\", \"更多\"],\r\n  contact: [\"Contact\", \"ติดต่อเรา\", \"联系\"],\r\n\r\n  //Hotel\r\n  ourHotels: ['OUR HOTELS', 'โรงแรมของเรา', '我们的酒店'],\r\n  stepInTheWorld: ['STEP IN THE WORLD OF DANSAVANH', 'ขั้นตอนในโลกของ DANSAVANH', '步入丹萨旺的世界'],\r\n\r\n  // Utils \r\n  discoverMore: ['DISCOVER MORE', 'ค้นพบเพิ่มเติม', '发现更多'],\r\n  viewNews: ['VIEW MORE NEWS', 'ดูข่าวทั้งหมด', '查看所有新聞'],\r\n  viewHotelButton: ['VIEW HOTEL', 'เยี่ยมชมโรงแรม', '预览酒店'],\r\n  viewHotelsButton: ['VIEW HOTELS', 'เยี่ยมชมโรงแรม', '预览酒店'],\r\n  facilities: ['FACILITIES', 'สิ่งอำนวยความสะดวก', '设施'],\r\n\r\n  //Casino Page\r\n  ourResortsCasino: [\r\n    \"OUR RESORTS CASINO\",\r\n    \"แหล่งบังเทิงของรีสอร์ท\",\r\n    \"度假区娱乐厅\",\r\n  ],\r\n  aMagicPlace: [\r\n    \"A MAGIC PLACE\",\r\n    \"เป็นสถานที่มหัศจรรย์แห่งหนึ่ง\",\r\n    \"一个神奇的地方\",\r\n  ],\r\n  casinoTitle1: [\"BLACKJACK 21\", \"แบล็คแจ๊ค 21 แต้ม\", \"21点\"],\r\n  casinoCaption1: [\r\n    \"The aim of Blackjack is to dealt a hand that has a value greater than that of the Dealer without exceeding 21. Blackjack is a game of chance and skill which player may improve their chance by betting strategies.\",\r\n    \"แบล็คแจ็ค ต้องการผู้ชนะทีมีดแต้มสูงสุด แต่ต้องไม้เกิน 21 แต้ม ต้องใช้ฝีมือ และทักษะ เพื่อจะเป็นผู้ชนะ\",\r\n    \"玩家的的目的就是争取把手上的点数胜过庄家既不超过21点。这游戏需要的是机会与技术的结合才能提高胜算\",\r\n  ],\r\n  casinoTitle2: [\"ROULETTE\", \"รูเล็ต\", \"轮盘\"],\r\n  casinoCaption2: [\r\n    \"The game is about guessing what number and sector the ball will land in a spinning wheel of 36 numbers. If you have that sharp instinct or lady luck shines on you, this game gives you the fastest returns.\",\r\n    \"รูเล็ต 36 ตัวเลขที่จะให้ลูกวิ่งเป็นตัวกำหนดว่าคุณจะทายถูกหรือไม่ หากคุณคือเซียนทายจะได้ผลตอบแทนเร็วที่สุดจากเกมส์ รูเล็ต\",\r\n    \"在36 个号码轮盘中猜测球会停落在那个数字或区域。若你是财星高照或是有特别准确的直觉，这游戏能让你最快得到最高回报。\",\r\n  ],\r\n  casinoTitle3: [\"BACCARAT\", \"บาคาร่า\", \"百家乐\"],\r\n  casinoCaption3: [\r\n    \"We provide both commissioned and non-commissioned baccarat. The simplicity of the game and thrill make it the most popular game worldwide. Just bet and wait for the outcome, Yeah!\",\r\n    \"บาคาร่า เป็นเกมส์ที่มันและสุดเร้าใจ เล่นง่าย ได้รับความนิยมเป็นอย่างมากมาก เพียงแค่ลงเดิมพันแล้วรอผลตอบแทนแค่นั้นเอง\",\r\n    \"我们提供佣金式与无佣金式百家乐游戏。这游戏既简单又刺激全球广受欢迎。 您只需下个注等待结果便可。\",\r\n  ],\r\n  casinoTitle4: [\"DRAGON TIGER\", \"ดราก้อน ไทเกอร์\", \"龙虎斗\"],\r\n  casinoCaption4: [\r\n    \"Considered as one of the most favourite games in the region. Bet on TIGER or DRAGON, whichever you think that will win. Nevertheless, try TIE that gives the highest return.\",\r\n    \"ดราก้อน ไทเกอร์ เป็นเกมส์อีกเกมส์หนึ่งที่ได้รับความนิยม เพียงแค่เดิมพัน ดราก้อน หรือ ไทเกอร์ หากเดิมพันเสมอก่อจะได้ผลตอบแทนที่มากกว่า จึงเป็นที่นิยมของคนในพื้นที่\",\r\n    \"在这区域算是被受欢迎的游戏之一。凭感觉下注“龙“或•”虎” 便可。当然和局的赔率甚高，之所以成了当地人的喜爱。\",\r\n  ],\r\n  casinoTitle5: [\"SLOTS\", \"เครื่องเล่นสล็อต\", \"游戏机\"],\r\n  casinoCaption5: [\r\n    \"We offer both new and traditional gaming machines with progressive win and massive jackpots in addition to Duo Fu Duo Cai and Fa Fa Fa. Our casino also consists of popular electronic Roulette and multiple live Baccarat games on electronic betting stations that unlock a whole new level of gaming excitement.\",\r\n    \"เครื่องเล่นสล็อต เป็นเครื่องเล่นที่มีความทันสมัย หลากหลาย สวยงาม และยังมีรางวัลมากมาย จึงเป็นที่นิยมมากในสมัยนี้\",\r\n    \"我们拥有新型传统累进式电子游戏机附加和丰厚巨奖。当然少不了时尚最受欢迎的“多福多财”及“发发发”电子游戏机。我们也有电子轮盘设备及多画面百家乐电子投注站，开启另一高潮迭起的游戏体验。\",\r\n  ],\r\n\r\n  // Experience Page\r\n  dActivities: [`DANSAVANH'S ACTIVITIES`, \"กิจกรรม DANSAVANH\", \"丹萨旺活动\"],\r\n  sportAndActivities: [\"SPORTS & ACTIVITIES\", \"กิจกรรมกีฬา\", \"乐趣无穷\"],\r\n  tonsOfActivities: ['TONS OF ACTIVITIES', 'ตันกิจกรรม', '体验篇'],\r\n  fromSport: ['FROM SPORTS TO SIGHTSEEING, WE HAVE IT ALL', 'จากกีฬาเพื่อเที่ยวชมสถานที่เรามีทุกสิ่ง','體育觀光，擁有一切'],\r\n\r\n  // Event Page\r\n  eventTitle: [\"EVENTS\", \"กิจกรรม\", \"活動\"],\r\n  eventComing: [\"COMING EVENTS\", \"กิจกรรมมา\", \"活動預告\"],\r\n  eventPast: [\"PAST EVENTS\", \"กิจกรรมที่ผ่านมา\", \"过去的事件\"],\r\n  eventGallery: [\"GALLERY\", \"อัลบั้มรูป\", \"像廊\"],\r\n\r\n  // Offer Page\r\n  offerTitle: [\"OUR OFFERS\", \"ข้อเสนอของเรา\", \"优惠套餐\"],\r\n  offerSubTitle: [\r\n    \"Interested in some activities? Have a look at ours packages.\",\r\n    \"ความสนใจในกิจกรรมบางอย่าง? มีลักษณะที่แพคเกจออก\",\r\n    \"千载难逢！不可错过！\",\r\n  ],\r\n\r\n  // News Page\r\n  newsTitle: ['DANSAVANH NEWS', 'ข่าว', '丹萨旺新聞'],\r\n\r\n  // Career Page\r\n  careerTitle: ['CAREER', 'แดนสะหวันกับอาชีพ', '事業与前程'],\r\n  careerSubTitle: ['WORK AT DANSAVANH', 'แดนสะหวัน', '与丹萨旺创造'],\r\n  dCareer: ['DANSAVANH CAREER', 'แดนสะหวันกับอาชีพ', '老挝职业首选'],\r\n  bestPlacesToWork: ['ONE OF THE BEST PLACES TO WORK IN LAOS', 'หนึ่งในสถานที่ที่ดีที่สุดในการทำงานในลาว', '老挝职业首选老挝职业首选'],\r\n  availableJobs: ['AVAILABLE JOBS', 'ตำแหน่งงานที่ว่าง', '职位'],\r\n\r\n  // Contact Page\r\n  contactTitle: ['CONTACT', 'ติดต่อเรา', '联系质询'],\r\n  contactSubTitle: ['Get in touch for a booking or a greeting', 'ติดต่อหรือสอบถามข้อมูลเพิ่มเติ่ม', '联系预订或问候'],\r\n  clickOnMarker: ['CLICK ON MARKER FOR NAVIGATION', 'คลิกลูกศร เพื่อนำทาง', '导航指引'],\r\n  dLocation: ['DANSAVANH LOCATION', 'คลิกลูกศร เพื่อนำทาง', '丹萨旺所在处'],\r\n  gettingHere: ['GETTING HERE', 'การเดินทางมาที่นี่', '到达这里'],\r\n\r\n  contactList1: ['Wattay Airport – Look out for Dansavanh Meet & Greet counter at the arrival hall.', '', ''],\r\n  contactList2: ['Lao-Thai immigration at Tanahleng - Daily departure at 7:30 am, 13:30 pm and 19:00 pm', '', ''],\r\n  contactList3: ['ansavanh Vientiane Hotel – Daily departure starting from 6:30 am till 12:30 am at 2 hours interval', '', ''],\r\n  contactList4: ['A private limousine can be arranged via VIP hotline', '', ''],\r\n\r\n  shuttleBus: ['SHUTTLE BUS', 'บริการรถประจำทาง', '线路车'],\r\n  tel: ['TELEPHONE', 'โทรศัพท', '电话'],\r\n  telInfo: ['For instant info', 'สามารถติดต่อหรือสอบถามข้อมูลกับเราผ่านทางโทรศัพท์ได้ที่', '及时询问'],\r\n  tel1: ['Dansavanh Vientiane Hotel', 'โรงแรมเวียงจันทน์', '丹萨旺万象酒店'],\r\n  tel2: ['Dansavanh Resort & Casino', 'น้ำงึมรีสอร์ทแอนด์คาสิโน', '丹萨旺旅游度区酒店'],\r\n  tel3: ['Dansavanh Thai Office', 'แดนสะหวัน หนองคายออฟฟิศ', '泰国办事处'],\r\n  email: ['E-MAIL', 'ผ่านทาง EMAIL', '电子邮件'],\r\n  emailInfo: ['If you are on the go and wish to enquire.', 'สามารถติดต่อหรือสอบถามข้อมูลกับเราผ่านทาง Email', '随时询问'],\r\n  contactForm: ['CONTACT FORM', 'แบบฟอร์มเพื่ อติดต่อและสอบถามข้อมูล', '联系表格'],\r\n  contactFormCaption: ['You can still contact us, right here - right now. Use this contact form to send an e-mail. Usually we respond in 1 business day.', 'ทุกคำถามที่ท่านถามมาเราจะตอบกลับทันทีภายในเวลา1วันทำการ', '我们会在一天内回复您的邮件。'],\r\n  formName: ['Name', 'ชื่อ', '名字'],\r\n  formPhone: ['Phone', 'เบอร์โทรศัพท', '电话'],\r\n  formEmail: ['Email', 'อีเมล', '邮件地址'],\r\n  formMessage: ['Message', 'ข้อความ', '信息'],\r\n  formSubmit: ['SUBMIT', 'ส่งข้อความ', '提交'],\r\n  newsLetter: ['NEWSLETTER', 'ข่าวสาร', '简讯海报'],\r\n  newsLetterCaption: ['Subscribe to our newsletter and get instant updates to our news and offers.', 'ท่านสามารถสมัครสมาชิกเพื่อรับข้อมูลข่าวสารและกิจกรรมอื่นๆเกี่ยวกับบริษัทรวมไปถึงสิทธิพิเศษอื่นๆ', '预先得到最新资讯与促销！'],\r\n  newsLetterEmail: ['Your E-mail address', 'ที่อยู่อีเมล์ของคุณ', '确定'],\r\n  newsLetterSubmit: ['Go', 'คลิก', '确定'],\r\n\r\n\r\n  // Gallery Page\r\n  gallery: ['GALLERY','แกลเลอรี่', '画廊']\r\n\r\n  // New Keys Only here\r\n\r\n\r\n};\r\n\r\nexport default trans"
+        ],
+        "mappings": "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",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517094063,
+      "end": 1718517094063,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517094063,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517094064,
+      "end": 1718517094064,
+      "order": "normal"
+    }
+  ]
+}

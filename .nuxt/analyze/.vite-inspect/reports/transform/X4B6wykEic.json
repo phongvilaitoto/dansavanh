@@ -1,0 +1,236 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/theme/util/statistic.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nconst enableStatistic = process.env.NODE_ENV !== 'production' || typeof CSSINJS_STATISTIC !== 'undefined';\nlet recording = true;\n/**\n * This function will do as `Object.assign` in production. But will use Object.defineProperty:get to\n * pass all value access in development. To support statistic field usage with alias token.\n */\nexport function merge() {\n  for (var _len = arguments.length, objs = new Array(_len), _key = 0; _key < _len; _key++) {\n    objs[_key] = arguments[_key];\n  }\n  /* istanbul ignore next */\n  if (!enableStatistic) {\n    return _extends({}, ...objs);\n  }\n  recording = false;\n  const ret = {};\n  objs.forEach(obj => {\n    const keys = Object.keys(obj);\n    keys.forEach(key => {\n      Object.defineProperty(ret, key, {\n        configurable: true,\n        enumerable: true,\n        get: () => obj[key]\n      });\n    });\n  });\n  recording = true;\n  return ret;\n}\n/** @private Internal Usage. Not use in your production. */\nexport const statistic = {};\n/** @private Internal Usage. Not use in your production. */\n// eslint-disable-next-line camelcase\nexport const _statistic_build_ = {};\n/* istanbul ignore next */\nfunction noop() {}\n/** Statistic token usage case. Should use `merge` function if you do not want spread record. */\nexport default function statisticToken(token) {\n  let tokenKeys;\n  let proxy = token;\n  let flush = noop;\n  if (enableStatistic) {\n    tokenKeys = new Set();\n    proxy = new Proxy(token, {\n      get(obj, prop) {\n        if (recording) {\n          tokenKeys.add(prop);\n        }\n        return obj[prop];\n      }\n    });\n    flush = (componentName, componentToken) => {\n      statistic[componentName] = {\n        global: Array.from(tokenKeys),\n        component: componentToken\n      };\n    };\n  }\n  return {\n    token: proxy,\n    keys: tokenKeys,\n    flush\n  };\n}",
+      "start": 1718517098015,
+      "end": 1718517098125,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098125,
+      "end": 1718517098125,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nconst enableStatistic = typeof CSSINJS_STATISTIC !== \"undefined\";\nlet recording = true;\nexport function merge() {\n  for (var _len = arguments.length, objs = new Array(_len), _key = 0; _key < _len; _key++) {\n    objs[_key] = arguments[_key];\n  }\n  if (!enableStatistic) {\n    return _extends({}, ...objs);\n  }\n  recording = false;\n  const ret = {};\n  objs.forEach((obj) => {\n    const keys = Object.keys(obj);\n    keys.forEach((key) => {\n      Object.defineProperty(ret, key, {\n        configurable: true,\n        enumerable: true,\n        get: () => obj[key]\n      });\n    });\n  });\n  recording = true;\n  return ret;\n}\nexport const statistic = {};\nexport const _statistic_build_ = {};\nfunction noop() {\n}\nexport default function statisticToken(token) {\n  let tokenKeys;\n  let proxy = token;\n  let flush = noop;\n  if (enableStatistic) {\n    tokenKeys = /* @__PURE__ */ new Set();\n    proxy = new Proxy(token, {\n      get(obj, prop) {\n        if (recording) {\n          tokenKeys.add(prop);\n        }\n        return obj[prop];\n      }\n    });\n    flush = (componentName, componentToken) => {\n      statistic[componentName] = {\n        global: Array.from(tokenKeys),\n        component: componentToken\n      };\n    };\n  }\n  return {\n    token: proxy,\n    keys: tokenKeys,\n    flush\n  };\n}\n",
+      "start": 1718517098125,
+      "end": 1718517098157,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098157,
+      "end": 1718517098157,
+      "order": "normal"
+    }
+  ]
+}

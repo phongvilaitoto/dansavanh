@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/_util/wave/WaveEffect.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createVNode as _createVNode } from \"vue\";\nimport { onBeforeUnmount, onMounted, Transition, render, defineComponent, shallowRef } from 'vue';\nimport useState from '../hooks/useState';\nimport { objectType } from '../type';\nimport { getTargetWaveColor } from './util';\nimport wrapperRaf from '../raf';\nfunction validateNum(value) {\n  return Number.isNaN(value) ? 0 : value;\n}\nconst WaveEffect = defineComponent({\n  props: {\n    target: objectType(),\n    className: String\n  },\n  setup(props) {\n    const divRef = shallowRef(null);\n    const [color, setWaveColor] = useState(null);\n    const [borderRadius, setBorderRadius] = useState([]);\n    const [left, setLeft] = useState(0);\n    const [top, setTop] = useState(0);\n    const [width, setWidth] = useState(0);\n    const [height, setHeight] = useState(0);\n    const [enabled, setEnabled] = useState(false);\n    function syncPos() {\n      const {\n        target\n      } = props;\n      const nodeStyle = getComputedStyle(target);\n      // Get wave color from target\n      setWaveColor(getTargetWaveColor(target));\n      const isStatic = nodeStyle.position === 'static';\n      // Rect\n      const {\n        borderLeftWidth,\n        borderTopWidth\n      } = nodeStyle;\n      setLeft(isStatic ? target.offsetLeft : validateNum(-parseFloat(borderLeftWidth)));\n      setTop(isStatic ? target.offsetTop : validateNum(-parseFloat(borderTopWidth)));\n      setWidth(target.offsetWidth);\n      setHeight(target.offsetHeight);\n      // Get border radius\n      const {\n        borderTopLeftRadius,\n        borderTopRightRadius,\n        borderBottomLeftRadius,\n        borderBottomRightRadius\n      } = nodeStyle;\n      setBorderRadius([borderTopLeftRadius, borderTopRightRadius, borderBottomRightRadius, borderBottomLeftRadius].map(radius => validateNum(parseFloat(radius))));\n    }\n    // Add resize observer to follow size\n    let resizeObserver;\n    let rafId;\n    let timeoutId;\n    const clear = () => {\n      clearTimeout(timeoutId);\n      wrapperRaf.cancel(rafId);\n      resizeObserver === null || resizeObserver === void 0 ? void 0 : resizeObserver.disconnect();\n    };\n    const removeDom = () => {\n      var _a;\n      const holder = (_a = divRef.value) === null || _a === void 0 ? void 0 : _a.parentElement;\n      if (holder) {\n        render(null, holder);\n        if (holder.parentElement) {\n          holder.parentElement.removeChild(holder);\n        }\n      }\n    };\n    onMounted(() => {\n      clear();\n      timeoutId = setTimeout(() => {\n        removeDom();\n      }, 5000);\n      const {\n        target\n      } = props;\n      if (target) {\n        // We need delay to check position here\n        // since UI may change after click\n        rafId = wrapperRaf(() => {\n          syncPos();\n          setEnabled(true);\n        });\n        if (typeof ResizeObserver !== 'undefined') {\n          resizeObserver = new ResizeObserver(syncPos);\n          resizeObserver.observe(target);\n        }\n      }\n    });\n    onBeforeUnmount(() => {\n      clear();\n    });\n    const onTransitionend = e => {\n      if (e.propertyName === 'opacity') {\n        removeDom();\n      }\n    };\n    return () => {\n      if (!enabled.value) {\n        return null;\n      }\n      const waveStyle = {\n        left: `${left.value}px`,\n        top: `${top.value}px`,\n        width: `${width.value}px`,\n        height: `${height.value}px`,\n        borderRadius: borderRadius.value.map(radius => `${radius}px`).join(' ')\n      };\n      if (color) {\n        waveStyle['--wave-color'] = color.value;\n      }\n      return _createVNode(Transition, {\n        \"appear\": true,\n        \"name\": \"wave-motion\",\n        \"appearFromClass\": \"wave-motion-appear\",\n        \"appearActiveClass\": \"wave-motion-appear\",\n        \"appearToClass\": \"wave-motion-appear wave-motion-appear-active\"\n      }, {\n        default: () => [_createVNode(\"div\", {\n          \"ref\": divRef,\n          \"class\": props.className,\n          \"style\": waveStyle,\n          \"onTransitionend\": onTransitionend\n        }, null)]\n      });\n    };\n  }\n});\nfunction showWaveEffect(node, className) {\n  // Create holder\n  const holder = document.createElement('div');\n  holder.style.position = 'absolute';\n  holder.style.left = `0px`;\n  holder.style.top = `0px`;\n  node === null || node === void 0 ? void 0 : node.insertBefore(holder, node === null || node === void 0 ? void 0 : node.firstChild);\n  render(_createVNode(WaveEffect, {\n    \"target\": node,\n    \"className\": className\n  }, null), holder);\n}\nexport default showWaveEffect;",
+      "start": 1718517099354,
+      "end": 1718517099397,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099397,
+      "end": 1718517099397,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099397,
+      "end": 1718517099398,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099398,
+      "end": 1718517099398,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099398,
+      "end": 1718517099398,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099398,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099399,
+      "end": 1718517099399,
+      "order": "normal"
+    }
+  ]
+}

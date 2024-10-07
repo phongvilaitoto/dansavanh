@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/empty/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { defineComponent } from 'vue';\nimport classNames from '../_util/classNames';\nimport LocaleReceiver from '../locale-provider/LocaleReceiver';\nimport DefaultEmptyImg from './empty';\nimport SimpleEmptyImg from './simple';\nimport { filterEmpty } from '../_util/props-util';\nimport { anyType, objectType, withInstall } from '../_util/type';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport useStyle from './style';\nconst defaultEmptyImg = _createVNode(DefaultEmptyImg, null, null);\nconst simpleEmptyImg = _createVNode(SimpleEmptyImg, null, null);\nexport const emptyProps = () => ({\n  prefixCls: String,\n  imageStyle: objectType(),\n  image: anyType(),\n  description: anyType()\n});\nconst Empty = defineComponent({\n  name: 'AEmpty',\n  compatConfig: {\n    MODE: 3\n  },\n  inheritAttrs: false,\n  props: emptyProps(),\n  setup(props, _ref) {\n    let {\n      slots = {},\n      attrs\n    } = _ref;\n    const {\n      direction,\n      prefixCls: prefixClsRef\n    } = useConfigInject('empty', props);\n    const [wrapSSR, hashId] = useStyle(prefixClsRef);\n    return () => {\n      var _a, _b;\n      const prefixCls = prefixClsRef.value;\n      const _c = _extends(_extends({}, props), attrs),\n        {\n          image = ((_a = slots.image) === null || _a === void 0 ? void 0 : _a.call(slots)) || defaultEmptyImg,\n          description = ((_b = slots.description) === null || _b === void 0 ? void 0 : _b.call(slots)) || undefined,\n          imageStyle,\n          class: className = ''\n        } = _c,\n        restProps = __rest(_c, [\"image\", \"description\", \"imageStyle\", \"class\"]);\n      return wrapSSR(_createVNode(LocaleReceiver, {\n        \"componentName\": \"Empty\",\n        \"children\": locale => {\n          const des = typeof description !== 'undefined' ? description : locale.description;\n          const alt = typeof des === 'string' ? des : 'empty';\n          let imageNode = null;\n          if (typeof image === 'string') {\n            imageNode = _createVNode(\"img\", {\n              \"alt\": alt,\n              \"src\": image\n            }, null);\n          } else {\n            imageNode = image;\n          }\n          return _createVNode(\"div\", _objectSpread({\n            \"class\": classNames(prefixCls, className, hashId.value, {\n              [`${prefixCls}-normal`]: image === simpleEmptyImg,\n              [`${prefixCls}-rtl`]: direction.value === 'rtl'\n            })\n          }, restProps), [_createVNode(\"div\", {\n            \"class\": `${prefixCls}-image`,\n            \"style\": imageStyle\n          }, [imageNode]), des && _createVNode(\"p\", {\n            \"class\": `${prefixCls}-description`\n          }, [des]), slots.default && _createVNode(\"div\", {\n            \"class\": `${prefixCls}-footer`\n          }, [filterEmpty(slots.default())])]);\n        }\n      }, null));\n    };\n  }\n});\nEmpty.PRESENTED_IMAGE_DEFAULT = defaultEmptyImg;\nEmpty.PRESENTED_IMAGE_SIMPLE = simpleEmptyImg;\nexport default withInstall(Empty);",
+      "start": 1718517096412,
+      "end": 1718517096477,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096477,
+      "end": 1718517096477,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096477,
+      "end": 1718517096478,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096478,
+      "end": 1718517096478,
+      "order": "normal"
+    }
+  ]
+}

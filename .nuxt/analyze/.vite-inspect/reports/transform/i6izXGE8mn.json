@@ -1,0 +1,238 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/components/HeaderTitle2.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\r\n    <div style=\"margin-bottom: 50px\">\r\n        <a-layout>\r\n      <div class=\"cover\" :style=\"`background-image: url('${img}')`\">\r\n        <div class=\"bg-cover\"></div>\r\n        <a-row\r\n     \r\n          style=\"\r\n            padding-top: 160px;\r\n            padding-bottom: 50px;\r\n            text-align:left;\r\n            justify-content: center;\r\n            background-color: transparent;\r\n          \"\r\n        >\r\n          <a-col :span=\"22\">\r\n\r\n            <h1 class=\"headerT1\" style=\"font-size: 65px\">\r\n           {{title}}\r\n            </h1>\r\n         \r\n          </a-col>\r\n          <a-col :span=\"22\">\r\n            <h5 class=\"headerT2\" style=\"margin-top: -20px\">\r\n       {{caption}}\r\n      </h5>         \r\n          </a-col>\r\n        </a-row>\r\n      </div>\r\n    </a-layout>\r\n    </div>\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\n\r\nconst { title, caption, img } = defineProps(['title', 'caption', 'img'])\r\n\r\n</script>\r\n\r\n<style scoped lang=\"scss\">\r\n.cover {\r\n\r\n    background-attachment: fixed;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n\r\n    background-size: cover;\r\n    position: relative;\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-position: center bottom !important;\r\n\r\n    .bg-cover {\r\n        display: block;\r\n        content: \"\";\r\n        position: absolute;\r\n        left: 0;\r\n        top: 0;\r\n        width: 100%;\r\n        height: 100%;\r\n\r\n        z-index: 0;\r\n        background-color: #000;\r\n        background-color: rgba(0, 0, 0, 0.3);\r\n\r\n    }\r\n}\r\n\r\n\r\n.header {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    position: relative;\r\n    margin-top: 30px;\r\n\r\n    span {\r\n        font-size: 140px;\r\n        position: absolute;\r\n        top: 24px;\r\n        line-height: 0 !important;\r\n        pointer-events: none;\r\n        -webkit-pointer-events: none;\r\n        -moz-pointer-events: none;\r\n        -ms-pointer-events: none;\r\n        -o-pointer-events: none;\r\n        opacity: 0.03;\r\n    }\r\n}\r\n</style>",
+      "start": 1718517093664,
+      "end": 1718517093933,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093933,
+      "end": 1718517093933,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093933,
+      "end": 1718517093933,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093933,
+      "end": 1718517093934,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093934,
+      "end": 1718517093934,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093934,
+      "end": 1718517093934,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093934,
+      "end": 1718517093934,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517093934,
+      "end": 1718517093934,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517093934,
+      "end": 1718517093934,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517093934,
+      "end": 1718517093934,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"C:/Users/MSII/Desktop/pj/dansavanh/components/HeaderTitle2.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"C:/Users/MSII/Desktop/pj/dansavanh/components/HeaderTitle2.vue?vue&type=script&setup=true&lang.ts\";\nimport \"C:/Users/MSII/Desktop/pj/dansavanh/components/HeaderTitle2.vue?vue&type=style&index=0&scoped=9a728cb8&lang.scss\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-9a728cb8\"]]);\n",
+      "start": 1718517093934,
+      "end": 1718517093974,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517093974,
+      "end": 1718517093974,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517093974,
+      "end": 1718517093975,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517093975,
+      "end": 1718517093975,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517093975,
+      "end": 1718517093975,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517093975,
+      "end": 1718517093975,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517093975,
+      "end": 1718517093975,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517093975,
+      "end": 1718517093975,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517093975,
+      "end": 1718517093975,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517093975,
+      "end": 1718517093975,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517093975,
+      "end": 1718517093975,
+      "order": "normal"
+    }
+  ]
+}

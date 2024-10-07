@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/calendar/Header.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport Select from '../select';\nimport { Group, Button } from '../radio';\nimport { defineComponent, ref } from 'vue';\nimport { FormItemInputContext } from '../form/FormItemContext';\nconst YearSelectOffset = 10;\nconst YearSelectTotal = 20;\nfunction YearSelect(props) {\n  const {\n    fullscreen,\n    validRange,\n    generateConfig,\n    locale,\n    prefixCls,\n    value,\n    onChange,\n    divRef\n  } = props;\n  const year = generateConfig.getYear(value || generateConfig.getNow());\n  let start = year - YearSelectOffset;\n  let end = start + YearSelectTotal;\n  if (validRange) {\n    start = generateConfig.getYear(validRange[0]);\n    end = generateConfig.getYear(validRange[1]) + 1;\n  }\n  const suffix = locale && locale.year === '年' ? '年' : '';\n  const options = [];\n  for (let index = start; index < end; index++) {\n    options.push({\n      label: `${index}${suffix}`,\n      value: index\n    });\n  }\n  return _createVNode(Select, {\n    \"size\": fullscreen ? undefined : 'small',\n    \"options\": options,\n    \"value\": year,\n    \"class\": `${prefixCls}-year-select`,\n    \"onChange\": numYear => {\n      let newDate = generateConfig.setYear(value, numYear);\n      if (validRange) {\n        const [startDate, endDate] = validRange;\n        const newYear = generateConfig.getYear(newDate);\n        const newMonth = generateConfig.getMonth(newDate);\n        if (newYear === generateConfig.getYear(endDate) && newMonth > generateConfig.getMonth(endDate)) {\n          newDate = generateConfig.setMonth(newDate, generateConfig.getMonth(endDate));\n        }\n        if (newYear === generateConfig.getYear(startDate) && newMonth < generateConfig.getMonth(startDate)) {\n          newDate = generateConfig.setMonth(newDate, generateConfig.getMonth(startDate));\n        }\n      }\n      onChange(newDate);\n    },\n    \"getPopupContainer\": () => divRef.value\n  }, null);\n}\nYearSelect.inheritAttrs = false;\nfunction MonthSelect(props) {\n  const {\n    prefixCls,\n    fullscreen,\n    validRange,\n    value,\n    generateConfig,\n    locale,\n    onChange,\n    divRef\n  } = props;\n  const month = generateConfig.getMonth(value || generateConfig.getNow());\n  let start = 0;\n  let end = 11;\n  if (validRange) {\n    const [rangeStart, rangeEnd] = validRange;\n    const currentYear = generateConfig.getYear(value);\n    if (generateConfig.getYear(rangeEnd) === currentYear) {\n      end = generateConfig.getMonth(rangeEnd);\n    }\n    if (generateConfig.getYear(rangeStart) === currentYear) {\n      start = generateConfig.getMonth(rangeStart);\n    }\n  }\n  const months = locale.shortMonths || generateConfig.locale.getShortMonths(locale.locale);\n  const options = [];\n  for (let index = start; index <= end; index += 1) {\n    options.push({\n      label: months[index],\n      value: index\n    });\n  }\n  return _createVNode(Select, {\n    \"size\": fullscreen ? undefined : 'small',\n    \"class\": `${prefixCls}-month-select`,\n    \"value\": month,\n    \"options\": options,\n    \"onChange\": newMonth => {\n      onChange(generateConfig.setMonth(value, newMonth));\n    },\n    \"getPopupContainer\": () => divRef.value\n  }, null);\n}\nMonthSelect.inheritAttrs = false;\nfunction ModeSwitch(props) {\n  const {\n    prefixCls,\n    locale,\n    mode,\n    fullscreen,\n    onModeChange\n  } = props;\n  return _createVNode(Group, {\n    \"onChange\": _ref => {\n      let {\n        target: {\n          value\n        }\n      } = _ref;\n      onModeChange(value);\n    },\n    \"value\": mode,\n    \"size\": fullscreen ? undefined : 'small',\n    \"class\": `${prefixCls}-mode-switch`\n  }, {\n    default: () => [_createVNode(Button, {\n      \"value\": \"month\"\n    }, {\n      default: () => [locale.month]\n    }), _createVNode(Button, {\n      \"value\": \"year\"\n    }, {\n      default: () => [locale.year]\n    })]\n  });\n}\nModeSwitch.inheritAttrs = false;\nexport default defineComponent({\n  name: 'CalendarHeader',\n  inheritAttrs: false,\n  props: ['mode', 'prefixCls', 'value', 'validRange', 'generateConfig', 'locale', 'mode', 'fullscreen'],\n  setup(_props, _ref2) {\n    let {\n      attrs\n    } = _ref2;\n    const divRef = ref(null);\n    const formItemInputContext = FormItemInputContext.useInject();\n    FormItemInputContext.useProvide(formItemInputContext, {\n      isFormItemInput: false\n    });\n    return () => {\n      const props = _extends(_extends({}, _props), attrs);\n      const {\n        prefixCls,\n        fullscreen,\n        mode,\n        onChange,\n        onModeChange\n      } = props;\n      const sharedProps = _extends(_extends({}, props), {\n        fullscreen,\n        divRef\n      });\n      return _createVNode(\"div\", {\n        \"class\": `${prefixCls}-header`,\n        \"ref\": divRef\n      }, [_createVNode(YearSelect, _objectSpread(_objectSpread({}, sharedProps), {}, {\n        \"onChange\": v => {\n          onChange(v, 'year');\n        }\n      }), null), mode === 'month' && _createVNode(MonthSelect, _objectSpread(_objectSpread({}, sharedProps), {}, {\n        \"onChange\": v => {\n          onChange(v, 'month');\n        }\n      }), null), _createVNode(ModeSwitch, _objectSpread(_objectSpread({}, sharedProps), {}, {\n        \"onModeChange\": onModeChange\n      }), null)]);\n    };\n  }\n});",
+      "start": 1718517098833,
+      "end": 1718517098887,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098887,
+      "end": 1718517098887,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098887,
+      "end": 1718517098888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098888,
+      "end": 1718517098888,
+      "order": "normal"
+    }
+  ]
+}

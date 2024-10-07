@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-drawer/src/DrawerWrapper.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport Child from './DrawerChild';\nimport { initDefaultProps } from '../../_util/props-util';\nimport { defineComponent, ref } from 'vue';\nimport { drawerProps } from './IDrawerPropTypes';\nimport PortalWrapper from '../../_util/PortalWrapper';\nconst DrawerWrapper = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  inheritAttrs: false,\n  props: initDefaultProps(drawerProps(), {\n    prefixCls: 'drawer',\n    placement: 'left',\n    getContainer: 'body',\n    level: 'all',\n    duration: '.3s',\n    ease: 'cubic-bezier(0.78, 0.14, 0.15, 0.86)',\n    afterVisibleChange: () => {},\n    showMask: true,\n    maskClosable: true,\n    maskStyle: {},\n    wrapperClassName: '',\n    keyboard: true,\n    forceRender: false,\n    autofocus: true\n  }),\n  emits: ['handleClick', 'close'],\n  setup(props, _ref) {\n    let {\n      emit,\n      slots\n    } = _ref;\n    const dom = ref(null);\n    const onHandleClick = e => {\n      emit('handleClick', e);\n    };\n    const onClose = e => {\n      emit('close', e);\n    };\n    return () => {\n      const {\n          getContainer,\n          wrapperClassName,\n          rootClassName,\n          rootStyle,\n          forceRender\n        } = props,\n        otherProps = __rest(props, [\"getContainer\", \"wrapperClassName\", \"rootClassName\", \"rootStyle\", \"forceRender\"]);\n      let portal = null;\n      if (!getContainer) {\n        return _createVNode(Child, _objectSpread(_objectSpread({}, otherProps), {}, {\n          \"rootClassName\": rootClassName,\n          \"rootStyle\": rootStyle,\n          \"open\": props.open,\n          \"onClose\": onClose,\n          \"onHandleClick\": onHandleClick,\n          \"inline\": true\n        }), slots);\n      }\n      // 如果有 handler 为内置强制渲染；\n      const $forceRender = !!slots.handler || forceRender;\n      if ($forceRender || props.open || dom.value) {\n        portal = _createVNode(PortalWrapper, {\n          \"autoLock\": true,\n          \"visible\": props.open,\n          \"forceRender\": $forceRender,\n          \"getContainer\": getContainer,\n          \"wrapperClassName\": wrapperClassName\n        }, {\n          default: _a => {\n            var {\n                visible,\n                afterClose\n              } = _a,\n              rest = __rest(_a, [\"visible\", \"afterClose\"]);\n            return _createVNode(Child, _objectSpread(_objectSpread(_objectSpread({\n              \"ref\": dom\n            }, otherProps), rest), {}, {\n              \"rootClassName\": rootClassName,\n              \"rootStyle\": rootStyle,\n              \"open\": visible !== undefined ? visible : props.open,\n              \"afterVisibleChange\": afterClose !== undefined ? afterClose : props.afterVisibleChange,\n              \"onClose\": onClose,\n              \"onHandleClick\": onHandleClick\n            }), slots);\n          }\n        });\n      }\n      return portal;\n    };\n  }\n});\nexport default DrawerWrapper;",
+      "start": 1718517098367,
+      "end": 1718517098408,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098408,
+      "end": 1718517098408,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098408,
+      "end": 1718517098409,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098409,
+      "end": 1718517098409,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/menu/src/hooks/useItems.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport SubMenu from '../SubMenu';\nimport ItemGroup from '../ItemGroup';\nimport MenuDivider from '../Divider';\nimport MenuItem from '../MenuItem';\nimport { ref, shallowRef, watch } from 'vue';\nfunction convertItemsToNodes(list, store, parentMenuInfo) {\n  return (list || []).map((opt, index) => {\n    if (opt && typeof opt === 'object') {\n      const _a = opt,\n        {\n          label,\n          children,\n          key,\n          type\n        } = _a,\n        restProps = __rest(_a, [\"label\", \"children\", \"key\", \"type\"]);\n      const mergedKey = key !== null && key !== void 0 ? key : `tmp-${index}`;\n      // 此处 eventKey === key, 移除 children 后可以移除 eventKey\n      const parentKeys = parentMenuInfo ? parentMenuInfo.parentKeys.slice() : [];\n      const childrenEventKeys = [];\n      // if\n      const menuInfo = {\n        eventKey: mergedKey,\n        key: mergedKey,\n        parentEventKeys: ref(parentKeys),\n        parentKeys: ref(parentKeys),\n        childrenEventKeys: ref(childrenEventKeys),\n        isLeaf: false\n      };\n      // MenuItemGroup & SubMenuItem\n      if (children || type === 'group') {\n        if (type === 'group') {\n          const childrenNodes = convertItemsToNodes(children, store, parentMenuInfo);\n          // Group\n          return _createVNode(ItemGroup, _objectSpread(_objectSpread({\n            \"key\": mergedKey\n          }, restProps), {}, {\n            \"title\": label,\n            \"originItemValue\": opt\n          }), {\n            default: () => [childrenNodes]\n          });\n        }\n        store.set(mergedKey, menuInfo);\n        if (parentMenuInfo) {\n          parentMenuInfo.childrenEventKeys.push(mergedKey);\n        }\n        // Sub Menu\n        const childrenNodes = convertItemsToNodes(children, store, {\n          childrenEventKeys,\n          parentKeys: [].concat(parentKeys, mergedKey)\n        });\n        return _createVNode(SubMenu, _objectSpread(_objectSpread({\n          \"key\": mergedKey\n        }, restProps), {}, {\n          \"title\": label,\n          \"originItemValue\": opt\n        }), {\n          default: () => [childrenNodes]\n        });\n      }\n      // MenuItem & Divider\n      if (type === 'divider') {\n        return _createVNode(MenuDivider, _objectSpread({\n          \"key\": mergedKey\n        }, restProps), null);\n      }\n      menuInfo.isLeaf = true;\n      store.set(mergedKey, menuInfo);\n      return _createVNode(MenuItem, _objectSpread(_objectSpread({\n        \"key\": mergedKey\n      }, restProps), {}, {\n        \"originItemValue\": opt\n      }), {\n        default: () => [label]\n      });\n    }\n    return null;\n  }).filter(opt => opt);\n}\n// FIXME: Move logic here in v4\n/**\n * We simply convert `items` to VueNode for reuse origin component logic. But we need move all the\n * logic from component into this hooks when in v4\n */\nexport default function useItems(props) {\n  const itemsNodes = shallowRef([]);\n  const hasItmes = shallowRef(false);\n  const store = shallowRef(new Map());\n  watch(() => props.items, () => {\n    const newStore = new Map();\n    hasItmes.value = false;\n    if (props.items) {\n      hasItmes.value = true;\n      itemsNodes.value = convertItemsToNodes(props.items, newStore);\n    } else {\n      itemsNodes.value = undefined;\n    }\n    store.value = newStore;\n  }, {\n    immediate: true,\n    deep: true\n  });\n  return {\n    itemsNodes,\n    store,\n    hasItmes\n  };\n}",
+      "start": 1718517098315,
+      "end": 1718517098363,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098363,
+      "end": 1718517098363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098364,
+      "end": 1718517098364,
+      "order": "normal"
+    }
+  ]
+}

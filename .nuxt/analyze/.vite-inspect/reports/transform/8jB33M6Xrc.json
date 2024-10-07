@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/tabs/src/TabNavList/OperationNode.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nimport Menu, { MenuItem } from '../../../menu';\nimport Dropdown from '../../../vc-dropdown';\nimport AddButton from './AddButton';\nimport { functionType } from '../../../_util/type';\nimport KeyCode from '../../../_util/KeyCode';\nimport classNames from '../../../_util/classNames';\nimport { defineComponent, watch, computed, onMounted } from 'vue';\nimport PropTypes from '../../../_util/vue-types';\nimport useState from '../../../_util/hooks/useState';\nimport EllipsisOutlined from \"@ant-design/icons-vue/es/icons/EllipsisOutlined\";\nimport { useProvideOverride } from '../../../menu/src/OverrideContext';\nexport const operationNodeProps = {\n  prefixCls: {\n    type: String\n  },\n  id: {\n    type: String\n  },\n  tabs: {\n    type: Object\n  },\n  rtl: {\n    type: Boolean\n  },\n  tabBarGutter: {\n    type: Number\n  },\n  activeKey: {\n    type: [String, Number]\n  },\n  mobile: {\n    type: Boolean\n  },\n  moreIcon: PropTypes.any,\n  moreTransitionName: {\n    type: String\n  },\n  editable: {\n    type: Object\n  },\n  locale: {\n    type: Object,\n    default: undefined\n  },\n  removeAriaLabel: String,\n  onTabClick: {\n    type: Function\n  },\n  popupClassName: String,\n  getPopupContainer: functionType()\n};\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'OperationNode',\n  inheritAttrs: false,\n  props: operationNodeProps,\n  emits: ['tabClick'],\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots\n    } = _ref;\n    // ======================== Dropdown ========================\n    const [open, setOpen] = useState(false);\n    const [selectedKey, setSelectedKey] = useState(null);\n    const selectOffset = offset => {\n      const enabledTabs = props.tabs.filter(tab => !tab.disabled);\n      let selectedIndex = enabledTabs.findIndex(tab => tab.key === selectedKey.value) || 0;\n      const len = enabledTabs.length;\n      for (let i = 0; i < len; i += 1) {\n        selectedIndex = (selectedIndex + offset + len) % len;\n        const tab = enabledTabs[selectedIndex];\n        if (!tab.disabled) {\n          setSelectedKey(tab.key);\n          return;\n        }\n      }\n    };\n    const onKeyDown = e => {\n      const {\n        which\n      } = e;\n      if (!open.value) {\n        if ([KeyCode.DOWN, KeyCode.SPACE, KeyCode.ENTER].includes(which)) {\n          setOpen(true);\n          e.preventDefault();\n        }\n        return;\n      }\n      switch (which) {\n        case KeyCode.UP:\n          selectOffset(-1);\n          e.preventDefault();\n          break;\n        case KeyCode.DOWN:\n          selectOffset(1);\n          e.preventDefault();\n          break;\n        case KeyCode.ESC:\n          setOpen(false);\n          break;\n        case KeyCode.SPACE:\n        case KeyCode.ENTER:\n          if (selectedKey.value !== null) props.onTabClick(selectedKey.value, e);\n          break;\n      }\n    };\n    const popupId = computed(() => `${props.id}-more-popup`);\n    const selectedItemId = computed(() => selectedKey.value !== null ? `${popupId.value}-${selectedKey.value}` : null);\n    const onRemoveTab = (event, key) => {\n      event.preventDefault();\n      event.stopPropagation();\n      props.editable.onEdit('remove', {\n        key,\n        event\n      });\n    };\n    onMounted(() => {\n      watch(selectedKey, () => {\n        const ele = document.getElementById(selectedItemId.value);\n        if (ele && ele.scrollIntoView) {\n          ele.scrollIntoView(false);\n        }\n      }, {\n        flush: 'post',\n        immediate: true\n      });\n    });\n    watch(open, () => {\n      if (!open.value) {\n        setSelectedKey(null);\n      }\n    });\n    useProvideOverride({});\n    return () => {\n      var _a;\n      const {\n        prefixCls,\n        id,\n        tabs,\n        locale,\n        mobile,\n        moreIcon = ((_a = slots.moreIcon) === null || _a === void 0 ? void 0 : _a.call(slots)) || _createVNode(EllipsisOutlined, null, null),\n        moreTransitionName,\n        editable,\n        tabBarGutter,\n        rtl,\n        onTabClick,\n        popupClassName\n      } = props;\n      if (!tabs.length) return null;\n      const dropdownPrefix = `${prefixCls}-dropdown`;\n      const dropdownAriaLabel = locale === null || locale === void 0 ? void 0 : locale.dropdownAriaLabel;\n      // ========================= Render =========================\n      const moreStyle = {\n        [rtl ? 'marginRight' : 'marginLeft']: tabBarGutter\n      };\n      if (!tabs.length) {\n        moreStyle.visibility = 'hidden';\n        moreStyle.order = 1;\n      }\n      const overlayClassName = classNames({\n        [`${dropdownPrefix}-rtl`]: rtl,\n        [`${popupClassName}`]: true\n      });\n      const moreNode = mobile ? null : _createVNode(Dropdown, {\n        \"prefixCls\": dropdownPrefix,\n        \"trigger\": ['hover'],\n        \"visible\": open.value,\n        \"transitionName\": moreTransitionName,\n        \"onVisibleChange\": setOpen,\n        \"overlayClassName\": overlayClassName,\n        \"mouseEnterDelay\": 0.1,\n        \"mouseLeaveDelay\": 0.1,\n        \"getPopupContainer\": props.getPopupContainer\n      }, {\n        overlay: () => _createVNode(Menu, {\n          \"onClick\": _ref2 => {\n            let {\n              key,\n              domEvent\n            } = _ref2;\n            onTabClick(key, domEvent);\n            setOpen(false);\n          },\n          \"id\": popupId.value,\n          \"tabindex\": -1,\n          \"role\": \"listbox\",\n          \"aria-activedescendant\": selectedItemId.value,\n          \"selectedKeys\": [selectedKey.value],\n          \"aria-label\": dropdownAriaLabel !== undefined ? dropdownAriaLabel : 'expanded dropdown'\n        }, {\n          default: () => [tabs.map(tab => {\n            var _a, _b;\n            const removable = editable && tab.closable !== false && !tab.disabled;\n            return _createVNode(MenuItem, {\n              \"key\": tab.key,\n              \"id\": `${popupId.value}-${tab.key}`,\n              \"role\": \"option\",\n              \"aria-controls\": id && `${id}-panel-${tab.key}`,\n              \"disabled\": tab.disabled\n            }, {\n              default: () => [_createVNode(\"span\", null, [typeof tab.tab === 'function' ? tab.tab() : tab.tab]), removable && _createVNode(\"button\", {\n                \"type\": \"button\",\n                \"aria-label\": props.removeAriaLabel || 'remove',\n                \"tabindex\": 0,\n                \"class\": `${dropdownPrefix}-menu-item-remove`,\n                \"onClick\": e => {\n                  e.stopPropagation();\n                  onRemoveTab(e, tab.key);\n                }\n              }, [((_a = tab.closeIcon) === null || _a === void 0 ? void 0 : _a.call(tab)) || ((_b = editable.removeIcon) === null || _b === void 0 ? void 0 : _b.call(editable)) || '×'])]\n            });\n          })]\n        }),\n        default: () => _createVNode(\"button\", {\n          \"type\": \"button\",\n          \"class\": `${prefixCls}-nav-more`,\n          \"style\": moreStyle,\n          \"tabindex\": -1,\n          \"aria-hidden\": \"true\",\n          \"aria-haspopup\": \"listbox\",\n          \"aria-controls\": popupId.value,\n          \"id\": `${id}-more`,\n          \"aria-expanded\": open.value,\n          \"onKeydown\": onKeyDown\n        }, [moreIcon])\n      });\n      return _createVNode(\"div\", {\n        \"class\": classNames(`${prefixCls}-nav-operations`, attrs.class),\n        \"style\": attrs.style\n      }, [moreNode, _createVNode(AddButton, {\n        \"prefixCls\": prefixCls,\n        \"locale\": locale,\n        \"editable\": editable\n      }, null)]);\n    };\n  }\n});",
+      "start": 1718517099919,
+      "end": 1718517099969,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099969,
+      "end": 1718517099969,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099970,
+      "end": 1718517099970,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099970,
+      "end": 1718517099971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099971,
+      "end": 1718517099971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099971,
+      "end": 1718517099971,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099971,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099973,
+      "end": 1718517099973,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/popover/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode, Fragment as _Fragment } from \"vue\";\nimport { computed, defineComponent, ref } from 'vue';\nimport Tooltip from '../tooltip';\nimport abstractTooltipProps from '../tooltip/abstractTooltipProps';\nimport { filterEmpty, initDefaultProps } from '../_util/props-util';\nimport { anyType, withInstall } from '../_util/type';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport omit from '../_util/omit';\nimport { getTransitionName } from '../_util/transition';\nimport { tooltipDefaultProps } from '../tooltip/Tooltip';\nimport useStyle from './style';\nimport classNames from '../_util/classNames';\nimport warning from '../_util/warning';\nexport const popoverProps = () => _extends(_extends({}, abstractTooltipProps()), {\n  content: anyType(),\n  title: anyType()\n});\nconst Popover = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'APopover',\n  inheritAttrs: false,\n  props: initDefaultProps(popoverProps(), _extends(_extends({}, tooltipDefaultProps()), {\n    trigger: 'hover',\n    placement: 'top',\n    mouseEnterDelay: 0.1,\n    mouseLeaveDelay: 0.1\n  })),\n  setup(props, _ref) {\n    let {\n      expose,\n      slots,\n      attrs\n    } = _ref;\n    const tooltipRef = ref();\n    warning(props.visible === undefined, 'popover', `\\`visible\\` will be removed in next major version, please use \\`open\\` instead.`);\n    expose({\n      getPopupDomNode: () => {\n        var _a, _b;\n        return (_b = (_a = tooltipRef.value) === null || _a === void 0 ? void 0 : _a.getPopupDomNode) === null || _b === void 0 ? void 0 : _b.call(_a);\n      }\n    });\n    const {\n      prefixCls,\n      configProvider\n    } = useConfigInject('popover', props);\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const rootPrefixCls = computed(() => configProvider.getPrefixCls());\n    const getOverlay = () => {\n      var _a, _b;\n      const {\n        title = filterEmpty((_a = slots.title) === null || _a === void 0 ? void 0 : _a.call(slots)),\n        content = filterEmpty((_b = slots.content) === null || _b === void 0 ? void 0 : _b.call(slots))\n      } = props;\n      const hasTitle = !!(Array.isArray(title) ? title.length : title);\n      const hasContent = !!(Array.isArray(content) ? content.length : title);\n      if (!hasTitle && !hasContent) return null;\n      return _createVNode(_Fragment, null, [hasTitle && _createVNode(\"div\", {\n        \"class\": `${prefixCls.value}-title`\n      }, [title]), _createVNode(\"div\", {\n        \"class\": `${prefixCls.value}-inner-content`\n      }, [content])]);\n    };\n    return () => {\n      const overlayCls = classNames(props.overlayClassName, hashId.value);\n      return wrapSSR(_createVNode(Tooltip, _objectSpread(_objectSpread(_objectSpread({}, omit(props, ['title', 'content'])), attrs), {}, {\n        \"prefixCls\": prefixCls.value,\n        \"ref\": tooltipRef,\n        \"overlayClassName\": overlayCls,\n        \"transitionName\": getTransitionName(rootPrefixCls.value, 'zoom-big', props.transitionName),\n        \"data-popover-inject\": true\n      }), {\n        title: getOverlay,\n        default: slots.default\n      }));\n    };\n  }\n});\nexport default withInstall(Popover);",
+      "start": 1718517096472,
+      "end": 1718517096544,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096544,
+      "end": 1718517096544,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096544,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096545,
+      "end": 1718517096545,
+      "order": "normal"
+    }
+  ]
+}

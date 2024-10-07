@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-dropdown/Dropdown.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { resolveDirective as _resolveDirective, Fragment as _Fragment, createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { Fragment, computed, defineComponent, ref, watch } from 'vue';\nimport PropTypes from '../_util/vue-types';\nimport Trigger from '../vc-trigger';\nimport placements from './placements';\nimport { cloneElement } from '../_util/vnode';\nimport classNames from '../_util/classNames';\nimport { skipFlattenKey } from '../_util/props-util';\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  props: {\n    minOverlayWidthMatchTrigger: {\n      type: Boolean,\n      default: undefined\n    },\n    arrow: {\n      type: Boolean,\n      default: false\n    },\n    prefixCls: PropTypes.string.def('rc-dropdown'),\n    transitionName: String,\n    overlayClassName: PropTypes.string.def(''),\n    openClassName: String,\n    animation: PropTypes.any,\n    align: PropTypes.object,\n    overlayStyle: {\n      type: Object,\n      default: undefined\n    },\n    placement: PropTypes.string.def('bottomLeft'),\n    overlay: PropTypes.any,\n    trigger: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).def('hover'),\n    alignPoint: {\n      type: Boolean,\n      default: undefined\n    },\n    showAction: PropTypes.array,\n    hideAction: PropTypes.array,\n    getPopupContainer: Function,\n    visible: {\n      type: Boolean,\n      default: undefined\n    },\n    defaultVisible: {\n      type: Boolean,\n      default: false\n    },\n    mouseEnterDelay: PropTypes.number.def(0.15),\n    mouseLeaveDelay: PropTypes.number.def(0.1)\n  },\n  emits: ['visibleChange', 'overlayClick'],\n  setup(props, _ref) {\n    let {\n      slots,\n      emit,\n      expose\n    } = _ref;\n    const triggerVisible = ref(!!props.visible);\n    watch(() => props.visible, val => {\n      if (val !== undefined) {\n        triggerVisible.value = val;\n      }\n    });\n    const triggerRef = ref();\n    expose({\n      triggerRef\n    });\n    const onClick = e => {\n      if (props.visible === undefined) {\n        triggerVisible.value = false;\n      }\n      emit('overlayClick', e);\n    };\n    const onVisibleChange = visible => {\n      if (props.visible === undefined) {\n        triggerVisible.value = visible;\n      }\n      emit('visibleChange', visible);\n    };\n    const getMenuElement = () => {\n      var _a;\n      const overlayElement = (_a = slots.overlay) === null || _a === void 0 ? void 0 : _a.call(slots);\n      const extraOverlayProps = {\n        prefixCls: `${props.prefixCls}-menu`,\n        onClick\n      };\n      return _createVNode(_Fragment, {\n        \"key\": skipFlattenKey\n      }, [props.arrow && _createVNode(\"div\", {\n        \"class\": `${props.prefixCls}-arrow`\n      }, null), cloneElement(overlayElement, extraOverlayProps, false)]);\n    };\n    const minOverlayWidthMatchTrigger = computed(() => {\n      const {\n        minOverlayWidthMatchTrigger: matchTrigger = !props.alignPoint\n      } = props;\n      return matchTrigger;\n    });\n    const renderChildren = () => {\n      var _a;\n      const children = (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots);\n      return triggerVisible.value && children ? cloneElement(children[0], {\n        class: props.openClassName || `${props.prefixCls}-open`\n      }, false) : children;\n    };\n    const triggerHideAction = computed(() => {\n      if (!props.hideAction && props.trigger.indexOf('contextmenu') !== -1) {\n        return ['click'];\n      }\n      return props.hideAction;\n    });\n    return () => {\n      const {\n          prefixCls,\n          arrow,\n          showAction,\n          overlayStyle,\n          trigger,\n          placement,\n          align,\n          getPopupContainer,\n          transitionName,\n          animation,\n          overlayClassName\n        } = props,\n        otherProps = __rest(props, [\"prefixCls\", \"arrow\", \"showAction\", \"overlayStyle\", \"trigger\", \"placement\", \"align\", \"getPopupContainer\", \"transitionName\", \"animation\", \"overlayClassName\"]);\n      return _createVNode(Trigger, _objectSpread(_objectSpread({}, otherProps), {}, {\n        \"prefixCls\": prefixCls,\n        \"ref\": triggerRef,\n        \"popupClassName\": classNames(overlayClassName, {\n          [`${prefixCls}-show-arrow`]: arrow\n        }),\n        \"popupStyle\": overlayStyle,\n        \"builtinPlacements\": placements,\n        \"action\": trigger,\n        \"showAction\": showAction,\n        \"hideAction\": triggerHideAction.value || [],\n        \"popupPlacement\": placement,\n        \"popupAlign\": align,\n        \"popupTransitionName\": transitionName,\n        \"popupAnimation\": animation,\n        \"popupVisible\": triggerVisible.value,\n        \"stretch\": minOverlayWidthMatchTrigger.value ? 'minWidth' : '',\n        \"onPopupVisibleChange\": onVisibleChange,\n        \"getPopupContainer\": getPopupContainer\n      }), {\n        popup: getMenuElement,\n        default: renderChildren\n      });\n    };\n  }\n});",
+      "start": 1718517099259,
+      "end": 1718517099290,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099290,
+      "end": 1718517099290,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099290,
+      "end": 1718517099291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099291,
+      "end": 1718517099291,
+      "order": "normal"
+    }
+  ]
+}

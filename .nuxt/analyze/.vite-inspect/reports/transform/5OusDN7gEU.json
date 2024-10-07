@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-util/Dom/dynamicCSS.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import canUseDom from '../../_util/canUseDom';\nimport contains from './contains';\nconst APPEND_ORDER = 'data-vc-order';\nconst MARK_KEY = `vc-util-key`;\nconst containerCache = new Map();\nfunction getMark() {\n  let {\n    mark\n  } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n  if (mark) {\n    return mark.startsWith('data-') ? mark : `data-${mark}`;\n  }\n  return MARK_KEY;\n}\nfunction getContainer(option) {\n  if (option.attachTo) {\n    return option.attachTo;\n  }\n  const head = document.querySelector('head');\n  return head || document.body;\n}\nfunction getOrder(prepend) {\n  if (prepend === 'queue') {\n    return 'prependQueue';\n  }\n  return prepend ? 'prepend' : 'append';\n}\n/**\n * Find style which inject by rc-util\n */\nfunction findStyles(container) {\n  return Array.from((containerCache.get(container) || container).children).filter(node => node.tagName === 'STYLE');\n}\nexport function injectCSS(css) {\n  let option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n  if (!canUseDom()) {\n    return null;\n  }\n  const {\n    csp,\n    prepend\n  } = option;\n  const styleNode = document.createElement('style');\n  styleNode.setAttribute(APPEND_ORDER, getOrder(prepend));\n  if (csp === null || csp === void 0 ? void 0 : csp.nonce) {\n    styleNode.nonce = csp === null || csp === void 0 ? void 0 : csp.nonce;\n  }\n  styleNode.innerHTML = css;\n  const container = getContainer(option);\n  const {\n    firstChild\n  } = container;\n  if (prepend) {\n    // If is queue `prepend`, it will prepend first style and then append rest style\n    if (prepend === 'queue') {\n      const existStyle = findStyles(container).filter(node => ['prepend', 'prependQueue'].includes(node.getAttribute(APPEND_ORDER)));\n      if (existStyle.length) {\n        container.insertBefore(styleNode, existStyle[existStyle.length - 1].nextSibling);\n        return styleNode;\n      }\n    }\n    // Use `insertBefore` as `prepend`\n    container.insertBefore(styleNode, firstChild);\n  } else {\n    container.appendChild(styleNode);\n  }\n  return styleNode;\n}\nfunction findExistNode(key) {\n  let option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n  const container = getContainer(option);\n  return findStyles(container).find(node => node.getAttribute(getMark(option)) === key);\n}\nexport function removeCSS(key) {\n  let option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n  const existNode = findExistNode(key, option);\n  if (existNode) {\n    const container = getContainer(option);\n    container.removeChild(existNode);\n  }\n}\n/**\n * qiankun will inject `appendChild` to insert into other\n */\nfunction syncRealContainer(container, option) {\n  const cachedRealContainer = containerCache.get(container);\n  // Find real container when not cached or cached container removed\n  if (!cachedRealContainer || !contains(document, cachedRealContainer)) {\n    const placeholderStyle = injectCSS('', option);\n    const {\n      parentNode\n    } = placeholderStyle;\n    containerCache.set(container, parentNode);\n    container.removeChild(placeholderStyle);\n  }\n}\n/**\n * manually clear container cache to avoid global cache in unit testes\n */\nexport function clearContainerCache() {\n  containerCache.clear();\n}\nexport function updateCSS(css, key) {\n  let option = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n  var _a, _b, _c;\n  const container = getContainer(option);\n  // Sync real parent\n  syncRealContainer(container, option);\n  const existNode = findExistNode(key, option);\n  if (existNode) {\n    if (((_a = option.csp) === null || _a === void 0 ? void 0 : _a.nonce) && existNode.nonce !== ((_b = option.csp) === null || _b === void 0 ? void 0 : _b.nonce)) {\n      existNode.nonce = (_c = option.csp) === null || _c === void 0 ? void 0 : _c.nonce;\n    }\n    if (existNode.innerHTML !== css) {\n      existNode.innerHTML = css;\n    }\n    return existNode;\n  }\n  const newNode = injectCSS(css, option);\n  newNode.setAttribute(getMark(option), key);\n  return newNode;\n}",
+      "start": 1718517097852,
+      "end": 1718517097887,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097887,
+      "end": 1718517097887,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097887,
+      "end": 1718517097888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097888,
+      "end": 1718517097888,
+      "order": "normal"
+    }
+  ]
+}

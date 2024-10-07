@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/float-button/interface.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport PropTypes from '../_util/vue-types';\nimport { stringType, booleanType, functionType, objectType } from '../_util/type';\nexport const floatButtonProps = () => {\n  return {\n    prefixCls: String,\n    description: PropTypes.any,\n    type: stringType('default'),\n    shape: stringType('circle'),\n    tooltip: PropTypes.any,\n    href: String,\n    target: functionType(),\n    badge: objectType(),\n    onClick: functionType()\n  };\n};\nexport const floatButtonContentProps = () => {\n  return {\n    prefixCls: stringType()\n  };\n};\nexport const floatButtonGroupProps = () => {\n  return _extends(_extends({}, floatButtonProps()), {\n    // 包含的 Float Button\n    // 触发方式 (有触发方式为菜单模式）\n    trigger: stringType(),\n    // 受控展开\n    open: booleanType(),\n    // 展开收起的回调\n    onOpenChange: functionType(),\n    'onUpdate:open': functionType()\n  });\n};\nexport const backTopProps = () => {\n  return _extends(_extends({}, floatButtonProps()), {\n    prefixCls: String,\n    duration: Number,\n    target: functionType(),\n    visibilityHeight: Number,\n    onClick: functionType()\n  });\n};",
+      "start": 1718517098179,
+      "end": 1718517098230,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098231,
+      "end": 1718517098231,
+      "order": "normal"
+    }
+  ]
+}

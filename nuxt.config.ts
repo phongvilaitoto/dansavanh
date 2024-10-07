@@ -15,10 +15,12 @@ export default defineNuxtConfig({
   //   preset: "vercel",
   // },
 
+
+  
   nitro: {
     preset: 'vercel-edge'
   },
-  
+
   // nitro: {
   //   preset: 'vercel-edge',
   //   prerender: {

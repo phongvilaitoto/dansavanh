@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/_util/ActionButton.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode, resolveDirective as _resolveDirective } from \"vue\";\nimport { shallowRef, onMounted, defineComponent, onBeforeUnmount } from 'vue';\nimport Button from '../button';\nimport { convertLegacyProps } from '../button/buttonTypes';\nimport useDestroyed from './hooks/useDestroyed';\nimport { objectType } from './type';\nimport { findDOMNode } from './props-util';\nconst actionButtonProps = {\n  type: {\n    type: String\n  },\n  actionFn: Function,\n  close: Function,\n  autofocus: Boolean,\n  prefixCls: String,\n  buttonProps: objectType(),\n  emitEvent: Boolean,\n  quitOnNullishReturnValue: Boolean\n};\nfunction isThenable(thing) {\n  return !!(thing && thing.then);\n}\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ActionButton',\n  props: actionButtonProps,\n  setup(props, _ref) {\n    let {\n      slots\n    } = _ref;\n    const clickedRef = shallowRef(false);\n    const buttonRef = shallowRef();\n    const loading = shallowRef(false);\n    let timeoutId;\n    const isDestroyed = useDestroyed();\n    onMounted(() => {\n      if (props.autofocus) {\n        timeoutId = setTimeout(() => {\n          var _a, _b;\n          return (_b = (_a = findDOMNode(buttonRef.value)) === null || _a === void 0 ? void 0 : _a.focus) === null || _b === void 0 ? void 0 : _b.call(_a);\n        });\n      }\n    });\n    onBeforeUnmount(() => {\n      clearTimeout(timeoutId);\n    });\n    const onInternalClose = function () {\n      var _a;\n      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n        args[_key] = arguments[_key];\n      }\n      (_a = props.close) === null || _a === void 0 ? void 0 : _a.call(props, ...args);\n    };\n    const handlePromiseOnOk = returnValueOfOnOk => {\n      if (!isThenable(returnValueOfOnOk)) {\n        return;\n      }\n      loading.value = true;\n      returnValueOfOnOk.then(function () {\n        if (!isDestroyed.value) {\n          loading.value = false;\n        }\n        onInternalClose(...arguments);\n        clickedRef.value = false;\n      }, e => {\n        // See: https://github.com/ant-design/ant-design/issues/6183\n        if (!isDestroyed.value) {\n          loading.value = false;\n        }\n        clickedRef.value = false;\n        return Promise.reject(e);\n      });\n    };\n    const onClick = e => {\n      const {\n        actionFn\n      } = props;\n      if (clickedRef.value) {\n        return;\n      }\n      clickedRef.value = true;\n      if (!actionFn) {\n        onInternalClose();\n        return;\n      }\n      let returnValueOfOnOk;\n      if (props.emitEvent) {\n        returnValueOfOnOk = actionFn(e);\n        if (props.quitOnNullishReturnValue && !isThenable(returnValueOfOnOk)) {\n          clickedRef.value = false;\n          onInternalClose(e);\n          return;\n        }\n      } else if (actionFn.length) {\n        returnValueOfOnOk = actionFn(props.close);\n        // https://github.com/ant-design/ant-design/issues/23358\n        clickedRef.value = false;\n      } else {\n        returnValueOfOnOk = actionFn();\n        if (!returnValueOfOnOk) {\n          onInternalClose();\n          return;\n        }\n      }\n      handlePromiseOnOk(returnValueOfOnOk);\n    };\n    return () => {\n      const {\n        type,\n        prefixCls,\n        buttonProps\n      } = props;\n      return _createVNode(Button, _objectSpread(_objectSpread(_objectSpread({}, convertLegacyProps(type)), {}, {\n        \"onClick\": onClick,\n        \"loading\": loading.value,\n        \"prefixCls\": prefixCls\n      }, buttonProps), {}, {\n        \"ref\": buttonRef\n      }), slots);\n    };\n  }\n});",
+      "start": 1718517097572,
+      "end": 1718517097640,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097640,
+      "end": 1718517097640,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097640,
+      "end": 1718517097641,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097641,
+      "end": 1718517097641,
+      "order": "normal"
+    }
+  ]
+}

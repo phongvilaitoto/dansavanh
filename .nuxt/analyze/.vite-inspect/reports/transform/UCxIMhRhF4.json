@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/tree/Tree.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nimport { watchEffect, ref, defineComponent, computed } from 'vue';\nimport classNames from '../_util/classNames';\nimport VcTree from '../vc-tree';\nimport PropTypes from '../_util/vue-types';\nimport { filterEmpty } from '../_util/props-util';\nimport initDefaultProps from '../_util/props-util/initDefaultProps';\nimport { treeProps as vcTreeProps } from '../vc-tree/props';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport renderSwitcherIcon from './utils/iconUtil';\nimport dropIndicatorRender from './utils/dropIndicator';\nimport devWarning from '../vc-util/devWarning';\nimport { warning } from '../vc-util/warning';\nimport omit from '../_util/omit';\nimport { booleanType, someType, arrayType, functionType, objectType } from '../_util/type';\n// CSSINJS\nimport useStyle from './style';\nexport const treeProps = () => {\n  const baseTreeProps = vcTreeProps();\n  return _extends(_extends({}, baseTreeProps), {\n    showLine: someType([Boolean, Object]),\n    /** 是否支持多选 */\n    multiple: booleanType(),\n    /** 是否自动展开父节点 */\n    autoExpandParent: booleanType(),\n    /** checkable状态下节点选择完全受控（父子节点选中状态不再关联）*/\n    checkStrictly: booleanType(),\n    /** 是否支持选中 */\n    checkable: booleanType(),\n    /** 是否禁用树 */\n    disabled: booleanType(),\n    /** 默认展开所有树节点 */\n    defaultExpandAll: booleanType(),\n    /** 默认展开对应树节点 */\n    defaultExpandParent: booleanType(),\n    /** 默认展开指定的树节点 */\n    defaultExpandedKeys: arrayType(),\n    /** （受控）展开指定的树节点 */\n    expandedKeys: arrayType(),\n    /** （受控）选中复选框的树节点 */\n    checkedKeys: someType([Array, Object]),\n    /** 默认选中复选框的树节点 */\n    defaultCheckedKeys: arrayType(),\n    /** （受控）设置选中的树节点 */\n    selectedKeys: arrayType(),\n    /** 默认选中的树节点 */\n    defaultSelectedKeys: arrayType(),\n    selectable: booleanType(),\n    loadedKeys: arrayType(),\n    draggable: booleanType(),\n    showIcon: booleanType(),\n    icon: functionType(),\n    switcherIcon: PropTypes.any,\n    prefixCls: String,\n    /**\n     * @default{title,key,children}\n     * deprecated, please use `fieldNames` instead\n     * 替换treeNode中 title,key,children字段为treeData中对应的字段\n     */\n    replaceFields: objectType(),\n    blockNode: booleanType(),\n    openAnimation: PropTypes.any,\n    onDoubleclick: baseTreeProps.onDblclick,\n    'onUpdate:selectedKeys': functionType(),\n    'onUpdate:checkedKeys': functionType(),\n    'onUpdate:expandedKeys': functionType()\n  });\n};\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ATree',\n  inheritAttrs: false,\n  props: initDefaultProps(treeProps(), {\n    checkable: false,\n    selectable: true,\n    showIcon: false,\n    blockNode: false\n  }),\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      attrs,\n      expose,\n      emit,\n      slots\n    } = _ref;\n    warning(!(props.treeData === undefined && slots.default), '`children` of Tree is deprecated. Please use `treeData` instead.');\n    const {\n      prefixCls,\n      direction,\n      virtual\n    } = useConfigInject('tree', props);\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const treeRef = ref();\n    const scrollTo = scroll => {\n      var _a;\n      (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.scrollTo(scroll);\n    };\n    expose({\n      treeRef,\n      onNodeExpand: function () {\n        var _a;\n        (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.onNodeExpand(...arguments);\n      },\n      scrollTo,\n      selectedKeys: computed(() => {\n        var _a;\n        return (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.selectedKeys;\n      }),\n      checkedKeys: computed(() => {\n        var _a;\n        return (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.checkedKeys;\n      }),\n      halfCheckedKeys: computed(() => {\n        var _a;\n        return (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.halfCheckedKeys;\n      }),\n      loadedKeys: computed(() => {\n        var _a;\n        return (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.loadedKeys;\n      }),\n      loadingKeys: computed(() => {\n        var _a;\n        return (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.loadingKeys;\n      }),\n      expandedKeys: computed(() => {\n        var _a;\n        return (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.expandedKeys;\n      })\n    });\n    watchEffect(() => {\n      devWarning(props.replaceFields === undefined, 'Tree', '`replaceFields` is deprecated, please use fieldNames instead');\n    });\n    const handleCheck = (checkedObjOrKeys, eventObj) => {\n      emit('update:checkedKeys', checkedObjOrKeys);\n      emit('check', checkedObjOrKeys, eventObj);\n    };\n    const handleExpand = (expandedKeys, eventObj) => {\n      emit('update:expandedKeys', expandedKeys);\n      emit('expand', expandedKeys, eventObj);\n    };\n    const handleSelect = (selectedKeys, eventObj) => {\n      emit('update:selectedKeys', selectedKeys);\n      emit('select', selectedKeys, eventObj);\n    };\n    return () => {\n      const {\n        showIcon,\n        showLine,\n        switcherIcon = slots.switcherIcon,\n        icon = slots.icon,\n        blockNode,\n        checkable,\n        selectable,\n        fieldNames = props.replaceFields,\n        motion = props.openAnimation,\n        itemHeight = 28,\n        onDoubleclick,\n        onDblclick\n      } = props;\n      const newProps = _extends(_extends(_extends({}, attrs), omit(props, ['onUpdate:checkedKeys', 'onUpdate:expandedKeys', 'onUpdate:selectedKeys', 'onDoubleclick'])), {\n        showLine: Boolean(showLine),\n        dropIndicatorRender,\n        fieldNames,\n        icon,\n        itemHeight\n      });\n      const children = slots.default ? filterEmpty(slots.default()) : undefined;\n      return wrapSSR(_createVNode(VcTree, _objectSpread(_objectSpread({}, newProps), {}, {\n        \"virtual\": virtual.value,\n        \"motion\": motion,\n        \"ref\": treeRef,\n        \"prefixCls\": prefixCls.value,\n        \"class\": classNames({\n          [`${prefixCls.value}-icon-hide`]: !showIcon,\n          [`${prefixCls.value}-block-node`]: blockNode,\n          [`${prefixCls.value}-unselectable`]: !selectable,\n          [`${prefixCls.value}-rtl`]: direction.value === 'rtl'\n        }, attrs.class, hashId.value),\n        \"direction\": direction.value,\n        \"checkable\": checkable,\n        \"selectable\": selectable,\n        \"switcherIcon\": nodeProps => renderSwitcherIcon(prefixCls.value, switcherIcon, nodeProps, slots.leafIcon, showLine),\n        \"onCheck\": handleCheck,\n        \"onExpand\": handleExpand,\n        \"onSelect\": handleSelect,\n        \"onDblclick\": onDblclick || onDoubleclick,\n        \"children\": children\n      }), _extends(_extends({}, slots), {\n        checkable: () => _createVNode(\"span\", {\n          \"class\": `${prefixCls.value}-checkbox-inner`\n        }, null)\n      })));\n    };\n  }\n});",
+      "start": 1718517097679,
+      "end": 1718517097725,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097725,
+      "end": 1718517097725,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097725,
+      "end": 1718517097725,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097725,
+      "end": 1718517097726,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097726,
+      "end": 1718517097726,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/skeleton/style/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { Keyframes } from '../../_util/cssinjs';\nimport { genComponentStyleHook, mergeToken } from '../../theme/internal';\nconst skeletonClsLoading = new Keyframes(`ant-skeleton-loading`, {\n  '0%': {\n    transform: 'translateX(-37.5%)'\n  },\n  '100%': {\n    transform: 'translateX(37.5%)'\n  }\n});\nconst genSkeletonElementCommonSize = size => ({\n  height: size,\n  lineHeight: `${size}px`\n});\nconst genSkeletonElementAvatarSize = size => _extends({\n  width: size\n}, genSkeletonElementCommonSize(size));\nconst genSkeletonColor = token => ({\n  position: 'relative',\n  // fix https://github.com/ant-design/ant-design/issues/36444\n  // https://monshin.github.io/202109/css/safari-border-radius-overflow-hidden/\n  /* stylelint-disable-next-line property-no-vendor-prefix,value-no-vendor-prefix */\n  zIndex: 0,\n  overflow: 'hidden',\n  background: 'transparent',\n  '&::after': {\n    position: 'absolute',\n    top: 0,\n    insetInlineEnd: '-150%',\n    bottom: 0,\n    insetInlineStart: '-150%',\n    background: token.skeletonLoadingBackground,\n    animationName: skeletonClsLoading,\n    animationDuration: token.skeletonLoadingMotionDuration,\n    animationTimingFunction: 'ease',\n    animationIterationCount: 'infinite',\n    content: '\"\"'\n  }\n});\nconst genSkeletonElementInputSize = size => _extends({\n  width: size * 5,\n  minWidth: size * 5\n}, genSkeletonElementCommonSize(size));\nconst genSkeletonElementAvatar = token => {\n  const {\n    skeletonAvatarCls,\n    color,\n    controlHeight,\n    controlHeightLG,\n    controlHeightSM\n  } = token;\n  return {\n    [`${skeletonAvatarCls}`]: _extends({\n      display: 'inline-block',\n      verticalAlign: 'top',\n      background: color\n    }, genSkeletonElementAvatarSize(controlHeight)),\n    [`${skeletonAvatarCls}${skeletonAvatarCls}-circle`]: {\n      borderRadius: '50%'\n    },\n    [`${skeletonAvatarCls}${skeletonAvatarCls}-lg`]: _extends({}, genSkeletonElementAvatarSize(controlHeightLG)),\n    [`${skeletonAvatarCls}${skeletonAvatarCls}-sm`]: _extends({}, genSkeletonElementAvatarSize(controlHeightSM))\n  };\n};\nconst genSkeletonElementInput = token => {\n  const {\n    controlHeight,\n    borderRadiusSM,\n    skeletonInputCls,\n    controlHeightLG,\n    controlHeightSM,\n    color\n  } = token;\n  return {\n    [`${skeletonInputCls}`]: _extends({\n      display: 'inline-block',\n      verticalAlign: 'top',\n      background: color,\n      borderRadius: borderRadiusSM\n    }, genSkeletonElementInputSize(controlHeight)),\n    [`${skeletonInputCls}-lg`]: _extends({}, genSkeletonElementInputSize(controlHeightLG)),\n    [`${skeletonInputCls}-sm`]: _extends({}, genSkeletonElementInputSize(controlHeightSM))\n  };\n};\nconst genSkeletonElementImageSize = size => _extends({\n  width: size\n}, genSkeletonElementCommonSize(size));\nconst genSkeletonElementImage = token => {\n  const {\n    skeletonImageCls,\n    imageSizeBase,\n    color,\n    borderRadiusSM\n  } = token;\n  return {\n    [`${skeletonImageCls}`]: _extends(_extends({\n      display: 'flex',\n      alignItems: 'center',\n      justifyContent: 'center',\n      verticalAlign: 'top',\n      background: color,\n      borderRadius: borderRadiusSM\n    }, genSkeletonElementImageSize(imageSizeBase * 2)), {\n      [`${skeletonImageCls}-path`]: {\n        fill: '#bfbfbf'\n      },\n      [`${skeletonImageCls}-svg`]: _extends(_extends({}, genSkeletonElementImageSize(imageSizeBase)), {\n        maxWidth: imageSizeBase * 4,\n        maxHeight: imageSizeBase * 4\n      }),\n      [`${skeletonImageCls}-svg${skeletonImageCls}-svg-circle`]: {\n        borderRadius: '50%'\n      }\n    }),\n    [`${skeletonImageCls}${skeletonImageCls}-circle`]: {\n      borderRadius: '50%'\n    }\n  };\n};\nconst genSkeletonElementButtonShape = (token, size, buttonCls) => {\n  const {\n    skeletonButtonCls\n  } = token;\n  return {\n    [`${buttonCls}${skeletonButtonCls}-circle`]: {\n      width: size,\n      minWidth: size,\n      borderRadius: '50%'\n    },\n    [`${buttonCls}${skeletonButtonCls}-round`]: {\n      borderRadius: size\n    }\n  };\n};\nconst genSkeletonElementButtonSize = size => _extends({\n  width: size * 2,\n  minWidth: size * 2\n}, genSkeletonElementCommonSize(size));\nconst genSkeletonElementButton = token => {\n  const {\n    borderRadiusSM,\n    skeletonButtonCls,\n    controlHeight,\n    controlHeightLG,\n    controlHeightSM,\n    color\n  } = token;\n  return _extends(_extends(_extends(_extends(_extends({\n    [`${skeletonButtonCls}`]: _extends({\n      display: 'inline-block',\n      verticalAlign: 'top',\n      background: color,\n      borderRadius: borderRadiusSM,\n      width: controlHeight * 2,\n      minWidth: controlHeight * 2\n    }, genSkeletonElementButtonSize(controlHeight))\n  }, genSkeletonElementButtonShape(token, controlHeight, skeletonButtonCls)), {\n    [`${skeletonButtonCls}-lg`]: _extends({}, genSkeletonElementButtonSize(controlHeightLG))\n  }), genSkeletonElementButtonShape(token, controlHeightLG, `${skeletonButtonCls}-lg`)), {\n    [`${skeletonButtonCls}-sm`]: _extends({}, genSkeletonElementButtonSize(controlHeightSM))\n  }), genSkeletonElementButtonShape(token, controlHeightSM, `${skeletonButtonCls}-sm`));\n};\n// =============================== Base ===============================\nconst genBaseStyle = token => {\n  const {\n    componentCls,\n    skeletonAvatarCls,\n    skeletonTitleCls,\n    skeletonParagraphCls,\n    skeletonButtonCls,\n    skeletonInputCls,\n    skeletonImageCls,\n    controlHeight,\n    controlHeightLG,\n    controlHeightSM,\n    color,\n    padding,\n    marginSM,\n    borderRadius,\n    skeletonTitleHeight,\n    skeletonBlockRadius,\n    skeletonParagraphLineHeight,\n    controlHeightXS,\n    skeletonParagraphMarginTop\n  } = token;\n  return {\n    [`${componentCls}`]: {\n      display: 'table',\n      width: '100%',\n      [`${componentCls}-header`]: {\n        display: 'table-cell',\n        paddingInlineEnd: padding,\n        verticalAlign: 'top',\n        // Avatar\n        [`${skeletonAvatarCls}`]: _extends({\n          display: 'inline-block',\n          verticalAlign: 'top',\n          background: color\n        }, genSkeletonElementAvatarSize(controlHeight)),\n        [`${skeletonAvatarCls}-circle`]: {\n          borderRadius: '50%'\n        },\n        [`${skeletonAvatarCls}-lg`]: _extends({}, genSkeletonElementAvatarSize(controlHeightLG)),\n        [`${skeletonAvatarCls}-sm`]: _extends({}, genSkeletonElementAvatarSize(controlHeightSM))\n      },\n      [`${componentCls}-content`]: {\n        display: 'table-cell',\n        width: '100%',\n        verticalAlign: 'top',\n        // Title\n        [`${skeletonTitleCls}`]: {\n          width: '100%',\n          height: skeletonTitleHeight,\n          background: color,\n          borderRadius: skeletonBlockRadius,\n          [`+ ${skeletonParagraphCls}`]: {\n            marginBlockStart: controlHeightSM\n          }\n        },\n        // paragraph\n        [`${skeletonParagraphCls}`]: {\n          padding: 0,\n          '> li': {\n            width: '100%',\n            height: skeletonParagraphLineHeight,\n            listStyle: 'none',\n            background: color,\n            borderRadius: skeletonBlockRadius,\n            '+ li': {\n              marginBlockStart: controlHeightXS\n            }\n          }\n        },\n        [`${skeletonParagraphCls}> li:last-child:not(:first-child):not(:nth-child(2))`]: {\n          width: '61%'\n        }\n      },\n      [`&-round ${componentCls}-content`]: {\n        [`${skeletonTitleCls}, ${skeletonParagraphCls} > li`]: {\n          borderRadius\n        }\n      }\n    },\n    [`${componentCls}-with-avatar ${componentCls}-content`]: {\n      // Title\n      [`${skeletonTitleCls}`]: {\n        marginBlockStart: marginSM,\n        [`+ ${skeletonParagraphCls}`]: {\n          marginBlockStart: skeletonParagraphMarginTop\n        }\n      }\n    },\n    // Skeleton element\n    [`${componentCls}${componentCls}-element`]: _extends(_extends(_extends(_extends({\n      display: 'inline-block',\n      width: 'auto'\n    }, genSkeletonElementButton(token)), genSkeletonElementAvatar(token)), genSkeletonElementInput(token)), genSkeletonElementImage(token)),\n    // Skeleton Block Button, Input\n    [`${componentCls}${componentCls}-block`]: {\n      width: '100%',\n      [`${skeletonButtonCls}`]: {\n        width: '100%'\n      },\n      [`${skeletonInputCls}`]: {\n        width: '100%'\n      }\n    },\n    // With active animation\n    [`${componentCls}${componentCls}-active`]: {\n      [`\n        ${skeletonTitleCls},\n        ${skeletonParagraphCls} > li,\n        ${skeletonAvatarCls},\n        ${skeletonButtonCls},\n        ${skeletonInputCls},\n        ${skeletonImageCls}\n      `]: _extends({}, genSkeletonColor(token))\n    }\n  };\n};\n// ============================== Export ==============================\nexport default genComponentStyleHook('Skeleton', token => {\n  const {\n    componentCls\n  } = token;\n  const skeletonToken = mergeToken(token, {\n    skeletonAvatarCls: `${componentCls}-avatar`,\n    skeletonTitleCls: `${componentCls}-title`,\n    skeletonParagraphCls: `${componentCls}-paragraph`,\n    skeletonButtonCls: `${componentCls}-button`,\n    skeletonInputCls: `${componentCls}-input`,\n    skeletonImageCls: `${componentCls}-image`,\n    imageSizeBase: token.controlHeight * 1.5,\n    skeletonTitleHeight: token.controlHeight / 2,\n    skeletonBlockRadius: token.borderRadiusSM,\n    skeletonParagraphLineHeight: token.controlHeight / 2,\n    skeletonParagraphMarginTop: token.marginLG + token.marginXXS,\n    borderRadius: 100,\n    skeletonLoadingBackground: `linear-gradient(90deg, ${token.color} 25%, ${token.colorGradientEnd} 37%, ${token.color} 63%)`,\n    skeletonLoadingMotionDuration: '1.4s'\n  });\n  return [genBaseStyle(skeletonToken)];\n}, token => {\n  const {\n    colorFillContent,\n    colorFill\n  } = token;\n  return {\n    color: colorFillContent,\n    colorGradientEnd: colorFill\n  };\n});",
+      "start": 1718517098409,
+      "end": 1718517098460,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098460,
+      "end": 1718517098460,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098460,
+      "end": 1718517098461,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098461,
+      "end": 1718517098461,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098461,
+      "end": 1718517098461,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098461,
+      "end": 1718517098461,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098461,
+      "end": 1718517098461,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098461,
+      "end": 1718517098461,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098462,
+      "end": 1718517098462,
+      "order": "normal"
+    }
+  ]
+}

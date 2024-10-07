@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-table/Header/DragHandle.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport addEventListenerWrap from '../../vc-util/Dom/addEventListener';\nimport raf from '../../_util/raf';\nimport { defineComponent, onUnmounted, computed, shallowRef, watchEffect, getCurrentInstance } from 'vue';\nimport devWarning from '../../vc-util/devWarning';\nimport { useInjectTableContext } from '../../table/context';\nimport supportsPassive from '../../_util/supportsPassive';\nconst events = {\n  mouse: {\n    start: 'mousedown',\n    move: 'mousemove',\n    stop: 'mouseup'\n  },\n  touch: {\n    start: 'touchstart',\n    move: 'touchmove',\n    stop: 'touchend'\n  }\n};\nconst defaultMinWidth = 50;\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'DragHandle',\n  props: {\n    prefixCls: String,\n    width: {\n      type: Number,\n      required: true\n    },\n    minWidth: {\n      type: Number,\n      default: defaultMinWidth\n    },\n    maxWidth: {\n      type: Number,\n      default: Infinity\n    },\n    column: {\n      type: Object,\n      default: undefined\n    }\n  },\n  setup(props) {\n    let startX = 0;\n    let moveEvent = {\n      remove: () => {}\n    };\n    let stopEvent = {\n      remove: () => {}\n    };\n    const removeEvents = () => {\n      moveEvent.remove();\n      stopEvent.remove();\n    };\n    onUnmounted(() => {\n      removeEvents();\n    });\n    watchEffect(() => {\n      devWarning(!isNaN(props.width), 'Table', 'width must be a number when use resizable');\n    });\n    const {\n      onResizeColumn\n    } = useInjectTableContext();\n    const minWidth = computed(() => {\n      return typeof props.minWidth === 'number' && !isNaN(props.minWidth) ? props.minWidth : defaultMinWidth;\n    });\n    const maxWidth = computed(() => {\n      return typeof props.maxWidth === 'number' && !isNaN(props.maxWidth) ? props.maxWidth : Infinity;\n    });\n    const instance = getCurrentInstance();\n    let baseWidth = 0;\n    const dragging = shallowRef(false);\n    let rafId;\n    const updateWidth = e => {\n      let pageX = 0;\n      if (e.touches) {\n        if (e.touches.length) {\n          // touchmove\n          pageX = e.touches[0].pageX;\n        } else {\n          // touchend\n          pageX = e.changedTouches[0].pageX;\n        }\n      } else {\n        pageX = e.pageX;\n      }\n      const tmpDeltaX = startX - pageX;\n      let w = Math.max(baseWidth - tmpDeltaX, minWidth.value);\n      w = Math.min(w, maxWidth.value);\n      raf.cancel(rafId);\n      rafId = raf(() => {\n        onResizeColumn(w, props.column.__originColumn__);\n      });\n    };\n    const handleMove = e => {\n      updateWidth(e);\n    };\n    const handleStop = e => {\n      dragging.value = false;\n      updateWidth(e);\n      removeEvents();\n    };\n    const handleStart = (e, eventsFor) => {\n      dragging.value = true;\n      removeEvents();\n      baseWidth = instance.vnode.el.parentNode.getBoundingClientRect().width;\n      if (e instanceof MouseEvent && e.which !== 1) {\n        return;\n      }\n      if (e.stopPropagation) e.stopPropagation();\n      startX = e.touches ? e.touches[0].pageX : e.pageX;\n      moveEvent = addEventListenerWrap(document.documentElement, eventsFor.move, handleMove);\n      stopEvent = addEventListenerWrap(document.documentElement, eventsFor.stop, handleStop);\n    };\n    const handleDown = e => {\n      e.stopPropagation();\n      e.preventDefault();\n      handleStart(e, events.mouse);\n    };\n    const handleTouchDown = e => {\n      e.stopPropagation();\n      e.preventDefault();\n      handleStart(e, events.touch);\n    };\n    const handleClick = e => {\n      e.stopPropagation();\n      e.preventDefault();\n    };\n    return () => {\n      const {\n        prefixCls\n      } = props;\n      const touchEvents = {\n        [supportsPassive ? 'onTouchstartPassive' : 'onTouchstart']: e => handleTouchDown(e)\n      };\n      return _createVNode(\"div\", _objectSpread(_objectSpread({\n        \"class\": `${prefixCls}-resize-handle ${dragging.value ? 'dragging' : ''}`,\n        \"onMousedown\": handleDown\n      }, touchEvents), {}, {\n        \"onClick\": handleClick\n      }), [_createVNode(\"div\", {\n        \"class\": `${prefixCls}-resize-handle-line`\n      }, null)]);\n    };\n  }\n});",
+      "start": 1718517100155,
+      "end": 1718517100178,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100178,
+      "end": 1718517100178,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100178,
+      "end": 1718517100179,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100179,
+      "end": 1718517100179,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100179,
+      "end": 1718517100180,
+      "order": "normal"
+    }
+  ]
+}

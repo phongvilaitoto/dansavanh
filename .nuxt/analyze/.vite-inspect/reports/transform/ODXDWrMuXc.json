@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-slick/track.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { createVNode } from 'vue';\nimport classnames from '../_util/classNames';\nimport { flattenChildren } from '../_util/props-util';\nimport { lazyStartIndex, lazyEndIndex, getPreClones } from './utils/innerSliderUtils';\nimport { deepCloneElement } from '../_util/vnode';\n// given specifications/props for a slide, fetch all the classes that need to be applied to the slide\nconst getSlideClasses = spec => {\n  let slickActive, slickCenter;\n  let centerOffset, index;\n  if (spec.rtl) {\n    index = spec.slideCount - 1 - spec.index;\n  } else {\n    index = spec.index;\n  }\n  const slickCloned = index < 0 || index >= spec.slideCount;\n  if (spec.centerMode) {\n    centerOffset = Math.floor(spec.slidesToShow / 2);\n    slickCenter = (index - spec.currentSlide) % spec.slideCount === 0;\n    if (index > spec.currentSlide - centerOffset - 1 && index <= spec.currentSlide + centerOffset) {\n      slickActive = true;\n    }\n  } else {\n    slickActive = spec.currentSlide <= index && index < spec.currentSlide + spec.slidesToShow;\n  }\n  let focusedSlide;\n  if (spec.targetSlide < 0) {\n    focusedSlide = spec.targetSlide + spec.slideCount;\n  } else if (spec.targetSlide >= spec.slideCount) {\n    focusedSlide = spec.targetSlide - spec.slideCount;\n  } else {\n    focusedSlide = spec.targetSlide;\n  }\n  const slickCurrent = index === focusedSlide;\n  return {\n    'slick-slide': true,\n    'slick-active': slickActive,\n    'slick-center': slickCenter,\n    'slick-cloned': slickCloned,\n    'slick-current': slickCurrent // dubious in case of RTL\n  };\n};\nconst getSlideStyle = function (spec) {\n  const style = {};\n  if (spec.variableWidth === undefined || spec.variableWidth === false) {\n    style.width = spec.slideWidth + (typeof spec.slideWidth === 'number' ? 'px' : '');\n  }\n  if (spec.fade) {\n    style.position = 'relative';\n    if (spec.vertical) {\n      style.top = -spec.index * parseInt(spec.slideHeight) + 'px';\n    } else {\n      style.left = -spec.index * parseInt(spec.slideWidth) + 'px';\n    }\n    style.opacity = spec.currentSlide === spec.index ? 1 : 0;\n    if (spec.useCSS) {\n      style.transition = 'opacity ' + spec.speed + 'ms ' + spec.cssEase + ', ' + 'visibility ' + spec.speed + 'ms ' + spec.cssEase;\n    }\n  }\n  return style;\n};\nconst getKey = (child, fallbackKey) => child.key + '-' + fallbackKey;\nconst renderSlides = function (spec, children) {\n  let key;\n  const slides = [];\n  const preCloneSlides = [];\n  const postCloneSlides = [];\n  const childrenCount = children.length;\n  const startIndex = lazyStartIndex(spec);\n  const endIndex = lazyEndIndex(spec);\n  children.forEach((elem, index) => {\n    let child;\n    const childOnClickOptions = {\n      message: 'children',\n      index,\n      slidesToScroll: spec.slidesToScroll,\n      currentSlide: spec.currentSlide\n    };\n    // in case of lazyLoad, whether or not we want to fetch the slide\n    if (!spec.lazyLoad || spec.lazyLoad && spec.lazyLoadedList.indexOf(index) >= 0) {\n      child = elem;\n    } else {\n      child = createVNode('div');\n    }\n    const childStyle = getSlideStyle(_extends(_extends({}, spec), {\n      index\n    }));\n    const slideClass = child.props.class || '';\n    let slideClasses = getSlideClasses(_extends(_extends({}, spec), {\n      index\n    }));\n    // push a cloned element of the desired slide\n    slides.push(deepCloneElement(child, {\n      key: 'original' + getKey(child, index),\n      tabindex: '-1',\n      'data-index': index,\n      'aria-hidden': !slideClasses['slick-active'],\n      class: classnames(slideClasses, slideClass),\n      style: _extends(_extends({\n        outline: 'none'\n      }, child.props.style || {}), childStyle),\n      onClick: () => {\n        // child.props && child.props.onClick && child.props.onClick(e)\n        if (spec.focusOnSelect) {\n          spec.focusOnSelect(childOnClickOptions);\n        }\n      }\n    }));\n    // if slide needs to be precloned or postcloned\n    if (spec.infinite && spec.fade === false) {\n      const preCloneNo = childrenCount - index;\n      if (preCloneNo <= getPreClones(spec) && childrenCount !== spec.slidesToShow) {\n        key = -preCloneNo;\n        if (key >= startIndex) {\n          child = elem;\n        }\n        slideClasses = getSlideClasses(_extends(_extends({}, spec), {\n          index: key\n        }));\n        preCloneSlides.push(deepCloneElement(child, {\n          key: 'precloned' + getKey(child, key),\n          class: classnames(slideClasses, slideClass),\n          tabindex: '-1',\n          'data-index': key,\n          'aria-hidden': !slideClasses['slick-active'],\n          style: _extends(_extends({}, child.props.style || {}), childStyle),\n          onClick: () => {\n            // child.props && child.props.onClick && child.props.onClick(e)\n            if (spec.focusOnSelect) {\n              spec.focusOnSelect(childOnClickOptions);\n            }\n          }\n        }));\n      }\n      if (childrenCount !== spec.slidesToShow) {\n        key = childrenCount + index;\n        if (key < endIndex) {\n          child = elem;\n        }\n        slideClasses = getSlideClasses(_extends(_extends({}, spec), {\n          index: key\n        }));\n        postCloneSlides.push(deepCloneElement(child, {\n          key: 'postcloned' + getKey(child, key),\n          tabindex: '-1',\n          'data-index': key,\n          'aria-hidden': !slideClasses['slick-active'],\n          class: classnames(slideClasses, slideClass),\n          style: _extends(_extends({}, child.props.style || {}), childStyle),\n          onClick: () => {\n            // child.props && child.props.onClick && child.props.onClick(e)\n            if (spec.focusOnSelect) {\n              spec.focusOnSelect(childOnClickOptions);\n            }\n          }\n        }));\n      }\n    }\n  });\n  if (spec.rtl) {\n    return preCloneSlides.concat(slides, postCloneSlides).reverse();\n  } else {\n    return preCloneSlides.concat(slides, postCloneSlides);\n  }\n};\nconst Track = (_, _ref) => {\n  let {\n    attrs,\n    slots\n  } = _ref;\n  const slides = renderSlides(attrs, flattenChildren(slots === null || slots === void 0 ? void 0 : slots.default()));\n  // const slides = renderSlides(attrs,  slots?.default);\n  const {\n    onMouseenter,\n    onMouseover,\n    onMouseleave\n  } = attrs;\n  const mouseEvents = {\n    onMouseenter,\n    onMouseover,\n    onMouseleave\n  };\n  const trackProps = _extends({\n    class: 'slick-track',\n    style: attrs.trackStyle\n  }, mouseEvents);\n  return _createVNode(\"div\", trackProps, [slides]);\n};\nTrack.inheritAttrs = false;\nexport default Track;",
+      "start": 1718517099574,
+      "end": 1718517099599,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099599,
+      "end": 1718517099599,
+      "order": "normal"
+    }
+  ]
+}

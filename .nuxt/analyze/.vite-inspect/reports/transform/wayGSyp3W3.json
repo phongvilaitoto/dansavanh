@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/comment/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { defineComponent } from 'vue';\nimport PropTypes from '../_util/vue-types';\nimport { flattenChildren } from '../_util/props-util';\nimport { withInstall } from '../_util/type';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\n// CSSINJS\nimport useStyle from './style';\nexport const commentProps = () => ({\n  actions: Array,\n  /** The element to display as the comment author. */\n  author: PropTypes.any,\n  /** The element to display as the comment avatar - generally an antd Avatar */\n  avatar: PropTypes.any,\n  /** The main content of the comment */\n  content: PropTypes.any,\n  /** Comment prefix defaults to '.ant-comment' */\n  prefixCls: String,\n  /** A datetime element containing the time to be displayed */\n  datetime: PropTypes.any\n});\nconst Comment = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'AComment',\n  inheritAttrs: false,\n  props: commentProps(),\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs\n    } = _ref;\n    const {\n      prefixCls,\n      direction\n    } = useConfigInject('comment', props);\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const renderNested = (prefixCls, children) => {\n      return _createVNode(\"div\", {\n        \"class\": `${prefixCls}-nested`\n      }, [children]);\n    };\n    const getAction = actions => {\n      if (!actions || !actions.length) {\n        return null;\n      }\n      const actionList = actions.map((action, index) => _createVNode(\"li\", {\n        \"key\": `action-${index}`\n      }, [action]));\n      return actionList;\n    };\n    return () => {\n      var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;\n      const pre = prefixCls.value;\n      const actions = (_a = props.actions) !== null && _a !== void 0 ? _a : (_b = slots.actions) === null || _b === void 0 ? void 0 : _b.call(slots);\n      const author = (_c = props.author) !== null && _c !== void 0 ? _c : (_d = slots.author) === null || _d === void 0 ? void 0 : _d.call(slots);\n      const avatar = (_e = props.avatar) !== null && _e !== void 0 ? _e : (_f = slots.avatar) === null || _f === void 0 ? void 0 : _f.call(slots);\n      const content = (_g = props.content) !== null && _g !== void 0 ? _g : (_h = slots.content) === null || _h === void 0 ? void 0 : _h.call(slots);\n      const datetime = (_j = props.datetime) !== null && _j !== void 0 ? _j : (_k = slots.datetime) === null || _k === void 0 ? void 0 : _k.call(slots);\n      const avatarDom = _createVNode(\"div\", {\n        \"class\": `${pre}-avatar`\n      }, [typeof avatar === 'string' ? _createVNode(\"img\", {\n        \"src\": avatar,\n        \"alt\": \"comment-avatar\"\n      }, null) : avatar]);\n      const actionDom = actions ? _createVNode(\"ul\", {\n        \"class\": `${pre}-actions`\n      }, [getAction(Array.isArray(actions) ? actions : [actions])]) : null;\n      const authorContent = _createVNode(\"div\", {\n        \"class\": `${pre}-content-author`\n      }, [author && _createVNode(\"span\", {\n        \"class\": `${pre}-content-author-name`\n      }, [author]), datetime && _createVNode(\"span\", {\n        \"class\": `${pre}-content-author-time`\n      }, [datetime])]);\n      const contentDom = _createVNode(\"div\", {\n        \"class\": `${pre}-content`\n      }, [authorContent, _createVNode(\"div\", {\n        \"class\": `${pre}-content-detail`\n      }, [content]), actionDom]);\n      const comment = _createVNode(\"div\", {\n        \"class\": `${pre}-inner`\n      }, [avatarDom, contentDom]);\n      const children = flattenChildren((_l = slots.default) === null || _l === void 0 ? void 0 : _l.call(slots));\n      return wrapSSR(_createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"class\": [pre, {\n          [`${pre}-rtl`]: direction.value === 'rtl'\n        }, attrs.class, hashId.value]\n      }), [comment, children && children.length ? renderNested(pre, children) : null]));\n    };\n  }\n});\nexport default withInstall(Comment);",
+      "start": 1718517096391,
+      "end": 1718517096418,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096418,
+      "end": 1718517096418,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096418,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096419,
+      "end": 1718517096419,
+      "order": "normal"
+    }
+  ]
+}

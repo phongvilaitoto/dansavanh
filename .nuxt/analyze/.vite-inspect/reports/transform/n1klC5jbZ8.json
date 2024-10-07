@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/tree/utils/iconUtil.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport LoadingOutlined from \"@ant-design/icons-vue/es/icons/LoadingOutlined\";\nimport FileOutlined from \"@ant-design/icons-vue/es/icons/FileOutlined\";\nimport MinusSquareOutlined from \"@ant-design/icons-vue/es/icons/MinusSquareOutlined\";\nimport PlusSquareOutlined from \"@ant-design/icons-vue/es/icons/PlusSquareOutlined\";\nimport CaretDownFilled from \"@ant-design/icons-vue/es/icons/CaretDownFilled\";\nimport { isValidElement } from '../../_util/props-util';\nimport { cloneVNode } from 'vue';\nexport default function renderSwitcherIcon(prefixCls, switcherIcon, props, leafIcon, showLine) {\n  const {\n    isLeaf,\n    expanded,\n    loading\n  } = props;\n  let icon = switcherIcon;\n  if (loading) {\n    return _createVNode(LoadingOutlined, {\n      \"class\": `${prefixCls}-switcher-loading-icon`\n    }, null);\n  }\n  let showLeafIcon;\n  if (showLine && typeof showLine === 'object') {\n    showLeafIcon = showLine.showLeafIcon;\n  }\n  let defaultIcon = null;\n  const switcherCls = `${prefixCls}-switcher-icon`;\n  if (isLeaf) {\n    if (!showLine) {\n      return null;\n    }\n    if (showLeafIcon && leafIcon) {\n      return leafIcon(props);\n    }\n    if (typeof showLine === 'object' && !showLeafIcon) {\n      defaultIcon = _createVNode(\"span\", {\n        \"class\": `${prefixCls}-switcher-leaf-line`\n      }, null);\n    } else {\n      defaultIcon = _createVNode(FileOutlined, {\n        \"class\": `${prefixCls}-switcher-line-icon`\n      }, null);\n    }\n    return defaultIcon;\n  } else {\n    defaultIcon = _createVNode(CaretDownFilled, {\n      \"class\": switcherCls\n    }, null);\n    if (showLine) {\n      defaultIcon = expanded ? _createVNode(MinusSquareOutlined, {\n        \"class\": `${prefixCls}-switcher-line-icon`\n      }, null) : _createVNode(PlusSquareOutlined, {\n        \"class\": `${prefixCls}-switcher-line-icon`\n      }, null);\n    }\n  }\n  if (typeof switcherIcon === 'function') {\n    icon = switcherIcon(_extends(_extends({}, props), {\n      defaultIcon,\n      switcherCls\n    }));\n  } else if (isValidElement(icon)) {\n    icon = cloneVNode(icon, {\n      class: switcherCls\n    });\n  }\n  return icon || defaultIcon;\n}",
+      "start": 1718517097686,
+      "end": 1718517097734,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097734,
+      "end": 1718517097734,
+      "order": "normal"
+    }
+  ]
+}

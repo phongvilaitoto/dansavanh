@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/@ant-design/icons-vue/es/components/IconBase.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "var _excluded = [\"icon\", \"primaryColor\", \"secondaryColor\"];\n\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\n\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nimport { generate, getSecondaryColor, isIconDefinition, warning } from '../utils';\nimport { reactive } from 'vue';\nvar twoToneColorPalette = reactive({\n  primaryColor: '#333',\n  secondaryColor: '#E6E6E6',\n  calculated: false\n});\n\nfunction setTwoToneColors(_ref) {\n  var primaryColor = _ref.primaryColor,\n      secondaryColor = _ref.secondaryColor;\n  twoToneColorPalette.primaryColor = primaryColor;\n  twoToneColorPalette.secondaryColor = secondaryColor || getSecondaryColor(primaryColor);\n  twoToneColorPalette.calculated = !!secondaryColor;\n}\n\nfunction getTwoToneColors() {\n  return _objectSpread({}, twoToneColorPalette);\n}\n\nvar IconBase = function IconBase(props, context) {\n  var _props$context$attrs = _objectSpread({}, props, context.attrs),\n      icon = _props$context$attrs.icon,\n      primaryColor = _props$context$attrs.primaryColor,\n      secondaryColor = _props$context$attrs.secondaryColor,\n      restProps = _objectWithoutProperties(_props$context$attrs, _excluded);\n\n  var colors = twoToneColorPalette;\n\n  if (primaryColor) {\n    colors = {\n      primaryColor: primaryColor,\n      secondaryColor: secondaryColor || getSecondaryColor(primaryColor)\n    };\n  }\n\n  warning(isIconDefinition(icon), \"icon should be icon definiton, but got \".concat(icon));\n\n  if (!isIconDefinition(icon)) {\n    return null;\n  }\n\n  var target = icon;\n\n  if (target && typeof target.icon === 'function') {\n    target = _objectSpread({}, target, {\n      icon: target.icon(colors.primaryColor, colors.secondaryColor)\n    });\n  }\n\n  return generate(target.icon, \"svg-\".concat(target.name), _objectSpread({}, restProps, {\n    'data-icon': target.name,\n    width: '1em',\n    height: '1em',\n    fill: 'currentColor',\n    'aria-hidden': 'true'\n  })); // },\n};\n\nIconBase.props = {\n  icon: Object,\n  primaryColor: String,\n  secondaryColor: String,\n  focusable: String\n};\nIconBase.inheritAttrs = false;\nIconBase.displayName = 'IconBase';\nIconBase.getTwoToneColors = getTwoToneColors;\nIconBase.setTwoToneColors = setTwoToneColors;\nexport default IconBase;",
+      "start": 1718517096362,
+      "end": 1718517096390,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096390,
+      "end": 1718517096390,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096390,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096391,
+      "end": 1718517096391,
+      "order": "normal"
+    }
+  ]
+}

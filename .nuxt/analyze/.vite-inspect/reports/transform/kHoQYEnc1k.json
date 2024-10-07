@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/page-header/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { defineComponent, shallowRef, computed } from 'vue';\nimport PropTypes from '../_util/vue-types';\nimport { filterEmpty, flattenChildren, isEmptyContent } from '../_util/props-util';\nimport ArrowLeftOutlined from \"@ant-design/icons-vue/es/icons/ArrowLeftOutlined\";\nimport ArrowRightOutlined from \"@ant-design/icons-vue/es/icons/ArrowRightOutlined\";\nimport Breadcrumb from '../breadcrumb';\nimport Avatar from '../avatar';\nimport TransButton from '../_util/transButton';\nimport LocaleReceiver from '../locale-provider/LocaleReceiver';\nimport { objectType, vNodeType, withInstall } from '../_util/type';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport classNames from '../_util/classNames';\nimport ResizeObserver from '../vc-resize-observer';\nimport useDestroyed from '../_util/hooks/useDestroyed';\nimport Space from '../space';\n// CSSINJS\nimport useStyle from './style';\nexport const pageHeaderProps = () => ({\n  backIcon: vNodeType(),\n  prefixCls: String,\n  title: vNodeType(),\n  subTitle: vNodeType(),\n  breadcrumb: PropTypes.object,\n  tags: vNodeType(),\n  footer: vNodeType(),\n  extra: vNodeType(),\n  avatar: objectType(),\n  ghost: {\n    type: Boolean,\n    default: undefined\n  },\n  onBack: Function\n});\nconst PageHeader = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'APageHeader',\n  inheritAttrs: false,\n  props: pageHeaderProps(),\n  // emits: ['back'],\n  slots: Object,\n  setup(props, _ref) {\n    let {\n      emit,\n      slots,\n      attrs\n    } = _ref;\n    const {\n      prefixCls,\n      direction,\n      pageHeader\n    } = useConfigInject('page-header', props);\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const compact = shallowRef(false);\n    const isDestroyed = useDestroyed();\n    const onResize = _ref2 => {\n      let {\n        width\n      } = _ref2;\n      if (!isDestroyed.value) {\n        compact.value = width < 768;\n      }\n    };\n    const ghost = computed(() => {\n      var _a, _b, _c;\n      return (_c = (_a = props.ghost) !== null && _a !== void 0 ? _a : (_b = pageHeader === null || pageHeader === void 0 ? void 0 : pageHeader.value) === null || _b === void 0 ? void 0 : _b.ghost) !== null && _c !== void 0 ? _c : true;\n    });\n    const getBackIcon = () => {\n      var _a, _b, _c;\n      return (_c = (_a = props.backIcon) !== null && _a !== void 0 ? _a : (_b = slots.backIcon) === null || _b === void 0 ? void 0 : _b.call(slots)) !== null && _c !== void 0 ? _c : direction.value === 'rtl' ? _createVNode(ArrowRightOutlined, null, null) : _createVNode(ArrowLeftOutlined, null, null);\n    };\n    const renderBack = backIcon => {\n      if (!backIcon || !props.onBack) {\n        return null;\n      }\n      return _createVNode(LocaleReceiver, {\n        \"componentName\": \"PageHeader\",\n        \"children\": _ref3 => {\n          let {\n            back\n          } = _ref3;\n          return _createVNode(\"div\", {\n            \"class\": `${prefixCls.value}-back`\n          }, [_createVNode(TransButton, {\n            \"onClick\": e => {\n              emit('back', e);\n            },\n            \"class\": `${prefixCls.value}-back-button`,\n            \"aria-label\": back\n          }, {\n            default: () => [backIcon]\n          })]);\n        }\n      }, null);\n    };\n    const renderBreadcrumb = () => {\n      var _a;\n      return props.breadcrumb ? _createVNode(Breadcrumb, props.breadcrumb, null) : (_a = slots.breadcrumb) === null || _a === void 0 ? void 0 : _a.call(slots);\n    };\n    const renderTitle = () => {\n      var _a, _b, _c, _d, _e, _f, _g, _h, _j;\n      const {\n        avatar\n      } = props;\n      const title = (_a = props.title) !== null && _a !== void 0 ? _a : (_b = slots.title) === null || _b === void 0 ? void 0 : _b.call(slots);\n      const subTitle = (_c = props.subTitle) !== null && _c !== void 0 ? _c : (_d = slots.subTitle) === null || _d === void 0 ? void 0 : _d.call(slots);\n      const tags = (_e = props.tags) !== null && _e !== void 0 ? _e : (_f = slots.tags) === null || _f === void 0 ? void 0 : _f.call(slots);\n      const extra = (_g = props.extra) !== null && _g !== void 0 ? _g : (_h = slots.extra) === null || _h === void 0 ? void 0 : _h.call(slots);\n      const headingPrefixCls = `${prefixCls.value}-heading`;\n      const hasHeading = title || subTitle || tags || extra;\n      // If there is nothing, return a null\n      if (!hasHeading) {\n        return null;\n      }\n      const backIcon = getBackIcon();\n      const backIconDom = renderBack(backIcon);\n      const hasTitle = backIconDom || avatar || hasHeading;\n      return _createVNode(\"div\", {\n        \"class\": headingPrefixCls\n      }, [hasTitle && _createVNode(\"div\", {\n        \"class\": `${headingPrefixCls}-left`\n      }, [backIconDom, avatar ? _createVNode(Avatar, avatar, null) : (_j = slots.avatar) === null || _j === void 0 ? void 0 : _j.call(slots), title && _createVNode(\"span\", {\n        \"class\": `${headingPrefixCls}-title`,\n        \"title\": typeof title === 'string' ? title : undefined\n      }, [title]), subTitle && _createVNode(\"span\", {\n        \"class\": `${headingPrefixCls}-sub-title`,\n        \"title\": typeof subTitle === 'string' ? subTitle : undefined\n      }, [subTitle]), tags && _createVNode(\"span\", {\n        \"class\": `${headingPrefixCls}-tags`\n      }, [tags])]), extra && _createVNode(\"span\", {\n        \"class\": `${headingPrefixCls}-extra`\n      }, [_createVNode(Space, null, {\n        default: () => [extra]\n      })])]);\n    };\n    const renderFooter = () => {\n      var _a, _b;\n      const footer = (_a = props.footer) !== null && _a !== void 0 ? _a : filterEmpty((_b = slots.footer) === null || _b === void 0 ? void 0 : _b.call(slots));\n      return isEmptyContent(footer) ? null : _createVNode(\"div\", {\n        \"class\": `${prefixCls.value}-footer`\n      }, [footer]);\n    };\n    const renderChildren = children => {\n      return _createVNode(\"div\", {\n        \"class\": `${prefixCls.value}-content`\n      }, [children]);\n    };\n    return () => {\n      var _a, _b;\n      const hasBreadcrumb = ((_a = props.breadcrumb) === null || _a === void 0 ? void 0 : _a.routes) || slots.breadcrumb;\n      const hasFooter = props.footer || slots.footer;\n      const children = flattenChildren((_b = slots.default) === null || _b === void 0 ? void 0 : _b.call(slots));\n      const className = classNames(prefixCls.value, {\n        'has-breadcrumb': hasBreadcrumb,\n        'has-footer': hasFooter,\n        [`${prefixCls.value}-ghost`]: ghost.value,\n        [`${prefixCls.value}-rtl`]: direction.value === 'rtl',\n        [`${prefixCls.value}-compact`]: compact.value\n      }, attrs.class, hashId.value);\n      return wrapSSR(_createVNode(ResizeObserver, {\n        \"onResize\": onResize\n      }, {\n        default: () => [_createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n          \"class\": className\n        }), [renderBreadcrumb(), renderTitle(), children.length ? renderChildren(children) : null, renderFooter()])]\n      }));\n    };\n  }\n});\nexport default withInstall(PageHeader);",
+      "start": 1718517096420,
+      "end": 1718517096485,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096485,
+      "end": 1718517096485,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096485,
+      "end": 1718517096485,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096485,
+      "end": 1718517096485,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096485,
+      "end": 1718517096486,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096486,
+      "end": 1718517096486,
+      "order": "normal"
+    }
+  ]
+}

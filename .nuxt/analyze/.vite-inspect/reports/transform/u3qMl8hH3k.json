@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/radio/Group.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { nextTick, defineComponent, ref, watch, computed } from 'vue';\nimport classNames from '../_util/classNames';\nimport PropTypes from '../_util/vue-types';\nimport Radio from './Radio';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport { booleanType, stringType, arrayType, functionType } from '../_util/type';\nimport { useInjectFormItemContext } from '../form/FormItemContext';\nimport { useProvideRadioGroupContext } from './context';\n// CSSINJS\nimport useStyle from './style';\nconst RadioGroupSizeTypes = ['large', 'default', 'small'];\nexport const radioGroupProps = () => ({\n  prefixCls: String,\n  value: PropTypes.any,\n  size: stringType(),\n  options: arrayType(),\n  disabled: booleanType(),\n  name: String,\n  buttonStyle: stringType('outline'),\n  id: String,\n  optionType: stringType('default'),\n  onChange: functionType(),\n  'onUpdate:value': functionType()\n});\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ARadioGroup',\n  inheritAttrs: false,\n  props: radioGroupProps(),\n  // emits: ['update:value', 'change'],\n  setup(props, _ref) {\n    let {\n      slots,\n      emit,\n      attrs\n    } = _ref;\n    const formItemContext = useInjectFormItemContext();\n    const {\n      prefixCls,\n      direction,\n      size\n    } = useConfigInject('radio', props);\n    // Style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const stateValue = ref(props.value);\n    const updatingValue = ref(false);\n    watch(() => props.value, val => {\n      stateValue.value = val;\n      updatingValue.value = false;\n    });\n    const onRadioChange = ev => {\n      const lastValue = stateValue.value;\n      const {\n        value\n      } = ev.target;\n      if (!('value' in props)) {\n        stateValue.value = value;\n      }\n      // nextTick for https://github.com/vueComponent/ant-design-vue/issues/1280\n      if (!updatingValue.value && value !== lastValue) {\n        updatingValue.value = true;\n        emit('update:value', value);\n        emit('change', ev);\n        formItemContext.onFieldChange();\n      }\n      nextTick(() => {\n        updatingValue.value = false;\n      });\n    };\n    useProvideRadioGroupContext({\n      onChange: onRadioChange,\n      value: stateValue,\n      disabled: computed(() => props.disabled),\n      name: computed(() => props.name),\n      optionType: computed(() => props.optionType)\n    });\n    return () => {\n      var _a;\n      const {\n        options,\n        buttonStyle,\n        id = formItemContext.id.value\n      } = props;\n      const groupPrefixCls = `${prefixCls.value}-group`;\n      const classString = classNames(groupPrefixCls, `${groupPrefixCls}-${buttonStyle}`, {\n        [`${groupPrefixCls}-${size.value}`]: size.value,\n        [`${groupPrefixCls}-rtl`]: direction.value === 'rtl'\n      }, attrs.class, hashId.value);\n      let children = null;\n      if (options && options.length > 0) {\n        children = options.map(option => {\n          if (typeof option === 'string' || typeof option === 'number') {\n            return _createVNode(Radio, {\n              \"key\": option,\n              \"prefixCls\": prefixCls.value,\n              \"disabled\": props.disabled,\n              \"value\": option,\n              \"checked\": stateValue.value === option\n            }, {\n              default: () => [option]\n            });\n          }\n          const {\n            value,\n            disabled,\n            label\n          } = option;\n          return _createVNode(Radio, {\n            \"key\": `radio-group-value-options-${value}`,\n            \"prefixCls\": prefixCls.value,\n            \"disabled\": disabled || props.disabled,\n            \"value\": value,\n            \"checked\": stateValue.value === value\n          }, {\n            default: () => [label]\n          });\n        });\n      } else {\n        children = (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots);\n      }\n      return wrapSSR(_createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"class\": classString,\n        \"id\": id\n      }), [children]));\n    };\n  }\n});",
+      "start": 1718517097631,
+      "end": 1718517097673,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097673,
+      "end": 1718517097673,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097674,
+      "end": 1718517097674,
+      "order": "normal"
+    }
+  ]
+}

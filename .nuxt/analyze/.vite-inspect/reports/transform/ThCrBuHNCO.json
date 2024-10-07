@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/grid/style/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { genComponentStyleHook, mergeToken } from '../../theme/internal';\n// ============================== Row-Shared ==============================\nconst genGridRowStyle = token => {\n  const {\n    componentCls\n  } = token;\n  return {\n    // Grid system\n    [componentCls]: {\n      display: 'flex',\n      flexFlow: 'row wrap',\n      minWidth: 0,\n      '&::before, &::after': {\n        display: 'flex'\n      },\n      '&-no-wrap': {\n        flexWrap: 'nowrap'\n      },\n      // The origin of the X-axis\n      '&-start': {\n        justifyContent: 'flex-start'\n      },\n      // The center of the X-axis\n      '&-center': {\n        justifyContent: 'center'\n      },\n      // The opposite of the X-axis\n      '&-end': {\n        justifyContent: 'flex-end'\n      },\n      '&-space-between': {\n        justifyContent: 'space-between'\n      },\n      '&-space-around ': {\n        justifyContent: 'space-around'\n      },\n      // Align at the top\n      '&-top': {\n        alignItems: 'flex-start'\n      },\n      // Align at the center\n      '&-middle': {\n        alignItems: 'center'\n      },\n      '&-bottom': {\n        alignItems: 'flex-end'\n      }\n    }\n  };\n};\n// ============================== Col-Shared ==============================\nconst genGridColStyle = token => {\n  const {\n    componentCls\n  } = token;\n  return {\n    // Grid system\n    [componentCls]: {\n      position: 'relative',\n      maxWidth: '100%',\n      // Prevent columns from collapsing when empty\n      minHeight: 1\n    }\n  };\n};\nconst genLoopGridColumnsStyle = (token, sizeCls) => {\n  const {\n    componentCls,\n    gridColumns\n  } = token;\n  const gridColumnsStyle = {};\n  for (let i = gridColumns; i >= 0; i--) {\n    if (i === 0) {\n      gridColumnsStyle[`${componentCls}${sizeCls}-${i}`] = {\n        display: 'none'\n      };\n      gridColumnsStyle[`${componentCls}-push-${i}`] = {\n        insetInlineStart: 'auto'\n      };\n      gridColumnsStyle[`${componentCls}-pull-${i}`] = {\n        insetInlineEnd: 'auto'\n      };\n      gridColumnsStyle[`${componentCls}${sizeCls}-push-${i}`] = {\n        insetInlineStart: 'auto'\n      };\n      gridColumnsStyle[`${componentCls}${sizeCls}-pull-${i}`] = {\n        insetInlineEnd: 'auto'\n      };\n      gridColumnsStyle[`${componentCls}${sizeCls}-offset-${i}`] = {\n        marginInlineEnd: 0\n      };\n      gridColumnsStyle[`${componentCls}${sizeCls}-order-${i}`] = {\n        order: 0\n      };\n    } else {\n      gridColumnsStyle[`${componentCls}${sizeCls}-${i}`] = {\n        display: 'block',\n        flex: `0 0 ${i / gridColumns * 100}%`,\n        maxWidth: `${i / gridColumns * 100}%`\n      };\n      gridColumnsStyle[`${componentCls}${sizeCls}-push-${i}`] = {\n        insetInlineStart: `${i / gridColumns * 100}%`\n      };\n      gridColumnsStyle[`${componentCls}${sizeCls}-pull-${i}`] = {\n        insetInlineEnd: `${i / gridColumns * 100}%`\n      };\n      gridColumnsStyle[`${componentCls}${sizeCls}-offset-${i}`] = {\n        marginInlineStart: `${i / gridColumns * 100}%`\n      };\n      gridColumnsStyle[`${componentCls}${sizeCls}-order-${i}`] = {\n        order: i\n      };\n    }\n  }\n  return gridColumnsStyle;\n};\nconst genGridStyle = (token, sizeCls) => genLoopGridColumnsStyle(token, sizeCls);\nconst genGridMediaStyle = (token, screenSize, sizeCls) => ({\n  [`@media (min-width: ${screenSize}px)`]: _extends({}, genGridStyle(token, sizeCls))\n});\n// ============================== Export ==============================\nexport const useRowStyle = genComponentStyleHook('Grid', token => [genGridRowStyle(token)]);\nexport const useColStyle = genComponentStyleHook('Grid', token => {\n  const gridToken = mergeToken(token, {\n    gridColumns: 24 // Row is divided into 24 parts in Grid\n  });\n  const gridMediaSizesMap = {\n    '-sm': gridToken.screenSMMin,\n    '-md': gridToken.screenMDMin,\n    '-lg': gridToken.screenLGMin,\n    '-xl': gridToken.screenXLMin,\n    '-xxl': gridToken.screenXXLMin\n  };\n  return [genGridColStyle(gridToken), genGridStyle(gridToken, ''), genGridStyle(gridToken, '-xs'), Object.keys(gridMediaSizesMap).map(key => genGridMediaStyle(gridToken, gridMediaSizesMap[key], key)).reduce((pre, cur) => _extends(_extends({}, pre), cur), {})];\n});",
+      "start": 1718517098182,
+      "end": 1718517098233,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098233,
+      "end": 1718517098233,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098233,
+      "end": 1718517098234,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098234,
+      "end": 1718517098234,
+      "order": "normal"
+    }
+  ]
+}

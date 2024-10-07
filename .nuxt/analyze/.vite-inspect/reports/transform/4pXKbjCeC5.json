@@ -1,0 +1,236 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-picker/utils/uiUtil.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import isVisible from '../../vc-util/Dom/isVisible';\nimport KeyCode from '../../_util/KeyCode';\nimport raf from '../../_util/raf';\nconst scrollIds = new Map();\n/** Trigger when element is visible in view */\nexport function waitElementReady(element, callback) {\n  let id;\n  function tryOrNextFrame() {\n    if (isVisible(element)) {\n      callback();\n    } else {\n      id = raf(() => {\n        tryOrNextFrame();\n      });\n    }\n  }\n  tryOrNextFrame();\n  return () => {\n    raf.cancel(id);\n  };\n}\n/* eslint-disable no-param-reassign */\nexport function scrollTo(element, to, duration) {\n  if (scrollIds.get(element)) {\n    raf.cancel(scrollIds.get(element));\n  }\n  // jump to target if duration zero\n  if (duration <= 0) {\n    scrollIds.set(element, raf(() => {\n      element.scrollTop = to;\n    }));\n    return;\n  }\n  const difference = to - element.scrollTop;\n  const perTick = difference / duration * 10;\n  scrollIds.set(element, raf(() => {\n    element.scrollTop += perTick;\n    if (element.scrollTop !== to) {\n      scrollTo(element, to, duration - 10);\n    }\n  }));\n}\nexport function createKeydownHandler(event, _ref) {\n  let {\n    onLeftRight,\n    onCtrlLeftRight,\n    onUpDown,\n    onPageUpDown,\n    onEnter\n  } = _ref;\n  const {\n    which,\n    ctrlKey,\n    metaKey\n  } = event;\n  switch (which) {\n    case KeyCode.LEFT:\n      if (ctrlKey || metaKey) {\n        if (onCtrlLeftRight) {\n          onCtrlLeftRight(-1);\n          return true;\n        }\n      } else if (onLeftRight) {\n        onLeftRight(-1);\n        return true;\n      }\n      /* istanbul ignore next */\n      break;\n    case KeyCode.RIGHT:\n      if (ctrlKey || metaKey) {\n        if (onCtrlLeftRight) {\n          onCtrlLeftRight(1);\n          return true;\n        }\n      } else if (onLeftRight) {\n        onLeftRight(1);\n        return true;\n      }\n      /* istanbul ignore next */\n      break;\n    case KeyCode.UP:\n      if (onUpDown) {\n        onUpDown(-1);\n        return true;\n      }\n      /* istanbul ignore next */\n      break;\n    case KeyCode.DOWN:\n      if (onUpDown) {\n        onUpDown(1);\n        return true;\n      }\n      /* istanbul ignore next */\n      break;\n    case KeyCode.PAGE_UP:\n      if (onPageUpDown) {\n        onPageUpDown(-1);\n        return true;\n      }\n      /* istanbul ignore next */\n      break;\n    case KeyCode.PAGE_DOWN:\n      if (onPageUpDown) {\n        onPageUpDown(1);\n        return true;\n      }\n      /* istanbul ignore next */\n      break;\n    case KeyCode.ENTER:\n      if (onEnter) {\n        onEnter();\n        return true;\n      }\n      /* istanbul ignore next */\n      break;\n  }\n  return false;\n}\n// ===================== Format =====================\nexport function getDefaultFormat(format, picker, showTime, use12Hours) {\n  let mergedFormat = format;\n  if (!mergedFormat) {\n    switch (picker) {\n      case 'time':\n        mergedFormat = use12Hours ? 'hh:mm:ss a' : 'HH:mm:ss';\n        break;\n      case 'week':\n        mergedFormat = 'gggg-wo';\n        break;\n      case 'month':\n        mergedFormat = 'YYYY-MM';\n        break;\n      case 'quarter':\n        mergedFormat = 'YYYY-[Q]Q';\n        break;\n      case 'year':\n        mergedFormat = 'YYYY';\n        break;\n      default:\n        mergedFormat = showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';\n    }\n  }\n  return mergedFormat;\n}\nexport function getInputSize(picker, format, generateConfig) {\n  const defaultSize = picker === 'time' ? 8 : 10;\n  const length = typeof format === 'function' ? format(generateConfig.getNow()).length : format.length;\n  return Math.max(defaultSize, length) + 2;\n}\nlet globalClickFunc = null;\nconst clickCallbacks = new Set();\nexport function addGlobalMousedownEvent(callback) {\n  if (!globalClickFunc && typeof window !== 'undefined' && window.addEventListener) {\n    globalClickFunc = e => {\n      // Clone a new list to avoid repeat trigger events\n      [...clickCallbacks].forEach(queueFunc => {\n        queueFunc(e);\n      });\n    };\n    window.addEventListener('mousedown', globalClickFunc);\n  }\n  clickCallbacks.add(callback);\n  return () => {\n    clickCallbacks.delete(callback);\n    if (clickCallbacks.size === 0) {\n      window.removeEventListener('mousedown', globalClickFunc);\n      globalClickFunc = null;\n    }\n  };\n}\nexport function getTargetFromEvent(e) {\n  var _a;\n  const target = e.target;\n  // get target if in shadow dom\n  if (e.composed && target.shadowRoot) {\n    return ((_a = e.composedPath) === null || _a === void 0 ? void 0 : _a.call(e)[0]) || target;\n  }\n  return target;\n}\n// ====================== Mode ======================\nconst getYearNextMode = next => {\n  if (next === 'month' || next === 'date') {\n    return 'year';\n  }\n  return next;\n};\nconst getMonthNextMode = next => {\n  if (next === 'date') {\n    return 'month';\n  }\n  return next;\n};\nconst getQuarterNextMode = next => {\n  if (next === 'month' || next === 'date') {\n    return 'quarter';\n  }\n  return next;\n};\nconst getWeekNextMode = next => {\n  if (next === 'date') {\n    return 'week';\n  }\n  return next;\n};\nexport const PickerModeMap = {\n  year: getYearNextMode,\n  month: getMonthNextMode,\n  quarter: getQuarterNextMode,\n  week: getWeekNextMode,\n  time: null,\n  date: null\n};\nexport function elementsContains(elements, target) {\n  if (process.env.NODE_ENV === 'test') {\n    return false;\n  }\n  return elements.some(ele => ele && ele.contains(target));\n}",
+      "start": 1718517099949,
+      "end": 1718517100002,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100002,
+      "end": 1718517100002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import isVisible from \"../../vc-util/Dom/isVisible\";\nimport KeyCode from \"../../_util/KeyCode\";\nimport raf from \"../../_util/raf\";\nconst scrollIds = /* @__PURE__ */ new Map();\nexport function waitElementReady(element, callback) {\n  let id;\n  function tryOrNextFrame() {\n    if (isVisible(element)) {\n      callback();\n    } else {\n      id = raf(() => {\n        tryOrNextFrame();\n      });\n    }\n  }\n  tryOrNextFrame();\n  return () => {\n    raf.cancel(id);\n  };\n}\nexport function scrollTo(element, to, duration) {\n  if (scrollIds.get(element)) {\n    raf.cancel(scrollIds.get(element));\n  }\n  if (duration <= 0) {\n    scrollIds.set(element, raf(() => {\n      element.scrollTop = to;\n    }));\n    return;\n  }\n  const difference = to - element.scrollTop;\n  const perTick = difference / duration * 10;\n  scrollIds.set(element, raf(() => {\n    element.scrollTop += perTick;\n    if (element.scrollTop !== to) {\n      scrollTo(element, to, duration - 10);\n    }\n  }));\n}\nexport function createKeydownHandler(event, _ref) {\n  let {\n    onLeftRight,\n    onCtrlLeftRight,\n    onUpDown,\n    onPageUpDown,\n    onEnter\n  } = _ref;\n  const {\n    which,\n    ctrlKey,\n    metaKey\n  } = event;\n  switch (which) {\n    case KeyCode.LEFT:\n      if (ctrlKey || metaKey) {\n        if (onCtrlLeftRight) {\n          onCtrlLeftRight(-1);\n          return true;\n        }\n      } else if (onLeftRight) {\n        onLeftRight(-1);\n        return true;\n      }\n      break;\n    case KeyCode.RIGHT:\n      if (ctrlKey || metaKey) {\n        if (onCtrlLeftRight) {\n          onCtrlLeftRight(1);\n          return true;\n        }\n      } else if (onLeftRight) {\n        onLeftRight(1);\n        return true;\n      }\n      break;\n    case KeyCode.UP:\n      if (onUpDown) {\n        onUpDown(-1);\n        return true;\n      }\n      break;\n    case KeyCode.DOWN:\n      if (onUpDown) {\n        onUpDown(1);\n        return true;\n      }\n      break;\n    case KeyCode.PAGE_UP:\n      if (onPageUpDown) {\n        onPageUpDown(-1);\n        return true;\n      }\n      break;\n    case KeyCode.PAGE_DOWN:\n      if (onPageUpDown) {\n        onPageUpDown(1);\n        return true;\n      }\n      break;\n    case KeyCode.ENTER:\n      if (onEnter) {\n        onEnter();\n        return true;\n      }\n      break;\n  }\n  return false;\n}\nexport function getDefaultFormat(format, picker, showTime, use12Hours) {\n  let mergedFormat = format;\n  if (!mergedFormat) {\n    switch (picker) {\n      case \"time\":\n        mergedFormat = use12Hours ? \"hh:mm:ss a\" : \"HH:mm:ss\";\n        break;\n      case \"week\":\n        mergedFormat = \"gggg-wo\";\n        break;\n      case \"month\":\n        mergedFormat = \"YYYY-MM\";\n        break;\n      case \"quarter\":\n        mergedFormat = \"YYYY-[Q]Q\";\n        break;\n      case \"year\":\n        mergedFormat = \"YYYY\";\n        break;\n      default:\n        mergedFormat = showTime ? \"YYYY-MM-DD HH:mm:ss\" : \"YYYY-MM-DD\";\n    }\n  }\n  return mergedFormat;\n}\nexport function getInputSize(picker, format, generateConfig) {\n  const defaultSize = picker === \"time\" ? 8 : 10;\n  const length = typeof format === \"function\" ? format(generateConfig.getNow()).length : format.length;\n  return Math.max(defaultSize, length) + 2;\n}\nlet globalClickFunc = null;\nconst clickCallbacks = /* @__PURE__ */ new Set();\nexport function addGlobalMousedownEvent(callback) {\n  if (!globalClickFunc && typeof window !== \"undefined\" && window.addEventListener) {\n    globalClickFunc = (e) => {\n      [...clickCallbacks].forEach((queueFunc) => {\n        queueFunc(e);\n      });\n    };\n    window.addEventListener(\"mousedown\", globalClickFunc);\n  }\n  clickCallbacks.add(callback);\n  return () => {\n    clickCallbacks.delete(callback);\n    if (clickCallbacks.size === 0) {\n      window.removeEventListener(\"mousedown\", globalClickFunc);\n      globalClickFunc = null;\n    }\n  };\n}\nexport function getTargetFromEvent(e) {\n  var _a;\n  const target = e.target;\n  if (e.composed && target.shadowRoot) {\n    return ((_a = e.composedPath) === null || _a === void 0 ? void 0 : _a.call(e)[0]) || target;\n  }\n  return target;\n}\nconst getYearNextMode = (next) => {\n  if (next === \"month\" || next === \"date\") {\n    return \"year\";\n  }\n  return next;\n};\nconst getMonthNextMode = (next) => {\n  if (next === \"date\") {\n    return \"month\";\n  }\n  return next;\n};\nconst getQuarterNextMode = (next) => {\n  if (next === \"month\" || next === \"date\") {\n    return \"quarter\";\n  }\n  return next;\n};\nconst getWeekNextMode = (next) => {\n  if (next === \"date\") {\n    return \"week\";\n  }\n  return next;\n};\nexport const PickerModeMap = {\n  year: getYearNextMode,\n  month: getMonthNextMode,\n  quarter: getQuarterNextMode,\n  week: getWeekNextMode,\n  time: null,\n  date: null\n};\nexport function elementsContains(elements, target) {\n  if (false) {\n    return false;\n  }\n  return elements.some((ele) => ele && ele.contains(target));\n}\n",
+      "start": 1718517100002,
+      "end": 1718517100016,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100016,
+      "end": 1718517100016,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/modal/useModal/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { isRef, unref, computed, defineComponent, shallowRef, watch } from 'vue';\nimport { withConfirm, withError, withInfo, withSuccess, withWarn } from '../confirm';\nimport HookModal from './HookModal';\nimport destroyFns from '../destroyFns';\nlet uuid = 0;\nconst ElementsHolder = defineComponent({\n  name: 'ElementsHolder',\n  inheritAttrs: false,\n  setup(_, _ref) {\n    let {\n      expose\n    } = _ref;\n    const modals = shallowRef([]);\n    const addModal = modal => {\n      modals.value.push(modal);\n      modals.value = modals.value.slice();\n      return () => {\n        modals.value = modals.value.filter(currentModal => currentModal !== modal);\n      };\n    };\n    expose({\n      addModal\n    });\n    return () => {\n      return modals.value.map(modal => modal());\n    };\n  }\n});\nfunction useModal() {\n  const holderRef = shallowRef(null);\n  // ========================== Effect ==========================\n  const actionQueue = shallowRef([]);\n  watch(actionQueue, () => {\n    if (actionQueue.value.length) {\n      const cloneQueue = [...actionQueue.value];\n      cloneQueue.forEach(action => {\n        action();\n      });\n      actionQueue.value = [];\n    }\n  }, {\n    immediate: true\n  });\n  // =========================== Hook ===========================\n  const getConfirmFunc = withFunc => function hookConfirm(config) {\n    var _a;\n    uuid += 1;\n    const open = shallowRef(true);\n    const modalRef = shallowRef(null);\n    const configRef = shallowRef(unref(config));\n    const updateConfig = shallowRef({});\n    watch(() => config, val => {\n      updateAction(_extends(_extends({}, isRef(val) ? val.value : val), updateConfig.value));\n    });\n    const destroyAction = function () {\n      open.value = false;\n      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n        args[_key] = arguments[_key];\n      }\n      const triggerCancel = args.some(param => param && param.triggerCancel);\n      if (configRef.value.onCancel && triggerCancel) {\n        configRef.value.onCancel(() => {}, ...args.slice(1));\n      }\n    };\n    // eslint-disable-next-line prefer-const\n    let closeFunc;\n    const modal = () => _createVNode(HookModal, {\n      \"key\": `modal-${uuid}`,\n      \"config\": withFunc(configRef.value),\n      \"ref\": modalRef,\n      \"open\": open.value,\n      \"destroyAction\": destroyAction,\n      \"afterClose\": () => {\n        closeFunc === null || closeFunc === void 0 ? void 0 : closeFunc();\n      }\n    }, null);\n    closeFunc = (_a = holderRef.value) === null || _a === void 0 ? void 0 : _a.addModal(modal);\n    if (closeFunc) {\n      destroyFns.push(closeFunc);\n    }\n    const updateAction = newConfig => {\n      configRef.value = _extends(_extends({}, configRef.value), newConfig);\n    };\n    const destroy = () => {\n      if (modalRef.value) {\n        destroyAction();\n      } else {\n        actionQueue.value = [...actionQueue.value, destroyAction];\n      }\n    };\n    const update = newConfig => {\n      updateConfig.value = newConfig;\n      if (modalRef.value) {\n        updateAction(newConfig);\n      } else {\n        actionQueue.value = [...actionQueue.value, () => updateAction(newConfig)];\n      }\n    };\n    return {\n      destroy,\n      update\n    };\n  };\n  const fns = computed(() => ({\n    info: getConfirmFunc(withInfo),\n    success: getConfirmFunc(withSuccess),\n    error: getConfirmFunc(withError),\n    warning: getConfirmFunc(withWarn),\n    confirm: getConfirmFunc(withConfirm)\n  }));\n  const holderKey = Symbol('modalHolderKey');\n  return [fns.value, () => _createVNode(ElementsHolder, {\n    \"key\": holderKey,\n    \"ref\": holderRef\n  }, null)];\n}\nexport default useModal;",
+      "start": 1718517097508,
+      "end": 1718517097568,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097568,
+      "end": 1718517097568,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097568,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097569,
+      "end": 1718517097569,
+      "order": "normal"
+    }
+  ]
+}

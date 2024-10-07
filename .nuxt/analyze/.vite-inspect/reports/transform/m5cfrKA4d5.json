@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/notification/useNotification.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nvar __rest = this && this.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\nimport { shallowRef, computed, defineComponent } from 'vue';\nimport { useNotification as useVcNotification } from '../vc-notification';\nimport useStyle from './style';\nimport { getCloseIcon, PureContent } from './PurePanel';\nimport { getMotion, getPlacementStyle } from './util';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport classNames from '../_util/classNames';\nconst DEFAULT_OFFSET = 24;\nconst DEFAULT_DURATION = 4.5;\nconst Holder = defineComponent({\n  name: 'Holder',\n  inheritAttrs: false,\n  props: ['prefixCls', 'class', 'type', 'icon', 'content', 'onAllRemoved'],\n  setup(props, _ref) {\n    let {\n      expose\n    } = _ref;\n    const {\n      getPrefixCls,\n      getPopupContainer\n    } = useConfigInject('notification', props);\n    const prefixCls = computed(() => props.prefixCls || getPrefixCls('notification'));\n    // =============================== Style ===============================\n    const getStyles = placement => {\n      var _a, _b;\n      return getPlacementStyle(placement, (_a = props.top) !== null && _a !== void 0 ? _a : DEFAULT_OFFSET, (_b = props.bottom) !== null && _b !== void 0 ? _b : DEFAULT_OFFSET);\n    };\n    // Style\n    const [, hashId] = useStyle(prefixCls);\n    const getClassName = () => classNames(hashId.value, {\n      [`${prefixCls.value}-rtl`]: props.rtl\n    });\n    // ============================== Motion ===============================\n    const getNotificationMotion = () => getMotion(prefixCls.value);\n    // ============================== Origin ===============================\n    const [api, holder] = useVcNotification({\n      prefixCls: prefixCls.value,\n      getStyles,\n      getClassName,\n      motion: getNotificationMotion,\n      closable: true,\n      closeIcon: getCloseIcon(prefixCls.value),\n      duration: DEFAULT_DURATION,\n      getContainer: () => {\n        var _a, _b;\n        return ((_a = props.getPopupContainer) === null || _a === void 0 ? void 0 : _a.call(props)) || ((_b = getPopupContainer.value) === null || _b === void 0 ? void 0 : _b.call(getPopupContainer)) || document.body;\n      },\n      maxCount: props.maxCount,\n      hashId: hashId.value,\n      onAllRemoved: props.onAllRemoved\n    });\n    // ================================ Ref ================================\n    expose(_extends(_extends({}, api), {\n      prefixCls: prefixCls.value,\n      hashId\n    }));\n    return holder;\n  }\n});\n// ==============================================================================\n// ==                                   Hook                                   ==\n// ==============================================================================\nexport function useInternalNotification(notificationConfig) {\n  const holderRef = shallowRef(null);\n  const holderKey = Symbol('notificationHolderKey');\n  // ================================ API ================================\n  // Wrap with notification content\n  // >>> Open\n  const open = config => {\n    if (!holderRef.value) {\n      return;\n    }\n    const {\n      open: originOpen,\n      prefixCls,\n      hashId\n    } = holderRef.value;\n    const noticePrefixCls = `${prefixCls}-notice`;\n    const {\n        message,\n        description,\n        icon,\n        type,\n        btn,\n        class: className\n      } = config,\n      restConfig = __rest(config, [\"message\", \"description\", \"icon\", \"type\", \"btn\", \"class\"]);\n    return originOpen(_extends(_extends({\n      placement: 'topRight'\n    }, restConfig), {\n      content: () => _createVNode(PureContent, {\n        \"prefixCls\": noticePrefixCls,\n        \"icon\": typeof icon === 'function' ? icon() : icon,\n        \"type\": type,\n        \"message\": typeof message === 'function' ? message() : message,\n        \"description\": typeof description === 'function' ? description() : description,\n        \"btn\": typeof btn === 'function' ? btn() : btn\n      }, null),\n      // @ts-ignore\n      class: classNames(type && `${noticePrefixCls}-${type}`, hashId, className)\n    }));\n  };\n  // >>> destroy\n  const destroy = key => {\n    var _a, _b;\n    if (key !== undefined) {\n      (_a = holderRef.value) === null || _a === void 0 ? void 0 : _a.close(key);\n    } else {\n      (_b = holderRef.value) === null || _b === void 0 ? void 0 : _b.destroy();\n    }\n  };\n  const wrapAPI = {\n    open,\n    destroy\n  };\n  const keys = ['success', 'info', 'warning', 'error'];\n  keys.forEach(type => {\n    wrapAPI[type] = config => open(_extends(_extends({}, config), {\n      type\n    }));\n  });\n  // ============================== Return ===============================\n  return [wrapAPI, () => _createVNode(Holder, _objectSpread(_objectSpread({\n    \"key\": holderKey\n  }, notificationConfig), {}, {\n    \"ref\": holderRef\n  }), null)];\n}\nexport default function useNotification(notificationConfig) {\n  return useInternalNotification(notificationConfig);\n}",
+      "start": 1718517097563,
+      "end": 1718517097634,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517097634,
+      "end": 1718517097634,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517097634,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517097635,
+      "end": 1718517097635,
+      "order": "normal"
+    }
+  ]
+}

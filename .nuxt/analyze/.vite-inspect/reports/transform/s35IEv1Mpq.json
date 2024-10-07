@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-tree/utils/conductUtil.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { note } from '../../vc-util/warning';\nfunction removeFromCheckedKeys(halfCheckedKeys, checkedKeys) {\n  const filteredKeys = new Set();\n  halfCheckedKeys.forEach(key => {\n    if (!checkedKeys.has(key)) {\n      filteredKeys.add(key);\n    }\n  });\n  return filteredKeys;\n}\nexport function isCheckDisabled(node) {\n  const {\n    disabled,\n    disableCheckbox,\n    checkable\n  } = node || {};\n  return !!(disabled || disableCheckbox) || checkable === false;\n}\n// Fill miss keys\nfunction fillConductCheck(keys, levelEntities, maxLevel, syntheticGetCheckDisabled) {\n  const checkedKeys = new Set(keys);\n  const halfCheckedKeys = new Set();\n  // Add checked keys top to bottom\n  for (let level = 0; level <= maxLevel; level += 1) {\n    const entities = levelEntities.get(level) || new Set();\n    entities.forEach(entity => {\n      const {\n        key,\n        node,\n        children = []\n      } = entity;\n      if (checkedKeys.has(key) && !syntheticGetCheckDisabled(node)) {\n        children.filter(childEntity => !syntheticGetCheckDisabled(childEntity.node)).forEach(childEntity => {\n          checkedKeys.add(childEntity.key);\n        });\n      }\n    });\n  }\n  // Add checked keys from bottom to top\n  const visitedKeys = new Set();\n  for (let level = maxLevel; level >= 0; level -= 1) {\n    const entities = levelEntities.get(level) || new Set();\n    entities.forEach(entity => {\n      const {\n        parent,\n        node\n      } = entity;\n      // Skip if no need to check\n      if (syntheticGetCheckDisabled(node) || !entity.parent || visitedKeys.has(entity.parent.key)) {\n        return;\n      }\n      // Skip if parent is disabled\n      if (syntheticGetCheckDisabled(entity.parent.node)) {\n        visitedKeys.add(parent.key);\n        return;\n      }\n      let allChecked = true;\n      let partialChecked = false;\n      (parent.children || []).filter(childEntity => !syntheticGetCheckDisabled(childEntity.node)).forEach(_ref => {\n        let {\n          key\n        } = _ref;\n        const checked = checkedKeys.has(key);\n        if (allChecked && !checked) {\n          allChecked = false;\n        }\n        if (!partialChecked && (checked || halfCheckedKeys.has(key))) {\n          partialChecked = true;\n        }\n      });\n      if (allChecked) {\n        checkedKeys.add(parent.key);\n      }\n      if (partialChecked) {\n        halfCheckedKeys.add(parent.key);\n      }\n      visitedKeys.add(parent.key);\n    });\n  }\n  return {\n    checkedKeys: Array.from(checkedKeys),\n    halfCheckedKeys: Array.from(removeFromCheckedKeys(halfCheckedKeys, checkedKeys))\n  };\n}\n// Remove useless key\nfunction cleanConductCheck(keys, halfKeys, levelEntities, maxLevel, syntheticGetCheckDisabled) {\n  const checkedKeys = new Set(keys);\n  let halfCheckedKeys = new Set(halfKeys);\n  // Remove checked keys from top to bottom\n  for (let level = 0; level <= maxLevel; level += 1) {\n    const entities = levelEntities.get(level) || new Set();\n    entities.forEach(entity => {\n      const {\n        key,\n        node,\n        children = []\n      } = entity;\n      if (!checkedKeys.has(key) && !halfCheckedKeys.has(key) && !syntheticGetCheckDisabled(node)) {\n        children.filter(childEntity => !syntheticGetCheckDisabled(childEntity.node)).forEach(childEntity => {\n          checkedKeys.delete(childEntity.key);\n        });\n      }\n    });\n  }\n  // Remove checked keys form bottom to top\n  halfCheckedKeys = new Set();\n  const visitedKeys = new Set();\n  for (let level = maxLevel; level >= 0; level -= 1) {\n    const entities = levelEntities.get(level) || new Set();\n    entities.forEach(entity => {\n      const {\n        parent,\n        node\n      } = entity;\n      // Skip if no need to check\n      if (syntheticGetCheckDisabled(node) || !entity.parent || visitedKeys.has(entity.parent.key)) {\n        return;\n      }\n      // Skip if parent is disabled\n      if (syntheticGetCheckDisabled(entity.parent.node)) {\n        visitedKeys.add(parent.key);\n        return;\n      }\n      let allChecked = true;\n      let partialChecked = false;\n      (parent.children || []).filter(childEntity => !syntheticGetCheckDisabled(childEntity.node)).forEach(_ref2 => {\n        let {\n          key\n        } = _ref2;\n        const checked = checkedKeys.has(key);\n        if (allChecked && !checked) {\n          allChecked = false;\n        }\n        if (!partialChecked && (checked || halfCheckedKeys.has(key))) {\n          partialChecked = true;\n        }\n      });\n      if (!allChecked) {\n        checkedKeys.delete(parent.key);\n      }\n      if (partialChecked) {\n        halfCheckedKeys.add(parent.key);\n      }\n      visitedKeys.add(parent.key);\n    });\n  }\n  return {\n    checkedKeys: Array.from(checkedKeys),\n    halfCheckedKeys: Array.from(removeFromCheckedKeys(halfCheckedKeys, checkedKeys))\n  };\n}\n/**\n * Conduct with keys.\n * @param keyList current key list\n * @param keyEntities key - dataEntity map\n * @param mode `fill` to fill missing key, `clean` to remove useless key\n */\nexport function conductCheck(keyList, checked, keyEntities, maxLevel, levelEntities, getCheckDisabled) {\n  const warningMissKeys = [];\n  let syntheticGetCheckDisabled;\n  if (getCheckDisabled) {\n    syntheticGetCheckDisabled = getCheckDisabled;\n  } else {\n    syntheticGetCheckDisabled = isCheckDisabled;\n  }\n  // We only handle exist keys\n  const keys = new Set(keyList.filter(key => {\n    const hasEntity = !!keyEntities[key];\n    if (!hasEntity) {\n      warningMissKeys.push(key);\n    }\n    return hasEntity;\n  }));\n  note(!warningMissKeys.length, `Tree missing follow keys: ${warningMissKeys.slice(0, 100).map(key => `'${key}'`).join(', ')}`);\n  let result;\n  if (checked === true) {\n    result = fillConductCheck(keys, levelEntities, maxLevel, syntheticGetCheckDisabled);\n  } else {\n    result = cleanConductCheck(keys, checked.halfCheckedKeys, levelEntities, maxLevel, syntheticGetCheckDisabled);\n  }\n  return result;\n}",
+      "start": 1718517098544,
+      "end": 1718517098615,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098616,
+      "end": 1718517098616,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098616,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098617,
+      "end": 1718517098617,
+      "order": "normal"
+    }
+  ]
+}

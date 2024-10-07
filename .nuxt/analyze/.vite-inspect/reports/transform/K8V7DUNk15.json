@@ -1,0 +1,246 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/layouts/default.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { createVNode as _createVNode, renderSlot as _renderSlot, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { \"p-20px\": \"\" }\n\nimport type { ConfigProviderProps } from 'ant-design-vue/es'\r\nimport { theme } from 'ant-design-vue/es'\r\nimport NavBarVue from '~/components/layout/NavBar.vue';\r\nimport FooterVue from '~/components/layout/Footer.vue';\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'default',\n  setup(__props) {\n\r\nconst themeConfig = {\r\n  algorithm: theme.darkAlgorithm,\r\n  token: {\r\n    // colorPrimary: '#ffff',\r\n    colorPrimary: '#722ed1',\r\n  },\r\n} as ConfigProviderProps['theme']\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_a_config_provider = _resolveComponent(\"a-config-provider\")!\n\n  return (_openBlock(), _createBlock(_component_a_config_provider, { theme: themeConfig }, {\n    default: _withCtx(() => [\n      _createVNode(NavBarVue),\n      _createElementVNode(\"div\", _hoisted_1, [\n        _renderSlot(_ctx.$slots, \"default\")\n      ]),\n      _createVNode(FooterVue)\n    ]),\n    _: 3\n  }))\n}\n}\n\n})",
+      "start": 1718517093165,
+      "end": 1718517093165
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517093165,
+      "end": 1718517093165,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517093165,
+      "end": 1718517093165,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517093165,
+      "end": 1718517093165,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517093165,
+      "end": 1718517093166,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517093166,
+      "end": 1718517093166,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517093166,
+      "end": 1718517093166,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { createVNode as _createVNode, renderSlot as _renderSlot, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = { \"p-20px\": \"\" };\nimport { theme } from \"ant-design-vue/es\";\nimport NavBarVue from \"~/components/layout/NavBar.vue\";\nimport FooterVue from \"~/components/layout/Footer.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"default\",\n  setup(__props) {\n    const themeConfig = {\n      algorithm: theme.darkAlgorithm,\n      token: {\n        // colorPrimary: '#ffff',\n        colorPrimary: \"#722ed1\"\n      }\n    };\n    return (_ctx, _cache) => {\n      const _component_a_config_provider = _resolveComponent(\"a-config-provider\");\n      return _openBlock(), _createBlock(_component_a_config_provider, { theme: themeConfig }, {\n        default: _withCtx(() => [\n          _createVNode(NavBarVue),\n          _createElementVNode(\"div\", _hoisted_1, [\n            _renderSlot(_ctx.$slots, \"default\")\n          ]),\n          _createVNode(FooterVue)\n        ]),\n        _: 3\n      });\n    };\n  }\n});\n",
+      "start": 1718517093166,
+      "end": 1718517093602,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/MSII/Desktop/pj/dansavanh/layouts/default.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { createVNode as _createVNode, renderSlot as _renderSlot, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { \"p-20px\": \"\" }\n\nimport type { ConfigProviderProps } from 'ant-design-vue/es'\r\nimport { theme } from 'ant-design-vue/es'\r\nimport NavBarVue from '~/components/layout/NavBar.vue';\r\nimport FooterVue from '~/components/layout/Footer.vue';\r\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'default',\n  setup(__props) {\n\r\nconst themeConfig = {\r\n  algorithm: theme.darkAlgorithm,\r\n  token: {\r\n    // colorPrimary: '#ffff',\r\n    colorPrimary: '#722ed1',\r\n  },\r\n} as ConfigProviderProps['theme']\r\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_a_config_provider = _resolveComponent(\"a-config-provider\")!\n\n  return (_openBlock(), _createBlock(_component_a_config_provider, { theme: themeConfig }, {\n    default: _withCtx(() => [\n      _createVNode(NavBarVue),\n      _createElementVNode(\"div\", _hoisted_1, [\n        _renderSlot(_ctx.$slots, \"default\")\n      ]),\n      _createVNode(FooterVue)\n    ]),\n    _: 3\n  }))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,eAAe,cAAc,cAAc,aAAa,sBAAsB,qBAAqB,oBAAoB,mBAAmB,WAAW,UAAU,aAAa,YAAY,eAAe,oBAAoB;AAEpO,MAAM,aAAa,EAAE,UAAU,GAAG;AAGlC,SAAS,aAAa;AACtB,OAAO,eAAe;AACtB,OAAO,eAAe;AAEtB,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAEjB,UAAM,cAAc;AAAA,MAClB,WAAW,MAAM;AAAA,MACjB,OAAO;AAAA;AAAA,QAEL,cAAc;AAAA,MAChB;AAAA,IACF;AAEA,WAAO,CAAC,MAAU,WAAgB;AAChC,YAAM,+BAA+B,kBAAkB,mBAAmB;AAE1E,aAAQ,WAAW,GAAG,aAAa,8BAA8B,EAAE,OAAO,YAAY,GAAG;AAAA,QACvF,SAAS,SAAS,MAAM;AAAA,UACtB,aAAa,SAAS;AAAA,UACtB,oBAAoB,OAAO,YAAY;AAAA,YACrC,YAAY,KAAK,QAAQ,SAAS;AAAA,UACpC,CAAC;AAAA,UACD,aAAa,SAAS;AAAA,QACxB,CAAC;AAAA,QACD,GAAG;AAAA,MACL,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517093602,
+      "end": 1718517093602,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517093602,
+      "end": 1718517093602,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517093602,
+      "end": 1718517093602,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517093602,
+      "end": 1718517093602,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093602,
+      "end": 1718517093602,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517093602,
+      "end": 1718517093602,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517093602,
+      "end": 1718517093602,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517093602,
+      "end": 1718517093602,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517093603,
+      "end": 1718517093603,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517093605,
+      "end": 1718517093609,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517093609,
+      "end": 1718517093609,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517093610,
+      "end": 1718517093610,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517093611,
+      "end": 1718517093615,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517093616,
+      "end": 1718517093616,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517093616,
+      "end": 1718517093616,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517093617,
+      "end": 1718517093617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517093617,
+      "end": 1718517093617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { ConfigProvider as __nuxt_component_0 } from \"ant-design-vue/es\";\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { createVNode as _createVNode, renderSlot as _renderSlot, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = { \"p-20px\": \"\" };\nimport { theme } from \"ant-design-vue/es\";\nimport NavBarVue from \"~/components/layout/NavBar.vue\";\nimport FooterVue from \"~/components/layout/Footer.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"default\",\n  setup(__props) {\n    const themeConfig = {\n      algorithm: theme.darkAlgorithm,\n      token: {\n        // colorPrimary: '#ffff',\n        colorPrimary: \"#722ed1\"\n      }\n    };\n    return (_ctx, _cache) => {\n      const _component_a_config_provider = __nuxt_component_0;\n      return _openBlock(), _createBlock(_component_a_config_provider, { theme: themeConfig }, {\n        default: _withCtx(() => [\n          _createVNode(NavBarVue),\n          _createElementVNode(\"div\", _hoisted_1, [\n            _renderSlot(_ctx.$slots, \"default\")\n          ]),\n          _createVNode(FooterVue)\n        ]),\n        _: 3\n      });\n    };\n  }\n});\n",
+      "start": 1718517093617,
+      "end": 1718517093617,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517093617,
+      "end": 1718517093617,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517093617,
+      "end": 1718517093617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517093618,
+      "end": 1718517093618,
+      "order": "normal"
+    }
+  ]
+}

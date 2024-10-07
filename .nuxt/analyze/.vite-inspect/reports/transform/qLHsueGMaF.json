@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-trigger/Popup/useVisibleStatus.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {\n  function adopt(value) {\n    return value instanceof P ? value : new P(function (resolve) {\n      resolve(value);\n    });\n  }\n  return new (P || (P = Promise))(function (resolve, reject) {\n    function fulfilled(value) {\n      try {\n        step(generator.next(value));\n      } catch (e) {\n        reject(e);\n      }\n    }\n    function rejected(value) {\n      try {\n        step(generator[\"throw\"](value));\n      } catch (e) {\n        reject(e);\n      }\n    }\n    function step(result) {\n      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);\n    }\n    step((generator = generator.apply(thisArg, _arguments || [])).next());\n  });\n};\nimport { onBeforeUnmount, shallowRef, watch, onMounted } from 'vue';\nimport raf from '../../_util/raf';\nconst StatusQueue = ['measure', 'align', null, 'motion'];\nexport default ((visible, doMeasure) => {\n  const status = shallowRef(null);\n  const rafRef = shallowRef();\n  const destroyRef = shallowRef(false);\n  function setStatus(nextStatus) {\n    if (!destroyRef.value) {\n      status.value = nextStatus;\n    }\n  }\n  function cancelRaf() {\n    raf.cancel(rafRef.value);\n  }\n  function goNextStatus(callback) {\n    cancelRaf();\n    rafRef.value = raf(() => {\n      // Only align should be manually trigger\n      let newStatus = status.value;\n      switch (status.value) {\n        case 'align':\n          newStatus = 'motion';\n          break;\n        case 'motion':\n          newStatus = 'stable';\n          break;\n        default:\n      }\n      setStatus(newStatus);\n      callback === null || callback === void 0 ? void 0 : callback();\n    });\n  }\n  watch(visible, () => {\n    setStatus('measure');\n  }, {\n    immediate: true,\n    flush: 'post'\n  });\n  onMounted(() => {\n    // Go next status\n    watch(status, () => {\n      switch (status.value) {\n        case 'measure':\n          doMeasure();\n          break;\n        default:\n      }\n      if (status.value) {\n        rafRef.value = raf(() => __awaiter(void 0, void 0, void 0, function* () {\n          const index = StatusQueue.indexOf(status.value);\n          const nextStatus = StatusQueue[index + 1];\n          if (nextStatus && index !== -1) {\n            setStatus(nextStatus);\n          }\n        }));\n      }\n    }, {\n      immediate: true,\n      flush: 'post'\n    });\n  });\n  onBeforeUnmount(() => {\n    destroyRef.value = true;\n    cancelRaf();\n  });\n  return [status, goNextStatus];\n});",
+      "start": 1718517100263,
+      "end": 1718517100287,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100287,
+      "end": 1718517100287,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100287,
+      "end": 1718517100288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100288,
+      "end": 1718517100288,
+      "order": "normal"
+    }
+  ]
+}

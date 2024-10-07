@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/steps/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nimport { computed, defineComponent } from 'vue';\nimport CloseOutlined from \"@ant-design/icons-vue/es/icons/CloseOutlined\";\nimport CheckOutlined from \"@ant-design/icons-vue/es/icons/CheckOutlined\";\nimport { anyType, booleanType, stringType, functionType, someType, arrayType } from '../_util/type';\nimport initDefaultProps from '../_util/props-util/initDefaultProps';\nimport VcSteps, { Step as VcStep } from '../vc-steps';\nimport useConfigInject from '../config-provider/hooks/useConfigInject';\nimport useBreakpoint from '../_util/hooks/useBreakpoint';\nimport classNames from '../_util/classNames';\nimport Progress from '../progress';\nimport omit from '../_util/omit';\nimport Tooltip from '../tooltip';\nimport { VcStepProps } from '../vc-steps/Step';\nimport { useToken } from '../theme/internal';\n// CSSINJS\nimport useStyle from './style';\nexport const stepsProps = () => ({\n  prefixCls: String,\n  iconPrefix: String,\n  current: Number,\n  initial: Number,\n  percent: Number,\n  responsive: booleanType(),\n  items: arrayType(),\n  labelPlacement: stringType(),\n  status: stringType(),\n  size: stringType(),\n  direction: stringType(),\n  progressDot: someType([Boolean, Function]),\n  type: stringType(),\n  onChange: functionType(),\n  'onUpdate:current': functionType()\n});\nexport const stepProps = () => ({\n  description: anyType(),\n  icon: anyType(),\n  status: stringType(),\n  disabled: booleanType(),\n  title: anyType(),\n  subTitle: anyType(),\n  onClick: functionType()\n});\nconst Steps = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ASteps',\n  inheritAttrs: false,\n  props: initDefaultProps(stepsProps(), {\n    current: 0,\n    responsive: true,\n    labelPlacement: 'horizontal'\n  }),\n  slots: Object,\n  // emits: ['update:current', 'change'],\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots,\n      emit\n    } = _ref;\n    const {\n      prefixCls,\n      direction: rtlDirection,\n      configProvider\n    } = useConfigInject('steps', props);\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    const [, token] = useToken();\n    const screens = useBreakpoint();\n    const direction = computed(() => props.responsive && screens.value.xs ? 'vertical' : props.direction);\n    const iconPrefix = computed(() => configProvider.getPrefixCls('', props.iconPrefix));\n    const handleChange = current => {\n      emit('update:current', current);\n      emit('change', current);\n    };\n    const isInline = computed(() => props.type === 'inline');\n    const mergedPercent = computed(() => isInline.value ? undefined : props.percent);\n    const stepIconRender = _ref2 => {\n      let {\n        node,\n        status\n      } = _ref2;\n      if (status === 'process' && props.percent !== undefined) {\n        // currently it's hard-coded, since we can't easily read the actually width of icon\n        const progressWidth = props.size === 'small' ? token.value.controlHeight : token.value.controlHeightLG;\n        const iconWithProgress = _createVNode(\"div\", {\n          \"class\": `${prefixCls.value}-progress-icon`\n        }, [_createVNode(Progress, {\n          \"type\": \"circle\",\n          \"percent\": mergedPercent.value,\n          \"size\": progressWidth,\n          \"strokeWidth\": 4,\n          \"format\": () => null\n        }, null), node]);\n        return iconWithProgress;\n      }\n      return node;\n    };\n    const icons = computed(() => ({\n      finish: _createVNode(CheckOutlined, {\n        \"class\": `${prefixCls.value}-finish-icon`\n      }, null),\n      error: _createVNode(CloseOutlined, {\n        \"class\": `${prefixCls.value}-error-icon`\n      }, null)\n    }));\n    return () => {\n      const stepsClassName = classNames({\n        [`${prefixCls.value}-rtl`]: rtlDirection.value === 'rtl',\n        [`${prefixCls.value}-with-progress`]: mergedPercent.value !== undefined\n      }, attrs.class, hashId.value);\n      const itemRender = (item, stepItem) => item.description ? _createVNode(Tooltip, {\n        \"title\": item.description\n      }, {\n        default: () => [stepItem]\n      }) : stepItem;\n      return wrapSSR(_createVNode(VcSteps, _objectSpread(_objectSpread(_objectSpread({\n        \"icons\": icons.value\n      }, attrs), omit(props, ['percent', 'responsive'])), {}, {\n        \"items\": props.items,\n        \"direction\": direction.value,\n        \"prefixCls\": prefixCls.value,\n        \"iconPrefix\": iconPrefix.value,\n        \"class\": stepsClassName,\n        \"onChange\": handleChange,\n        \"isInline\": isInline.value,\n        \"itemRender\": isInline.value ? itemRender : undefined\n      }), _extends({\n        stepIcon: stepIconRender\n      }, slots)));\n    };\n  }\n});\n/* istanbul ignore next */\nexport const Step = defineComponent(_extends(_extends({\n  compatConfig: {\n    MODE: 3\n  }\n}, VcStep), {\n  name: 'AStep',\n  props: VcStepProps()\n}));\nexport default _extends(Steps, {\n  Step,\n  install: app => {\n    app.component(Steps.name, Steps);\n    app.component(Step.name, Step);\n    return app;\n  }\n});",
+      "start": 1718517096483,
+      "end": 1718517096552,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096552,
+      "end": 1718517096552,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096552,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096553,
+      "end": 1718517096553,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096553,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096554,
+      "end": 1718517096554,
+      "order": "normal"
+    }
+  ]
+}

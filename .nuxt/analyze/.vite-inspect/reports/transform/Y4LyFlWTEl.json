@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-notification/HookNotification.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { watch, computed, defineComponent, ref, TransitionGroup } from 'vue';\nimport Notice from './Notice';\nimport { getTransitionGroupProps } from '../_util/transition';\nimport classNames from '../_util/classNames';\nimport Portal from '../_util/Portal';\nlet seed = 0;\nconst now = Date.now();\nexport function getUuid() {\n  const id = seed;\n  seed += 1;\n  return `rcNotification_${now}_${id}`;\n}\nconst Notification = defineComponent({\n  name: 'HookNotification',\n  inheritAttrs: false,\n  props: ['prefixCls', 'transitionName', 'animation', 'maxCount', 'closeIcon', 'hashId', 'remove', 'notices', 'getStyles', 'getClassName', 'onAllRemoved', 'getContainer'],\n  setup(props, _ref) {\n    let {\n      attrs,\n      slots\n    } = _ref;\n    const hookRefs = new Map();\n    const notices = computed(() => props.notices);\n    const transitionProps = computed(() => {\n      let name = props.transitionName;\n      if (!name && props.animation) {\n        switch (typeof props.animation) {\n          case 'string':\n            name = props.animation;\n            break;\n          case 'function':\n            name = props.animation().name;\n            break;\n          case 'object':\n            name = props.animation.name;\n            break;\n          default:\n            name = `${props.prefixCls}-fade`;\n            break;\n        }\n      }\n      return getTransitionGroupProps(name);\n    });\n    const remove = key => props.remove(key);\n    const placements = ref({});\n    watch(notices, () => {\n      const nextPlacements = {};\n      // init placements with animation\n      Object.keys(placements.value).forEach(placement => {\n        nextPlacements[placement] = [];\n      });\n      props.notices.forEach(config => {\n        const {\n          placement = 'topRight'\n        } = config.notice;\n        if (placement) {\n          nextPlacements[placement] = nextPlacements[placement] || [];\n          nextPlacements[placement].push(config);\n        }\n      });\n      placements.value = nextPlacements;\n    });\n    const placementList = computed(() => Object.keys(placements.value));\n    return () => {\n      var _a;\n      const {\n        prefixCls,\n        closeIcon = (_a = slots.closeIcon) === null || _a === void 0 ? void 0 : _a.call(slots, {\n          prefixCls\n        })\n      } = props;\n      const noticeNodes = placementList.value.map(placement => {\n        var _a, _b;\n        const noticesForPlacement = placements.value[placement];\n        const classes = (_a = props.getClassName) === null || _a === void 0 ? void 0 : _a.call(props, placement);\n        const styles = (_b = props.getStyles) === null || _b === void 0 ? void 0 : _b.call(props, placement);\n        const noticeNodesForPlacement = noticesForPlacement.map((_ref2, index) => {\n          let {\n            notice,\n            holderCallback\n          } = _ref2;\n          const updateMark = index === notices.value.length - 1 ? notice.updateMark : undefined;\n          const {\n            key,\n            userPassKey\n          } = notice;\n          const {\n            content\n          } = notice;\n          const noticeProps = _extends(_extends(_extends({\n            prefixCls,\n            closeIcon: typeof closeIcon === 'function' ? closeIcon({\n              prefixCls\n            }) : closeIcon\n          }, notice), notice.props), {\n            key,\n            noticeKey: userPassKey || key,\n            updateMark,\n            onClose: noticeKey => {\n              var _a;\n              remove(noticeKey);\n              (_a = notice.onClose) === null || _a === void 0 ? void 0 : _a.call(notice);\n            },\n            onClick: notice.onClick\n          });\n          if (holderCallback) {\n            return _createVNode(\"div\", {\n              \"key\": key,\n              \"class\": `${prefixCls}-hook-holder`,\n              \"ref\": div => {\n                if (typeof key === 'undefined') {\n                  return;\n                }\n                if (div) {\n                  hookRefs.set(key, div);\n                  holderCallback(div, noticeProps);\n                } else {\n                  hookRefs.delete(key);\n                }\n              }\n            }, null);\n          }\n          return _createVNode(Notice, _objectSpread(_objectSpread({}, noticeProps), {}, {\n            \"class\": classNames(noticeProps.class, props.hashId)\n          }), {\n            default: () => [typeof content === 'function' ? content({\n              prefixCls\n            }) : content]\n          });\n        });\n        const className = {\n          [prefixCls]: 1,\n          [`${prefixCls}-${placement}`]: 1,\n          [attrs.class]: !!attrs.class,\n          [props.hashId]: true,\n          [classes]: !!classes\n        };\n        function onAfterLeave() {\n          var _a;\n          if (noticesForPlacement.length > 0) {\n            return;\n          }\n          Reflect.deleteProperty(placements.value, placement);\n          (_a = props.onAllRemoved) === null || _a === void 0 ? void 0 : _a.call(props);\n        }\n        return _createVNode(\"div\", {\n          \"key\": placement,\n          \"class\": className,\n          \"style\": attrs.style || styles || {\n            top: '65px',\n            left: '50%'\n          }\n        }, [_createVNode(TransitionGroup, _objectSpread(_objectSpread({\n          \"tag\": \"div\"\n        }, transitionProps.value), {}, {\n          \"onAfterLeave\": onAfterLeave\n        }), {\n          default: () => [noticeNodesForPlacement]\n        })]);\n      });\n      return _createVNode(Portal, {\n        \"getContainer\": props.getContainer\n      }, {\n        default: () => [noticeNodes]\n      });\n    };\n  }\n});\nexport default Notification;",
+      "start": 1718517099327,
+      "end": 1718517099360,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099361,
+      "end": 1718517099361,
+      "order": "normal"
+    }
+  ]
+}

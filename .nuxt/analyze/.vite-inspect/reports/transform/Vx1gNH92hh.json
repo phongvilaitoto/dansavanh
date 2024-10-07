@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/theme/internal.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createTheme, useCacheToken, useStyleRegister } from '../_util/cssinjs';\nimport version from '../version';\nimport { PresetColors } from './interface';\nimport defaultDerivative from './themes/default';\nimport defaultSeedToken from './themes/seed';\nimport formatToken from './util/alias';\nimport genComponentStyleHook from './util/genComponentStyleHook';\nimport statisticToken, { merge as mergeToken, statistic } from './util/statistic';\nimport { objectType } from '../_util/type';\nimport { triggerRef, unref, defineComponent, provide, computed, inject, watch, shallowRef } from 'vue';\nconst defaultTheme = createTheme(defaultDerivative);\nexport {\n// colors\nPresetColors,\n// Statistic\nstatistic, statisticToken, mergeToken,\n// hooks\nuseStyleRegister, genComponentStyleHook };\n// ================================ Context =================================\n// To ensure snapshot stable. We disable hashed in test env.\nexport const defaultConfig = {\n  token: defaultSeedToken,\n  hashed: true\n};\n//defaultConfig\nconst DesignTokenContextKey = Symbol('DesignTokenContext');\nexport const globalDesignTokenApi = shallowRef();\nexport const useDesignTokenProvider = value => {\n  provide(DesignTokenContextKey, value);\n  watch(value, () => {\n    globalDesignTokenApi.value = unref(value);\n    triggerRef(globalDesignTokenApi);\n  }, {\n    immediate: true,\n    deep: true\n  });\n};\nexport const useDesignTokenInject = () => {\n  return inject(DesignTokenContextKey, computed(() => globalDesignTokenApi.value || defaultConfig));\n};\nexport const DesignTokenProvider = defineComponent({\n  props: {\n    value: objectType()\n  },\n  setup(props, _ref) {\n    let {\n      slots\n    } = _ref;\n    useDesignTokenProvider(computed(() => props.value));\n    return () => {\n      var _a;\n      return (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots);\n    };\n  }\n});\n// ================================== Hook ==================================\nexport function useToken() {\n  const designTokenContext = inject(DesignTokenContextKey, computed(() => globalDesignTokenApi.value || defaultConfig));\n  const salt = computed(() => `${version}-${designTokenContext.value.hashed || ''}`);\n  const mergedTheme = computed(() => designTokenContext.value.theme || defaultTheme);\n  const cacheToken = useCacheToken(mergedTheme, computed(() => [defaultSeedToken, designTokenContext.value.token]), computed(() => ({\n    salt: salt.value,\n    override: _extends({\n      override: designTokenContext.value.token\n    }, designTokenContext.value.components),\n    formatToken\n  })));\n  return [mergedTheme, computed(() => cacheToken.value[0]), computed(() => designTokenContext.value.hashed ? cacheToken.value[1] : '')];\n}",
+      "start": 1718517096641,
+      "end": 1718517096833,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517096833,
+      "end": 1718517096833,
+      "order": "normal"
+    }
+  ]
+}

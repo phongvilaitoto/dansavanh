@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-table/Body/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createVNode as _createVNode } from \"vue\";\nimport ExpandedRow from './ExpandedRow';\nimport { getColumnsKey } from '../utils/valueUtil';\nimport MeasureCell from './MeasureCell';\nimport BodyRow from './BodyRow';\nimport useFlattenRecords from '../hooks/useFlattenRecords';\nimport { defineComponent, shallowRef, toRef } from 'vue';\nimport { useInjectResize } from '../context/ResizeContext';\nimport { useInjectTable } from '../context/TableContext';\nimport { useInjectBody } from '../context/BodyContext';\nimport { useProvideHover } from '../context/HoverContext';\nexport default defineComponent({\n  name: 'TableBody',\n  props: ['data', 'getRowKey', 'measureColumnWidth', 'expandedKeys', 'customRow', 'rowExpandable', 'childrenColumnName'],\n  setup(props, _ref) {\n    let {\n      slots\n    } = _ref;\n    const resizeContext = useInjectResize();\n    const tableContext = useInjectTable();\n    const bodyContext = useInjectBody();\n    const flattenData = useFlattenRecords(toRef(props, 'data'), toRef(props, 'childrenColumnName'), toRef(props, 'expandedKeys'), toRef(props, 'getRowKey'));\n    const startRow = shallowRef(-1);\n    const endRow = shallowRef(-1);\n    let timeoutId;\n    useProvideHover({\n      startRow,\n      endRow,\n      onHover: (start, end) => {\n        clearTimeout(timeoutId);\n        timeoutId = setTimeout(() => {\n          startRow.value = start;\n          endRow.value = end;\n        }, 100);\n      }\n    });\n    return () => {\n      var _a;\n      const {\n        data,\n        getRowKey,\n        measureColumnWidth,\n        expandedKeys,\n        customRow,\n        rowExpandable,\n        childrenColumnName\n      } = props;\n      const {\n        onColumnResize\n      } = resizeContext;\n      const {\n        prefixCls,\n        getComponent\n      } = tableContext;\n      const {\n        flattenColumns\n      } = bodyContext;\n      const WrapperComponent = getComponent(['body', 'wrapper'], 'tbody');\n      const trComponent = getComponent(['body', 'row'], 'tr');\n      const tdComponent = getComponent(['body', 'cell'], 'td');\n      let rows;\n      if (data.length) {\n        rows = flattenData.value.map((item, idx) => {\n          const {\n            record,\n            indent,\n            index: renderIndex\n          } = item;\n          const key = getRowKey(record, idx);\n          return _createVNode(BodyRow, {\n            \"key\": key,\n            \"rowKey\": key,\n            \"record\": record,\n            \"recordKey\": key,\n            \"index\": idx,\n            \"renderIndex\": renderIndex,\n            \"rowComponent\": trComponent,\n            \"cellComponent\": tdComponent,\n            \"expandedKeys\": expandedKeys,\n            \"customRow\": customRow,\n            \"getRowKey\": getRowKey,\n            \"rowExpandable\": rowExpandable,\n            \"childrenColumnName\": childrenColumnName,\n            \"indent\": indent\n          }, null);\n        });\n      } else {\n        rows = _createVNode(ExpandedRow, {\n          \"expanded\": true,\n          \"class\": `${prefixCls}-placeholder`,\n          \"prefixCls\": prefixCls,\n          \"component\": trComponent,\n          \"cellComponent\": tdComponent,\n          \"colSpan\": flattenColumns.length,\n          \"isEmpty\": true\n        }, {\n          default: () => [(_a = slots.emptyNode) === null || _a === void 0 ? void 0 : _a.call(slots)]\n        });\n      }\n      const columnsKey = getColumnsKey(flattenColumns);\n      return _createVNode(WrapperComponent, {\n        \"class\": `${prefixCls}-tbody`\n      }, {\n        default: () => [measureColumnWidth && _createVNode(\"tr\", {\n          \"aria-hidden\": \"true\",\n          \"class\": `${prefixCls}-measure-row`,\n          \"style\": {\n            height: 0,\n            fontSize: 0\n          }\n        }, [columnsKey.map(columnKey => _createVNode(MeasureCell, {\n          \"key\": columnKey,\n          \"columnKey\": columnKey,\n          \"onColumnResize\": onColumnResize\n        }, null))]), rows]\n      });\n    };\n  }\n});",
+      "start": 1718517099357,
+      "end": 1718517099402,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099402,
+      "end": 1718517099402,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099402,
+      "end": 1718517099403,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099403,
+      "end": 1718517099403,
+      "order": "normal"
+    }
+  ]
+}

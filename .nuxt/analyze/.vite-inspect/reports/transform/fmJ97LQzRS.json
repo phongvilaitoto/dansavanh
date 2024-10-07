@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/upload/UploadList/ListItem.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { withDirectives as _withDirectives, vShow as _vShow, createVNode as _createVNode } from \"vue\";\nimport { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue';\nimport EyeOutlined from \"@ant-design/icons-vue/es/icons/EyeOutlined\";\nimport DeleteOutlined from \"@ant-design/icons-vue/es/icons/DeleteOutlined\";\nimport DownloadOutlined from \"@ant-design/icons-vue/es/icons/DownloadOutlined\";\nimport Tooltip from '../../tooltip';\nimport Progress from '../../progress';\nimport useConfigInject from '../../config-provider/hooks/useConfigInject';\nimport Transition, { getTransitionProps } from '../../_util/transition';\nimport { booleanType, stringType, functionType, arrayType, objectType } from '../../_util/type';\nexport const listItemProps = () => {\n  return {\n    prefixCls: String,\n    locale: objectType(undefined),\n    file: objectType(),\n    items: arrayType(),\n    listType: stringType(),\n    isImgUrl: functionType(),\n    showRemoveIcon: booleanType(),\n    showDownloadIcon: booleanType(),\n    showPreviewIcon: booleanType(),\n    removeIcon: functionType(),\n    downloadIcon: functionType(),\n    previewIcon: functionType(),\n    iconRender: functionType(),\n    actionIconRender: functionType(),\n    itemRender: functionType(),\n    onPreview: functionType(),\n    onClose: functionType(),\n    onDownload: functionType(),\n    progress: objectType()\n  };\n};\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'ListItem',\n  inheritAttrs: false,\n  props: listItemProps(),\n  setup(props, _ref) {\n    let {\n      slots,\n      attrs\n    } = _ref;\n    var _a;\n    const showProgress = shallowRef(false);\n    const progressRafRef = shallowRef();\n    onMounted(() => {\n      progressRafRef.value = setTimeout(() => {\n        showProgress.value = true;\n      }, 300);\n    });\n    onBeforeUnmount(() => {\n      clearTimeout(progressRafRef.value);\n    });\n    const mergedStatus = shallowRef((_a = props.file) === null || _a === void 0 ? void 0 : _a.status);\n    watch(() => {\n      var _a;\n      return (_a = props.file) === null || _a === void 0 ? void 0 : _a.status;\n    }, status => {\n      if (status !== 'removed') {\n        mergedStatus.value = status;\n      }\n    });\n    const {\n      rootPrefixCls\n    } = useConfigInject('upload', props);\n    const transitionProps = computed(() => getTransitionProps(`${rootPrefixCls.value}-fade`));\n    return () => {\n      var _a, _b;\n      const {\n        prefixCls,\n        locale,\n        listType,\n        file,\n        items,\n        progress: progressProps,\n        iconRender = slots.iconRender,\n        actionIconRender = slots.actionIconRender,\n        itemRender = slots.itemRender,\n        isImgUrl,\n        showPreviewIcon,\n        showRemoveIcon,\n        showDownloadIcon,\n        previewIcon: customPreviewIcon = slots.previewIcon,\n        removeIcon: customRemoveIcon = slots.removeIcon,\n        downloadIcon: customDownloadIcon = slots.downloadIcon,\n        onPreview,\n        onDownload,\n        onClose\n      } = props;\n      const {\n        class: className,\n        style\n      } = attrs;\n      // This is used for legacy span make scrollHeight the wrong value.\n      // We will force these to be `display: block` with non `picture-card`\n      const iconNode = iconRender({\n        file\n      });\n      let icon = _createVNode(\"div\", {\n        \"class\": `${prefixCls}-text-icon`\n      }, [iconNode]);\n      if (listType === 'picture' || listType === 'picture-card') {\n        if (mergedStatus.value === 'uploading' || !file.thumbUrl && !file.url) {\n          const uploadingClassName = {\n            [`${prefixCls}-list-item-thumbnail`]: true,\n            [`${prefixCls}-list-item-file`]: mergedStatus.value !== 'uploading'\n          };\n          icon = _createVNode(\"div\", {\n            \"class\": uploadingClassName\n          }, [iconNode]);\n        } else {\n          const thumbnail = (isImgUrl === null || isImgUrl === void 0 ? void 0 : isImgUrl(file)) ? _createVNode(\"img\", {\n            \"src\": file.thumbUrl || file.url,\n            \"alt\": file.name,\n            \"class\": `${prefixCls}-list-item-image`,\n            \"crossorigin\": file.crossOrigin\n          }, null) : iconNode;\n          const aClassName = {\n            [`${prefixCls}-list-item-thumbnail`]: true,\n            [`${prefixCls}-list-item-file`]: isImgUrl && !isImgUrl(file)\n          };\n          icon = _createVNode(\"a\", {\n            \"class\": aClassName,\n            \"onClick\": e => onPreview(file, e),\n            \"href\": file.url || file.thumbUrl,\n            \"target\": \"_blank\",\n            \"rel\": \"noopener noreferrer\"\n          }, [thumbnail]);\n        }\n      }\n      const infoUploadingClass = {\n        [`${prefixCls}-list-item`]: true,\n        [`${prefixCls}-list-item-${mergedStatus.value}`]: true\n      };\n      const linkProps = typeof file.linkProps === 'string' ? JSON.parse(file.linkProps) : file.linkProps;\n      const removeIcon = showRemoveIcon ? actionIconRender({\n        customIcon: customRemoveIcon ? customRemoveIcon({\n          file\n        }) : _createVNode(DeleteOutlined, null, null),\n        callback: () => onClose(file),\n        prefixCls,\n        title: locale.removeFile\n      }) : null;\n      const downloadIcon = showDownloadIcon && mergedStatus.value === 'done' ? actionIconRender({\n        customIcon: customDownloadIcon ? customDownloadIcon({\n          file\n        }) : _createVNode(DownloadOutlined, null, null),\n        callback: () => onDownload(file),\n        prefixCls,\n        title: locale.downloadFile\n      }) : null;\n      const downloadOrDelete = listType !== 'picture-card' && _createVNode(\"span\", {\n        \"key\": \"download-delete\",\n        \"class\": [`${prefixCls}-list-item-actions`, {\n          picture: listType === 'picture'\n        }]\n      }, [downloadIcon, removeIcon]);\n      const listItemNameClass = `${prefixCls}-list-item-name`;\n      const fileName = file.url ? [_createVNode(\"a\", _objectSpread(_objectSpread({\n        \"key\": \"view\",\n        \"target\": \"_blank\",\n        \"rel\": \"noopener noreferrer\",\n        \"class\": listItemNameClass,\n        \"title\": file.name\n      }, linkProps), {}, {\n        \"href\": file.url,\n        \"onClick\": e => onPreview(file, e)\n      }), [file.name]), downloadOrDelete] : [_createVNode(\"span\", {\n        \"key\": \"view\",\n        \"class\": listItemNameClass,\n        \"onClick\": e => onPreview(file, e),\n        \"title\": file.name\n      }, [file.name]), downloadOrDelete];\n      const previewStyle = {\n        pointerEvents: 'none',\n        opacity: 0.5\n      };\n      const previewIcon = showPreviewIcon ? _createVNode(\"a\", {\n        \"href\": file.url || file.thumbUrl,\n        \"target\": \"_blank\",\n        \"rel\": \"noopener noreferrer\",\n        \"style\": file.url || file.thumbUrl ? undefined : previewStyle,\n        \"onClick\": e => onPreview(file, e),\n        \"title\": locale.previewFile\n      }, [customPreviewIcon ? customPreviewIcon({\n        file\n      }) : _createVNode(EyeOutlined, null, null)]) : null;\n      const pictureCardActions = listType === 'picture-card' && mergedStatus.value !== 'uploading' && _createVNode(\"span\", {\n        \"class\": `${prefixCls}-list-item-actions`\n      }, [previewIcon, mergedStatus.value === 'done' && downloadIcon, removeIcon]);\n      const dom = _createVNode(\"div\", {\n        \"class\": infoUploadingClass\n      }, [icon, fileName, pictureCardActions, showProgress.value && _createVNode(Transition, transitionProps.value, {\n        default: () => [_withDirectives(_createVNode(\"div\", {\n          \"class\": `${prefixCls}-list-item-progress`\n        }, ['percent' in file ? _createVNode(Progress, _objectSpread(_objectSpread({}, progressProps), {}, {\n          \"type\": \"line\",\n          \"percent\": file.percent\n        }), null) : null]), [[_vShow, mergedStatus.value === 'uploading']])]\n      })]);\n      const listContainerNameClass = {\n        [`${prefixCls}-list-item-container`]: true,\n        [`${className}`]: !!className\n      };\n      const message = file.response && typeof file.response === 'string' ? file.response : ((_a = file.error) === null || _a === void 0 ? void 0 : _a.statusText) || ((_b = file.error) === null || _b === void 0 ? void 0 : _b.message) || locale.uploadError;\n      const item = mergedStatus.value === 'error' ? _createVNode(Tooltip, {\n        \"title\": message,\n        \"getPopupContainer\": node => node.parentNode\n      }, {\n        default: () => [dom]\n      }) : dom;\n      return _createVNode(\"div\", {\n        \"class\": listContainerNameClass,\n        \"style\": style\n      }, [itemRender ? itemRender({\n        originNode: item,\n        file,\n        fileList: items,\n        actions: {\n          download: onDownload.bind(null, file),\n          preview: onPreview.bind(null, file),\n          remove: onClose.bind(null, file)\n        }\n      }) : item]);\n    };\n  }\n});",
+      "start": 1718517099492,
+      "end": 1718517099535,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099536,
+      "end": 1718517099536,
+      "order": "normal"
+    }
+  ]
+}

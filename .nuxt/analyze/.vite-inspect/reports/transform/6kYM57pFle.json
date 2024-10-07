@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-tree-select/OptionList.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { resolveDirective as _resolveDirective, createVNode as _createVNode } from \"vue\";\nimport { computed, defineComponent, nextTick, ref, shallowRef, toRaw, watch } from 'vue';\nimport useMemo from '../_util/hooks/useMemo';\nimport KeyCode from '../_util/KeyCode';\nimport Tree from '../vc-tree/Tree';\nimport { getAllKeys, isCheckDisabled } from './utils/valueUtil';\nimport { useBaseProps } from '../vc-select';\nimport useInjectLegacySelectContext from './LegacyContext';\nimport useInjectSelectContext from './TreeSelectContext';\nconst HIDDEN_STYLE = {\n  width: 0,\n  height: 0,\n  display: 'flex',\n  overflow: 'hidden',\n  opacity: 0,\n  border: 0,\n  padding: 0,\n  margin: 0\n};\nexport default defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'OptionList',\n  inheritAttrs: false,\n  setup(_, _ref) {\n    let {\n      slots,\n      expose\n    } = _ref;\n    const baseProps = useBaseProps();\n    const legacyContext = useInjectLegacySelectContext();\n    const context = useInjectSelectContext();\n    const treeRef = ref();\n    const memoTreeData = useMemo(() => context.treeData, [() => baseProps.open, () => context.treeData], next => next[0]);\n    const mergedCheckedKeys = computed(() => {\n      const {\n        checkable,\n        halfCheckedKeys,\n        checkedKeys\n      } = legacyContext;\n      if (!checkable) {\n        return null;\n      }\n      return {\n        checked: checkedKeys,\n        halfChecked: halfCheckedKeys\n      };\n    });\n    watch(() => baseProps.open, () => {\n      nextTick(() => {\n        var _a;\n        if (baseProps.open && !baseProps.multiple && legacyContext.checkedKeys.length) {\n          (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.scrollTo({\n            key: legacyContext.checkedKeys[0]\n          });\n        }\n      });\n    }, {\n      immediate: true,\n      flush: 'post'\n    });\n    // ========================== Search ==========================\n    const lowerSearchValue = computed(() => String(baseProps.searchValue).toLowerCase());\n    const filterTreeNode = treeNode => {\n      if (!lowerSearchValue.value) {\n        return false;\n      }\n      return String(treeNode[legacyContext.treeNodeFilterProp]).toLowerCase().includes(lowerSearchValue.value);\n    };\n    // =========================== Keys ===========================\n    const expandedKeys = shallowRef(legacyContext.treeDefaultExpandedKeys);\n    const searchExpandedKeys = shallowRef(null);\n    watch(() => baseProps.searchValue, () => {\n      if (baseProps.searchValue) {\n        searchExpandedKeys.value = getAllKeys(toRaw(context.treeData), toRaw(context.fieldNames));\n      }\n    }, {\n      immediate: true\n    });\n    const mergedExpandedKeys = computed(() => {\n      if (legacyContext.treeExpandedKeys) {\n        return legacyContext.treeExpandedKeys.slice();\n      }\n      return baseProps.searchValue ? searchExpandedKeys.value : expandedKeys.value;\n    });\n    const onInternalExpand = keys => {\n      var _a;\n      expandedKeys.value = keys;\n      searchExpandedKeys.value = keys;\n      (_a = legacyContext.onTreeExpand) === null || _a === void 0 ? void 0 : _a.call(legacyContext, keys);\n    };\n    // ========================== Events ==========================\n    const onListMouseDown = event => {\n      event.preventDefault();\n    };\n    const onInternalSelect = (_, _ref2) => {\n      let {\n        node\n      } = _ref2;\n      var _a, _b;\n      const {\n        checkable,\n        checkedKeys\n      } = legacyContext;\n      if (checkable && isCheckDisabled(node)) {\n        return;\n      }\n      (_a = context.onSelect) === null || _a === void 0 ? void 0 : _a.call(context, node.key, {\n        selected: !checkedKeys.includes(node.key)\n      });\n      if (!baseProps.multiple) {\n        (_b = baseProps.toggleOpen) === null || _b === void 0 ? void 0 : _b.call(baseProps, false);\n      }\n    };\n    // ========================= Keyboard =========================\n    const activeKey = ref(null);\n    const activeEntity = computed(() => legacyContext.keyEntities[activeKey.value]);\n    const setActiveKey = key => {\n      activeKey.value = key;\n    };\n    expose({\n      scrollTo: function () {\n        var _a, _b;\n        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n          args[_key] = arguments[_key];\n        }\n        return (_b = (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.scrollTo) === null || _b === void 0 ? void 0 : _b.call(_a, ...args);\n      },\n      onKeydown: event => {\n        var _a;\n        const {\n          which\n        } = event;\n        switch (which) {\n          // >>> Arrow keys\n          case KeyCode.UP:\n          case KeyCode.DOWN:\n          case KeyCode.LEFT:\n          case KeyCode.RIGHT:\n            (_a = treeRef.value) === null || _a === void 0 ? void 0 : _a.onKeydown(event);\n            break;\n          // >>> Select item\n          case KeyCode.ENTER:\n            {\n              if (activeEntity.value) {\n                const {\n                  selectable,\n                  value\n                } = activeEntity.value.node || {};\n                if (selectable !== false) {\n                  onInternalSelect(null, {\n                    node: {\n                      key: activeKey.value\n                    },\n                    selected: !legacyContext.checkedKeys.includes(value)\n                  });\n                }\n              }\n              break;\n            }\n          // >>> Close\n          case KeyCode.ESC:\n            {\n              baseProps.toggleOpen(false);\n            }\n        }\n      },\n      onKeyup: () => {}\n    });\n    return () => {\n      var _a;\n      const {\n        prefixCls,\n        multiple,\n        searchValue,\n        open,\n        notFoundContent = (_a = slots.notFoundContent) === null || _a === void 0 ? void 0 : _a.call(slots)\n      } = baseProps;\n      const {\n        listHeight,\n        listItemHeight,\n        virtual,\n        dropdownMatchSelectWidth,\n        treeExpandAction\n      } = context;\n      const {\n        checkable,\n        treeDefaultExpandAll,\n        treeIcon,\n        showTreeIcon,\n        switcherIcon,\n        treeLine,\n        loadData,\n        treeLoadedKeys,\n        treeMotion,\n        onTreeLoad,\n        checkedKeys\n      } = legacyContext;\n      // ========================== Render ==========================\n      if (memoTreeData.value.length === 0) {\n        return _createVNode(\"div\", {\n          \"role\": \"listbox\",\n          \"class\": `${prefixCls}-empty`,\n          \"onMousedown\": onListMouseDown\n        }, [notFoundContent]);\n      }\n      const treeProps = {\n        fieldNames: context.fieldNames\n      };\n      if (treeLoadedKeys) {\n        treeProps.loadedKeys = treeLoadedKeys;\n      }\n      if (mergedExpandedKeys.value) {\n        treeProps.expandedKeys = mergedExpandedKeys.value;\n      }\n      return _createVNode(\"div\", {\n        \"onMousedown\": onListMouseDown\n      }, [activeEntity.value && open && _createVNode(\"span\", {\n        \"style\": HIDDEN_STYLE,\n        \"aria-live\": \"assertive\"\n      }, [activeEntity.value.node.value]), _createVNode(Tree, _objectSpread(_objectSpread({\n        \"ref\": treeRef,\n        \"focusable\": false,\n        \"prefixCls\": `${prefixCls}-tree`,\n        \"treeData\": memoTreeData.value,\n        \"height\": listHeight,\n        \"itemHeight\": listItemHeight,\n        \"virtual\": virtual !== false && dropdownMatchSelectWidth !== false,\n        \"multiple\": multiple,\n        \"icon\": treeIcon,\n        \"showIcon\": showTreeIcon,\n        \"switcherIcon\": switcherIcon,\n        \"showLine\": treeLine,\n        \"loadData\": searchValue ? null : loadData,\n        \"motion\": treeMotion,\n        \"activeKey\": activeKey.value,\n        \"checkable\": checkable,\n        \"checkStrictly\": true,\n        \"checkedKeys\": mergedCheckedKeys.value,\n        \"selectedKeys\": !checkable ? checkedKeys : [],\n        \"defaultExpandAll\": treeDefaultExpandAll\n      }, treeProps), {}, {\n        \"onActiveChange\": setActiveKey,\n        \"onSelect\": onInternalSelect,\n        \"onCheck\": onInternalSelect,\n        \"onExpand\": onInternalExpand,\n        \"onLoad\": onTreeLoad,\n        \"filterTreeNode\": filterTreeNode,\n        \"expandAction\": treeExpandAction\n      }), _extends(_extends({}, slots), {\n        checkable: legacyContext.customSlots.treeCheckable\n      }))]);\n    };\n  }\n});",
+      "start": 1718517099460,
+      "end": 1718517099493,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099493,
+      "end": 1718517099493,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099493,
+      "end": 1718517099494,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099494,
+      "end": 1718517099494,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099494,
+      "end": 1718517099494,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099494,
+      "end": 1718517099494,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099494,
+      "end": 1718517099494,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099494,
+      "end": 1718517099494,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099494,
+      "end": 1718517099494,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099494,
+      "end": 1718517099494,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099494,
+      "end": 1718517099494,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-slider/src/common/Marks.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport supportsPassive from '../../../_util/supportsPassive';\nimport classNames from '../../../_util/classNames';\nimport { isValidElement } from '../../../_util/props-util';\nconst Marks = (_, _ref) => {\n  let {\n    attrs,\n    slots\n  } = _ref;\n  const {\n    class: className,\n    vertical,\n    reverse,\n    marks,\n    included,\n    upperBound,\n    lowerBound,\n    max,\n    min,\n    onClickLabel\n  } = attrs;\n  const marksKeys = Object.keys(marks);\n  const customMark = slots.mark;\n  const range = max - min;\n  const elements = marksKeys.map(parseFloat).sort((a, b) => a - b).map(point => {\n    const markPoint = typeof marks[point] === 'function' ? marks[point]() : marks[point];\n    const markPointIsObject = typeof markPoint === 'object' && !isValidElement(markPoint);\n    let markLabel = markPointIsObject ? markPoint.label : markPoint;\n    if (!markLabel && markLabel !== 0) {\n      return null;\n    }\n    if (customMark) {\n      markLabel = customMark({\n        point,\n        label: markLabel\n      });\n    }\n    const isActive = !included && point === upperBound || included && point <= upperBound && point >= lowerBound;\n    const markClassName = classNames({\n      [`${className}-text`]: true,\n      [`${className}-text-active`]: isActive\n    });\n    const bottomStyle = {\n      marginBottom: '-50%',\n      [reverse ? 'top' : 'bottom']: `${(point - min) / range * 100}%`\n    };\n    const leftStyle = {\n      transform: `translateX(${reverse ? `50%` : `-50%`})`,\n      msTransform: `translateX(${reverse ? `50%` : `-50%`})`,\n      [reverse ? 'right' : 'left']: `${(point - min) / range * 100}%`\n    };\n    const style = vertical ? bottomStyle : leftStyle;\n    const markStyle = markPointIsObject ? _extends(_extends({}, style), markPoint.style) : style;\n    const touchEvents = {\n      [supportsPassive ? 'onTouchstartPassive' : 'onTouchstart']: e => onClickLabel(e, point)\n    };\n    return _createVNode(\"span\", _objectSpread({\n      \"class\": markClassName,\n      \"style\": markStyle,\n      \"key\": point,\n      \"onMousedown\": e => onClickLabel(e, point)\n    }, touchEvents), [markLabel]);\n  });\n  return _createVNode(\"div\", {\n    \"class\": className\n  }, [elements]);\n};\nMarks.inheritAttrs = false;\nexport default Marks;",
+      "start": 1718517099457,
+      "end": 1718517099489,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517099489,
+      "end": 1718517099489,
+      "order": "normal"
+    }
+  ]
+}

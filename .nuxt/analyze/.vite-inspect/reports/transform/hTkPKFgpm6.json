@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/typography/Editable.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _objectSpread from \"@babel/runtime/helpers/esm/objectSpread2\";\nimport { createVNode as _createVNode } from \"vue\";\nimport KeyCode from '../_util/KeyCode';\nimport TextArea from '../input/TextArea';\nimport EnterOutlined from \"@ant-design/icons-vue/es/icons/EnterOutlined\";\nimport { defineComponent, ref, reactive, watch, onMounted, toRefs } from 'vue';\nimport classNames from '../_util/classNames';\n// CSSINJS\nimport useStyle from './style';\nconst editableProps = () => ({\n  prefixCls: String,\n  value: String,\n  maxlength: Number,\n  autoSize: {\n    type: [Boolean, Object]\n  },\n  onSave: Function,\n  onCancel: Function,\n  onEnd: Function,\n  onChange: Function,\n  originContent: String,\n  direction: String,\n  component: String\n});\nconst Editable = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'Editable',\n  inheritAttrs: false,\n  props: editableProps(),\n  // emits: ['save', 'cancel', 'end', 'change'],\n  setup(props, _ref) {\n    let {\n      emit,\n      slots,\n      attrs\n    } = _ref;\n    const {\n      prefixCls\n    } = toRefs(props);\n    const state = reactive({\n      current: props.value || '',\n      lastKeyCode: undefined,\n      inComposition: false,\n      cancelFlag: false\n    });\n    watch(() => props.value, current => {\n      state.current = current;\n    });\n    const textArea = ref();\n    onMounted(() => {\n      var _a;\n      if (textArea.value) {\n        const resizableTextArea = (_a = textArea.value) === null || _a === void 0 ? void 0 : _a.resizableTextArea;\n        const innerTextArea = resizableTextArea === null || resizableTextArea === void 0 ? void 0 : resizableTextArea.textArea;\n        innerTextArea.focus();\n        const {\n          length\n        } = innerTextArea.value;\n        innerTextArea.setSelectionRange(length, length);\n      }\n    });\n    function saveTextAreaRef(node) {\n      textArea.value = node;\n    }\n    function onChange(_ref2) {\n      let {\n        target: {\n          value\n        }\n      } = _ref2;\n      state.current = value.replace(/[\\r\\n]/g, '');\n      emit('change', state.current);\n    }\n    function onCompositionStart() {\n      state.inComposition = true;\n    }\n    function onCompositionEnd() {\n      state.inComposition = false;\n    }\n    function onKeyDown(e) {\n      const {\n        keyCode\n      } = e;\n      if (keyCode === KeyCode.ENTER) {\n        e.preventDefault();\n      }\n      // We don't record keyCode when IME is using\n      if (state.inComposition) return;\n      state.lastKeyCode = keyCode;\n    }\n    function onKeyUp(e) {\n      const {\n        keyCode,\n        ctrlKey,\n        altKey,\n        metaKey,\n        shiftKey\n      } = e;\n      // Check if it's a real key\n      if (state.lastKeyCode === keyCode && !state.inComposition && !ctrlKey && !altKey && !metaKey && !shiftKey) {\n        if (keyCode === KeyCode.ENTER) {\n          confirmChange();\n          emit('end');\n        } else if (keyCode === KeyCode.ESC) {\n          state.current = props.originContent;\n          emit('cancel');\n        }\n      }\n    }\n    function onBlur() {\n      confirmChange();\n    }\n    function confirmChange() {\n      emit('save', state.current.trim());\n    }\n    // style\n    const [wrapSSR, hashId] = useStyle(prefixCls);\n    return () => {\n      const textAreaClassName = classNames({\n        [`${prefixCls.value}`]: true,\n        [`${prefixCls.value}-edit-content`]: true,\n        [`${prefixCls.value}-rtl`]: props.direction === 'rtl',\n        [props.component ? `${prefixCls.value}-${props.component}` : '']: true\n      }, attrs.class, hashId.value);\n      return wrapSSR(_createVNode(\"div\", _objectSpread(_objectSpread({}, attrs), {}, {\n        \"class\": textAreaClassName\n      }), [_createVNode(TextArea, {\n        \"ref\": saveTextAreaRef,\n        \"maxlength\": props.maxlength,\n        \"value\": state.current,\n        \"onChange\": onChange,\n        \"onKeydown\": onKeyDown,\n        \"onKeyup\": onKeyUp,\n        \"onCompositionstart\": onCompositionStart,\n        \"onCompositionend\": onCompositionEnd,\n        \"onBlur\": onBlur,\n        \"rows\": 1,\n        \"autoSize\": props.autoSize === undefined || props.autoSize\n      }, null), slots.enterIcon ? slots.enterIcon({\n        className: `${props.prefixCls}-edit-content-confirm`\n      }) : _createVNode(EnterOutlined, {\n        \"class\": `${props.prefixCls}-edit-content-confirm`\n      }, null)]));\n    };\n  }\n});\nexport default Editable;",
+      "start": 1718517098612,
+      "end": 1718517098661,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517098661,
+      "end": 1718517098661,
+      "order": "normal"
+    }
+  ]
+}

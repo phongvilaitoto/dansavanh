@@ -1,0 +1,234 @@
+{
+  "resolvedId": "C:/Users/MSII/Desktop/pj/dansavanh/node_modules/ant-design-vue/es/vc-select/Selector/Input.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import _extends from \"@babel/runtime/helpers/esm/extends\";\nimport { createVNode as _createVNode } from \"vue\";\nimport { cloneElement } from '../../_util/vnode';\nimport { defineComponent, inject, withDirectives } from 'vue';\nimport PropTypes from '../../_util/vue-types';\nimport antInput from '../../_util/antInputDirective';\nimport classNames from '../../_util/classNames';\nexport const inputProps = {\n  inputRef: PropTypes.any,\n  prefixCls: String,\n  id: String,\n  inputElement: PropTypes.VueNode,\n  disabled: {\n    type: Boolean,\n    default: undefined\n  },\n  autofocus: {\n    type: Boolean,\n    default: undefined\n  },\n  autocomplete: String,\n  editable: {\n    type: Boolean,\n    default: undefined\n  },\n  activeDescendantId: String,\n  value: String,\n  open: {\n    type: Boolean,\n    default: undefined\n  },\n  tabindex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),\n  /** Pass accessibility props to input */\n  attrs: PropTypes.object,\n  onKeydown: {\n    type: Function\n  },\n  onMousedown: {\n    type: Function\n  },\n  onChange: {\n    type: Function\n  },\n  onPaste: {\n    type: Function\n  },\n  onCompositionstart: {\n    type: Function\n  },\n  onCompositionend: {\n    type: Function\n  },\n  onFocus: {\n    type: Function\n  },\n  onBlur: {\n    type: Function\n  }\n};\nconst Input = defineComponent({\n  compatConfig: {\n    MODE: 3\n  },\n  name: 'SelectInput',\n  inheritAttrs: false,\n  props: inputProps,\n  setup(props) {\n    let blurTimeout = null;\n    const VCSelectContainerEvent = inject('VCSelectContainerEvent');\n    return () => {\n      var _a;\n      const {\n        prefixCls,\n        id,\n        inputElement,\n        disabled,\n        tabindex,\n        autofocus,\n        autocomplete,\n        editable,\n        activeDescendantId,\n        value,\n        onKeydown,\n        onMousedown,\n        onChange,\n        onPaste,\n        onCompositionstart,\n        onCompositionend,\n        onFocus,\n        onBlur,\n        open,\n        inputRef,\n        attrs\n      } = props;\n      let inputNode = inputElement || withDirectives(_createVNode(\"input\", null, null), [[antInput]]);\n      const inputProps = inputNode.props || {};\n      const {\n        onKeydown: onOriginKeyDown,\n        onInput: onOriginInput,\n        onFocus: onOriginFocus,\n        onBlur: onOriginBlur,\n        onMousedown: onOriginMouseDown,\n        onCompositionstart: onOriginCompositionStart,\n        onCompositionend: onOriginCompositionEnd,\n        style\n      } = inputProps;\n      inputNode = cloneElement(inputNode, _extends(_extends(_extends(_extends(_extends({\n        type: 'search'\n      }, inputProps), {\n        id,\n        ref: inputRef,\n        disabled,\n        tabindex,\n        autocomplete: autocomplete || 'off',\n        autofocus,\n        class: classNames(`${prefixCls}-selection-search-input`, (_a = inputNode === null || inputNode === void 0 ? void 0 : inputNode.props) === null || _a === void 0 ? void 0 : _a.class),\n        role: 'combobox',\n        'aria-expanded': open,\n        'aria-haspopup': 'listbox',\n        'aria-owns': `${id}_list`,\n        'aria-autocomplete': 'list',\n        'aria-controls': `${id}_list`,\n        'aria-activedescendant': activeDescendantId\n      }), attrs), {\n        value: editable ? value : '',\n        readonly: !editable,\n        unselectable: !editable ? 'on' : null,\n        style: _extends(_extends({}, style), {\n          opacity: editable ? null : 0\n        }),\n        onKeydown: event => {\n          onKeydown(event);\n          if (onOriginKeyDown) {\n            onOriginKeyDown(event);\n          }\n        },\n        onMousedown: event => {\n          onMousedown(event);\n          if (onOriginMouseDown) {\n            onOriginMouseDown(event);\n          }\n        },\n        onInput: event => {\n          onChange(event);\n          if (onOriginInput) {\n            onOriginInput(event);\n          }\n        },\n        onCompositionstart(event) {\n          onCompositionstart(event);\n          if (onOriginCompositionStart) {\n            onOriginCompositionStart(event);\n          }\n        },\n        onCompositionend(event) {\n          onCompositionend(event);\n          if (onOriginCompositionEnd) {\n            onOriginCompositionEnd(event);\n          }\n        },\n        onPaste,\n        onFocus: function () {\n          clearTimeout(blurTimeout);\n          onOriginFocus && onOriginFocus(arguments.length <= 0 ? undefined : arguments[0]);\n          onFocus && onFocus(arguments.length <= 0 ? undefined : arguments[0]);\n          VCSelectContainerEvent === null || VCSelectContainerEvent === void 0 ? void 0 : VCSelectContainerEvent.focus(arguments.length <= 0 ? undefined : arguments[0]);\n        },\n        onBlur: function () {\n          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n            args[_key] = arguments[_key];\n          }\n          blurTimeout = setTimeout(() => {\n            onOriginBlur && onOriginBlur(args[0]);\n            onBlur && onBlur(args[0]);\n            VCSelectContainerEvent === null || VCSelectContainerEvent === void 0 ? void 0 : VCSelectContainerEvent.blur(args[0]);\n          }, 100);\n        }\n      }), inputNode.type === 'textarea' ? {} : {\n        type: 'search'\n      }), true, true);\n      return inputNode;\n    };\n  }\n});\nexport default Input;",
+      "start": 1718517100162,
+      "end": 1718517100201,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "pre"
+    },
+    {
+      "name": "unplugin-vue-i18n",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "pre"
+    },
+    {
+      "name": "nuxtjs:i18n-macros-transform",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1718517100201,
+      "end": 1718517100201,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1718517100201,
+      "end": 1718517100202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-resource",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "nuxtjs:i18n-meta-deprecation",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1718517100202,
+      "end": 1718517100202,
+      "order": "normal"
+    }
+  ]
+}
