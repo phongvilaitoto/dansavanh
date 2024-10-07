@@ -20,12 +20,12 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'vercel-edge',
 
-    prerender: {
+    // prerender: {
       
-      crawlLinks: true,
-      routes: ['/sitemap.xml'],
-      //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
-    },
+    //   crawlLinks: true,
+    //   routes: ['/sitemap.xml'],
+    //   //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
+    // },
   },
 
 
