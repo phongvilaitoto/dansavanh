@@ -52,9 +52,9 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/*", href: "/public/favicon.ico" }],
     },
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
-  ssr: true,
+  ssr: false,
 
   antd: {
     extractStyle: true,

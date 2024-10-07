@@ -149,7 +149,6 @@
     "../node_modules/nuxt-facebook-chat/runtime/server",
     "../node_modules/nuxt-aos/runtime/server",
     "../node_modules/@stefanobartoletti/nuxt-social-share/runtime/server",
-    "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
     "../**/*",

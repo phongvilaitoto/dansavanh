@@ -126,7 +126,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/c4dfd62d-4589-475b-b21e-9a48c78b2e74.json"
+        "./manifest/meta/29be086a-540e-4359-b053-4b89bf36f575.json"
       ],
       "#build": [
         "."
@@ -182,8 +182,6 @@
     "../node_modules/nuxt-aos/dist/runtime",
     "../node_modules/@stefanobartoletti/nuxt-social-share/runtime",
     "../node_modules/@stefanobartoletti/nuxt-social-share/dist/runtime",
-    "../node_modules/@nuxt/devtools/runtime",
-    "../node_modules/@nuxt/devtools/dist/runtime",
     "../node_modules/@nuxt/telemetry/runtime",
     "../node_modules/@nuxt/telemetry/dist/runtime",
     ".."
@@ -204,8 +202,6 @@
     "../node_modules/nuxt-aos/dist/runtime/server",
     "../node_modules/@stefanobartoletti/nuxt-social-share/runtime/server",
     "../node_modules/@stefanobartoletti/nuxt-social-share/dist/runtime/server",
-    "../node_modules/@nuxt/devtools/runtime/server",
-    "../node_modules/@nuxt/devtools/dist/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "../node_modules/@nuxt/telemetry/dist/runtime/server",
     "../.vercel/output"
