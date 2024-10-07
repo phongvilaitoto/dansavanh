@@ -15,16 +15,18 @@ export default defineNuxtConfig({
   //   preset: "vercel",
   // },
 
-
-
-
   nitro: {
-    preset: 'vercel',
-    prerender: {
-      crawlLinks: true,  // Ensures links are pre-rendered
-    //  routes: ['/sitemap.xml']  // Pre-render any specific static routes you need
-    }
+    preset: 'vercel'
   },
+
+
+  // nitro: {
+  //   preset: 'vercel',
+  //   prerender: {
+  //     crawlLinks: true,  // Ensures links are pre-rendered
+  //   //  routes: ['/sitemap.xml']  // Pre-render any specific static routes you need
+  //   }
+  // },
 
 
 

@@ -1,4 +1,10 @@
 {
+    "builds": [
+      {
+        "src": "nuxt.config.ts",
+        "use": "@vercel/node"
+      }
+    ],
     "routes": [
       { "src": "/(.*)", "dest": "/" }
     ]
