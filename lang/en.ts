@@ -12,6 +12,7 @@ export default defineI18nLocale(async (locale) => {
   for (let field in object) {
     newObject[field] = object[field][0]
   }
+  
 
   return newObject
 
