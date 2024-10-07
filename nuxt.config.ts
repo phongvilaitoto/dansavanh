@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     preset: 'vercel',
     prerender: {
       crawlLinks: true,  // Ensures links are pre-rendered
-      routes: ['/sitemap.xml']  // Pre-render any specific static routes you need
+    //  routes: ['/sitemap.xml']  // Pre-render any specific static routes you need
     }
   },
 
