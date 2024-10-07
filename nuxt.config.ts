@@ -7,6 +7,7 @@ export default defineNuxtConfig({
       //apiBase: 'http://localhost:4000/client-api',
     },
   },
+
   // nitro: {
   //   prerender: {
   //     crawlLinks: true,
@@ -15,30 +16,20 @@ export default defineNuxtConfig({
   //   preset: "vercel",
   // },
 
+
   nitro: {
-    preset: 'vercel'
+    preset: 'vercel-edge',
+
+    prerender: {
+      
+      crawlLinks: true,
+      routes: ['/sitemap.xml'],
+      //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
+    },
   },
 
 
-  // nitro: {
-  //   preset: 'vercel',
-  //   prerender: {
-  //     crawlLinks: true,  // Ensures links are pre-rendered
-  //   //  routes: ['/sitemap.xml']  // Pre-render any specific static routes you need
-  //   }
-  // },
 
-
-
-  
-  // nitro: {
-  //   preset: 'vercel-edge',
-  //   prerender: {
-  //     crawlLinks: true,
-  //     routes: ['/sitemap.xml'],
-  //     //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
-  //   },
-  // },
   // nitro: {
   //   preset: 'vercel-edge',
 
@@ -48,6 +39,10 @@ export default defineNuxtConfig({
   //     //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
   //   },
   // },
+
+
+
+
   app: {
     baseURL: "/",
     head: {
@@ -57,15 +52,18 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/*", href: "/public/favicon.ico" }],
     },
   },
-  // devtools: { enabled: true },
+  devtools: { enabled: true },
+
   ssr: true,
-  
+
   antd: {
     extractStyle: true,
   },
+
   pinia: {
     storesDirs: ["./stores/**"],
   },
+
   modules: [
     "@ant-design-vue/nuxt",
     "@nuxtjs/i18n",

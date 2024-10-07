@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtPage  />
   </NuxtLayout>
   <!-- <client-only>
       <nuxt-facebook-chat :options="options" />
@@ -27,11 +27,11 @@ const { main } = storeToRefs(useMainStore());
 
 // const route = useRoute()
 // const router = useRouter()
-onMounted(async () => {
+//onMounted(async () => {
   
   const { data }: any = await useFetch(config.public.apiBase + "/getDMain");
   Object.assign(main.value, data.value.dMain);
-})
+// })
 
 // if(route.path === '/') router.push('/en')
 useHead({

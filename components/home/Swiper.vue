@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="main.home && main.home.imgs">
     <Swiper
       :slides-per-view="1"
       :space-between="10"
@@ -63,7 +63,7 @@
           font-family: 'Playfair Display', serif;
         "
       >
-        {{ main.home.imgsTitles[selectedIdx][swipy.realIndex] }}
+        <!-- {{ main.home.imgsTitles[selectedIdx][swipy.realIndex] }} -->
       </p>
     </div>
   </div>
