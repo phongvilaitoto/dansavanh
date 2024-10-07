@@ -1,7 +1,7 @@
 import http from 'node:http';
 import https from 'node:https';
-import { promises, existsSync } from 'fs';
-import { dirname, resolve, join } from 'path';
+import { promises, existsSync } from 'node:fs';
+import { dirname, resolve, join } from 'node:path';
 
 const HASH_RE = /#/g;
 const AMPERSAND_RE = /&/g;
@@ -12,11 +12,11 @@ const ENC_CARET_RE = /%5e/gi;
 const ENC_BACKTICK_RE = /%60/gi;
 const ENC_PIPE_RE = /%7c/gi;
 const ENC_SPACE_RE = /%20/gi;
-function encode$1(text) {
+function encode(text) {
   return encodeURI("" + text).replace(ENC_PIPE_RE, "|");
 }
 function encodeQueryValue(input) {
-  return encode$1(typeof input === "string" ? input : JSON.stringify(input)).replace(PLUS_RE, "%2B").replace(ENC_SPACE_RE, "+").replace(HASH_RE, "%23").replace(AMPERSAND_RE, "%26").replace(ENC_BACKTICK_RE, "`").replace(ENC_CARET_RE, "^").replace(SLASH_RE, "%2F");
+  return encode(typeof input === "string" ? input : JSON.stringify(input)).replace(PLUS_RE, "%2B").replace(ENC_SPACE_RE, "+").replace(HASH_RE, "%23").replace(AMPERSAND_RE, "%26").replace(ENC_BACKTICK_RE, "`").replace(ENC_CARET_RE, "^").replace(SLASH_RE, "%2F");
 }
 function encodeQueryKey(text) {
   return encodeQueryValue(text).replace(EQUAL_RE, "%3D");
@@ -224,10 +224,11 @@ function parseURL(input = "", defaultProto) {
     return parsePath(input);
   }
   const [, protocol = "", auth, hostAndPath = ""] = input.replace(/\\/g, "/").match(/^[\s\0]*([\w+.-]{2,}:)?\/\/([^/@]+@)?(.*)/) || [];
-  const [, host = "", path = ""] = hostAndPath.match(/([^#/?]*)(.*)?/) || [];
-  const { pathname, search, hash } = parsePath(
-    path.replace(/\/(?=[A-Za-z]:)/, "")
-  );
+  let [, host = "", path = ""] = hostAndPath.match(/([^#/?]*)(.*)?/) || [];
+  if (protocol === "file:") {
+    path = path.replace(/\/(?=[A-Za-z]:)/, "");
+  }
+  const { pathname, search, hash } = parsePath(path);
   return {
     protocol: protocol.toLowerCase(),
     auth: auth ? auth.slice(0, Math.max(0, auth.length - 1)) : "",
@@ -256,7 +257,6 @@ function stringifyParsedURL(parsed) {
   return proto + auth + host + pathname + search + hash;
 }
 
-const fieldContentRegExp = /^[\u0009\u0020-\u007E\u0080-\u00FF]+$/;
 function parse(str, options) {
   if (typeof str !== "string") {
     throw new TypeError("argument str must be a string");
@@ -278,6 +278,10 @@ function parse(str, options) {
       continue;
     }
     const key = str.slice(index, eqIdx).trim();
+    if (opt?.filter && !opt?.filter(key)) {
+      index = endIdx + 1;
+      continue;
+    }
     if (void 0 === obj[key]) {
       let val = str.slice(eqIdx + 1, endIdx).trim();
       if (val.codePointAt(0) === 34) {
@@ -289,9 +293,21 @@ function parse(str, options) {
   }
   return obj;
 }
+function decode(str) {
+  return str.includes("%") ? decodeURIComponent(str) : str;
+}
+function tryDecode(str, decode2) {
+  try {
+    return decode2(str);
+  } catch {
+    return str;
+  }
+}
+
+const fieldContentRegExp = /^[\u0009\u0020-\u007E\u0080-\u00FF]+$/;
 function serialize(name, value, options) {
   const opt = options || {};
-  const enc = opt.encode || encode;
+  const enc = opt.encode || encodeURIComponent;
   if (typeof enc !== "function") {
     throw new TypeError("option encode is invalid");
   }
@@ -385,19 +401,6 @@ function serialize(name, value, options) {
 }
 function isDate(val) {
   return Object.prototype.toString.call(val) === "[object Date]" || val instanceof Date;
-}
-function tryDecode(str, decode2) {
-  try {
-    return decode2(str);
-  } catch {
-    return str;
-  }
-}
-function decode(str) {
-  return str.includes("%") ? decodeURIComponent(str) : str;
-}
-function encode(val) {
-  return encodeURIComponent(val);
 }
 
 const defaults = Object.freeze({
@@ -725,8 +728,16 @@ function isNativeFunction(f) {
   return Function.prototype.toString.call(f).slice(-nativeFuncLength) === nativeFunc;
 }
 
+var __defProp$1 = Object.defineProperty;
+var __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField$1 = (obj, key, value) => {
+  __defNormalProp$1(obj, typeof key !== "symbol" ? key + "" : key, value);
+  return value;
+};
 class WordArray {
   constructor(words, sigBytes) {
+    __publicField$1(this, "words");
+    __publicField$1(this, "sigBytes");
     words = this.words = words || [];
     this.sigBytes = sigBytes === void 0 ? words.length * 4 : sigBytes;
   }
@@ -799,10 +810,10 @@ const Utf8 = {
 };
 class BufferedBlockAlgorithm {
   constructor() {
-    this._data = new WordArray();
-    this._nDataBytes = 0;
-    this._minBufferSize = 0;
-    this.blockSize = 512 / 32;
+    __publicField$1(this, "_data", new WordArray());
+    __publicField$1(this, "_nDataBytes", 0);
+    __publicField$1(this, "_minBufferSize", 0);
+    __publicField$1(this, "blockSize", 512 / 32);
   }
   reset() {
     this._data = new WordArray();
@@ -815,7 +826,6 @@ class BufferedBlockAlgorithm {
     this._data.concat(data);
     this._nDataBytes += data.sigBytes;
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _doProcessBlock(_dataWords, _offset) {
   }
   _process(doFlush) {
@@ -851,6 +861,12 @@ class Hasher extends BufferedBlockAlgorithm {
   }
 }
 
+var __defProp$3 = Object.defineProperty;
+var __defNormalProp$3 = (obj, key, value) => key in obj ? __defProp$3(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField$3 = (obj, key, value) => {
+  __defNormalProp$3(obj, key + "" , value);
+  return value;
+};
 const H = [
   1779033703,
   -1150833019,
@@ -931,8 +947,11 @@ const W = [];
 class SHA256 extends Hasher {
   constructor() {
     super(...arguments);
-    this._hash = new WordArray([...H]);
+    __publicField$3(this, "_hash", new WordArray([...H]));
   }
+  /**
+   * Resets the internal state of the hash object to initial values.
+   */
   reset() {
     super.reset();
     this._hash = new WordArray([...H]);
@@ -981,6 +1000,12 @@ class SHA256 extends Hasher {
     H2[6] = H2[6] + g | 0;
     H2[7] = H2[7] + h | 0;
   }
+  /**
+   * Finishes the hash calculation and returns the hash as a WordArray.
+   *
+   * @param {string} messageUpdate - Additional message content to include in the hash.
+   * @returns {WordArray} The finalised hash as a WordArray.
+   */
   finalize(messageUpdate) {
     super.finalize(messageUpdate);
     const nBitsTotal = this._nDataBytes * 8;
@@ -1642,6 +1667,7 @@ class _Readable extends EventEmitter {
     this.destroy();
     return Promise.resolve();
   }
+  // eslint-disable-next-line require-yield
   async *[Symbol.asyncIterator]() {
     throw createNotImplementedError("Readable.asyncIterator");
   }
@@ -2207,6 +2233,9 @@ function readRawBody(event, encoding = "utf8") {
       if (_resolved.constructor === Object) {
         return Buffer.from(JSON.stringify(_resolved));
       }
+      if (_resolved instanceof URLSearchParams) {
+        return Buffer.from(_resolved.toString());
+      }
       return Buffer.from(_resolved);
     });
     return encoding ? promise2.then((buff) => buff.toString(encoding)) : promise2;
@@ -2393,7 +2422,7 @@ function splitCookiesString(cookiesString) {
       }
     }
     if (!cookiesSeparatorFound || pos >= cookiesString.length) {
-      cookiesStrings.push(cookiesString.slice(start, cookiesString.length));
+      cookiesStrings.push(cookiesString.slice(start));
     }
   }
   return cookiesStrings;
@@ -2581,7 +2610,7 @@ async function proxyRequest(event, target, opts = {}) {
     }
   }
   const method = opts.fetchOptions?.method || event.method;
-  const fetchHeaders = mergeHeaders(
+  const fetchHeaders = mergeHeaders$1(
     getProxyRequestHeaders(event),
     opts.fetchOptions?.headers,
     opts.headers
@@ -2722,7 +2751,7 @@ function rewriteCookieProperty(header, map, property) {
     }
   );
 }
-function mergeHeaders(defaults, ...inputs) {
+function mergeHeaders$1(defaults, ...inputs) {
   const _inputs = inputs.filter(Boolean);
   if (_inputs.length === 0) {
     return defaults;
@@ -3112,7 +3141,8 @@ function websocketOptions(evResolver, appOptions) {
   return {
     ...appOptions.websocket,
     async resolve(info) {
-      const { pathname } = parseURL(info.url || "/");
+      const url = info.request?.url || info.url || "/";
+      const { pathname } = typeof url === "string" ? parseURL(url) : url;
       const resolved = await evResolver(pathname);
       return resolved?.handler?.__websocket__ || {};
     }
@@ -3365,30 +3395,51 @@ function detectResponseType(_contentType = "") {
   }
   return "blob";
 }
-function mergeFetchOptions(input, defaults, Headers = globalThis.Headers) {
-  const merged = {
-    ...defaults,
-    ...input
-  };
-  if (defaults?.params && input?.params) {
-    merged.params = {
+function resolveFetchOptions(request, input, defaults, Headers) {
+  const headers = mergeHeaders(
+    input?.headers ?? request?.headers,
+    defaults?.headers,
+    Headers
+  );
+  let query;
+  if (defaults?.query || defaults?.params || input?.params || input?.query) {
+    query = {
       ...defaults?.params,
-      ...input?.params
-    };
-  }
-  if (defaults?.query && input?.query) {
-    merged.query = {
       ...defaults?.query,
+      ...input?.params,
       ...input?.query
     };
   }
-  if (defaults?.headers && input?.headers) {
-    merged.headers = new Headers(defaults?.headers || {});
-    for (const [key, value] of new Headers(input?.headers || {})) {
-      merged.headers.set(key, value);
+  return {
+    ...defaults,
+    ...input,
+    query,
+    params: query,
+    headers
+  };
+}
+function mergeHeaders(input, defaults, Headers) {
+  if (!defaults) {
+    return new Headers(input);
+  }
+  const headers = new Headers(defaults);
+  if (input) {
+    for (const [key, value] of Symbol.iterator in input || Array.isArray(input) ? input : new Headers(input)) {
+      headers.set(key, value);
     }
   }
-  return merged;
+  return headers;
+}
+async function callHooks(context, hooks) {
+  if (hooks) {
+    if (Array.isArray(hooks)) {
+      for (const hook of hooks) {
+        await hook(context);
+      }
+    } else {
+      await hooks(context);
+    }
+  }
 }
 
 const retryStatusCodes = /* @__PURE__ */ new Set([
@@ -3397,7 +3448,7 @@ const retryStatusCodes = /* @__PURE__ */ new Set([
   409,
   // Conflict
   425,
-  // Too Early
+  // Too Early (Experimental)
   429,
   // Too Many Requests
   500,
@@ -3407,7 +3458,7 @@ const retryStatusCodes = /* @__PURE__ */ new Set([
   503,
   // Service Unavailable
   504
-  //  Gateway Timeout
+  // Gateway Timeout
 ]);
 const nullBodyResponses$1 = /* @__PURE__ */ new Set([101, 204, 205, 304]);
 function createFetch$1(globalOptions = {}) {
@@ -3427,7 +3478,7 @@ function createFetch$1(globalOptions = {}) {
       }
       const responseCode = context.response && context.response.status || 500;
       if (retries > 0 && (Array.isArray(context.options.retryStatusCodes) ? context.options.retryStatusCodes.includes(responseCode) : retryStatusCodes.has(responseCode))) {
-        const retryDelay = context.options.retryDelay || 0;
+        const retryDelay = typeof context.options.retryDelay === "function" ? context.options.retryDelay(context) : context.options.retryDelay || 0;
         if (retryDelay > 0) {
           await new Promise((resolve) => setTimeout(resolve, retryDelay));
         }
@@ -3446,23 +3497,25 @@ function createFetch$1(globalOptions = {}) {
   const $fetchRaw = async function $fetchRaw2(_request, _options = {}) {
     const context = {
       request: _request,
-      options: mergeFetchOptions(_options, globalOptions.defaults, Headers),
+      options: resolveFetchOptions(
+        _request,
+        _options,
+        globalOptions.defaults,
+        Headers
+      ),
       response: void 0,
       error: void 0
     };
     context.options.method = context.options.method?.toUpperCase();
     if (context.options.onRequest) {
-      await context.options.onRequest(context);
+      await callHooks(context, context.options.onRequest);
     }
     if (typeof context.request === "string") {
       if (context.options.baseURL) {
         context.request = withBase(context.request, context.options.baseURL);
       }
-      if (context.options.query || context.options.params) {
-        context.request = withQuery(context.request, {
-          ...context.options.params,
-          ...context.options.query
-        });
+      if (context.options.query) {
+        context.request = withQuery(context.request, context.options.query);
       }
     }
     if (context.options.body && isPayloadMethod(context.options.method)) {
@@ -3488,10 +3541,14 @@ function createFetch$1(globalOptions = {}) {
     let abortTimeout;
     if (!context.options.signal && context.options.timeout) {
       const controller = new AbortController();
-      abortTimeout = setTimeout(
-        () => controller.abort(),
-        context.options.timeout
-      );
+      abortTimeout = setTimeout(() => {
+        const error = new Error(
+          "[TimeoutError]: The operation was aborted due to timeout"
+        );
+        error.name = "TimeoutError";
+        error.code = 23;
+        controller.abort(error);
+      }, context.options.timeout);
       context.options.signal = controller.signal;
     }
     try {
@@ -3502,7 +3559,10 @@ function createFetch$1(globalOptions = {}) {
     } catch (error) {
       context.error = error;
       if (context.options.onRequestError) {
-        await context.options.onRequestError(context);
+        await callHooks(
+          context,
+          context.options.onRequestError
+        );
       }
       return await onError(context);
     } finally {
@@ -3530,11 +3590,17 @@ function createFetch$1(globalOptions = {}) {
       }
     }
     if (context.options.onResponse) {
-      await context.options.onResponse(context);
+      await callHooks(
+        context,
+        context.options.onResponse
+      );
     }
     if (!context.options.ignoreResponseError && context.response.status >= 400 && context.response.status < 600) {
       if (context.options.onResponseError) {
-        await context.options.onResponseError(context);
+        await callHooks(
+          context,
+          context.options.onResponseError
+        );
       }
       return await onError(context);
     }
@@ -3546,10 +3612,12 @@ function createFetch$1(globalOptions = {}) {
   };
   $fetch.raw = $fetchRaw;
   $fetch.native = (...args) => fetch(...args);
-  $fetch.create = (defaultOptions = {}) => createFetch$1({
+  $fetch.create = (defaultOptions = {}, customGlobalOptions = {}) => createFetch$1({
     ...globalOptions,
+    ...customGlobalOptions,
     defaults: {
       ...globalOptions.defaults,
+      ...customGlobalOptions.defaults,
       ...defaultOptions
     }
   });
@@ -3573,7 +3641,7 @@ function createNodeFetch() {
     return l(input, { ...nodeFetchOptions, ...init });
   };
 }
-const fetch = globalThis.fetch || createNodeFetch();
+const fetch = globalThis.fetch ? (...args) => globalThis.fetch(...args) : createNodeFetch();
 const Headers$1 = globalThis.Headers || s;
 const AbortController = globalThis.AbortController || i;
 const ofetch = createFetch$1({ fetch, Headers: Headers$1, AbortController });
@@ -3983,7 +4051,7 @@ function splitByCase(str, separators) {
   return parts;
 }
 function kebabCase(str, joiner) {
-  return str ? (Array.isArray(str) ? str : splitByCase(str)).map((p) => p.toLowerCase()).join(joiner ) : "";
+  return str ? (Array.isArray(str) ? str : splitByCase(str)).map((p) => p.toLowerCase()).join(joiner) : "";
 }
 function snakeCase(str) {
   return kebabCase(str || "", "_");
@@ -4038,7 +4106,7 @@ const appConfig = defuFn(inlineAppConfig);
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "003c3435-d23d-4920-a399-8733de715563",
+    "buildId": "dd94c02a-a1cf-4606-a8f9-8dd1f9ccd217",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -4084,19 +4152,19 @@ const _inlineRuntimeConfig = {
         {
           "code": "en",
           "files": [
-            "lang/en.ts"
+            "C:/Users/MSII/Desktop/pj/dansavanh/lang/en.ts"
           ]
         },
         {
           "code": "th",
           "files": [
-            "lang/th.ts"
+            "C:/Users/MSII/Desktop/pj/dansavanh/lang/th.ts"
           ]
         },
         {
           "code": "cn",
           "files": [
-            "lang/cn.ts"
+            "C:/Users/MSII/Desktop/pj/dansavanh/lang/cn.ts"
           ]
         }
       ],
@@ -4125,7 +4193,8 @@ const _inlineRuntimeConfig = {
         "localeDetector": "",
         "switchLocalePathLinkSSR": false,
         "autoImportTranslationFunctions": false
-      }
+      },
+      "multiDomainLocales": false
     },
     "aos": {},
     "socialShare": {
@@ -4214,7 +4283,7 @@ function stringify(value) {
   throw new Error("[unstorage] Cannot stringify value!");
 }
 function checkBufferSupport() {
-  if (typeof Buffer === void 0) {
+  if (typeof Buffer === "undefined") {
     throw new TypeError("[unstorage] Buffer is not supported!");
   }
 }
@@ -4291,7 +4360,7 @@ const memory = defineDriver$1(() => {
   const data = /* @__PURE__ */ new Map();
   return {
     name: DRIVER_NAME$1,
-    options: {},
+    getInstance: () => data,
     hasItem(key) {
       return data.has(key);
     },
@@ -4311,7 +4380,7 @@ const memory = defineDriver$1(() => {
       data.delete(key);
     },
     getKeys() {
-      return Array.from(data.keys());
+      return [...data.keys()];
     },
     clear() {
       data.clear();
@@ -4596,14 +4665,20 @@ function createStorage(options = {}) {
           mount.relativeBase,
           opts
         );
-        const keys = rawKeys.map((key) => mount.mountpoint + normalizeKey$1(key)).filter((key) => !maskedMounts.some((p) => key.startsWith(p)));
-        allKeys.push(...keys);
+        for (const key of rawKeys) {
+          const fullKey = mount.mountpoint + normalizeKey$1(key);
+          if (!maskedMounts.some((p) => fullKey.startsWith(p))) {
+            allKeys.push(fullKey);
+          }
+        }
         maskedMounts = [
           mount.mountpoint,
           ...maskedMounts.filter((p) => !p.startsWith(mount.mountpoint))
         ];
       }
-      return base ? allKeys.filter((key) => key.startsWith(base) && !key.endsWith("$")) : allKeys.filter((key) => !key.endsWith("$"));
+      return base ? allKeys.filter(
+        (key) => key.startsWith(base) && key[key.length - 1] !== "$"
+      ) : allKeys.filter((key) => key[key.length - 1] !== "$");
     },
     // Utils
     async clear(base, opts = {}) {
@@ -4691,7 +4766,14 @@ function createStorage(options = {}) {
         driver: m.driver,
         base: m.mountpoint
       }));
-    }
+    },
+    // Aliases
+    keys: (base, opts = {}) => storage.getKeys(base, opts),
+    get: (key, opts = {}) => storage.getItem(key, opts),
+    set: (key, value, opts = {}) => storage.setItem(key, value, opts),
+    has: (key, opts = {}) => storage.hasItem(key, opts),
+    del: (key, opts = {}) => storage.removeItem(key, opts),
+    remove: (key, opts = {}) => storage.removeItem(key, opts)
   };
   return storage;
 }
@@ -4812,7 +4894,7 @@ async function rmRecursive(dir) {
   );
 }
 
-const PATH_TRAVERSE_RE = /\.\.\:|\.\.$/;
+const PATH_TRAVERSE_RE = /\.\.:|\.\.$/;
 const DRIVER_NAME = "fs-lite";
 const unstorage_47drivers_47fs_45lite = defineDriver((opts = {}) => {
   if (!opts.base) {
@@ -5327,7 +5409,7 @@ const errorHandler = (async function errorhandler(error, event) {
       error.fatal && "[fatal]",
       Number(errorObject.statusCode) !== 200 && `[${errorObject.statusCode}]`
     ].filter(Boolean).join(" ");
-    console.error(tags, errorObject.message + "\n" + stack.map((l) => "  " + l.text).join("  \n"));
+    console.error(tags, (error.message || error.toString() || "internal server error") + "\n" + stack.map((l) => "  " + l.text).join("  \n"));
   }
   if (event.handled) {
     return;
@@ -5506,5 +5588,5 @@ const vercel = (function(req, res) {
   return handler(req, res);
 });
 
-export { $fetch as $, getRequestHeaders as A, hash as B, vercel as C, send as a, setResponseStatus as b, setResponseHeaders as c, useNitroApp as d, eventHandler as e, getQuery as f, getResponseStatus as g, createError$1 as h, getRouteRules as i, joinRelativeURL as j, getResponseStatusText as k, defu as l, sanitizeStatusCode as m, createHooks as n, klona as o, parse as p, getRequestHeader as q, createRouter$1 as r, setResponseHeader as s, toRouteMatcher as t, useRuntimeConfig as u, destr as v, isEqual as w, setCookie as x, getCookie as y, deleteCookie as z };
+export { $fetch as $, deleteCookie as A, hash as B, vercel as C, send as a, setResponseStatus as b, setResponseHeaders as c, useNitroApp as d, eventHandler as e, getQuery as f, getResponseStatus as g, createError$1 as h, getRouteRules as i, joinRelativeURL as j, getResponseStatusText as k, defu as l, sanitizeStatusCode as m, createHooks as n, getRequestHeaders as o, klona as p, parse as q, getRequestHeader as r, setResponseHeader as s, toRouteMatcher as t, useRuntimeConfig as u, createRouter$1 as v, destr as w, isEqual as x, setCookie as y, getCookie as z };
 //# sourceMappingURL=runtime.mjs.map

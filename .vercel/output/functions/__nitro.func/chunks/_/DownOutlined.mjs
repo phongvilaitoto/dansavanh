@@ -1,9 +1,9 @@
-import { a7 as warningOnce, c as classNames } from '../build/useConfigInject-BiTbSa3p.mjs';
+import { a7 as warningOnce, c as classNames } from '../build/useConfigInject-BAI3R2rN.mjs';
 import _objectSpread$1 from '@babel/runtime/helpers/esm/objectSpread2';
 import _extends from '@babel/runtime/helpers/esm/extends';
 import { defineComponent, provide, computed, ref, createVNode, shallowRef, watch, inject } from 'vue';
-import { R as ResizeObserver, x as initMotion } from '../build/Title-YJvE5ZjV.mjs';
-import { P as PropTypes, I as Icon } from '../build/index-DJmKUcFc.mjs';
+import { R as ResizeObserver, x as initMotion } from '../build/Title-CgfrIVWU.mjs';
+import { P as PropTypes, I as Icon } from '../build/index-DTnbOyTJ.mjs';
 import { K as Keyframe } from './CloseCircleFilled.mjs';
 
 const devWarning = (valid, component, message) => {
@@ -246,7 +246,8 @@ const overflowProps = () => {
     onVisibleChange: Function,
     /** When set to `full`, ssr will render full items by default and remove at client side */
     ssr: String,
-    onMousedown: Function
+    onMousedown: Function,
+    role: String
   };
 };
 const Overflow = defineComponent({
@@ -455,7 +456,8 @@ const Overflow = defineComponent({
           "id": id,
           "class": classNames(!invalidate.value && prefixCls, className),
           "style": style,
-          "onMousedown": onMousedown
+          "onMousedown": onMousedown,
+          "role": props.role
         }, restAttrs), {
           default: () => [mergedData.value.map(internalRenderItemNode), showRest.value ? restNode() : null, suffix && createVNode(Item, _objectSpread$1(_objectSpread$1({}, itemSharedProps), {}, {
             "order": mergedDisplayCount.value,
