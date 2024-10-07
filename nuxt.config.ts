@@ -7,7 +7,6 @@ export default defineNuxtConfig({
       //apiBase: 'http://localhost:4000/client-api',
     },
   },
-
   // nitro: {
   //   prerender: {
   //     crawlLinks: true,
@@ -15,21 +14,14 @@ export default defineNuxtConfig({
   //   },
   //   preset: "vercel",
   // },
-
-
   nitro: {
     preset: 'vercel-edge',
-
     prerender: {
-      
       crawlLinks: true,
       routes: ['/sitemap.xml'],
       //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
     },
   },
-
-
-
   // nitro: {
   //   preset: 'vercel-edge',
 
@@ -39,10 +31,6 @@ export default defineNuxtConfig({
   //     //  routes: ['/sitemap.xml'], // Ensure the sitemap route is pre-rendered
   //   },
   // },
-
-
-
-
   app: {
     baseURL: "/",
     head: {
@@ -53,17 +41,13 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-
   ssr: true,
-
   antd: {
     extractStyle: true,
   },
-
   pinia: {
     storesDirs: ["./stores/**"],
   },
-
   modules: [
     "@ant-design-vue/nuxt",
     "@nuxtjs/i18n",
