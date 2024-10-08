@@ -15,7 +15,6 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "start": "node ./server/index.mjs"
-  }
   },
   "dependencies": {
     "@ant-design-vue/nuxt": "^1.4.4",
