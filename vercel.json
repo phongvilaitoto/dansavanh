@@ -1,6 +1,14 @@
 {
-    "routes": [
-      { "src": "/(.*)", "dest": "/" }
-    ]
-  }
-  
+  "builds": [
+    {
+      "src": "server/index.mjs",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server/index.mjs"
+    }
+  ]
+}
