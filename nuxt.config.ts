@@ -43,11 +43,11 @@ export default defineNuxtConfig({
   // nitro: {
   //   preset: 'node-server'
   // },
-  nitro: {
-    output: {
-      dir: 'dist', // Set the output directory to `dist`
-    },
-  },
+  // nitro: {
+  //   output: {
+  //     dir: 'dist', // Set the output directory to `dist`
+  //   },
+  // },
   ssr: true, 
 
   app: {
@@ -120,7 +120,7 @@ export default defineNuxtConfig({
   //     },
   //   },
   // },
-  
+
 
   socialShare: {
     baseUrl: "https://www.dansavanh.net", // required!
