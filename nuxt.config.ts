@@ -43,7 +43,12 @@ export default defineNuxtConfig({
   // nitro: {
   //   preset: 'node-server'
   // },
-
+  nitro: {
+    output: {
+      dir: 'dist', // Set the output directory to `dist`
+    },
+  },
+  ssr: true, 
 
   app: {
     baseURL: "/",
