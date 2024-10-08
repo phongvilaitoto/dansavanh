@@ -2,20 +2,8 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
-    }
-  },
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
+  "resolutions": {
+    "string-width": "4.2.3"
   },
   "engines": {
     "node": "20.x"

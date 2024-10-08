@@ -1,0 +1,1 @@
+import{z as o,C as s}from"./DQ_zc4fy.js";const u=async i=>{const c=s(),{data:n}=await o(c.public.apiBase+"/getDLang","$kw1yMCccMo"),t=n.value.dLang,e={};for(let a in t)e[a]=t[a][1];return e};export{u as default};

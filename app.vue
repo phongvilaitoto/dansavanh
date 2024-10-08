@@ -2,14 +2,14 @@
 
 <div>
   <a-extract-style>
-    <!-- <a-config-provider> -->
+    <a-config-provider>
       <!-- <NuxtLayout> -->
         <NuxtPage />
       <!-- </NuxtLayout> -->
  
-    <!-- </a-config-provider> -->
+    </a-config-provider>
   </a-extract-style>
-  
+
 </div>
   <!-- Your page or component -->
 
