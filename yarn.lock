@@ -15,7 +15,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ant-design-vue/nuxt@npm:^1.4.1":
+"@ant-design-vue/nuxt@npm:^1.4.4":
   version: 1.4.4
   resolution: "@ant-design-vue/nuxt@npm:1.4.4"
   dependencies:
@@ -2098,11 +2098,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 22.7.4
-  resolution: "@types/node@npm:22.7.4"
+  version: 22.7.5
+  resolution: "@types/node@npm:22.7.5"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10c0/c22bf54515c78ff3170142c1e718b90e2a0003419dc2d55f79c9c9362edd590a6ab1450deb09ff6e1b32d1b4698da407930b16285e8be3a009ea6cd2695cac01
+  checksum: 10c0/cf11f74f1a26053ec58066616e3a8685b6bcd7259bc569738b8f752009f9f0f7f85a1b2d24908e5b0f752482d1e8b6babdf1fbb25758711ec7bb9500bfcd6e60
   languageName: node
   linkType: hard
 
@@ -2183,10 +2183,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/build-utils@npm:8.4.6":
-  version: 8.4.6
-  resolution: "@vercel/build-utils@npm:8.4.6"
-  checksum: 10c0/58aa1f37b5a57b19f0567a1f5b8bafbea408e8c9c9afab68c6840cce91b20b7f3e9a0929f435aefff0ebb5581a5cb7ea7d46f4ec757b920c527f59081e0feee8
+"@vercel/build-utils@npm:8.4.7":
+  version: 8.4.7
+  resolution: "@vercel/build-utils@npm:8.4.7"
+  checksum: 10c0/208176384e92ff48aaab2011d6bc936301f8caf4c0a9c72088cc11b7766beb07dfc029cfe2ddabacdc1e7ead60580750b5044a32acccd773bfd909bd724b0ef0
   languageName: node
   linkType: hard
 
@@ -2251,14 +2251,14 @@ __metadata:
   linkType: hard
 
 "@vercel/node@npm:^3.2.18":
-  version: 3.2.18
-  resolution: "@vercel/node@npm:3.2.18"
+  version: 3.2.19
+  resolution: "@vercel/node@npm:3.2.19"
   dependencies:
     "@edge-runtime/node-utils": "npm:2.3.0"
     "@edge-runtime/primitives": "npm:4.1.0"
     "@edge-runtime/vm": "npm:3.2.0"
     "@types/node": "npm:16.18.11"
-    "@vercel/build-utils": "npm:8.4.6"
+    "@vercel/build-utils": "npm:8.4.7"
     "@vercel/error-utils": "npm:2.0.2"
     "@vercel/nft": "npm:0.27.3"
     "@vercel/static-config": "npm:3.0.0"
@@ -2274,7 +2274,7 @@ __metadata:
     ts-node: "npm:10.9.1"
     typescript: "npm:4.9.5"
     undici: "npm:5.28.4"
-  checksum: 10c0/7fc497c73916769029809380f31cbadf236c227b9108ebc47a6d07ae667a1ed7c1670c15f6a2a4579ab9f02594d88ea3af6f20ff42a1dbafabd7025fb62f5c72
+  checksum: 10c0/d2fb2cc23749400752d6f079c57c4634aa7f580b3f41de717fe1fe867566ada69c33c85f84cd91bb8075478f43fc33274bed15a8622cf10c2a95bced700ff05d
   languageName: node
   linkType: hard
 
@@ -3911,9 +3911,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.28":
-  version: 1.5.32
-  resolution: "electron-to-chromium@npm:1.5.32"
-  checksum: 10c0/d0c0c418fae6f7714fb6cfeb8f6a74a9504cf41ed6a4119d5388d94442ee224238c331bacc5917f2c89e3ffebd1b9f870ea5c0951c473ca7e58debef0f3e9137
+  version: 1.5.33
+  resolution: "electron-to-chromium@npm:1.5.33"
+  checksum: 10c0/46b914e85ce9ff5d57b78782f750ca6585c5aa713c0e6f70225bc6cf0f7637ce40567ccfd0d9a95d84120164fef01c8ff42c7cd206afdb1bace481e187a3919f
   languageName: node
   linkType: hard
 
@@ -5497,11 +5497,11 @@ __metadata:
   linkType: hard
 
 "jiti@npm:^2.1.2, jiti@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "jiti@npm:2.3.1"
+  version: 2.3.3
+  resolution: "jiti@npm:2.3.3"
   bin:
     jiti: lib/jiti-cli.mjs
-  checksum: 10c0/0388bd52ad623973bb17f0b9604b1a28f2bf0beb9bc7f5805facde2183f8203d80b8360d0b400faf80718077e206a997fa9f4dba62735e86cd3a76905ca8b071
+  checksum: 10c0/d71e40fb3c359cddafa2a6a03aea7e5e3a571aedeb5bec7627d5bc67c1e66c6275be5c03b4e0b10cd22cde9d39c892f27f6598a4e63bde030b607efc5051fd7f
   languageName: node
   linkType: hard
 
@@ -6155,6 +6155,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"neo-async@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "neo-async@npm:2.6.2"
+  checksum: 10c0/c2f5a604a54a8ec5438a342e1f356dff4bc33ccccdb6dc668d94fe8e5eccfc9d2c2eea6064b0967a767ba63b33763f51ccf2cd2441b461a7322656c1f06b3f5d
+  languageName: node
+  linkType: hard
+
 "nitropack@npm:^2.8.1, nitropack@npm:^2.9.7":
   version: 2.9.7
   resolution: "nitropack@npm:2.9.7"
@@ -6428,7 +6435,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nuxt-app@workspace:."
   dependencies:
-    "@ant-design-vue/nuxt": "npm:^1.4.1"
+    "@ant-design-vue/nuxt": "npm:^1.4.4"
     "@ant-design/icons-vue": "npm:^7.0.1"
     "@nuxtjs/i18n": "npm:^8.1.1"
     "@pinia/nuxt": "npm:^0.5.1"
@@ -6442,7 +6449,8 @@ __metadata:
     nuxt-facebook-chat: "npm:^1.0.5"
     pinia: "npm:^2.1.7"
     plyr: "npm:^3.7.8"
-    sass: "npm:^1.70.0"
+    sass: "npm:^1.79.1"
+    sass-loader: "npm:^16.0.1"
     swiper: "npm:^11.0.6"
     vue: "npm:^3.4.14"
     vue-router: "npm:^4.2.5"
@@ -7617,7 +7625,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.70.0":
+"sass-loader@npm:^16.0.1":
+  version: 16.0.2
+  resolution: "sass-loader@npm:16.0.2"
+  dependencies:
+    neo-async: "npm:^2.6.2"
+  peerDependencies:
+    "@rspack/core": 0.x || 1.x
+    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
+    sass: ^1.3.0
+    sass-embedded: "*"
+    webpack: ^5.0.0
+  peerDependenciesMeta:
+    "@rspack/core":
+      optional: true
+    node-sass:
+      optional: true
+    sass:
+      optional: true
+    sass-embedded:
+      optional: true
+    webpack:
+      optional: true
+  checksum: 10c0/9c5165b44fc6229d8f36fb2af3ebb9d1e3a837bcc80040d3f3fc5793cd2998407e2ed55853c2b342cca2b5e17fa141160198ad034685a95b17126200c320ae11
+  languageName: node
+  linkType: hard
+
+"sass@npm:^1.79.1":
   version: 1.79.4
   resolution: "sass@npm:1.79.4"
   dependencies:

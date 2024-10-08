@@ -1,7 +1,22 @@
 <template>
-  <NuxtLayout>
+
+<div>
+  <a-extract-style>
+    <!-- <a-config-provider> -->
+      <!-- <NuxtLayout> -->
+        <NuxtPage />
+      <!-- </NuxtLayout> -->
+ 
+    <!-- </a-config-provider> -->
+  </a-extract-style>
+</div>
+  <!-- Your page or component -->
+
+  <!-- <NuxtLayout>
+    <a-extract-style>
     <NuxtPage  />
-  </NuxtLayout>
+  </a-extract-style>
+  </NuxtLayout> -->
   <!-- <client-only>
       <nuxt-facebook-chat :options="options" />
     </client-only> -->
@@ -28,9 +43,9 @@ const { main } = storeToRefs(useMainStore());
 // const route = useRoute()
 // const router = useRouter()
 //onMounted(async () => {
-  
-  const { data }: any = await useFetch(config.public.apiBase + "/getDMain");
-  Object.assign(main.value, data.value.dMain);
+
+const { data }: any = await useFetch(config.public.apiBase + "/getDMain");
+Object.assign(main.value, data.value.dMain);
 // })
 
 // if(route.path === '/') router.push('/en')
@@ -81,14 +96,13 @@ span {
 .global-margin-top {
   margin-top: 180px;
 }
+
 /* Custom, iPhone Retina */
 .eiei {
-  @media only screen and (min-width: 320px) {
-  }
+  @media only screen and (min-width: 320px) {}
 
   /* Small Devices, Tablets */
-  @media only screen and (min-width: 768px) {
-  }
+  @media only screen and (min-width: 768px) {}
 }
 
 .is-mobile {
@@ -159,17 +173,21 @@ h2 {
   margin-bottom: 12px;
   font-size: 32px;
 }
+
 h1 {
   line-height: 1.1;
   font-weight: 700;
 }
+
 //social share
 .social-share {
   color: #111118;
+
   &:hover {
     color: #fff;
   }
 }
+
 //set padding container
 .gutter-container {
   padding-right: 1.75rem;
@@ -266,6 +284,7 @@ h1 {
     transition: transform 0.45s cubic-bezier(0.835, -0.005, 0.06, 1);
     transform: scaleX(0);
   }
+
   &:after {
     transform-origin: left;
   }
@@ -283,6 +302,7 @@ h1 {
 .text-bold {
   font-weight: 700;
 }
+
 .bg-white {
   background: white;
   color: black;
@@ -350,18 +370,12 @@ h1 {
   border-color: #6fb586;
 }
 
-:where(.css-dev-only-do-not-override-1b6tocy).ant-select:not(
-    .ant-select-disabled
-  ):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover
-  .ant-select-selector {
+:where(.css-dev-only-do-not-override-1b6tocy).ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
   border-color: #6fb586;
   border-inline-end-width: undefinedpx !important;
 }
 
-:where(.css-dev-only-do-not-override-1b6tocy).ant-select:not(
-    .ant-select-disabled
-  ):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover
-  .ant-select-selector {
+:where(.css-dev-only-do-not-override-1b6tocy).ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
   border-color: #6fb586;
   border-inline-end-width: undefinedpx !important;
 }
@@ -384,6 +398,7 @@ button:focus {
   outline: 0 !important;
   outline-offset: 0;
 }
+
 button::before,
 button::after {
   position: absolute;
@@ -397,6 +412,7 @@ button::after {
   max-width: 1000px;
   margin: 10px auto 35px;
 }
+
 .btn {
   position: relative;
   display: inline-block;
@@ -411,6 +427,7 @@ button::after {
   height: 40px;
   min-width: 120px;
 }
+
 .btn span {
   position: relative;
   display: inline-block;
@@ -435,11 +452,13 @@ button::after {
   background-color: rgb(28, 31, 30);
   transition: 0.3s ease-out;
 }
+
 .btn-1 span {
   color: rgb(255, 255, 255);
   border: 1px solid rgb(28, 31, 30);
   transition: 0.2s 0.1s;
 }
+
 .btn-1 span:hover {
   color: rgb(28, 31, 30);
   transition: 0.2s 0.1s;
@@ -453,6 +472,7 @@ button::after {
   height: 100%;
   width: 100%;
 }
+
 .btn.hover-filled-slide-down:hover::before {
   height: 0%;
 }
@@ -465,6 +485,7 @@ button::after {
   height: 100%;
   width: 100%;
 }
+
 .btn.hover-filled-slide-up:hover::before {
   height: 0%;
 }
@@ -477,6 +498,7 @@ button::after {
   height: 100%;
   width: 100%;
 }
+
 .btn.hover-filled-slide-left:hover::before {
   width: 0%;
 }
@@ -489,6 +511,7 @@ button::after {
   height: 100%;
   width: 100%;
 }
+
 .btn.hover-filled-slide-right:hover::before {
   width: 0%;
 }
@@ -502,6 +525,7 @@ button::after {
   width: 100%;
   opacity: 1;
 }
+
 .btn.hover-filled-opacity:hover::before {
   opacity: 0;
 }
@@ -511,11 +535,13 @@ button::after {
   background-color: rgb(28, 31, 30);
   transition: 0.3s ease-out;
 }
+
 .btn-2 span {
   color: rgb(28, 31, 30);
   border: 1px solid rgb(28, 31, 30);
   transition: 0.2s;
 }
+
 .btn-2 span:hover {
   color: rgb(255, 255, 255);
   transition: 0.2s 0.1s;
@@ -529,6 +555,7 @@ button::after {
   height: 0%;
   width: 100%;
 }
+
 .btn.hover-slide-down:hover::before {
   height: 100%;
 }
@@ -541,6 +568,7 @@ button::after {
   height: 0%;
   width: 100%;
 }
+
 .btn.hover-slide-up:hover::before {
   height: 100%;
 }
@@ -553,6 +581,7 @@ button::after {
   height: 100%;
   width: 0%;
 }
+
 .btn.hover-slide-left:hover::before {
   width: 100%;
 }
@@ -565,6 +594,7 @@ button::after {
   height: 100%;
   width: 0%;
 }
+
 .btn.hover-slide-right:hover::before {
   width: 100%;
 }
@@ -578,6 +608,7 @@ button::after {
   width: 100%;
   opacity: 0;
 }
+
 .btn.hover-opacity:hover::before {
   opacity: 1;
 }
@@ -586,10 +617,12 @@ button::after {
 .btn-3 {
   padding: 5px;
 }
+
 .btn-3 span {
   color: rgb(255, 255, 255);
   background-color: rgb(54, 56, 55);
 }
+
 .btn-3::before,
 .btn-3::after {
   background: transparent;
@@ -603,18 +636,21 @@ button::after {
   height: 25%;
   transition: 0.35s;
 }
+
 .btn.hover-border-1::before {
   top: 0;
   left: 0;
   border-left: 1px solid rgb(28, 31, 30);
   border-top: 1px solid rgb(28, 31, 30);
 }
+
 .btn.hover-border-1::after {
   bottom: 0;
   right: 0;
   border-right: 1px solid rgb(28, 31, 30);
   border-bottom: 1px solid rgb(28, 31, 30);
 }
+
 .btn.hover-border-1:hover::before,
 .btn.hover-border-1:hover::after {
   width: 99%;
@@ -628,18 +664,21 @@ button::after {
   height: 25%;
   transition: 0.35s;
 }
+
 .btn.hover-border-2::before {
   bottom: 0;
   left: 0;
   border-left: 1px solid rgb(28, 31, 30);
   border-bottom: 1px solid rgb(28, 31, 30);
 }
+
 .btn.hover-border-2::after {
   top: 0;
   right: 0;
   border-right: 1px solid rgb(28, 31, 30);
   border-top: 1px solid rgb(28, 31, 30);
 }
+
 .btn.hover-border-2:hover::before,
 .btn.hover-border-2:hover::after {
   width: 99%;
@@ -654,18 +693,21 @@ button::after {
   opacity: 0;
   transition: width 0.2s 0.15s linear, height 0.15s linear, opacity 0s 0.35s;
 }
+
 .btn.hover-border-3::before {
   top: 0;
   right: 0;
   border-top: 1px solid rgb(28, 31, 30);
   border-left: 1px solid rgb(28, 31, 30);
 }
+
 .btn.hover-border-3::after {
   bottom: 0;
   left: 0;
   border-bottom: 1px solid rgb(28, 31, 30);
   border-right: 1px solid rgb(28, 31, 30);
 }
+
 .btn.hover-border-3:hover::before,
 .btn.hover-border-3:hover::after {
   width: 100%;
@@ -682,18 +724,21 @@ button::after {
   opacity: 0;
   transition: width 0.2s linear, height 0.15s 0.2s ease-out, opacity 0s 0.35s;
 }
+
 .btn.hover-border-4::before {
   bottom: 0;
   left: -1px;
   border-top: 1px solid rgb(28, 31, 30);
   border-left: 1px solid rgb(28, 31, 30);
 }
+
 .btn.hover-border-4::after {
   top: 0;
   right: 0;
   border-bottom: 1px solid rgb(28, 31, 30);
   border-right: 1px solid rgb(28, 31, 30);
 }
+
 .btn.hover-border-4:hover::before,
 .btn.hover-border-4:hover::after {
   width: 100%;
@@ -709,6 +754,7 @@ button::after {
   height: 0%;
   opacity: 0;
 }
+
 .btn.hover-border-5::before {
   top: 0;
   right: 0;
@@ -717,6 +763,7 @@ button::after {
   transition: width 0.2s 0.5s ease-out, height 0.15s 0.35s linear,
     opacity 0s 0.7s;
 }
+
 .btn.hover-border-5::after {
   bottom: 0;
   left: 0px;
@@ -724,15 +771,19 @@ button::after {
   border-right: 1px solid rgb(28, 31, 30);
   transition: width 0.2s 0.15s linear, height 0.15s ease-in, opacity 0s 0.35s;
 }
+
 .btn.hover-border-5:hover::before,
 .btn.hover-border-5:hover::after {
   width: 100%;
   height: 96%;
   opacity: 1;
 }
+
 .btn.hover-border-5:hover::before {
-  transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s; /* 1,2 */
+  transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s;
+  /* 1,2 */
 }
+
 .btn.hover-border-5:hover::after {
   transition: width 0.2s 0.35s linear, height 0.15s 0.5s ease-out,
     opacity 0s 0.3s;
@@ -743,9 +794,11 @@ button::after {
   color: rgb(28, 31, 30);
   background-color: rgb(245, 245, 245);
 }
+
 .btn-4 span:hover {
   color: rgb(54, 56, 55);
 }
+
 .btn-4::before,
 .btn-4::after {
   width: 15%;
@@ -760,12 +813,15 @@ button::after {
   top: 0;
   transition: width 0.2s 0.35s ease-out;
 }
+
 .btn.hover-border-6::before {
   right: 50%;
 }
+
 .btn.hover-border-6::after {
   left: 50%;
 }
+
 .btn.hover-border-6:hover::before,
 .btn.hover-border-6:hover::after {
   width: 50%;
@@ -781,18 +837,21 @@ button::after {
   z-index: 2;
   transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;
 }
+
 .btn.hover-border-6 span::before {
   top: 0;
   left: 0;
   border-left: 2px solid rgb(54, 56, 55);
   border-bottom: 2px solid rgb(54, 56, 55);
 }
+
 .btn.hover-border-6 span::after {
   top: 0;
   right: 0;
   border-right: 2px solid rgb(54, 56, 55);
   border-bottom: 2px solid rgb(54, 56, 55);
 }
+
 .btn.hover-border-6 span:hover::before,
 .btn.hover-border-6 span:hover::after {
   width: 50%;
@@ -807,12 +866,15 @@ button::after {
   bottom: 0;
   transition: width 0.2s 0.35s ease-out;
 }
+
 .btn.hover-border-7::before {
   right: 50%;
 }
+
 .btn.hover-border-7::after {
   left: 50%;
 }
+
 .btn.hover-border-7:hover::before,
 .btn.hover-border-7:hover::after {
   width: 50%;
@@ -828,18 +890,21 @@ button::after {
   z-index: 2;
   transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;
 }
+
 .btn.hover-border-7 span::before {
   bottom: 0;
   left: 0;
   border-left: 2px solid rgb(54, 56, 55);
   border-top: 2px solid rgb(54, 56, 55);
 }
+
 .btn.hover-border-7 span::after {
   bottom: 0;
   right: 0;
   border-right: 2px solid rgb(54, 56, 55);
   border-top: 2px solid rgb(54, 56, 55);
 }
+
 .btn.hover-border-7 span:hover::before,
 .btn.hover-border-7 span:hover::after {
   width: 50%;
@@ -855,16 +920,20 @@ button::after {
   width: 15%;
   transition: width 0.2s 0.35s ease-out;
 }
+
 .btn.hover-border-8::before {
   right: 50%;
 }
+
 .btn.hover-border-8::after {
   left: 50%;
 }
+
 .btn.hover-border-8:hover::before {
   width: 50%;
   transition: width 0.2s ease-in;
 }
+
 .btn.hover-border-8:hover::after {
   width: 50%;
   transition: width 0.1s ease-in;
@@ -879,22 +948,26 @@ button::after {
   opacity: 0;
   z-index: 2;
 }
+
 .btn.hover-border-8 span::before {
   left: 0%;
   border-left: 2px solid rgb(54, 56, 55);
   transition: height 0.25s ease-in, opacity 0s 0.35s;
 }
+
 .btn.hover-border-8 span:hover::before {
   height: 96%;
   opacity: 1;
   transition: height 0.25s 0.2s ease-out, opacity 0s 0.2s;
 }
+
 .btn.hover-border-8 span::after {
   right: 0%;
   border-right: 2px solid rgb(54, 56, 55);
   border-top: 2px solid rgb(54, 56, 55);
   transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;
 }
+
 .btn.hover-border-8 span:hover::after {
   width: 99%;
   height: 96%;
@@ -909,16 +982,20 @@ button::after {
   width: 15%;
   transition: width 0.2s 0.35s ease-out;
 }
+
 .btn.hover-border-9::before {
   right: 50%;
 }
+
 .btn.hover-border-9::after {
   left: 50%;
 }
+
 .btn.hover-border-9:hover::before {
   width: 50%;
   transition: width 0.1s ease-in;
 }
+
 .btn.hover-border-9:hover::after {
   width: 50%;
   transition: width 0.2s ease-in;
@@ -933,22 +1010,26 @@ button::after {
   opacity: 0;
   z-index: 2;
 }
+
 .btn.hover-border-9 span::after {
   right: 0%;
   border-right: 2px solid rgb(54, 56, 55);
   transition: height 0.25s ease-in, opacity 0s 0.35s;
 }
+
 .btn.hover-border-9 span:hover::after {
   height: 96%;
   opacity: 1;
   transition: height 0.25s 0.2s ease-out, opacity 0s 0.2s;
 }
+
 .btn.hover-border-9 span::before {
   left: 0%;
   border-left: 2px solid rgb(54, 56, 55);
   border-top: 2px solid rgb(54, 56, 55);
   transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;
 }
+
 .btn.hover-border-9 span:hover::before {
   width: 98.5%;
   height: 96%;
@@ -964,16 +1045,20 @@ button::after {
   width: 2px;
   transition: height 0.2s 0.35s ease-out;
 }
+
 .btn.hover-border-10::before {
   top: 50%;
 }
+
 .btn.hover-border-10::after {
   bottom: 50%;
 }
+
 .btn.hover-border-10:hover::before {
   height: 50%;
   transition: height 0.2s ease-in;
 }
+
 .btn.hover-border-10:hover::after {
   height: 50%;
   transition: height 0.1s ease-in;
@@ -987,17 +1072,20 @@ button::after {
   opacity: 0;
   z-index: 2;
 }
+
 .btn.hover-border-10 span::after {
   bottom: 0;
   left: 0%;
   border-bottom: 2px solid rgb(54, 56, 55);
   transition: width 0.25s ease-in, opacity 0s 0.35s;
 }
+
 .btn.hover-border-10 span:hover::after {
   width: 100%;
   opacity: 1;
   transition: width 0.25s 0.2s ease-out, opacity 0s 0.2s;
 }
+
 .btn.hover-border-10 span::before {
   top: 0%;
   left: 0%;
@@ -1005,6 +1093,7 @@ button::after {
   border-right: 2px solid rgb(54, 56, 55);
   transition: height 0.15s ease-in, width 0.2s 0.15s linear, opacity 0s 0.35s;
 }
+
 .btn.hover-border-10 span:hover::before {
   width: 98.5%;
   height: 96%;
@@ -1019,6 +1108,7 @@ button::after {
   border: 2px solid rgb(249, 211, 27);
   transition: 0.2s;
 }
+
 .btn-5 span:hover {
   background-color: rgb(245, 245, 245);
 }
@@ -1032,14 +1122,17 @@ button::after {
   z-index: 2;
   transition: 0.35s;
 }
+
 .btn.hover-border-11::before {
   top: 0;
   right: 0;
 }
+
 .btn.hover-border-11::after {
   bottom: 0;
   left: 0;
 }
+
 .btn.hover-border-11:hover::before,
 .btn.hover-border-11:hover::after {
   width: 0%;
@@ -1054,14 +1147,17 @@ button::after {
   z-index: 2;
   transition: 0.25s;
 }
+
 .btn.hover-border-11 span::before {
   bottom: 0;
   right: -2px;
 }
+
 .btn.hover-border-11 span::after {
   top: 0;
   left: -2px;
 }
+
 .btn.hover-border-11 span:hover::before,
 .btn.hover-border-11 span:hover::after {
   height: 0%;

@@ -2,8 +2,20 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
-  "resolutions": {
-    "string-width": "4.2.3"
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": "20.x"
@@ -16,7 +28,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@ant-design-vue/nuxt": "^1.4.1",
+    "@ant-design-vue/nuxt": "^1.4.4",
     "@ant-design/icons-vue": "^7.0.1",
     "@nuxtjs/i18n": "^8.1.1",
     "@pinia/nuxt": "^0.5.1",
@@ -27,7 +39,6 @@
     "nuxt-facebook-chat": "^1.0.5",
     "pinia": "^2.1.7",
     "plyr": "^3.7.8",
-    "sass": "^1.70.0",
     "swiper": "^11.0.6",
     "vue": "^3.4.14",
     "vue-router": "^4.2.5",
@@ -36,6 +47,9 @@
   "devDependencies": {
     "@vercel/kv": "^3.0.0",
     "@vercel/node": "^3.2.18",
-    "nitropack": "^2.8.1"
-  }
+    "nitropack": "^2.8.1",
+    "sass": "^1.79.1",
+    "sass-loader": "^16.0.1"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -1,4 +1,4 @@
-import { setCookieLocale } from "@nuxtjs/i18n/dist/runtime/utils"
+
 
 export const useMainStore = defineStore('mainStore', () => {
 

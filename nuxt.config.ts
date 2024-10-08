@@ -54,7 +54,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: false },
 
-  ssr: false,
+ // ssr: true,
 
   antd: {
     extractStyle: true,
@@ -99,18 +99,20 @@ export default defineNuxtConfig({
   // i18n: {
 
   // },
-  css: ["ant-design-vue/dist/reset.css"],
+  //css: ["ant-design-vue/dist/reset.css"],
 
-  vite: {
-    resolve: {
-      alias: {
-        "ant-design-vue/dist": "ant-design-vue/dist",
-        "ant-design-vue/es": "ant-design-vue/es",
-        "ant-design-vue/lib": "ant-design-vue/es",
-        "ant-design-vue": "ant-design-vue/es",
-      },
-    },
-  },
+
+
+  // vite: {
+  //   resolve: {
+  //     alias: {
+  //       "ant-design-vue/dist": "ant-design-vue/dist",
+  //       "ant-design-vue/es": "ant-design-vue/es",
+  //       "ant-design-vue/lib": "ant-design-vue/es",
+  //       "ant-design-vue": "ant-design-vue/es",
+  //     },
+  //   },
+  // },
 
   socialShare: {
     baseUrl: "https://www.dansavanh.net", // required!
