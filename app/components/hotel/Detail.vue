@@ -34,7 +34,7 @@
               :class="{ 'room-card--reverse': idx % 2 === 1 }"
               data-aos="fade-up"
             >
-              <UiImageSwiper :items="[room, ...hotel.detail.rooms.filter((_: any, i: number) => i !== idx)]" label />
+              <UiImageSwiper :items="room.imgs?.length ? room.imgs : [room]" :label="!!room.imgs?.length" />
               <div class="room-card__info">
                 <h3>{{ room.titles[selectedIdx] }}</h3>
                 <p>{{ room.descriptions[selectedIdx] }}</p>

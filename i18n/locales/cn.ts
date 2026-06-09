@@ -1,13 +1,3 @@
-export default defineI18nLocale(async (locale) => {
-  const config = useRuntimeConfig();
+import { loadLocaleMessages } from './_utils'
 
-  const { data }: any = await useFetch(config.public.apiBase + "/getDLang");
-
-  const object = data.value.dLang;
-  const newObject: any = {};
-
-  for (let field in object) {
-    newObject[field] = object[field][2];
-  }
-  return newObject;
-});
+export default defineI18nLocale(async (locale) => loadLocaleMessages(locale))

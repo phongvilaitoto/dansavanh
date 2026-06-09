@@ -10,9 +10,9 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/**': { isr: 60 },
-  },
+  routeRules: process.env.NODE_ENV === 'production'
+    ? { '/**': { isr: 60 } }
+    : {},
 
   css: ['~/assets/css/main.scss'],
 
@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     langDir: 'locales',
+    vueI18n: 'i18n.config.ts',
   },
 
   app: {

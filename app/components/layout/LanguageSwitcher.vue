@@ -28,10 +28,15 @@ const languages = [
 ]
 
 function switchLang(code: string) {
-  setLocale(code)
   const lang = languages.find(l => l.code === code)
   if (lang) selectedIdx.value = lang.idx
+  setLocale(code)
 }
+
+onMounted(() => {
+  const lang = languages.find(l => l.code === locale.value)
+  if (lang && selectedIdx.value !== lang.idx) selectedIdx.value = lang.idx
+})
 </script>
 
 <style lang="scss" scoped>

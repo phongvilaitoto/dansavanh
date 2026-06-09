@@ -15,7 +15,7 @@
           show-ornament
         />
 
-        <div class="experience-grid">
+        <div v-if="blogs.length" class="experience-grid">
           <NuxtLink
             v-for="(item, idx) in blogs"
             :key="item._id"
@@ -27,10 +27,16 @@
             <div class="experience-card__image" :style="{ backgroundImage: `url('${item.img}')` }" />
             <div class="experience-card__body">
               <h3>{{ item.titles[selectedIdx] }}</h3>
-              <p>{{ item.captions[selectedIdx] }}</p>
+              <p>{{ item.captions?.[selectedIdx] }}</p>
             </div>
           </NuxtLink>
         </div>
+
+        <UiEmptyState
+          v-else
+          :title="$t('experience')"
+          description="Activities and experiences will be listed here soon."
+        />
       </div>
     </section>
   </div>
@@ -38,12 +44,10 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath()
-const config = useRuntimeConfig()
 const { selectedIdx } = storeToRefs(useMainStore())
-const blogs = ref<any[]>([])
 
-const { data } = await useFetch(`${config.public.apiBase}/getDBlogs?type=Experience`)
-if (data.value) blogs.value = (data.value as any).dBlogs || []
+const { data } = await useBlogs('Experience')
+const blogs = computed(() => (data.value as any)?.dBlogs || [])
 </script>
 
 <style lang="scss" scoped>

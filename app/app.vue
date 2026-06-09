@@ -6,11 +6,22 @@
 
 <script setup lang="ts">
 const config = useRuntimeConfig()
-const { main } = storeToRefs(useMainStore())
+const store = useMainStore()
 
-const { data } = await useFetch(`${config.public.apiBase}/getDMain`)
+const { data, error } = await useFetch(`${config.public.apiBase}/getDMain`, {
+  key: 'd-main',
+  default: () => ({ dMain: {} }),
+})
+
 if (data.value) {
-  Object.assign(main.value, (data.value as any).dMain)
+  const dMain = (data.value as any).dMain ?? data.value
+  Object.assign(store.main, dMain)
+}
+
+store.isLoaded = true
+
+if (error.value) {
+  console.warn('[Dansavanh] Failed to load main data:', error.value.message)
 }
 
 useHead({

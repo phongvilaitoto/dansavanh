@@ -5,7 +5,11 @@
     <section class="section">
       <div class="container">
         <UiMasonryGallery v-if="galleries.length" :images="galleries" />
-        <p v-else class="text-center text-muted">Gallery images loading...</p>
+        <UiEmptyState
+          v-else
+          :title="$t('gallery')"
+          description="Gallery images will appear here once available."
+        />
       </div>
     </section>
   </div>

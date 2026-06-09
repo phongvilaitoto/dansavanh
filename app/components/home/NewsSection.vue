@@ -3,7 +3,7 @@
     <div class="container">
       <UiSectionHeader :title="$t('newsTitle')" center show-ornament />
 
-      <div class="news-grid">
+      <div v-if="blogs.length" class="news-grid">
         <article
           v-for="(item, idx) in blogs.slice(0, 3)"
           :key="item._id"
@@ -14,7 +14,7 @@
           <div class="news-card__image" :style="{ backgroundImage: `url('${item.img}')` }" />
           <div class="news-card__body">
             <h3>{{ item.titles[selectedIdx] }}</h3>
-            <p>{{ item.captions[selectedIdx] }}</p>
+            <p>{{ item.captions?.[selectedIdx] }}</p>
             <NuxtLink :to="localePath(`/news/${item._id}`)" class="btn btn--outline">
               {{ $t('discoverMore') }}
             </NuxtLink>
@@ -22,7 +22,7 @@
         </article>
       </div>
 
-      <div class="text-center" style="margin-top: 2.5rem">
+      <div v-if="blogs.length" class="text-center" style="margin-top: 2.5rem">
         <NuxtLink :to="localePath('/news')" class="btn btn--primary">
           {{ $t('viewNews') }}
         </NuxtLink>
@@ -33,12 +33,10 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath()
-const config = useRuntimeConfig()
 const { selectedIdx } = storeToRefs(useMainStore())
-const blogs = ref<any[]>([])
 
-const { data } = await useFetch(`${config.public.apiBase}/getDBlogs?type=News`)
-if (data.value) blogs.value = (data.value as any).dBlogs || []
+const { data } = await useBlogs('News')
+const blogs = computed(() => (data.value as any)?.dBlogs || [])
 </script>
 
 <style lang="scss" scoped>

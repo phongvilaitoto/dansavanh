@@ -104,16 +104,14 @@
 <script setup lang="ts">
 const localePath = useLocalePath()
 const route = useRoute()
-const config = useRuntimeConfig()
 const { main, selectedIdx } = storeToRefs(useMainStore())
 
 const isScrolled = ref(false)
 const openDropdown = ref<string | null>(null)
 const drawerOpen = ref(false)
-const blogs = ref<any[]>([])
 
-const { data } = await useFetch(`${config.public.apiBase}/getDBlogs?type=Experience`)
-if (data.value) blogs.value = (data.value as any).dBlogs
+const { data: blogsData } = await useBlogs('Experience')
+const blogs = computed(() => (blogsData.value as any)?.dBlogs || [])
 
 const mainLinks = [
   { to: '/', label: 'home' },
@@ -131,7 +129,7 @@ const moreLinks = [
   { to: '/gallery', label: 'gallery' },
   { to: '/more/career', label: 'careerTitle' },
   { to: '/news', label: 'newsTitle' },
-  { to: '/investment-project', label: 'Investment' },
+  { to: '/investment-project', label: 'investment' },
 ]
 
 function isActive(path: string) {
@@ -139,10 +137,15 @@ function isActive(path: string) {
   return route.path.startsWith(localePath(path))
 }
 
+const onScroll = () => { isScrolled.value = window.scrollY > 40 }
+
 onMounted(() => {
-  const onScroll = () => { isScrolled.value = window.scrollY > 40 }
+  onScroll()
   window.addEventListener('scroll', onScroll, { passive: true })
-  onUnmounted(() => window.removeEventListener('scroll', onScroll))
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
 })
 
 watch(() => route.path, () => {

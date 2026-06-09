@@ -1,34 +1,42 @@
 <template>
-  <section v-if="main.home?.imgs?.length" class="hero">
-    <Swiper
-      :modules="modules"
-      :slides-per-view="1"
-      :loop="true"
-      :autoplay="{ delay: 5000, disableOnInteraction: false }"
-      :effect="'fade'"
-      :pagination="{ clickable: true }"
-      :navigation="true"
-      class="hero__swiper"
-      @swiper="onSwiper"
-    >
-      <SwiperSlide v-for="(image, idx) in main.home.imgs" :key="idx">
-        <div class="hero__slide" :style="{ backgroundImage: `url('${image}')` }">
-          <div class="hero__overlay" />
-        </div>
-      </SwiperSlide>
-    </Swiper>
+  <section class="hero">
+    <ClientOnly>
+      <Swiper
+        v-if="slides.length"
+        :modules="modules"
+        :slides-per-view="1"
+        :loop="slides.length > 1"
+        :autoplay="slides.length > 1 ? { delay: 5000, disableOnInteraction: false } : false"
+        :effect="'fade'"
+        :pagination="{ clickable: true }"
+        :navigation="slides.length > 1"
+        class="hero__swiper"
+      >
+        <SwiperSlide v-for="(image, idx) in slides" :key="idx">
+          <div class="hero__slide" :style="{ backgroundImage: `url('${image}')` }">
+            <div class="hero__overlay" />
+          </div>
+        </SwiperSlide>
+      </Swiper>
+      <div v-else class="hero__slide hero__slide--fallback">
+        <div class="hero__overlay" />
+      </div>
+      <template #fallback>
+        <div class="hero__slide hero__slide--fallback"><div class="hero__overlay" /></div>
+      </template>
+    </ClientOnly>
 
     <div class="hero__content container" data-aos="fade-up">
       <p class="hero__eyebrow">{{ $t('stepInTheWorld') }}</p>
-      <h1 class="hero__title">{{ main.home.titles?.[selectedIdx] }}</h1>
-      <p class="hero__desc">{{ main.home.descriptions?.[selectedIdx] }}</p>
+      <h1 class="hero__title">{{ title }}</h1>
+      <p v-if="description" class="hero__desc">{{ description }}</p>
       <div class="hero__actions">
-        <NuxtLink :to="localePath('/hotels')" class="btn btn--primary">Explore Resorts</NuxtLink>
-        <NuxtLink :to="localePath('/casino')" class="btn btn--outline-light">Visit Casino</NuxtLink>
+        <NuxtLink :to="localePath('/hotels')" class="btn btn--primary">{{ $t('viewHotelsButton') }}</NuxtLink>
+        <NuxtLink :to="localePath('/casino')" class="btn btn--outline-light">{{ $t('casino') }}</NuxtLink>
       </div>
     </div>
 
-    <div class="hero__scroll">
+    <div class="hero__scroll" aria-hidden="true">
       <span>Scroll</span>
       <div class="hero__scroll-line" />
     </div>
@@ -46,11 +54,16 @@ import 'swiper/css/pagination'
 const localePath = useLocalePath()
 const { main, selectedIdx } = storeToRefs(useMainStore())
 const modules = [Autoplay, EffectFade, Navigation, Pagination]
-const swipy = ref<any>()
 
-function onSwiper(swiper: any) {
-  swipy.value = swiper
-}
+const slides = computed(() => main.value.home?.imgs?.length
+  ? main.value.home.imgs
+  : ['/images/home-bg-1.jpg'])
+
+const title = computed(() =>
+  main.value.home?.titles?.[selectedIdx.value] || 'DANSAVANH')
+
+const description = computed(() =>
+  main.value.home?.descriptions?.[selectedIdx.value] || '')
 </script>
 
 <style lang="scss" scoped>
@@ -71,16 +84,22 @@ function onSwiper(swiper: any) {
     height: 100%;
     background-size: cover;
     background-position: center;
+
+    &--fallback {
+      background:
+        linear-gradient(135deg, rgba(13, 17, 23, 0.9), rgba(26, 22, 18, 0.85)),
+        url('/images/home-bg-1.jpg') center/cover no-repeat;
+    }
   }
 
   &__overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      to bottom,
-      rgba(13, 17, 23, 0.35) 0%,
-      rgba(13, 17, 23, 0.55) 50%,
-      rgba(13, 17, 23, 0.8) 100%
+      160deg,
+      rgba(13, 17, 23, 0.45) 0%,
+      rgba(13, 17, 23, 0.35) 40%,
+      rgba(13, 17, 23, 0.82) 100%
     );
   }
 
@@ -91,12 +110,12 @@ function onSwiper(swiper: any) {
     right: 0;
     z-index: 2;
     color: var(--color-white);
-    max-width: 700px;
+    max-width: 720px;
   }
 
   &__eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--color-gold-light);
     margin-bottom: 1rem;
@@ -104,25 +123,26 @@ function onSwiper(swiper: any) {
 
   &__title {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2.25rem, 5.5vw, 4.25rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.08;
     margin-bottom: 1rem;
     text-transform: uppercase;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   }
 
   &__desc {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    opacity: 0.9;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    opacity: 0.92;
     margin-bottom: 2rem;
-    max-width: 540px;
+    max-width: 520px;
   }
 
   &__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.85rem;
   }
 
   &__scroll {
@@ -135,14 +155,14 @@ function onSwiper(swiper: any) {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
 
     &-line {
       width: 1px;
-      height: 40px;
+      height: 36px;
       background: linear-gradient(to bottom, var(--color-gold), transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
@@ -151,24 +171,25 @@ function onSwiper(swiper: any) {
   :deep(.swiper-button-prev),
   :deep(.swiper-button-next) {
     color: var(--color-white);
-    opacity: 0.6;
+    opacity: 0.5;
     transition: opacity var(--transition);
-
     &:hover { opacity: 1; }
-
-    &::after { font-size: 1.5rem; }
+    &::after { font-size: 1.25rem; }
   }
 
   :deep(.swiper-pagination-bullet) {
     background: var(--color-white);
-    opacity: 0.4;
-    width: 10px;
-    height: 10px;
+    opacity: 0.35;
+    width: 8px;
+    height: 8px;
+    transition: all var(--transition);
   }
 
   :deep(.swiper-pagination-bullet-active) {
     background: var(--color-gold);
     opacity: 1;
+    width: 24px;
+    border-radius: 4px;
   }
 }
 

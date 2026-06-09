@@ -34,7 +34,7 @@
           <NuxtLink :to="localePath('/near-by')" @click="close">{{ $t('near By') }}</NuxtLink>
           <NuxtLink :to="localePath('/tour-package')" @click="close">{{ $t('tour Package') }}</NuxtLink>
           <NuxtLink :to="localePath('/more/career')" @click="close">{{ $t('careerTitle') }}</NuxtLink>
-          <NuxtLink :to="localePath('/investment-project')" @click="close">Investment</NuxtLink>
+          <NuxtLink :to="localePath('/investment-project')" @click="close">{{ $t('investment') }}</NuxtLink>
           <NuxtLink :to="localePath('/contact')" @click="close">{{ $t('contact') }}</NuxtLink>
         </nav>
       </aside>
@@ -50,6 +50,16 @@ const open = defineModel<boolean>('open', { default: false })
 function close() {
   open.value = false
 }
+
+watch(open, (isOpen) => {
+  if (import.meta.client) {
+    document.body.style.overflow = isOpen ? 'hidden' : ''
+  }
+})
+
+onUnmounted(() => {
+  if (import.meta.client) document.body.style.overflow = ''
+})
 </script>
 
 <style lang="scss" scoped>

@@ -8,7 +8,7 @@
 
     <section class="section">
       <div class="container">
-        <div class="offers-grid">
+        <div v-if="blogs.length" class="offers-grid">
           <article
             v-for="(item, idx) in blogs"
             :key="item._id"
@@ -19,13 +19,19 @@
             <div class="offer-card__image" :style="{ backgroundImage: `url('${item.img}')` }" />
             <div class="offer-card__body">
               <h3>{{ item.titles[selectedIdx] }}</h3>
-              <p>{{ item.captions[selectedIdx] }}</p>
+              <p>{{ item.captions?.[selectedIdx] }}</p>
               <NuxtLink :to="localePath(`/offer/${item._id}`)" class="btn btn--primary">
                 {{ $t('discoverMore') }}
               </NuxtLink>
             </div>
           </article>
         </div>
+
+        <UiEmptyState
+          v-else
+          :title="$t('offerTitle')"
+          description="No special offers available right now. Check back for exclusive deals."
+        />
       </div>
     </section>
   </div>
@@ -33,12 +39,10 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath()
-const config = useRuntimeConfig()
 const { selectedIdx } = storeToRefs(useMainStore())
-const blogs = ref<any[]>([])
 
-const { data } = await useFetch(`${config.public.apiBase}/getDBlogs?type=Offer`)
-if (data.value) blogs.value = (data.value as any).dBlogs || []
+const { data } = await useBlogs('Offer')
+const blogs = computed(() => (data.value as any)?.dBlogs || [])
 </script>
 
 <style lang="scss" scoped>
@@ -53,6 +57,9 @@ if (data.value) blogs.value = (data.value as any).dBlogs || []
   overflow: hidden;
   box-shadow: var(--shadow-md);
   background: var(--color-white);
+  transition: transform var(--transition);
+
+  &:hover { transform: translateY(-4px); }
 
   &__image {
     aspect-ratio: 16/9;

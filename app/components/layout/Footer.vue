@@ -1,5 +1,6 @@
 <template>
   <footer class="footer">
+    <div class="footer__accent" />
     <div class="footer__top container">
       <div class="footer__brand">
         <img src="/images/logo-dansavanh2.png" alt="Dansavanh" class="footer__logo" />
@@ -56,9 +57,19 @@ const year = new Date().getFullYear()
 
 <style lang="scss" scoped>
 .footer {
+  position: relative;
   background: var(--color-navy);
   color: rgba(255, 255, 255, 0.75);
   padding-top: 4rem;
+
+  &__accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  }
 
   &__top {
     display: grid;

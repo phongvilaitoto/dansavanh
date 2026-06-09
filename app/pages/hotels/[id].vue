@@ -1,9 +1,17 @@
 <template>
   <HotelDetail v-if="hotel" :hotel="hotel" />
-  <div v-else class="container section text-center">
-    <p>Hotel not found.</p>
-    <NuxtLink :to="localePath('/hotels')" class="btn btn--primary">View All Hotels</NuxtLink>
-  </div>
+  <section v-else class="section">
+    <div class="container">
+      <UiEmptyState
+        :title="$t('hotels')"
+        description="The hotel you're looking for could not be found."
+      >
+        <NuxtLink :to="localePath('/hotels')" class="btn btn--primary" style="margin-top: 1rem">
+          {{ $t('viewHotelsButton') }}
+        </NuxtLink>
+      </UiEmptyState>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">

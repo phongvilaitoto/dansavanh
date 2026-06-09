@@ -8,9 +8,9 @@
 
     <section class="section">
       <div class="container">
-        <div class="hotels-grid">
+        <div v-if="main.hotels?.length" class="hotels-grid">
           <NuxtLink
-            v-for="(hotel, idx) in main.hotels || []"
+            v-for="(hotel, idx) in main.hotels"
             :key="idx"
             :to="localePath('/hotels/' + hotel.titles[selectedIdx])"
             class="hotel-card"
@@ -25,6 +25,12 @@
             </div>
           </NuxtLink>
         </div>
+
+        <UiEmptyState
+          v-else
+          :title="$t('ourHotels')"
+          description="Hotel listings are loading or temporarily unavailable."
+        />
       </div>
     </section>
   </div>

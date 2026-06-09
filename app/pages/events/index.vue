@@ -6,7 +6,7 @@
       <div class="container">
         <UiSectionHeader :title="$t('eventComing')" show-ornament />
 
-        <div class="events-grid">
+        <div v-if="upcoming.length" class="events-grid">
           <article
             v-for="(item, idx) in upcoming"
             :key="item._id"
@@ -17,13 +17,19 @@
             <div class="event-card__image" :style="{ backgroundImage: `url('${item.img}')` }" />
             <div class="event-card__body">
               <h3>{{ item.titles[selectedIdx] }}</h3>
-              <p>{{ item.captions[selectedIdx] }}</p>
+              <p>{{ item.captions?.[selectedIdx] }}</p>
               <NuxtLink :to="localePath(`/events/${item._id}`)" class="btn btn--outline">
                 {{ $t('discoverMore') }}
               </NuxtLink>
             </div>
           </article>
         </div>
+
+        <UiEmptyState
+          v-else
+          :title="$t('eventComing')"
+          description="No upcoming events at the moment."
+        />
 
         <template v-if="past.length">
           <UiSectionHeader :title="$t('eventPast')" show-ornament style="margin-top: 4rem" />
@@ -37,7 +43,7 @@
               <div class="event-card__image" :style="{ backgroundImage: `url('${item.img}')` }" />
               <div class="event-card__body">
                 <h3>{{ item.titles[selectedIdx] }}</h3>
-                <p>{{ item.captions[selectedIdx] }}</p>
+                <p>{{ item.captions?.[selectedIdx] }}</p>
                 <NuxtLink :to="localePath(`/events/${item._id}`)" class="btn btn--outline">
                   {{ $t('discoverMore') }}
                 </NuxtLink>
