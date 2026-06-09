@@ -23,7 +23,7 @@
         >
           <NuxtLink :to="localePath('/hotels')" class="navbar__link">
             {{ $t('hotels') }}
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor"><path d="M1 1l4 4 4-4"/></svg>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
           </NuxtLink>
           <Transition name="fade">
             <ul v-if="openDropdown === 'hotels'" class="navbar__menu">
@@ -43,7 +43,7 @@
         >
           <NuxtLink :to="localePath('/experience')" class="navbar__link">
             {{ $t('experience') }}
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor"><path d="M1 1l4 4 4-4"/></svg>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
           </NuxtLink>
           <Transition name="fade">
             <ul v-if="openDropdown === 'experience'" class="navbar__menu">
@@ -72,7 +72,7 @@
         >
           <button class="navbar__link navbar__link--btn">
             {{ $t('more') }}
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor"><path d="M1 1l4 4 4-4"/></svg>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
           </button>
           <Transition name="fade">
             <ul v-if="openDropdown === 'more'" class="navbar__menu navbar__menu--sm">
@@ -124,8 +124,8 @@ const secondaryLinks = [
 ]
 
 const moreLinks = [
-  { to: '/near-by', label: 'near By' },
-  { to: '/tour-package', label: 'tour Package' },
+  { to: '/near-by', label: 'nearBy' },
+  { to: '/tour-package', label: 'tourPackage' },
   { to: '/gallery', label: 'gallery' },
   { to: '/more/career', label: 'careerTitle' },
   { to: '/news', label: 'newsTitle' },

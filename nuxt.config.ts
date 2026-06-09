@@ -10,9 +10,12 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: process.env.NODE_ENV === 'production'
-    ? { '/**': { isr: 60 } }
-    : {},
+  routeRules: {
+    ...(process.env.NODE_ENV === 'production' ? { '/**': { isr: 60 } } : {}),
+    '/invesment-project': { redirect: '/investment-project' },
+    '/th/invesment-project': { redirect: '/th/investment-project' },
+    '/cn/invesment-project': { redirect: '/cn/investment-project' },
+  },
 
   css: ['~/assets/css/main.scss'],
 

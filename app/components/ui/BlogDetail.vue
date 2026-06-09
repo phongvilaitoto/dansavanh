@@ -2,7 +2,7 @@
   <article v-if="blog" class="blog-detail">
     <nav class="blog-detail__nav container">
       <button class="blog-detail__back" @click="$router.back()">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M10 2L4 8l6 6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2L4 8l6 6"/></svg>
         Back
       </button>
       <div class="blog-detail__share">

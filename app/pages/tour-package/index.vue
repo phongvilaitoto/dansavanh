@@ -3,7 +3,7 @@
     <UiPageHero
       :title="$t('tourPackageTitle')"
       :caption="$t('tourPackageSubTitle')"
-      image="https://storage.googleapis.com/dsv-bucket/imgs/imgs/f475dd95-133e-409e-bf3b-81ab7584da43.jpg"
+      image="https://storage.googleapis.com/the-shifty-bucket/imgs/imgs/f475dd95-133e-409e-bf3b-81ab7584da43.jpg"
     />
 
     <section class="section">
@@ -35,9 +35,9 @@
 <script setup lang="ts">
 const localePath = useLocalePath()
 const { selectedIdx } = storeToRefs(useMainStore())
-const { data } = await useBlogs('Jobs')
+const { data } = await useBlogs('TourPackage')
 const blogs = computed(() => (data.value as any)?.dBlogs || [])
-const defaultImg = 'https://storage.googleapis.com/dsv-bucket/imgs/imgs/9b5773e0-906b-4566-988b-2d6242182066.jpg'
+const defaultImg = 'https://storage.googleapis.com/the-shifty-bucket/imgs/imgs/9b5773e0-906b-4566-988b-2d6242182066.jpg'
 </script>
 
 <style lang="scss" scoped>
